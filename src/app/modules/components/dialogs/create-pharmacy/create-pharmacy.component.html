@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Nueva Farmacia</h1>
+<form [formGroup]="form" (ngSubmit)="savePharmacy()">
+  <mat-dialog-content>
+    <mat-form-field class="form">
+      <mat-label>Nombre</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        placeholder="Nombre Farmacia"
+        required
+      /> </mat-form-field
+    ><br />
+    <mat-form-field class="form">
+      <mat-label>Telefono</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="phone"
+        placeholder="Telefono Farmacia"
+        required
+      /> </mat-form-field
+    ><br />
+    <mat-form-field class="form">
+      <mat-label>Email</mat-label
+      ><input
+        matInput
+        type="text"
+        formControlName="email"
+        placeholder="Correo Electronico"
+        required
+      />
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" mat-button color="primary" cdkFocusInitial>
+      Guardar
+    </button>
+    <button mat-button mat-raised-button color="warn">Cancelar</button>
+  </mat-dialog-actions>
+</form>

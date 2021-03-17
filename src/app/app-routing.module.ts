@@ -5,8 +5,15 @@ import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./modules/home/pages/home/home.component";
 import { LoginComponent } from "./modules/home/pages/login/login.component";
 import { SignupComponent } from "./modules/home/pages/signup/signup.component";
+import { DashboardComponent } from "./modules/admin/pages/dashboard/dashboard.component";
+import { PharmaciesComponent } from "./modules/admin/pages/pharmacies/pharmacies.component";
 
 const routes: Routes = [
+  {
+    path: "",
+    redirectTo: "/admin",
+    pathMatch: "full",
+  },
   {
     path: "login",
     component: LoginComponent,
@@ -16,13 +23,17 @@ const routes: Routes = [
     component: SignupComponent,
   },
   {
-    path: "",
+    path: "admin",
     component: MainComponent,
-    canActivate: [AdminGuard],
+    // canActivate: [AdminGuard],
     children: [
       {
-        path: "admin",
-        component: HomeComponent,
+        path: "dashboard",
+        component: DashboardComponent,
+      },
+      {
+        path: "pharmacies",
+        component: PharmaciesComponent,
       },
     ],
   },

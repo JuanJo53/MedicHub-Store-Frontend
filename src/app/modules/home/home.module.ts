@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { MatSidenavModule } from "@angular/material";
 import { HeaderComponent } from "./../../layout/header/header.component";
 import { FooterComponent } from "./../../layout/footer/footer.component";
-import { DialogsComponent } from "./../../modules/dialogs/dialogs.component";
 import { LoginComponent } from "./../../modules/home/pages/login/login.component";
 import { HomeComponent } from "./../../modules/home/pages/home/home.component";
 import { LayoutComponent } from "./../../layout/layout.component";
@@ -21,17 +20,23 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatDialogModule } from "@angular/material/dialog";
 import { SignupComponent } from "./pages/signup/signup.component";
+import { DashboardComponent } from "../admin/pages/dashboard/dashboard.component";
+import { PharmaciesComponent } from "../admin/pages/pharmacies/pharmacies.component";
+import { CreatePharmacyComponent } from "../components/dialogs/create-pharmacy/create-pharmacy.component";
+
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    DialogsComponent,
     LoginComponent,
     LayoutComponent,
     MainComponent,
     SidebarComponent,
     SignupComponent,
+    DashboardComponent,
+    PharmaciesComponent,
+    CreatePharmacyComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +54,6 @@ import { SignupComponent } from "./pages/signup/signup.component";
     MatInputModule,
     MatDialogModule,
   ],
-  entryComponents: [LoginComponent, SignupComponent],
+  entryComponents: [LoginComponent, SignupComponent, CreatePharmacyComponent],
 })
 export class HomeModule {}
