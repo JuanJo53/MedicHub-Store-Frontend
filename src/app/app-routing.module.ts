@@ -1,3 +1,4 @@
+import { AdminGuard } from "./core/guards/admin.guard";
 import { MainComponent } from "./layout/main/main.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -17,6 +18,7 @@ const routes: Routes = [
   {
     path: "",
     component: MainComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: "admin",

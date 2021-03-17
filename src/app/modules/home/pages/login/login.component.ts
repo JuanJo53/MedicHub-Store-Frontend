@@ -22,14 +22,6 @@ export class LoginComponent implements OnInit {
     });
     console.log("login");
   }
-  signup() {
-    // const dialogRef = this.dialog.open(SignupComponent, {
-    //   width: "1000px",
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   this.ngOnInit();
-    // });
-  }
   login() {
     console.log("login");
     if (this.form.valid) {
