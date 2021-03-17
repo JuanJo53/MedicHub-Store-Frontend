@@ -6,7 +6,7 @@ import { LoginComponent } from "./modules/home/pages/login/login.component";
 
 const routes: Routes = [
   {
-    path: "admin-lg",
+    path: "admin",
     component: LoginComponent,
   },
   {
