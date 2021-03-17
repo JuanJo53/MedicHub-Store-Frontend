@@ -24,7 +24,9 @@ import { DashboardComponent } from "../admin/pages/dashboard/dashboard.component
 import { PharmaciesComponent } from "../admin/pages/pharmacies/pharmacies.component";
 import { CreatePharmacyComponent } from "../components/dialogs/create-pharmacy/create-pharmacy.component";
 import { PharmacyComponent } from "../admin/components/pharmacy/pharmacy.component";
-
+import { PharmacyStatusPipe } from "src/app/shared/pipes/pharmacy-status.pipe";
+import { MatMenuModule } from "@angular/material/menu";
+import { WarningDialogComponent } from "../admin/components/warning-dialog/warning-dialog.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -39,6 +41,8 @@ import { PharmacyComponent } from "../admin/components/pharmacy/pharmacy.compone
     PharmaciesComponent,
     CreatePharmacyComponent,
     PharmacyComponent,
+    PharmacyStatusPipe,
+    WarningDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +59,13 @@ import { PharmacyComponent } from "../admin/components/pharmacy/pharmacy.compone
     ReactiveFormsModule,
     MatInputModule,
     MatDialogModule,
+    MatMenuModule,
   ],
-  entryComponents: [LoginComponent, SignupComponent, CreatePharmacyComponent],
+  entryComponents: [
+    LoginComponent,
+    SignupComponent,
+    CreatePharmacyComponent,
+    WarningDialogComponent,
+  ],
 })
 export class HomeModule {}

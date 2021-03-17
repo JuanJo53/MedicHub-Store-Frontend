@@ -10,7 +10,32 @@ import { CreatePharmacyComponent } from "src/app/modules/components/dialogs/crea
   styleUrls: ["./pharmacies.component.scss"],
 })
 export class PharmaciesComponent implements OnInit {
-  pharmacies: Pharmacy[] = [];
+  pharmacies: Pharmacy[] = [
+    {
+      pharmacyId: 0,
+      name: "Available",
+      phone: "1232552",
+      email: "pharmabol@gmail.com",
+      picture: "sadfafsdfsfsf",
+      status: 1,
+    },
+    {
+      pharmacyId: 1,
+      name: "Ready",
+      phone: "1232552",
+      email: "pharmabol@gmail.com",
+      picture: "sadfafsdfsfsf",
+      status: 1,
+    },
+    {
+      pharmacyId: 2,
+      name: "Started",
+      phone: "1232552",
+      email: "pharmabol@gmail.com",
+      picture: "sadfafsdfsfsf",
+      status: 1,
+    },
+  ];
 
   name: string;
   phone: string;

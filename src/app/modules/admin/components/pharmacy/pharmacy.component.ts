@@ -43,7 +43,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   cancel() {
     this.edit = false;
   }
-  editCert(): void {
+  editPharm(): void {
     this.edit = true;
     this.form = this.fromBuilder.group({
       pharmacyId: [0, [Validators.required]],
@@ -79,7 +79,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(WarningDialogComponent, {
       width: "500px",
       data: {
-        message: "¿Esta seguro que desea eliminar el certificado?",
+        message: "¿Esta seguro que desea eliminar la farmacia?",
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

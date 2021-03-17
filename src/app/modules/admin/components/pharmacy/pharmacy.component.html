@@ -1,18 +1,108 @@
-<div>
-  <mat-card class="pharm_card">
+<div *ngIf="pharmacy && !destroyed">
+  <mat-card class="pharm_card" *ngIf="!edit; else elseBlock">
     <mat-card-header>
       <mat-card-title>
         <h3>
           <strong>{{ pharmacy.name }}</strong>
         </h3>
       </mat-card-title>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>add</mat-icon>
+          <span>Sucursal</span>
+        </button>
+        <button mat-menu-item (click)="editPharm()">
+          <mat-icon>edit</mat-icon>
+          <span>Editar</span>
+        </button>
+        <button mat-menu-item (click)="deletePharmacy()">
+          <mat-icon>delete</mat-icon>
+          <span>Eliminar</span>
+        </button>
+      </mat-menu>
     </mat-card-header>
     <mat-card-content>
       <p>
         <strong>Email</strong>{{ pharmacy.email }} <strong>Phone</strong
         >{{ pharmacy.phone }}
       </p>
-      <p><strong>Status: </strong>{{ pharmacy.status }}</p>
+      <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
     </mat-card-content>
   </mat-card>
+  <ng-template #elseBlock>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="savePharmacy($event, pharmacy.pharmacyId)"
+    >
+      <mat-card class="pharm_card">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Nombre Certificado"
+            [(ngModel)]="pharmacy.name"
+            required
+          />
+        </mat-form-field>
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              formControlName="email"
+              placeholder="Email de la Faramacia"
+              [(ngModel)]="pharmacy.email"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Telefono</mat-label>
+            <input
+              matInput
+              formControlName="phone"
+              placeholder="Telefono de la Faramacia"
+              [(ngModel)]="pharmacy.phone"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <input
+              matInput
+              formControlName="status"
+              placeholder="Estado de la Faramacia"
+              [(ngModel)]="pharmacy.status"
+              required
+            />
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            id="{{ pharmacy.pharmacyId }}"
+            type="submit"
+            mat-button
+            color="primary"
+          >
+            Guardar Cambios
+          </button>
+          <button
+            id="{{ pharmacy.pharmacyId }}"
+            (click)="cancel()"
+            mat-button
+            color="warn"
+          >
+            Cancelar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </ng-template>
 </div>
