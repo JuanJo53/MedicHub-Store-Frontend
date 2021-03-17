@@ -8,13 +8,14 @@
 @import "2-base/base";
 @import "2-base/typography";
 @import "2-base/utilities";
-//3 - COMPONENT 
+//3 - COMPONENT
 //component : building pages which are independent and reusable everywhere across the website
 @import "3-component/buttons";
-//4 - LAYOUT 
+//4 - LAYOUT
 //layout : header , footer ,sidebar, big portions of components
 @import "4-layout/header";
-//5- PAGES 
+@import "4-layout/sidebar";
+//5- PAGES
 @import "5-pages/home";
 //pages : css just for those pages specifically
 

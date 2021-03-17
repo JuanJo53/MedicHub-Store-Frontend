@@ -1,1 +1,39 @@
-<p>sidebar works!</p>
+<mat-nav-list class="sidebar__list">
+  <div class="sidebar-brand">
+    <img [src]="" alt="Logo" class="sidebar-brand__logo" />
+    <span class="sidebar-brand__subtitle">Administrador</span>
+  </div>
+
+  <a
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/1/dashboard"
+    ><mat-icon class="link__icon">home</mat-icon
+    ><span class="link__text">Inicio</span></a
+  >
+  <a
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/1/forums"
+    ><mat-icon class="link__icon">dashboard</mat-icon
+    ><span class="link__text">Reportes</span></a
+  >
+  <a
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/1/forums"
+    ><mat-icon class="link__icon">local_pharmacy</mat-icon
+    ><span class="link__text">Farmacias</span></a
+  >
+  <a
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/1/resources"
+    ><mat-icon class="link__icon">person</mat-icon
+    ><span class="link__text">Clientes</span></a
+  >
+</mat-nav-list>

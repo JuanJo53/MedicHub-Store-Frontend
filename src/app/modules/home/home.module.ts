@@ -14,7 +14,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { MatIconModule } from "@angular/material/icon";
-
+import { MatListModule } from "@angular/material/list";
+import { MatExpansionModule } from "@angular/material/expansion";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -34,6 +35,8 @@ import { MatIconModule } from "@angular/material/icon";
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
+    MatListModule,
+    MatExpansionModule,
   ],
 })
 export class HomeModule {}

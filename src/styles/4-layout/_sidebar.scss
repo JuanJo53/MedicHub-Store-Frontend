@@ -1,0 +1,112 @@
+.sidebar.menu-close {
+  // transition: $transition-5;
+  width: 9rem;
+  .sidebar-brand {
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //background-color: orange;
+    margin-top: 1rem;
+    &__logo {
+      // transition: $transition-5;
+      //background-color: red;
+      margin-top: 1rem;
+      flex: 0 1 50%;
+      width: 7rem;
+      background-size: cover;
+      display: block;
+    }
+    &__subtitle {
+      // transition: $transition-5;
+      display: flex;
+      //background-color: green;
+      flex: 1;
+      // @include custom-title(0rem, 1.5rem, $color-primary-white);
+    }
+  }
+  .link span {
+    display: none;
+  }
+  .expansion-panel .expansion-panel__header .expansion-panel__header-text {
+    display: none;
+  }
+}
+.sidebar.menu-open {
+  width: 26rem;
+  transition: 0.5s;
+}
+.sidebar {
+  width: 26rem;
+  height: 100%;
+  // background-image: linear-gradient(
+  //     rgba($color-primary-blue, 0.8),
+  //     rgba($color-primary-blue, 0.8)
+  //   ),
+  //   url("https://images.unsplash.com/20/cambridge.JPG?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1030&q=80");
+  // background-size: cover;
+  background-color: $color-primary-blue;
+  &__list {
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .sidebar-brand {
+    // transition: $transition-5;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //background-color: orange;
+    margin-top: 1rem;
+    &__logo {
+      // transition: $transition-5;
+      //background-color: red;
+      flex: 0 1 60%;
+      width: 10rem;
+      background-size: cover;
+      display: block;
+    }
+    &__subtitle {
+      // transition: $transition-5;
+      display: flex;
+      //background-color: green;
+      flex: 1;
+      // @include custom-title(0rem, 2rem, $color-primary-white);
+    }
+  }
+}
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}
+.mat-expansion-panel-header {
+  padding: 0 1.5rem !important;
+  font-size: 1.6rem;
+}
+.mat-expansion-indicator::after {
+  color: $color-primary-white !important;
+}
+.mat-content {
+  align-items: center;
+}
+
+mat-expansion-panel {
+  background-color: transparent !important;
+  border-bottom: 0.1rem solid $color-primary-white;
+  box-shadow: none;
+  border-radius: 0rem;
+}
+
+.expansion-panel {
+  &__header {
+    color: $color-primary-white !important;
+    &-icon {
+      // @include margin-left-right(1.5rem, 2rem);
+    }
+    &-text {
+      // @include margin-left-right(1.5rem, 2rem);
+    }
+  }
+}
