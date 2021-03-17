@@ -27,6 +27,7 @@ import { PharmacyComponent } from "../admin/components/pharmacy/pharmacy.compone
 import { PharmacyStatusPipe } from "src/app/shared/pipes/pharmacy-status.pipe";
 import { MatMenuModule } from "@angular/material/menu";
 import { WarningDialogComponent } from "../admin/components/warning-dialog/warning-dialog.component";
+import { MatToolbarModule } from "@angular/material/toolbar";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -60,6 +61,7 @@ import { WarningDialogComponent } from "../admin/components/warning-dialog/warni
     MatInputModule,
     MatDialogModule,
     MatMenuModule,
+    MatToolbarModule,
   ],
   entryComponents: [
     LoginComponent,
