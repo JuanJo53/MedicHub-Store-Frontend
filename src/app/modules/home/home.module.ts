@@ -23,6 +23,7 @@ import { SignupComponent } from "./pages/signup/signup.component";
 import { DashboardComponent } from "../admin/pages/dashboard/dashboard.component";
 import { PharmaciesComponent } from "../admin/pages/pharmacies/pharmacies.component";
 import { CreatePharmacyComponent } from "../components/dialogs/create-pharmacy/create-pharmacy.component";
+import { PharmacyComponent } from "../admin/components/pharmacy/pharmacy.component";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CreatePharmacyComponent } from "../components/dialogs/create-pharmacy/c
     DashboardComponent,
     PharmaciesComponent,
     CreatePharmacyComponent,
+    PharmacyComponent,
   ],
   imports: [
     CommonModule,

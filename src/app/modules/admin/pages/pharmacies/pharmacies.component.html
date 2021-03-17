@@ -4,4 +4,10 @@
   <button (click)="addPharmacy()" mat-fab class="btn" color="primary">
     <mat-icon>add_icon</mat-icon>
   </button>
+  <div class="pharmacies-grid">
+    <app-pharmacy
+      *ngFor="let pharmacy of pharmacies"
+      [pharmacy]="pharmacy"
+    ></app-pharmacy>
+  </div>
 </div>

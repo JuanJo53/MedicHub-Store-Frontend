@@ -32,7 +32,7 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
-        path: "pharmacies",
+        path: "pharmacy",
         component: PharmaciesComponent,
       },
     ],
