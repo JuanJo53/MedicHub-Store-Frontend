@@ -17,7 +17,7 @@ export class PharmaciesService {
     return this.http.get<Pharmacy[]>(apiKey.api + "/pharmacy");
   }
   getPharmacy(pharmId: number) {
-    return this.http.get<Pharmacy>(apiKey.api + "pharmacy/" + pharmId);
+    return this.http.get<Pharmacy>(apiKey.api + "/pharmacy/" + pharmId);
   }
   updatePharmacy(pharmId: number, pharmacy: PharmacyRequest) {
     return this.http.put(apiKey.api + `/pharmacy/${pharmId}`, pharmacy);
