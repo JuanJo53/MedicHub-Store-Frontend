@@ -28,6 +28,9 @@ import { PharmacyStatusPipe } from "src/app/shared/pipes/pharmacy-status.pipe";
 import { MatMenuModule } from "@angular/material/menu";
 import { WarningDialogComponent } from "../admin/components/warning-dialog/warning-dialog.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { PharmDashboardComponent } from "../pharm-admin/pages/pharm-dashboard/pharm-dashboard.component";
+import { ProductsComponent } from "../pharm-admin/pages/products/products.component";
+import { CreateProductComponent } from "../pharm-admin/components/dialogs/create-product/create-product.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -44,6 +47,9 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     PharmacyComponent,
     PharmacyStatusPipe,
     WarningDialogComponent,
+    PharmDashboardComponent,
+    ProductsComponent,
+    CreateProductComponent,
   ],
   imports: [
     CommonModule,
@@ -67,6 +73,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     LoginComponent,
     SignupComponent,
     CreatePharmacyComponent,
+    CreateProductComponent,
     WarningDialogComponent,
   ],
 })
