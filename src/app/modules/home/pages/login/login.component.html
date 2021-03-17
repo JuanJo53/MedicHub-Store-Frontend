@@ -1,1 +1,53 @@
-<p>login works!</p>
+<div class="container">
+  <div class="login-container">
+    <div class="login-header">
+      <!-- <img [src]="logo" alt="SmartIdea-logo" /> -->
+      <h1><strong>MEDICHUB</strong></h1>
+      <h4>Bienvenido de nuevo, porfavor introduzca su usuario y contraseña.</h4>
+    </div>
+    <div class="row center-xs">
+      <mat-card class="login-card">
+        <form [formGroup]="form" (ngSubmit)="login()">
+          <mat-icon>account_circle</mat-icon>
+          <mat-form-field class="form-input">
+            <mat-label>Correo Electronico</mat-label>
+            <input
+              matInput
+              formControlName="email"
+              placeholder="Correo Electronico"
+              required
+            /> </mat-form-field
+          ><br />
+          <mat-icon>lock</mat-icon>
+          <mat-form-field class="form-input">
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              placeholder="Contraseña"
+              required
+              type="password"
+            />
+          </mat-form-field>
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            class="form__button"
+            routerLink="/user/feed"
+          >
+            Iniciar Sesión
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            class="form__button"
+            routerLink="/signup"
+          >
+            Registrarse
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

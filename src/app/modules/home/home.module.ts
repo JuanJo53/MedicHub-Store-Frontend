@@ -16,6 +16,11 @@ import { RouterModule } from "@angular/router";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { MatCardModule } from "@angular/material/card";
+import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { MatDialogModule } from "@angular/material/dialog";
+import { SignupComponent } from "./pages/signup/signup.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -26,6 +31,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
     LayoutComponent,
     MainComponent,
     SidebarComponent,
+    SignupComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +43,12 @@ import { MatExpansionModule } from "@angular/material/expansion";
     MatButtonModule,
     MatListModule,
     MatExpansionModule,
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDialogModule,
   ],
+  entryComponents: [LoginComponent, SignupComponent],
 })
 export class HomeModule {}
