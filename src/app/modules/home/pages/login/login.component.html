@@ -1,53 +1,165 @@
-<div class="container">
-  <div class="login-container">
-    <div class="login-header">
-      <!-- <img [src]="logo" alt="SmartIdea-logo" /> -->
-      <h1><strong>MEDICHUB</strong></h1>
-      <h4>Bienvenido de nuevo, porfavor introduzca su usuario y contraseña.</h4>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  
+  </head>
+
+  <style>
+    body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2F4A85;
+    text-align: center;
+    align-content: center;
+    
+    }
+    .container{
+      background-color: white;
+      border: 1.4px solid #2F4A85;
+      }
+    .title1{
+      color: #2F4A85;
+      white-space: nowrap;
+    text-align: center;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+
+    }
+    .title2{
+      color: #2F4A85;
+      white-space: nowrap;
+    text-align: center;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+
+    }
+    .login-container{
+      padding-top: 30%;
+    }
+    .login-card{
+        background-color: transparent;
+    }
+    .form-letter{
+      color: #2F4A85;
+      font-size: small;
+      font-style: normal;
+      border-bottom: solid #E9E9F0 .1rem;
+    }
+    .row_center_xs{
+      padding-right: 20%;
+      padding-left: 20%;
+    }
+    .button_login{
+      background-color: #2F4A85;
+      color: white;
+      margin-right:50px;
+    }
+
+    .button_regis{
+      background-color: white;
+      color: #2F4A85;
+    }
+    /*.inputuc{
+
+      padding: .8rem;
+      margin: .5rem 0;
+      border: none;
+      border-bottom: solid #2F4A85 .1rem;
+      transition: all .5s;
+      overflow: visible;
+      white-space: nowrap;
+      line-height: 25px;
+      margin-top: -5px;
+      text-align: left;
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 15px;
+    }*/
+
+  </style>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+    <div class="container" >
+      <div class="row row-cols-2">
+        <div class="col">
+
+          
+          <div class="container1">
+            <div class="login-container">
+              <div class="login-header">
+                <!-- <img [src]="logo" alt="SmartIdea-logo" /> -->
+                <h1 class="title1"><strong>MEDIC - HUB</strong></h1>
+                <h4 class="title2">Bienvenido de nuevo, por favor introduzca su usuario y contraseña.</h4>
+                <br>
+                <br>
+                <br>
+              </div>
+              <div class="row_center_xs">
+                <mat-card class="login-card">
+                  <form [formGroup]="form" (ngSubmit)="login()">
+                    <mat-icon class="form-letter">account_circle</mat-icon>
+                    <mat-form-field class="form-input">
+                      <mat-label class="form-letter">Correo Electronico</mat-label>
+                      <input
+                        matInput
+                        formControlName="email"
+                        placeholder="Correo Electronico"
+                        required
+                      /> </mat-form-field
+                    ><br />
+                    <br>
+                    <mat-icon class="form-letter">lock</mat-icon>
+                    <mat-form-field class="form-input">
+                      <mat-label class="form-letter">Contraseña</mat-label>
+                      
+                      <input
+                        matInput
+                        formControlName="password"
+                        placeholder="Contraseña"
+                        required
+                        type="password"
+                        class="inputuc"
+                      />
+                    </mat-form-field>
+                    <br><br><br>
+                    <button
+                      type="submit"
+                      mat-raised-button
+                      color="primary"
+                      class="form__button"
+                      routerLink="/admin"
+                      class="button_login"
+                    >
+                      Iniciar Sesión
+                    </button>
+                    <button 
+                      mat-raised-button
+                      color="accent"
+                      class="form__button"
+                      routerLink="/signup"
+                      class="button_regis"
+                    >
+                      Registrarse
+                    </button>
+                  </form>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="co2">
+          <IMG SRC="assets/images/login_fondo1.jpg" WIDTH=650 HEIGHT=800  >
+        </div>
+      </div>
     </div>
-    <div class="row center-xs">
-      <mat-card class="login-card">
-        <form [formGroup]="form" (ngSubmit)="login()">
-          <mat-icon>account_circle</mat-icon>
-          <mat-form-field class="form-input">
-            <mat-label>Correo Electronico</mat-label>
-            <input
-              matInput
-              formControlName="email"
-              placeholder="Correo Electronico"
-              required
-            /> </mat-form-field
-          ><br />
-          <mat-icon>lock</mat-icon>
-          <mat-form-field class="form-input">
-            <mat-label>Contraseña</mat-label>
-            <input
-              matInput
-              formControlName="password"
-              placeholder="Contraseña"
-              required
-              type="password"
-            />
-          </mat-form-field>
-          <button
-            type="submit"
-            mat-raised-button
-            color="primary"
-            class="form__button"
-            routerLink="/admin"
-          >
-            Iniciar Sesión
-          </button>
-          <button
-            mat-raised-button
-            color="accent"
-            class="form__button"
-            routerLink="/signup"
-          >
-            Registrarse
-          </button>
-        </form>
-      </mat-card>
-    </div>
-  </div>
-</div>
+  </body>
+</html>
