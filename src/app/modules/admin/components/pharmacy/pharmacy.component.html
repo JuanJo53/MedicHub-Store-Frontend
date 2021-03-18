@@ -22,7 +22,7 @@
           <mat-icon>edit</mat-icon>
           <span>Editar</span>
         </button>
-        <button mat-menu-item (click)="deletePharmacy()">
+        <button mat-menu-item (click)="deletePharmacy(pharmacy.pharmacyId)">
           <mat-icon>delete</mat-icon>
           <span>Eliminar</span>
         </button>
@@ -73,16 +73,7 @@
               required
             />
           </mat-form-field>
-          <mat-form-field>
-            <mat-label>Status</mat-label>
-            <input
-              matInput
-              formControlName="status"
-              placeholder="Estado de la Faramacia"
-              [(ngModel)]="pharmacy.status"
-              required
-            />
-          </mat-form-field>
+          <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
         </mat-card-content>
         <mat-card-actions>
           <button

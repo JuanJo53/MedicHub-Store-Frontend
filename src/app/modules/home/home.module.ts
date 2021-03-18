@@ -31,6 +31,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { PharmDashboardComponent } from "../pharm-admin/pages/pharm-dashboard/pharm-dashboard.component";
 import { ProductsComponent } from "../pharm-admin/pages/products/products.component";
 import { CreateProductComponent } from "../pharm-admin/components/dialogs/create-product/create-product.component";
+import { MatSelectModule } from "@angular/material/select";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -68,6 +69,7 @@ import { CreateProductComponent } from "../pharm-admin/components/dialogs/create
     MatDialogModule,
     MatMenuModule,
     MatToolbarModule,
+    MatSelectModule,
   ],
   entryComponents: [
     LoginComponent,

@@ -20,7 +20,7 @@ export class PharmaciesService {
     return this.http.get<Pharmacy>(apiKey.api + "/pharmacy/" + pharmId);
   }
   updatePharmacy(pharmId: number, pharmacy: PharmacyRequest) {
-    return this.http.put(apiKey.api + `/pharmacy/${pharmId}`, pharmacy);
+    return this.http.put(apiKey.api + `/pharmacy`, pharmacy);
   }
   deletePharmacy(pharmId: number) {
     return this.http.delete(apiKey.api + `/pharmacy/${pharmId}`);

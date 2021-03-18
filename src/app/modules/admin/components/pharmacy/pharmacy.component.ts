@@ -38,7 +38,6 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.destroyed = true;
-    console.log("Component destroyed");
   }
   cancel() {
     this.edit = false;
@@ -50,8 +49,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       name: ["", [Validators.required]],
       phone: ["", [Validators.required]],
       email: ["", [Validators.required]],
-      picture: ["", [Validators.required]],
-      status: [0, [Validators.required]],
+      // picture: ["", [Validators.required]],
     });
   }
   fetchPharmacy(id: number): void {
@@ -63,8 +61,10 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     event.preventDefault();
     if (this.form.valid) {
       const pharm = this.form.value;
-      console.log(pharm);
+      pharm.pharmacyId = id;
       this.updatePharmacy(id, pharm);
+    } else {
+      console.log("Bad form");
     }
     this.cancel();
   }
@@ -72,6 +72,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     this.pharmaciesService
       .updatePharmacy(id, updatePharmacy)
       .subscribe((pharmacy) => {
+        console.log("Farmacia: ");
         console.log(pharmacy);
       });
   }
@@ -83,15 +84,13 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      console.log(result);
       if (result) {
         this.pharmaciesService.deletePharmacy(id).subscribe((rta) => {
-          console.log(rta);
+          console.log("Resultado " + rta);
         });
         console.log("Deleted");
+        this.ngOnDestroy();
       }
-      this.ngOnDestroy();
     });
   }
 }

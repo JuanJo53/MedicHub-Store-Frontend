@@ -43,6 +43,7 @@ export class PharmaciesComponent implements OnInit {
   fecthPharmacies(): void {
     this.pharmaciesService.getAllPharmacies().subscribe((pharmacies) => {
       this.pharmacies = pharmacies;
+      console.log(pharmacies);
     });
   }
 }
