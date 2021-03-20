@@ -1,1 +1,13 @@
-<p>pharm-admins works!</p>
+<div class="container">
+  <br />
+  <h1><strong>Administrador de Sucursal</strong></h1>
+  <button (click)="addAdmin()" mat-fab class="btn" color="primary">
+    <mat-icon>add_icon</mat-icon>
+  </button>
+  <div class="pharmacies-grid">
+    <app-pharm-admin
+      *ngFor="let administrator of administrators"
+      [administrator]="administrator"
+    ></app-pharm-admin>
+  </div>
+</div>
