@@ -32,6 +32,10 @@ import { PharmDashboardComponent } from "../pharm-admin/pages/pharm-dashboard/ph
 import { ProductsComponent } from "../pharm-admin/pages/products/products.component";
 import { CreateProductComponent } from "../pharm-admin/components/dialogs/create-product/create-product.component";
 import { MatSelectModule } from "@angular/material/select";
+import { SubsidiariesComponent } from "../admin/pages/subsidiaries/subsidiaries.component";
+import { SubsidiaryComponent } from "../admin/components/subsidiary/subsidiary.component";
+import { PharmAdminsComponent } from "../admin/pages/pharm-admins/pharm-admins.component";
+import { PharmAdminComponent } from "../admin/components/pharm-admin/pharm-admin.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -51,6 +55,10 @@ import { MatSelectModule } from "@angular/material/select";
     PharmDashboardComponent,
     ProductsComponent,
     CreateProductComponent,
+    SubsidiariesComponent,
+    SubsidiaryComponent,
+    PharmAdminsComponent,
+    PharmAdminComponent,
   ],
   imports: [
     CommonModule,
