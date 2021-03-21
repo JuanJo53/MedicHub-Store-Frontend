@@ -1,5 +1,5 @@
 export interface Subsidiary {
-  subsidiariId: number;
+  subsidiaryId: number;
   pharmacyId: number;
   addressId: number;
   subsidiaryName: string;
