@@ -7,6 +7,7 @@ import { CookieService } from "ngx-cookie-service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { SubsidiaryDetailComponent } from "./modules/admin/pages/subsidiary-detail/subsidiary-detail.component";
+import { CreateSubsiAdminComponent } from "./modules/components/dialogs/create-subsi-admin/create-subsi-admin.component";
 @NgModule({
   declarations: [AppComponent],
   imports: [
