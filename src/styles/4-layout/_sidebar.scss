@@ -10,6 +10,7 @@
     //background-color: orange;
     margin-top: 1rem;
     &__logo {
+      //background-image: "assets/images/lofinal.png";
       // transition: $transition-5;
       //background-color: red;
       margin-top: 1rem;
@@ -47,6 +48,7 @@
   //   url("https://images.unsplash.com/20/cambridge.JPG?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1030&q=80");
   // background-size: cover;
   background-color: $color-primary-blue;
+  border-radius: 30px;
   &__list {
     padding: 0;
     overflow-x: hidden;
