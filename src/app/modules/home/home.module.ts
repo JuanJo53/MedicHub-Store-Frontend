@@ -32,10 +32,12 @@ import { PharmDashboardComponent } from "../pharm-admin/pages/pharm-dashboard/ph
 import { ProductsComponent } from "../pharm-admin/pages/products/products.component";
 import { CreateProductComponent } from "../pharm-admin/components/dialogs/create-product/create-product.component";
 import { MatSelectModule } from "@angular/material/select";
-import { SubsidiariesComponent } from "../admin/pages/subsidiaries/subsidiaries.component";
 import { SubsidiaryComponent } from "../admin/components/subsidiary/subsidiary.component";
 import { PharmAdminsComponent } from "../admin/pages/pharm-admins/pharm-admins.component";
 import { PharmAdminComponent } from "../admin/components/pharm-admin/pharm-admin.component";
+import { ProductosComponent } from "../admin/pages/productos/productos.component";
+import { CreateSubsidiaryComponent } from "../components/dialogs/create-subsidiary/create-subsidiary.component";
+import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subsidiary-detail.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -55,10 +57,12 @@ import { PharmAdminComponent } from "../admin/components/pharm-admin/pharm-admin
     PharmDashboardComponent,
     ProductsComponent,
     CreateProductComponent,
-    SubsidiariesComponent,
     SubsidiaryComponent,
     PharmAdminsComponent,
     PharmAdminComponent,
+    ProductosComponent,
+    CreateSubsidiaryComponent,
+    SubsidiaryDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -85,6 +89,7 @@ import { PharmAdminComponent } from "../admin/components/pharm-admin/pharm-admin
     CreatePharmacyComponent,
     CreateProductComponent,
     WarningDialogComponent,
+    CreateSubsidiaryComponent,
   ],
 })
 export class HomeModule {}

@@ -14,7 +14,7 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="addSubsidiary()">
           <mat-icon>add</mat-icon>
           <span>Sucursal</span>
         </button>
@@ -34,6 +34,12 @@
         >{{ pharmacy.phone }}
       </p>
       <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
+      <div class="subsidiaries-grid">
+        <app-subsidiary
+          *ngFor="let subsidiary of subsidiaries"
+          [subsidiary]="subsidiary"
+        ></app-subsidiary>
+      </div>
     </mat-card-content>
   </mat-card>
   <ng-template #elseBlock>

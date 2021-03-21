@@ -1,1 +1,11 @@
-<p>subsidiary works!</p>
+<div>
+  <a
+    class="link"
+    mat-list-item
+    routerLink="subsidiary/{{ subsidiary.subsidiaryId }}"
+    >{{ subsidiary.subsidiaryName }}
+  </a>
+  <button mat-menu-item (click)="deleteSubsidiary(subsidiary.subsidiaryId)">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

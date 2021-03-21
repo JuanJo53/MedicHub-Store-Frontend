@@ -1,11 +1,13 @@
+import { SubsidiaryListRequest } from "./../../../../shared/models/subsidiary-list-request";
+import { CreateSubsidiaryComponent } from "./../../../components/dialogs/create-subsidiary/create-subsidiary.component";
 import { PharmaciesService } from "src/app/core/http/admin/pharmacies.service";
 import { Pharmacy } from "src/app/shared/models/pharmacy";
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Params } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { PharmacyRequest } from "src/app/shared/models/pharmacy-request";
 import { WarningDialogComponent } from "../warning-dialog/warning-dialog.component";
+import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 
 @Component({
   selector: "app-pharmacy",
@@ -14,13 +16,17 @@ import { WarningDialogComponent } from "../warning-dialog/warning-dialog.compone
 })
 export class PharmacyComponent implements OnInit, OnDestroy {
   @Input() pharmacy: Pharmacy;
+  subsidiaries: SubsidiaryListRequest[] = [];
 
   form: FormGroup;
 
+  name: string;
+  pharmId: number;
+
   constructor(
     private fromBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private pharmaciesService: PharmaciesService,
+    private subsidiariesService: SubsidiariesService,
     public dialog: MatDialog
   ) {}
 
@@ -28,13 +34,10 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   destroyed = false;
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      const id = params.id;
-      console.log(id);
-      if (id) {
-        this.fetchPharmacy(id);
-      }
-    });
+    const id = this.pharmacy.pharmacyId;
+    if (id) {
+      this.fetchSubsidiaries(id);
+    }
   }
   ngOnDestroy(): void {
     this.destroyed = true;
@@ -48,13 +51,15 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       pharmacyId: [0, [Validators.required]],
       name: ["", [Validators.required]],
       phone: ["", [Validators.required]],
-      email: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.email]],
       // picture: ["", [Validators.required]],
     });
   }
-  fetchPharmacy(id: number): void {
-    this.pharmaciesService.getPharmacy(id).subscribe((pharmacy) => {
-      this.pharmacy = pharmacy;
+  fetchSubsidiaries(id: number): void {
+    this.subsidiariesService.getSubsidiaries(id).subscribe((subsidiary) => {
+      subsidiary.map((sub) => {
+        this.subsidiaries.push(sub);
+      });
     });
   }
   savePharmacy(event: Event, id: number): void {
@@ -63,10 +68,10 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       const pharm = this.form.value;
       pharm.pharmacyId = id;
       this.updatePharmacy(id, pharm);
+      this.cancel();
     } else {
       console.log("Bad form");
     }
-    this.cancel();
   }
   updatePharmacy(id: number, updatePharmacy: PharmacyRequest): void {
     this.pharmaciesService
@@ -91,6 +96,20 @@ export class PharmacyComponent implements OnInit, OnDestroy {
         console.log("Deleted");
         this.ngOnDestroy();
       }
+    });
+  }
+  addSubsidiary() {
+    const dialogRef = this.dialog.open(CreateSubsidiaryComponent, {
+      width: "500px",
+      data: {
+        name: this.name,
+        id: this.pharmacy.pharmacyId,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed");
+      this.name = result;
+      this.ngOnInit();
     });
   }
 }

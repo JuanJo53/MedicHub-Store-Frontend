@@ -15,7 +15,6 @@ export class CreatePharmacyComponent implements OnInit {
 
   constructor(
     private fromBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private pharmaciesService: PharmaciesService,
     public dialogRef: MatDialogRef<CreatePharmacyComponent>
   ) {}
@@ -32,7 +31,7 @@ export class CreatePharmacyComponent implements OnInit {
       id: [0, [Validators.required]],
       name: ["", [Validators.required]],
       phone: ["", [Validators.required]],
-      email: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.email]],
     });
   }
   savePharmacy(): void {
@@ -40,8 +39,8 @@ export class CreatePharmacyComponent implements OnInit {
       const pharmacy = this.form.value;
       console.log(pharmacy);
       this.createPharmacy(pharmacy);
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
   createPharmacy(newPharmacy: PharmacyRequest): void {
     var iduser = parseInt(localStorage.getItem("userId"));

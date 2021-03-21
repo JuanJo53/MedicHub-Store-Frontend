@@ -1,3 +1,4 @@
+import { SubsidiaryDetailComponent } from "./modules/admin/pages/subsidiary-detail/subsidiary-detail.component";
 import { AdminGuard } from "./core/guards/admin.guard";
 import { MainComponent } from "./layout/main/main.component";
 import { NgModule } from "@angular/core";
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: "pharmacy",
         component: PharmaciesComponent,
+      },
+      {
+        path: "pharmacy/subsidiary/:id",
+        component: SubsidiaryDetailComponent,
       },
     ],
   },

@@ -1,0 +1,93 @@
+<h1 mat-dialog-title>Nueva Sucursal</h1>
+<form [formGroup]="form" (ngSubmit)="saveSubsidiary()">
+  <mat-dialog-content>
+    <mat-form-field class="form">
+      <mat-label>Nombre</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="subsidiaryName"
+        placeholder="Nombre Farmacia"
+        required
+      /> </mat-form-field
+    ><br />
+    <mat-form-field class="form">
+      <mat-label>Telefono</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="phone"
+        placeholder="Telefono Farmacia"
+        required
+      /> </mat-form-field
+    ><br />
+    <mat-form-field class="form">
+      <mat-label>Email</mat-label
+      ><input
+        matInput
+        type="text"
+        formControlName="email"
+        placeholder="Correo Electronico"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form">
+      <mat-label>Nro.</mat-label
+      ><input
+        matInput
+        type="text"
+        formControlName="number"
+        placeholder="Numero de domicilio Ex: Nro. 123"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form">
+      <mat-label>Calle</mat-label
+      ><input
+        matInput
+        type="text"
+        formControlName="street"
+        placeholder="Mariscal Santa Cruz"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form">
+      <mat-label>Zona</mat-label
+      ><input
+        matInput
+        type="text"
+        formControlName="zone"
+        placeholder="El Prado"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form">
+      <mat-label>Ciudad</mat-label
+      ><input
+        matInput
+        type="text"
+        formControlName="city"
+        placeholder="La Paz"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form">
+      <mat-label>Pais</mat-label
+      ><input
+        matInput
+        type="text"
+        formControlName="country"
+        placeholder="Bolivia"
+        required
+      />
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" mat-button color="primary" cdkFocusInitial>
+      Guardar
+    </button>
+    <button mat-button mat-raised-button color="warn" (click)="onNoClick()">
+      Cancelar
+    </button>
+  </mat-dialog-actions>
+</form>
