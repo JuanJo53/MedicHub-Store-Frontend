@@ -20,7 +20,9 @@ export class SubsidiariesService {
     );
   }
   getSpecificSubsidiary(subsiId: number) {
-    return this.http.get<Subsidiary>(apiKey.api + "/subsidiary/" + subsiId);
+    return this.http.get<SubsidiaryRequest>(
+      apiKey.api + "/subsidiary/" + subsiId
+    );
   }
   updateSubsidiary(subsiId: number, subsidiary: SubsidiaryRequest) {
     return this.http.put(apiKey.api + `/subsidiary`, subsidiary);

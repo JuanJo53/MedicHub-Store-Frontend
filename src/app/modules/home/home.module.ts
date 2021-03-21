@@ -38,6 +38,7 @@ import { PharmAdminComponent } from "../admin/components/pharm-admin/pharm-admin
 import { ProductosComponent } from "../admin/pages/productos/productos.component";
 import { CreateSubsidiaryComponent } from "../components/dialogs/create-subsidiary/create-subsidiary.component";
 import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subsidiary-detail.component";
+import { CreateSubsiAdminComponent } from "../components/dialogs/create-subsi-admin/create-subsi-admin.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -63,6 +64,7 @@ import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subs
     ProductosComponent,
     CreateSubsidiaryComponent,
     SubsidiaryDetailComponent,
+    CreateSubsiAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -90,6 +92,7 @@ import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subs
     CreateProductComponent,
     WarningDialogComponent,
     CreateSubsidiaryComponent,
+    CreateSubsiAdminComponent,
   ],
 })
 export class HomeModule {}

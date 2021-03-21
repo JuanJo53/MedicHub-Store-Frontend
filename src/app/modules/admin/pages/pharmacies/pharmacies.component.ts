@@ -28,11 +28,6 @@ export class PharmaciesComponent implements OnInit {
   addPharmacy(): void {
     const dialogRef = this.dialog.open(CreatePharmacyComponent, {
       width: "500px",
-      data: {
-        name: this.name,
-        phone: this.phone,
-        email: this.email,
-      },
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
