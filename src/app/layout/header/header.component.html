@@ -1,17 +1,37 @@
-<div class="header">
-  <mat-toolbar class="topbar">
-    <!-- Notification toggle button -->
-    <button
+<mat-toolbar class="topbar">
+  <!-- Sidenav toggle button -->
+  <!--<button
+    *ngIf="layoutConf.sidebarStyle !== 'compact'"
+    mat-icon-button
+    id="sidenavToggle"
+    fxHide.gt-md
+    fxHide.md
+    (click)="toggleSidenav()"
+    matTooltip="Toggle Hide/Open"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>-->
+
+  <!-- Search form -->
+  <!-- <div fxFlex fxHide.lt-sm="true" class="search-bar">
+    <form class="top-search-form">
+      <mat-icon role="img">search</mat-icon>
+      <input autofocus="true" placeholder="Search" type="text" />
+    </form>
+  </div> -->
+
+  <span fxFlex></span>
+
+  <button
       mat-icon-button
       matTooltip="Notifications"
       [style.overflow]="'visible'"
       class="topbar-button-right"
     >
       <mat-icon>notifications</mat-icon>
-      <span class="notification-number mat-bg-warn">3</span>
+      <span class="notification-number mat-bg-warn">1</span>
     </button>
-    <!-- Top left user menu -->
-    <button
+  <!-- <button
       mat-icon-button
       [matMenuTriggerFor]="accountMenu"
       class="topbar-button-right img-button"
@@ -19,18 +39,50 @@
       <img src="assets/images/face.png" alt="" />
     </button>
 
-    <mat-menu #accountMenu="matMenu">
-      <button mat-menu-item [routerLink]="['/profile/overview']">
-        <mat-icon>account_box</mat-icon>
-        <span>Profile</span>
-      </button>
-      <button mat-menu-item>
-        <span>Disable alerts</span>
-      </button>
-      <button mat-menu-item (click)="toeknServide.logOut()">
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Sign out</span>
-      </button>
-    </mat-menu>
-  </mat-toolbar>
-</div>
+  <mat-menu #accountMenu="matMenu">
+    <button mat-menu-item [routerLink]="['/profile/overview']">
+      <mat-icon>account_box</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item>
+      <span>Disable alerts</span>
+    </button>
+    <button mat-menu-item (click)="toeknServide.logOut()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign out</span>
+    </button>
+  </mat-menu> -->
+  <button
+      mat-icon-button
+      [matMenuTriggerFor]="settingMenu"
+      matTooltip="Settings"
+      [style.overflow]="'visible'"
+      class="topbar-button-right"
+    >
+      <mat-icon>settings</mat-icon>
+    </button>
+
+  <mat-menu #settingMenu="matMenu">
+    <button mat-menu-item [routerLink]="['/profile/overview']">
+      <mat-icon>account_box</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item>
+      <span>Disable alerts</span>
+    </button>
+    <button mat-menu-item (click)="toeknServide.logOut()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign out</span>
+    </button>
+  </mat-menu>
+
+  <button
+      mat-icon-button
+      [matMenuTriggerFor]="photoProfile"
+      class="topbar-button-right img-button"
+    >
+      <img src="assets/images/face.png" alt="" />
+    </button>
+
+  
+</mat-toolbar>
