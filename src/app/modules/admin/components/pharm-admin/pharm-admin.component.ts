@@ -7,7 +7,7 @@ import { PharmAdmin } from "src/app/shared/models/pharm-admin";
   styleUrls: ["./pharm-admin.component.scss"],
 })
 export class PharmAdminComponent implements OnInit {
-  @Input() administrator: PharmAdmin;
+  @Input() admin: PharmAdmin;
   constructor() {}
 
   ngOnInit() {}

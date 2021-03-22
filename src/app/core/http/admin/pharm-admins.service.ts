@@ -11,4 +11,9 @@ export class PharmAdminsService {
   postNewAdmin(newAdmin: PharmAdmin) {
     return this.http.post(apiKey.api + "/pharmacyAdmin", newAdmin);
   }
+  getAdmins(subsidId: number) {
+    return this.http.get<PharmAdmin[]>(
+      apiKey.api + `/subsidiary/${subsidId}/admin`
+    );
+  }
 }

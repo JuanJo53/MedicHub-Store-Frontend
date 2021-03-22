@@ -2,8 +2,10 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
+import { PharmAdminsService } from "src/app/core/http/admin/pharm-admins.service";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { CreateSubsiAdminComponent } from "src/app/modules/components/dialogs/create-subsi-admin/create-subsi-admin.component";
+import { PharmAdmin } from "src/app/shared/models/pharm-admin";
 import { Subsidiary } from "src/app/shared/models/subsidiary";
 import { SubsidiaryRequest } from "src/app/shared/models/subsidiary-request";
 
@@ -14,6 +16,8 @@ import { SubsidiaryRequest } from "src/app/shared/models/subsidiary-request";
 })
 export class SubsidiaryDetailComponent implements OnInit {
   @Input() subsidiary: SubsidiaryRequest;
+
+  admins: PharmAdmin[] = [];
   text: string;
   id: number;
   form: FormGroup;
@@ -22,6 +26,7 @@ export class SubsidiaryDetailComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private subsidiariesService: SubsidiariesService,
+    private pharmAdminsService: PharmAdminsService,
     public dialog: MatDialog
   ) {}
 
@@ -29,8 +34,9 @@ export class SubsidiaryDetailComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params.id;
     try {
       if (this.id) {
-        this.getDetails(this.id);
         this.editSubsidiary(this.id);
+        this.getDetails(this.id);
+        this.getAdmins(this.id);
       }
     } catch (error) {
       console.error(error);
@@ -43,6 +49,15 @@ export class SubsidiaryDetailComponent implements OnInit {
         this.subsidiary = subsidiary;
         console.log(subsidiary);
       });
+  }
+  getAdmins(id: number) {
+    this.admins = [];
+    this.pharmAdminsService.getAdmins(id).subscribe((administrator) => {
+      administrator.map((admin) => {
+        this.admins.push(admin);
+      });
+    });
+    console.log(this.admins);
   }
   saveAddress(event: Event, id: number): void {
     event.preventDefault();
