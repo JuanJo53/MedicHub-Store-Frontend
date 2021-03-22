@@ -1,7 +1,7 @@
-.container {
+/*.container {
   background-color: white;
   border: 1.4px solid #2f4a85;
-}
+}*/
 .title1 {
   color: #2f4a85;
   white-space: nowrap;
@@ -63,3 +63,24 @@
     font-weight: normal;
     font-size: 15px;
   }*/
+.display-all{
+  display: flex;
+  //box-sizing: border-box;
+  height: 100vh;
+}
+.column{
+  &-left{
+    //background-color: red;
+    width: 50%;
+  }
+  &-right{
+    //background-color: yellow;
+   width: 50%;
+   //background: url(../../../assets/images/login_fondo1.jpg);
+   background: url(../../../../../assets/images/login_fondo1.jpg);
+   background-repeat: no-repeat;
+   width: 50%;
+   background-size: cover;
+   height: 100%;
+  }
+}
