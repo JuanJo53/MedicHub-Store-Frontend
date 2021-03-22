@@ -106,9 +106,6 @@
         >
           Guardar Cambios
         </button>
-        <button id="{{ subsidiary.pharmacyId }}" mat-button color="warn">
-          Cancelar
-        </button>
       </mat-card-actions>
     </mat-card>
   </form>
@@ -119,6 +116,11 @@
     <button (click)="addAdmin()" mat-fab class="btn" color="primary">
       <mat-icon>add_icon</mat-icon>
     </button>
-    <div class="pharmacies-admins-grid"></div>
+    <div class="pharmacies-admins-grid">
+      <app-pharm-admin
+        *ngFor="let admin of admins"
+        [admin]="admin"
+      ></app-pharm-admin>
+    </div>
   </div>
 </div>
