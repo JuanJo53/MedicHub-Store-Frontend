@@ -11,6 +11,7 @@ import { PharmaciesComponent } from "./modules/admin/pages/pharmacies/pharmacies
 import { ProductsComponent } from "./modules/pharm-admin/pages/products/products.component";
 import { PharmDashboardComponent } from "./modules/pharm-admin/pages/pharm-dashboard/pharm-dashboard.component";
 import { BrandsComponent } from "./modules/pharm-admin/pages/brands/brands.component";
+import { BankAccountComponent } from "./modules/pharm-admin/pages/bank-account/bank-account.component";
 
 const routes: Routes = [
   {
@@ -61,6 +62,10 @@ const routes: Routes = [
       {
         path: "pharmAdmin/:id/brands",
         component: BrandsComponent,
+      },
+      {
+        path: "pharmAdmin/:id/bankAccount",
+        component: BankAccountComponent,
       },
     ],
   },
