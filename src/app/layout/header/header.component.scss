@@ -18,6 +18,9 @@
     font-weight: 400;
     color: #000;
   }
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .toggle-collapsed {
   transform: rotate(0deg);
@@ -136,7 +139,7 @@
 }
 
 .topbar-button-right {
- float: right;
+ float: left;
  padding-left: 0%;
  margin: 0 .1rem !important;
 }
@@ -151,4 +154,10 @@
      margin-left: 0 !important;
      float: right;
    }
+}
+.usuario{
+  margin-left: 19px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  color: #2F4A85;
 }
