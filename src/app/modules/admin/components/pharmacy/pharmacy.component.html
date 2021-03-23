@@ -1,8 +1,9 @@
-<h1>farmacia# linea</h1>
-<div *ngIf="pharmacy && !destroyed">
-  <mat-card class="pharm_card" *ngIf="!edit; else elseBlock">
-    <mat-card-header>
-      <mat-card-title>
+<!--<h1>farmacia# linea</h1> -->
+<br>
+<div class="moldeexterno" *ngIf="pharmacy && !destroyed" >
+  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock" >
+    <mat-card-header class="titlePharmacy">
+      <mat-card-title >
         <h3>
           <strong>{{ pharmacy.name }}</strong>
         </h3>
@@ -25,19 +26,30 @@
         <mat-icon>more_vert</mat-icon>
       </button>
     </mat-card-header>
-    <mat-card-content>
-      <p>
-        <strong>Email</strong>{{ pharmacy.email }} <strong>Phone</strong
-        >{{ pharmacy.phone }}
-      </p>
-      <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
-      <div class="subsidiaries-grid">
-        <app-subsidiary
-          *ngFor="let subsidiary of subsidiaries"
-          [subsidiary]="subsidiary"
-        ></app-subsidiary>
-      </div>
-    </mat-card-content>
+    <table>
+      <tr>
+        <td>
+          <div class="blocImagen"></div>
+        </td>
+        <td>
+          <mat-card-content>
+            <p>
+              <strong class="textEdit">Email:</strong><strong class="textEdit">{{ pharmacy.email }}</strong> 
+            </p>
+            <p>
+              <strong class="textEdit">Phone:</strong><strong class="textEdit">{{ pharmacy.phone }}</strong>
+            </p>
+            <p><strong class="textEdit" >Status: </strong><strong class="textEdit">{{ pharmacy.status | pharmacyStatus }}</strong></p>
+          </mat-card-content>
+        </td>
+      </tr>
+    </table>
+    <div class="subsidiaries-grid textEdit">
+      <app-subsidiary
+        *ngFor="let subsidiary of subsidiaries"
+        [subsidiary]="subsidiary"
+      ></app-subsidiary>
+    </div>
   </mat-card>
   <ng-template #elseBlock>
     <form
