@@ -1,5 +1,8 @@
-.titlePharmacy {
-  background: #2f4a85;
+.titlePharmacy{
+    //background: #2F4A85;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .moldeexterno {
   background: transparent;
