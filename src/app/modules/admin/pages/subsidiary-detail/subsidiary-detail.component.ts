@@ -9,6 +9,7 @@ import { SubsidiaryRequest } from "src/app/shared/models/subsidiary-request";
 import { WarningDialogComponent } from "../../components/warning-dialog/warning-dialog.component";
 import { MatTableDataSource } from "@angular/material/table";
 import { PharmAdminList } from "src/app/shared/models/pharm-admin-list";
+import { EditSubsiAdminsComponent } from "src/app/modules/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
 
 @Component({
   selector: "app-subsidiary-detail",
@@ -74,8 +75,8 @@ export class SubsidiaryDetailComponent implements OnInit {
     this.pharmAdminsService.getAdmins(id).subscribe((administrator) => {
       this.admins = administrator;
       this.dataSource = new MatTableDataSource(this.admins);
+      console.log(this.admins);
     });
-    console.log(this.admins);
   }
   saveChanges(event: Event, id: number): void {
     event.preventDefault();
@@ -148,5 +149,17 @@ export class SubsidiaryDetailComponent implements OnInit {
       this.ngOnInit();
     });
   }
-  openDetailDialog(element) {}
+  openDetailDialog(adminId: number) {
+    const dialogRef = this.dialog.open(EditSubsiAdminsComponent, {
+      width: "500px",
+      data: {
+        id: adminId,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed");
+      this.text = result;
+      this.ngOnInit();
+    });
+  }
 }

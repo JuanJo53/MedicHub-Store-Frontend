@@ -8,6 +8,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { PharmacyRequest } from "src/app/shared/models/pharmacy-request";
 import { WarningDialogComponent } from "../warning-dialog/warning-dialog.component";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
+import { throwToolbarMixedModesError } from "@angular/material";
 
 @Component({
   selector: "app-pharmacy",
@@ -45,7 +46,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   cancel() {
     this.edit = false;
   }
-  editPharm(): void {
+  editPharm(id: number): void {
     this.edit = true;
     this.form = this.fromBuilder.group({
       pharmacyId: [0, [Validators.required]],
@@ -56,6 +57,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     });
   }
   fetchSubsidiaries(id: number): void {
+    this.subsidiaries = [];
     this.subsidiariesService.getSubsidiaries(id).subscribe((subsidiary) => {
       subsidiary.map((sub) => {
         this.subsidiaries.push(sub);
@@ -68,17 +70,16 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       const pharm = this.form.value;
       pharm.pharmacyId = id;
       this.updatePharmacy(id, pharm);
-      this.cancel();
     } else {
       console.log("Bad form");
     }
+    this.cancel();
   }
   updatePharmacy(id: number, updatePharmacy: PharmacyRequest): void {
     this.pharmaciesService
       .updatePharmacy(id, updatePharmacy)
-      .subscribe((pharmacy) => {
-        console.log("Farmacia: ");
-        console.log(pharmacy);
+      .subscribe((response) => {
+        console.log("Response: " + response);
       });
   }
   deletePharmacy(id: number): void {
@@ -89,11 +90,11 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(id);
       if (result) {
         this.pharmaciesService.deletePharmacy(id).subscribe((rta) => {
-          console.log("Resultado " + rta);
+          console.log("Response " + rta);
         });
-        console.log("Deleted");
         this.ngOnDestroy();
       }
     });

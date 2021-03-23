@@ -1,5 +1,5 @@
 import { PharmacyRequest } from "./../../../shared/models/pharmacy-request";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import apiKey from "../../apiKey";
 import { Pharmacy } from "src/app/shared/models/pharmacy";

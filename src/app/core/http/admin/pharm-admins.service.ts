@@ -17,8 +17,11 @@ export class PharmAdminsService {
       apiKey.api + `/subsidiary/${subsidId}/admin`
     );
   }
+  getAdminDetail(adminId) {
+    return this.http.get<PharmAdmin>(apiKey.api + `/pharmacyAdmin/${adminId}`);
+  }
   updateAdmins(adminId: number, pharmAdmin: PharmAdmin) {
-    return this.http.put(apiKey.api + `/pharmacyAdmin`, pharmAdmin);
+    return this.http.put(apiKey.api + `/pharmacyAdmin/${adminId}`, pharmAdmin);
   }
   deleteAdmins(adminId: number) {
     return this.http.delete(apiKey.api + `/pharmacyAdmin/${adminId}`);
