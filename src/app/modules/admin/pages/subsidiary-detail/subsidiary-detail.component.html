@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" *ngIf="subsidiary">
   <h1 mat-dialog-title>Detalles Sucursal</h1>
   <form
     [formGroup]="form"
-    (ngSubmit)="saveChanges($event, subsidiary.pharmacyId)"
+    (ngSubmit)="saveChanges($event, subsidiary.subsidiaryId)"
   >
     <mat-card class="pharm_card">
       <mat-card-content>
@@ -13,7 +13,6 @@
             type="text"
             formControlName="subsidiaryName"
             placeholder="Farmacias Algo Sucursal 1"
-            value="{{ subsidiary.subsidiaryName }}"
             required
           />
         </mat-form-field>
@@ -24,7 +23,6 @@
             type="text"
             formControlName="email"
             placeholder="farmacia@algo.com"
-            value="{{ subsidiary.email }}"
             required
           />
         </mat-form-field>
@@ -35,7 +33,6 @@
             type="text"
             formControlName="phone"
             placeholder="+8965 2324598"
-            value="{{ subsidiary.phone }}"
             required
           />
         </mat-form-field>
@@ -48,7 +45,6 @@
             type="text"
             formControlName="number"
             placeholder="Numero de domicilio E: Nro. 123"
-            value="{{ subsidiary.number }}"
             required
           />
         </mat-form-field>
@@ -59,7 +55,6 @@
             type="text"
             formControlName="street"
             placeholder="Calle Algo"
-            value="{{ subsidiary.street }}"
             required
           />
         </mat-form-field>
@@ -70,7 +65,6 @@
             type="text"
             formControlName="zone"
             placeholder="El Prado"
-            value="{{ subsidiary.zone }}"
             required
           />
         </mat-form-field>
@@ -81,7 +75,6 @@
             type="text"
             formControlName="city"
             placeholder="La Paz"
-            value="{{ subsidiary.city }}"
             required
           />
         </mat-form-field>
@@ -92,14 +85,13 @@
             type="text"
             formControlName="country"
             placeholder="Bolivia"
-            value="{{ subsidiary.country }}"
             required
           />
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
         <button
-          id="{{ subsidiary.pharmacyId }}"
+          id="{{ subsidiary.subsidiaryId }}"
           type="submit"
           mat-button
           color="primary"
@@ -116,11 +108,75 @@
     <button (click)="addAdmin()" mat-fab class="btn" color="primary">
       <mat-icon>add_icon</mat-icon>
     </button>
-    <div class="pharmacies-admins-grid">
+
+    <br />
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Ex. ium"
+        #input
+      />
+    </mat-form-field>
+
+    <!-- Tabla de los admins -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id_usuario">
+        <th mat-header-cell *matHeaderCellDef>Nro.</th>
+        <td mat-cell *matCellDef="let administrator">
+          {{ administrator.roleUserId }}
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let administrator">
+          {{ administrator.firstName }}
+        </td>
+      </ng-container>
+
+      <!-- FirstSurname Column -->
+      <ng-container matColumnDef="FirstSurname">
+        <th mat-header-cell *matHeaderCellDef>Apellido Paterno</th>
+        <td mat-cell *matCellDef="let administrator">
+          {{ administrator.firstSurname }}
+        </td>
+      </ng-container>
+
+      <!-- SecondSurname Column -->
+      <ng-container matColumnDef="SecondSurname">
+        <th mat-header-cell *matHeaderCellDef>Apellido Materno</th>
+        <td mat-cell *matCellDef="let administrator">
+          {{ administrator.secondSurname }}
+        </td>
+      </ng-container>
+
+      <!-- CI Column -->
+      <ng-container matColumnDef="Ci">
+        <th mat-header-cell *matHeaderCellDef>CI</th>
+        <td mat-cell *matCellDef="let administrator">{{ administrator.ci }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="5">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+    <!-- Fin tabla de los admins -->
+
+    <!-- <div class="pharmacies-admins-grid">
       <app-pharm-admin
         *ngFor="let admin of admins"
         [admin]="admin"
       ></app-pharm-admin>
-    </div>
+    </div> -->
   </div>
 </div>

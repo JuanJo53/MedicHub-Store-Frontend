@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { PharmAdmin } from "src/app/shared/models/pharm-admin";
+import { PharmAdminList } from "src/app/shared/models/pharm-admin-list";
 import apiKey from "../../apiKey";
 
 @Injectable({
@@ -12,7 +13,7 @@ export class PharmAdminsService {
     return this.http.post(apiKey.api + "/pharmacyAdmin", newAdmin);
   }
   getAdmins(subsidId: number) {
-    return this.http.get<PharmAdmin[]>(
+    return this.http.get<PharmAdminList[]>(
       apiKey.api + `/subsidiary/${subsidId}/admin`
     );
   }

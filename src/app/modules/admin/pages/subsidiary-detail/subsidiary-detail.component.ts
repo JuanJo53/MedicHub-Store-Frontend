@@ -5,10 +5,10 @@ import { ActivatedRoute } from "@angular/router";
 import { PharmAdminsService } from "src/app/core/http/admin/pharm-admins.service";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { CreateSubsiAdminComponent } from "src/app/modules/components/dialogs/create-subsi-admin/create-subsi-admin.component";
-import { PharmAdmin } from "src/app/shared/models/pharm-admin";
-import { Subsidiary } from "src/app/shared/models/subsidiary";
 import { SubsidiaryRequest } from "src/app/shared/models/subsidiary-request";
 import { WarningDialogComponent } from "../../components/warning-dialog/warning-dialog.component";
+import { MatTableDataSource } from "@angular/material/table";
+import { PharmAdminList } from "src/app/shared/models/pharm-admin-list";
 
 @Component({
   selector: "app-subsidiary-detail",
@@ -18,10 +18,19 @@ import { WarningDialogComponent } from "../../components/warning-dialog/warning-
 export class SubsidiaryDetailComponent implements OnInit {
   @Input() subsidiary: SubsidiaryRequest;
 
-  admins: PharmAdmin[] = [];
+  admins: PharmAdminList[];
+
   text: string;
   id: number;
   form: FormGroup;
+
+  displayedColumns: string[] = [
+    "id_usuario",
+    "Name",
+    "FirstSurname",
+    "SecondSurname",
+    "Ci",
+  ];
 
   constructor(
     private fromBuilder: FormBuilder,
@@ -35,28 +44,34 @@ export class SubsidiaryDetailComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params.id;
     try {
       if (this.id) {
-        this.editSubsidiary(this.id);
         this.getDetails(this.id);
-        this.getAdmins(this.id);
       }
     } catch (error) {
       console.error(error);
     }
   }
+
+  dataSource = new MatTableDataSource();
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   getDetails(id: number) {
     this.subsidiariesService
       .getSpecificSubsidiary(id)
       .subscribe((subsidiary) => {
         this.subsidiary = subsidiary;
-        console.log(subsidiary);
+        console.log("subsidiaries reached");
+        this.editSubsidiary(id);
+        this.getAdmins(id);
       });
   }
   getAdmins(id: number) {
     this.admins = [];
     this.pharmAdminsService.getAdmins(id).subscribe((administrator) => {
-      administrator.map((admin) => {
-        this.admins.push(admin);
-      });
+      this.admins = administrator;
+      this.dataSource = new MatTableDataSource(this.admins);
     });
     console.log(this.admins);
   }
@@ -97,7 +112,7 @@ export class SubsidiaryDetailComponent implements OnInit {
   }
   editSubsidiary(id: number): void {
     this.form = this.fromBuilder.group({
-      pharmacyId: [0, [Validators.required]],
+      subsidiaryId: [0, [Validators.required]],
       subsidiaryName: ["", [Validators.required]],
       phone: ["", [Validators.required]],
       email: ["", [Validators.required, Validators.email]],
@@ -107,7 +122,15 @@ export class SubsidiaryDetailComponent implements OnInit {
       city: ["", [Validators.required]],
       country: ["", [Validators.required]],
     });
-    this.form.get("pharmacyId").setValue(id);
+    this.form.get("subsidiaryId").setValue(id);
+    this.form.get("subsidiaryName").setValue(this.subsidiary.subsidiaryName);
+    this.form.get("phone").setValue(this.subsidiary.phone);
+    this.form.get("email").setValue(this.subsidiary.email);
+    this.form.get("number").setValue(this.subsidiary.number);
+    this.form.get("street").setValue(this.subsidiary.street);
+    this.form.get("zone").setValue(this.subsidiary.zone);
+    this.form.get("city").setValue(this.subsidiary.city);
+    this.form.get("country").setValue(this.subsidiary.country);
   }
   addAdmin() {
     const dialogRef = this.dialog.open(CreateSubsiAdminComponent, {

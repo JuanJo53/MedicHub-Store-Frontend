@@ -39,6 +39,7 @@ import { CreateSubsidiaryComponent } from "../components/dialogs/create-subsidia
 import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subsidiary-detail.component";
 import { CreateSubsiAdminComponent } from "../components/dialogs/create-subsi-admin/create-subsi-admin.component";
 import { ProductComponent } from "./../pharm-admin/components/product/product.component";
+import { MatTableModule } from "@angular/material/table";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -85,6 +86,7 @@ import { ProductComponent } from "./../pharm-admin/components/product/product.co
     MatMenuModule,
     MatToolbarModule,
     MatSelectModule,
+    MatTableModule,
   ],
   entryComponents: [
     LoginComponent,

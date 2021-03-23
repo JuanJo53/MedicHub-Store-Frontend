@@ -1,5 +1,5 @@
 export interface SubsidiaryRequest {
-  pharmacyId: number;
+  subsidiaryId: number;
   subsidiaryName: string;
   phone: string;
   email: string;
