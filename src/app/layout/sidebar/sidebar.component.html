@@ -1,17 +1,31 @@
-
 <mat-nav-list class="sidebar__list">
   <div class="sidebar-brand">
-    <img src="assets/images/logopngmd1.png" alt="" width="210px" height="50px" />
+    <img
+      src="assets/images/logopngmd1.png"
+      alt=""
+      width="210px"
+      height="50px"
+    />
     <!--<img src="assets/images/logopngmd1.png" alt="" width="190px" height="50px" />
     <img src="assets/images/lofinal.png" alt="" width="210px" height="50px" />-->
     <!--<span class="sidebar-brand__subtitle">Administrador</span>-->
   </div>
 
   <a
+    *ngIf="userRole == 0"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
-    routerLink="dashboard"
+    routerLink="/admin/dashboard"
+    ><mat-icon class="link__icon">dashboard</mat-icon
+    ><span class="link__text">Dashboard</span></a
+  >
+  <a
+    *ngIf="userRole == 1"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/pharmAdmin/dashboard"
     ><mat-icon class="link__icon">dashboard</mat-icon
     ><span class="link__text">Dashboard</span></a
   >
@@ -19,25 +33,45 @@
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
-    routerLink="reports"
+    routerLink="/admin/reports"
+    disabled
     ><mat-icon class="link__icon">table_view</mat-icon
     ><span class="link__text">Reportes</span></a
   >
   <a
+    *ngIf="userRole == 0"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
-    routerLink="pharmacy"
+    routerLink="/admin/pharmacy"
     ><mat-icon class="link__icon">local_pharmacy</mat-icon
     ><span class="link__text">Farmacias</span></a
   >
   <a
+    *ngIf="userRole == 1"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
-    routerLink="/1/clients"
+    routerLink="/pharmAdmin/1/products"
+    ><mat-icon class="link__icon">shopping_cart</mat-icon
+    ><span class="link__text">Products</span></a
+  >
+  <a
+    *ngIf="userRole == 0"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/admin/1/clients"
     ><mat-icon class="link__icon">person</mat-icon
     ><span class="link__text">Clientes</span></a
   >
-
+  <a
+    *ngIf="userRole == 1"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/pharmAdmin/1/brands"
+    ><mat-icon class="link__icon">local_shipping</mat-icon
+    ><span class="link__text">Marcas</span></a
+  >
 </mat-nav-list>

@@ -1,0 +1,10 @@
+<div class="container">
+  <br />
+  <h1><strong>Marcas</strong></h1>
+  <button (click)="addBrand()" mat-fab class="btn" color="primary">
+    <mat-icon>add_icon</mat-icon>
+  </button>
+  <div class="products-grid">
+    <app-brand *ngFor="let brand of brands" [brand]="brand"></app-brand>
+  </div>
+</div>

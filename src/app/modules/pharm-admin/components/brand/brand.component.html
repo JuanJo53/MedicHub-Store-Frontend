@@ -1,0 +1,103 @@
+<br />
+<div class="moldeexterno" *ngIf="brand && !destroyed">
+  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
+    <mat-card-header class="titlePharmacy">
+      <mat-card-title>
+        <h3>
+          <strong>{{ brand.name }}</strong>
+        </h3>
+      </mat-card-title>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editBrand(brand.brandId)">
+          <mat-icon>edit</mat-icon>
+          <span>Editar</span>
+        </button>
+        <button mat-menu-item (click)="deleteBrand(brand.brandId)">
+          <mat-icon>delete</mat-icon>
+          <span>Eliminar</span>
+        </button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </mat-card-header>
+    <table>
+      <tr>
+        <td>
+          <div class="blocImagen"></div>
+        </td>
+        <td>
+          <mat-card-content>
+            <h3>
+              <strong class="textEdit">Email:</strong>
+              <p class="textEdit">{{ brand.email }}</p>
+            </h3>
+            <h3>
+              <strong class="textEdit">Phone:</strong>
+              <p class="textEdit">{{ brand.phone }}</p>
+            </h3>
+          </mat-card-content>
+        </td>
+      </tr>
+    </table>
+  </mat-card>
+  <ng-template #elseBlock>
+    <form [formGroup]="form" (ngSubmit)="saveBrand($event, brand.brandId)">
+      <mat-card class="pharm_card">
+        <mat-card-content>
+          <mat-form-field class="form">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="name"
+              placeholder="Nombre Certificado"
+              [(ngModel)]="brand.name"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="email"
+              placeholder="Email de la Faramacia"
+              [(ngModel)]="brand.email"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Telefono</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="phone"
+              placeholder="Telefono de la Faramacia"
+              [(ngModel)]="brand.phone"
+              required
+            />
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            id="{{ brand.brandId }}"
+            type="submit"
+            mat-button
+            color="primary"
+          >
+            Guardar Cambios
+          </button>
+          <button
+            id="{{ brand.brandId }}"
+            (click)="cancel()"
+            mat-button
+            color="warn"
+          >
+            Cancelar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </ng-template>
+</div>

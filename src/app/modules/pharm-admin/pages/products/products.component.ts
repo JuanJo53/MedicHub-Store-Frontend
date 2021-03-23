@@ -36,6 +36,9 @@ export class ProductsComponent implements OnInit {
   addProduct(): void {
     const dialogRef = this.dialog.open(CreateProductComponent, {
       width: "500px",
+      data: {
+        id: this.id,
+      },
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
@@ -43,8 +46,9 @@ export class ProductsComponent implements OnInit {
       this.ngOnInit();
     });
   }
-  fecthProducts(id): void {
-    this.productsServide.getAllProducts(id).subscribe((products) => {
+  fecthProducts(id: number): void {
+    this.products = [];
+    this.productsServide.getSubsidiaryProducts(id).subscribe((products) => {
       this.products = products;
       console.log(products);
     });
