@@ -55,12 +55,9 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       email: ["", [Validators.required, Validators.email]],
       // picture: ["", [Validators.required]],
     });
-    // this.form.get("pharmacyId").setValue(id);
-    // this.form.get("name").setValue(this.pharmacy.name);
-    // this.form.get("phone").setValue(this.pharmacy.phone);
-    // this.form.get("email").setValue(this.pharmacy.email);
   }
   fetchSubsidiaries(id: number): void {
+    this.subsidiaries = [];
     this.subsidiariesService.getSubsidiaries(id).subscribe((subsidiary) => {
       subsidiary.map((sub) => {
         this.subsidiaries.push(sub);
@@ -93,11 +90,11 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(id);
       if (result) {
         this.pharmaciesService.deletePharmacy(id).subscribe((rta) => {
           console.log("Response " + rta);
         });
-        console.log("Deleted");
         this.ngOnDestroy();
       }
     });

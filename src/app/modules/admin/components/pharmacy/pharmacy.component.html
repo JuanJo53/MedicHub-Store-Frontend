@@ -33,20 +33,23 @@
         </td>
         <td>
           <mat-card-content>
-            <p>
-              <strong class="textEdit">Email:</strong
-              ><strong class="textEdit">{{ pharmacy.email }}</strong>
-            </p>
-            <p>
-              <strong class="textEdit">Phone:</strong
-              ><strong class="textEdit">{{ pharmacy.phone }}</strong>
-            </p>
-            <p>
-              <strong class="textEdit">Status: </strong
-              ><strong class="textEdit">{{
-                pharmacy.status | pharmacyStatus
-              }}</strong>
-            </p>
+            <h3>
+              <strong class="textEdit">Email:</strong>
+              <p class="textEdit">{{ pharmacy.email }}</p>
+            </h3>
+            <h3>
+              <strong class="textEdit">Phone:</strong>
+              <p class="textEdit">{{ pharmacy.phone }}</p>
+            </h3>
+            <h3>
+              <strong class="textEdit">Status: </strong>
+              <p class="statusTextGreen" *ngIf="pharmacy.status == 1">
+                {{ pharmacy.status | pharmacyStatus }}
+              </p>
+              <p class="statusTextRed" *ngIf="pharmacy.status == 0">
+                {{ pharmacy.status | pharmacyStatus }}
+              </p>
+            </h3>
           </mat-card-content>
         </td>
       </tr>

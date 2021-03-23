@@ -1,21 +1,28 @@
-.titlePharmacy{
-    background: #2F4A85;
+.titlePharmacy {
+  background: #2f4a85;
 }
-.moldeexterno{
-    background: transparent;
+.moldeexterno {
+  background: transparent;
 }
-.moldeinterno{
-    background: white;
-    border-radius: 15px;
-    border: 1.4px solid #2F4A85;
+.moldeinterno {
+  background: white;
+  border-radius: 15px;
+  border: 1.4px solid #2f4a85;
 }
-.blocImagen{
-    background: #2F4A85;
-    width: 200px;
-    height: 200px;
-    margin: 20px 40px 20px 20px;
-    position: relative;
+.blocImagen {
+  background: #2f4a85;
+  width: 200px;
+  height: 200px;
+  margin: 20px 40px 20px 20px;
+  position: relative;
 }
-.textEdit{
-    color: black;
+.textEdit {
+  color: black;
+}
+
+.statusTextGreen {
+  color: green;
+}
+.statusTextRed {
+  color: red;
 }
