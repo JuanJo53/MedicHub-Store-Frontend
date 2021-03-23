@@ -1,1 +1,13 @@
-<p>products works!</p>
+<div class="container">
+  <br />
+  <h1><strong>Productos</strong></h1>
+  <button (click)="addProduct()" mat-fab class="btn" color="primary">
+    <mat-icon>add_icon</mat-icon>
+  </button>
+  <div class="products-grid">
+    <app-product
+      *ngFor="let product of products"
+      [product]="product"
+    ></app-product>
+  </div>
+</div>

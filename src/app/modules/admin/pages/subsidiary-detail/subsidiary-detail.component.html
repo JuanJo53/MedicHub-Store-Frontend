@@ -2,7 +2,7 @@
   <h1 mat-dialog-title>Detalles Sucursal</h1>
   <form
     [formGroup]="form"
-    (ngSubmit)="saveAddress($event, subsidiary.pharmacyId)"
+    (ngSubmit)="saveChanges($event, subsidiary.pharmacyId)"
   >
     <mat-card class="pharm_card">
       <mat-card-content>

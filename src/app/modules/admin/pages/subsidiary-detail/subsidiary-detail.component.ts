@@ -8,6 +8,7 @@ import { CreateSubsiAdminComponent } from "src/app/modules/components/dialogs/cr
 import { PharmAdmin } from "src/app/shared/models/pharm-admin";
 import { Subsidiary } from "src/app/shared/models/subsidiary";
 import { SubsidiaryRequest } from "src/app/shared/models/subsidiary-request";
+import { WarningDialogComponent } from "../../components/warning-dialog/warning-dialog.component";
 
 @Component({
   selector: "app-subsidiary-detail",
@@ -59,16 +60,40 @@ export class SubsidiaryDetailComponent implements OnInit {
     });
     console.log(this.admins);
   }
-  saveAddress(event: Event, id: number): void {
+  saveChanges(event: Event, id: number): void {
     event.preventDefault();
     if (this.form.valid) {
       const pharm = this.form.value;
       pharm.pharmacyId = id;
-      // this.updatePharmacy(id, pharm);
-      // this.cancel();
+      this.updateSubsidiary(id, pharm);
     } else {
       console.log("Bad form");
     }
+  }
+  updateSubsidiary(id: number, updateSubsidiary: SubsidiaryRequest): void {
+    this.subsidiariesService
+      .updateSubsidiary(id, updateSubsidiary)
+      .subscribe((subsidiary) => {
+        console.log("subsidiary: ");
+        console.log(subsidiary);
+      });
+  }
+  deleteAdmin(id: number): void {
+    const dialogRef = this.dialog.open(WarningDialogComponent, {
+      width: "500px",
+      data: {
+        message:
+          "¿Esta seguro que desea eliminar la cuente de este administrador?",
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.pharmAdminsService.deleteAdmins(id).subscribe((rta) => {
+          console.log("Resultado " + rta);
+        });
+        console.log("Deleted");
+      }
+    });
   }
   editSubsidiary(id: number): void {
     this.form = this.fromBuilder.group({
