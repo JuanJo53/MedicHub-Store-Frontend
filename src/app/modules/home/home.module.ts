@@ -40,6 +40,7 @@ import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subs
 import { CreateSubsiAdminComponent } from "../components/dialogs/create-subsi-admin/create-subsi-admin.component";
 import { ProductComponent } from "./../pharm-admin/components/product/product.component";
 import { MatTableModule } from "@angular/material/table";
+import { EditSubsiAdminsComponent } from "../components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -67,6 +68,7 @@ import { MatTableModule } from "@angular/material/table";
     CreateSubsiAdminComponent,
     CreateProductComponent,
     ProductComponent,
+    EditSubsiAdminsComponent,
   ],
   imports: [
     CommonModule,
@@ -97,6 +99,7 @@ import { MatTableModule } from "@angular/material/table";
     CreateSubsidiaryComponent,
     CreateSubsiAdminComponent,
     CreateProductComponent,
+    EditSubsiAdminsComponent,
   ],
 })
 export class HomeModule {}
