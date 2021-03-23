@@ -1,5 +1,5 @@
-<h1>#crearsucursal</h1>
-<h1 mat-dialog-title>Nuevo Administrador</h1>
+<h1>#editarsucursal</h1>
+<h1 mat-dialog-title>Editar Datos de Administrador</h1>
 <form [formGroup]="form" (ngSubmit)="saveAdmin()">
   <mat-dialog-content>
     <mat-form-field class="form">
@@ -8,26 +8,31 @@
         matInput
         type="text"
         formControlName="firstName"
+        [(ngModel)]="pharmAdmin.firstName"
         placeholder="Pepeluis"
         required
-      /> </mat-form-field
-    ><br />
+      />
+    </mat-form-field>
+    <br />
     <mat-form-field class="form">
       <mat-label>Apellido Paterno</mat-label>
       <input
         matInput
         type="text"
         formControlName="firstSurname"
+        [(ngModel)]="pharmAdmin.firstSurname"
         placeholder="Morales"
         required
-      /> </mat-form-field
-    ><br />
+      />
+    </mat-form-field>
+    <br />
     <mat-form-field class="form">
       <mat-label>Apellido Materno</mat-label
       ><input
         matInput
         type="text"
         formControlName="secondSurname"
+        [(ngModel)]="pharmAdmin.secondSurname"
         placeholder="Perez"
         required
       />
@@ -38,6 +43,7 @@
         matInput
         type="text"
         formControlName="ci"
+        [(ngModel)]="pharmAdmin.ci"
         placeholder="4568799"
         required
       />
@@ -48,6 +54,7 @@
         matInput
         type="text"
         formControlName="phone"
+        [(ngModel)]="pharmAdmin.phone"
         placeholder="7895654"
         required
       />
@@ -58,6 +65,7 @@
         matInput
         type="text"
         formControlName="email"
+        [(ngModel)]="pharmAdmin.email"
         placeholder="pepito@peptio.com"
         required
       />
@@ -68,6 +76,7 @@
         matInput
         type="text"
         formControlName="userName"
+        [(ngModel)]="pharmAdmin.userName"
         placeholder="pepito"
         required
       />
@@ -78,6 +87,7 @@
         matInput
         type="password"
         formControlName="password"
+        [(ngModel)]="pharmAdmin.password"
         placeholder="*******"
         required
       />
