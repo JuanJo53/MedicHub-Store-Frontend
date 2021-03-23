@@ -30,6 +30,8 @@ export class SubsidiaryDetailComponent implements OnInit {
     "FirstSurname",
     "SecondSurname",
     "Ci",
+    "id_userEdit",
+    "id_userDel",
   ];
 
   constructor(
@@ -107,6 +109,7 @@ export class SubsidiaryDetailComponent implements OnInit {
           console.log("Resultado " + rta);
         });
         console.log("Deleted");
+        this.ngOnInit();
       }
     });
   }
@@ -145,4 +148,5 @@ export class SubsidiaryDetailComponent implements OnInit {
       this.ngOnInit();
     });
   }
+  openDetailDialog(element) {}
 }

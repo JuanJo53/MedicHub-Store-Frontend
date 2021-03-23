@@ -18,9 +18,9 @@ export class PharmAdminsService {
     );
   }
   updateAdmins(adminId: number, pharmAdmin: PharmAdmin) {
-    return this.http.put(apiKey.api + `/subsidiary`, pharmAdmin);
+    return this.http.put(apiKey.api + `/pharmacyAdmin`, pharmAdmin);
   }
   deleteAdmins(adminId: number) {
-    return this.http.delete(apiKey.api + `/subsidiary/${adminId}`);
+    return this.http.delete(apiKey.api + `/pharmacyAdmin/${adminId}`);
   }
 }

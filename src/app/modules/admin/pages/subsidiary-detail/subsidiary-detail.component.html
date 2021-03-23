@@ -160,6 +160,35 @@
         <td mat-cell *matCellDef="let administrator">{{ administrator.ci }}</td>
       </ng-container>
 
+      <!-- Edit Column -->
+      <ng-container matColumnDef="id_userEdit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let administrator">
+          <button
+            class="action-button"
+            color="primary"
+            mat-mini-fab
+            (click)="openDetailDialog(administrator)"
+          >
+            <span><mat-icon>details</mat-icon> </span>
+          </button>
+        </td>
+      </ng-container>
+      <!-- Delete Column -->
+      <ng-container matColumnDef="id_userDel">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let administrator">
+          <button
+            class="action-button"
+            color="warn"
+            mat-mini-fab
+            (click)="deleteAdmin(administrator.roleUserId)"
+          >
+            <span><mat-icon>delete</mat-icon> </span>
+          </button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
