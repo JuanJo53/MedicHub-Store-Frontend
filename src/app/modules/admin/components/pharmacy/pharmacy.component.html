@@ -1,9 +1,9 @@
 <!--<h1>farmacia# linea</h1> -->
-<br>
-<div class="moldeexterno" *ngIf="pharmacy && !destroyed" >
-  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock" >
+<br />
+<div class="moldeexterno" *ngIf="pharmacy && !destroyed">
+  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titlePharmacy">
-      <mat-card-title >
+      <mat-card-title>
         <h3>
           <strong>{{ pharmacy.name }}</strong>
         </h3>
@@ -13,7 +13,7 @@
           <mat-icon>add</mat-icon>
           <span>Sucursal</span>
         </button>
-        <button mat-menu-item (click)="editPharm()">
+        <button mat-menu-item (click)="editPharm(pharmacy.pharmacyId)">
           <mat-icon>edit</mat-icon>
           <span>Editar</span>
         </button>
@@ -34,12 +34,19 @@
         <td>
           <mat-card-content>
             <p>
-              <strong class="textEdit">Email:</strong><strong class="textEdit">{{ pharmacy.email }}</strong> 
+              <strong class="textEdit">Email:</strong
+              ><strong class="textEdit">{{ pharmacy.email }}</strong>
             </p>
             <p>
-              <strong class="textEdit">Phone:</strong><strong class="textEdit">{{ pharmacy.phone }}</strong>
+              <strong class="textEdit">Phone:</strong
+              ><strong class="textEdit">{{ pharmacy.phone }}</strong>
             </p>
-            <p><strong class="textEdit" >Status: </strong><strong class="textEdit">{{ pharmacy.status | pharmacyStatus }}</strong></p>
+            <p>
+              <strong class="textEdit">Status: </strong
+              ><strong class="textEdit">{{
+                pharmacy.status | pharmacyStatus
+              }}</strong>
+            </p>
           </mat-card-content>
         </td>
       </tr>
@@ -65,7 +72,7 @@
               type="text"
               formControlName="name"
               placeholder="Nombre Certificado"
-              value="{{ pharmacy.name }}"
+              [(ngModel)]="pharmacy.name"
               required
             />
           </mat-form-field>
@@ -76,7 +83,7 @@
               type="text"
               formControlName="email"
               placeholder="Email de la Faramacia"
-              value="{{ pharmacy.email }}"
+              [(ngModel)]="pharmacy.email"
               required
             />
           </mat-form-field>
@@ -87,7 +94,7 @@
               type="text"
               formControlName="phone"
               placeholder="Telefono de la Faramacia"
-              value="{{ pharmacy.phone }}"
+              [(ngModel)]="pharmacy.phone"
               required
             />
           </mat-form-field>
