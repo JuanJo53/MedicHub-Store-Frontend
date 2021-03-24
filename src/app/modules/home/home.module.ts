@@ -47,6 +47,7 @@ import { CreateBranchComponent } from "../pharm-admin/components/dialogs/create-
 import { BankAccountComponent } from "../pharm-admin/pages/bank-account/bank-account.component";
 import { MatRadioModule } from "@angular/material/radio";
 import { AddBankAccountComponent } from "../pharm-admin/components/dialogs/add-bank-account/add-bank-account.component";
+import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succes-dialog.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -80,6 +81,7 @@ import { AddBankAccountComponent } from "../pharm-admin/components/dialogs/add-b
     CreateBranchComponent,
     BankAccountComponent,
     AddBankAccountComponent,
+    SuccesDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -114,6 +116,7 @@ import { AddBankAccountComponent } from "../pharm-admin/components/dialogs/add-b
     EditSubsiAdminsComponent,
     CreateBranchComponent,
     AddBankAccountComponent,
+    SuccesDialogComponent,
   ],
 })
 export class HomeModule {}

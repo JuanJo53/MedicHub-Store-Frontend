@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { PharmaciesService } from "src/app/core/http/admin/pharmacies.service";
 import { CreatePharmacyComponent } from "src/app/modules/components/dialogs/create-pharmacy/create-pharmacy.component";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
   selector: "app-pharmacies",
@@ -30,15 +31,24 @@ export class PharmaciesComponent implements OnInit {
       width: "500px",
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      this.name = result;
-      this.ngOnInit();
+      if (result) {
+        this.displaySuccesDialog("¡Se agrego la pharmacia exitosamente!");
+        this.ngOnInit();
+      }
     });
   }
   fecthPharmacies(): void {
     this.pharmaciesService.getAllPharmacies().subscribe((pharmacies) => {
       this.pharmacies = pharmacies;
       console.log(pharmacies);
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

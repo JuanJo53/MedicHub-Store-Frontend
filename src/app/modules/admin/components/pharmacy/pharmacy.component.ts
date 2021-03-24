@@ -9,6 +9,7 @@ import { PharmacyRequest } from "src/app/shared/models/pharmacy-request";
 import { WarningDialogComponent } from "../warning-dialog/warning-dialog.component";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { throwToolbarMixedModesError } from "@angular/material";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
   selector: "app-pharmacy",
@@ -20,7 +21,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   subsidiaries: SubsidiaryListRequest[] = [];
 
   form: FormGroup;
-
+  text: string;
   pharmId: number;
 
   constructor(
@@ -100,7 +101,8 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     this.pharmaciesService
       .updatePharmacy(id, updatePharmacy)
       .subscribe((response) => {
-        console.log("Response: " + response);
+        console.log("Response PUT: " + response);
+        this.displaySuccesDialog("¡Se actualizó la farmacia exitosamente!");
       });
   }
   deletePharmacy(id: number): void {
@@ -115,6 +117,8 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       if (result) {
         this.pharmaciesService.deletePharmacy(id).subscribe((rta) => {
           console.log("Response " + rta);
+          this.text = result;
+          this.displaySuccesDialog("¡Se elimino la farmacia exitosamente!");
         });
         this.ngOnDestroy();
       }
@@ -128,8 +132,17 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
+      console.log("Resultado post:" + result);
+      this.displaySuccesDialog("¡Se agrego la sucursal exitosamente!");
       this.ngOnInit();
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

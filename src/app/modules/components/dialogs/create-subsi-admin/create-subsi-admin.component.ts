@@ -24,7 +24,7 @@ export class CreateSubsiAdminComponent implements OnInit {
     this.editAdmin();
   }
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   editAdmin(): void {
@@ -102,7 +102,7 @@ export class CreateSubsiAdminComponent implements OnInit {
     if (this.form.valid) {
       const subsidiary = this.form.value;
       this.createAdmin(subsidiary);
-      this.dialogRef.close();
+      this.dialogRef.close(true);
     } else {
       console.log("bad form");
     }

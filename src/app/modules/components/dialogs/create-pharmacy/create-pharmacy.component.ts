@@ -23,7 +23,7 @@ export class CreatePharmacyComponent implements OnInit {
     this.editPharm();
   }
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   editPharm(): void {
@@ -61,11 +61,12 @@ export class CreatePharmacyComponent implements OnInit {
       const pharmacy = this.form.value;
       console.log(pharmacy);
       this.createPharmacy(pharmacy);
-      this.dialogRef.close();
+      this.dialogRef.close(true);
+    } else {
+      console.log("bad form");
     }
   }
   createPharmacy(newPharmacy: PharmacyRequest): void {
-    var iduser = parseInt(localStorage.getItem("userId"));
     this.pharmaciesService
       .postNewPharmacy(newPharmacy)
       .subscribe((pharmacy) => {

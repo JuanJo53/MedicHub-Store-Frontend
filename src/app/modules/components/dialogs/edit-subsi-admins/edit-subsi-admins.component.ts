@@ -16,7 +16,6 @@ export class EditSubsiAdminsComponent implements OnInit {
   constructor(
     private fromBuilder: FormBuilder,
     private pharmAdminService: PharmAdminsService,
-    private activatedRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<EditSubsiAdminsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number; subsidiaryId: number }
   ) {}
@@ -25,14 +24,14 @@ export class EditSubsiAdminsComponent implements OnInit {
     this.fetchAdminDetails(this.data.id);
   }
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
   fetchAdminDetails(adminId: number) {
     this.pharmAdminService
       .getAdminDetail(adminId)
       .subscribe((administrator) => {
         this.pharmAdmin = administrator;
-        // console.log(this.pharmAdmin);
+        console.log(this.pharmAdmin);
         this.editAdmin();
       });
   }
@@ -41,7 +40,7 @@ export class EditSubsiAdminsComponent implements OnInit {
       subsidiaryId: [this.data.subsidiaryId, [Validators.required]],
       pharmacyId: [this.data.id, [Validators.required]],
       firstName: [
-        "",
+        this.pharmAdmin.firstName,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -49,7 +48,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       firstSurname: [
-        "",
+        this.pharmAdmin.firstSurname,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -57,7 +56,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       secondSurname: [
-        "",
+        this.pharmAdmin.secondSurname,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -65,7 +64,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       ci: [
-        "",
+        this.pharmAdmin.ci,
         [
           Validators.required,
           Validators.maxLength(145),
@@ -73,7 +72,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       phone: [
-        "",
+        this.pharmAdmin.phone,
         [
           Validators.required,
           Validators.maxLength(18),
@@ -81,7 +80,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       email: [
-        "",
+        this.pharmAdmin.email,
         [
           Validators.required,
           Validators.email,
@@ -90,7 +89,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       userName: [
-        "",
+        this.pharmAdmin.userName,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -98,7 +97,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       password: [
-        "",
+        this.pharmAdmin.password,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -106,19 +105,17 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
     });
-    // console.log(this.form.value);
   }
   saveAdmin(id: number): void {
     if (this.form.valid) {
       const subsidiary = this.form.value;
       this.updateAdmin(id, subsidiary);
-      this.dialogRef.close();
+      this.dialogRef.close(true);
     } else {
       console.log("bad form");
     }
   }
   updateAdmin(id: number, admin: PharmAdmin): void {
-    // var iduser = parseInt(localStorage.getItem("userId"));
     this.pharmAdminService.updateAdmins(id, admin).subscribe((admin) => {
       console.log(admin);
     });

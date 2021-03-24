@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { MatDialog } from "@angular/material/dialog";
 import { WarningDialogComponent } from "../warning-dialog/warning-dialog.component";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
   selector: "app-subsidiary",
@@ -46,9 +47,17 @@ export class SubsidiaryComponent implements OnInit {
         this.subsidiariesService.deleteSubsidiary(id).subscribe((rta) => {
           console.log("Resultado " + rta);
         });
-        console.log("Deleted");
+        this.displaySuccesDialog("¡Se elimino la sucursal exitosamente!");
         this.ngOnDestroy();
       }
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

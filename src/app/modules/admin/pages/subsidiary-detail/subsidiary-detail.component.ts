@@ -10,6 +10,7 @@ import { WarningDialogComponent } from "../../components/warning-dialog/warning-
 import { MatTableDataSource } from "@angular/material/table";
 import { PharmAdminList } from "src/app/shared/models/pharm-admin-list";
 import { EditSubsiAdminsComponent } from "src/app/modules/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
   selector: "app-subsidiary-detail",
@@ -97,6 +98,9 @@ export class SubsidiaryDetailComponent implements OnInit {
         console.log("subsidiary: ");
         console.log(subsidiary);
         this.getAdmins(id);
+        this.displaySuccesDialog(
+          "¡Se actualizo los datos de la sucursal exitosamente!"
+        );
       });
   }
   deleteAdmin(id: number): void {
@@ -111,8 +115,11 @@ export class SubsidiaryDetailComponent implements OnInit {
       if (result) {
         this.pharmAdminsService.deleteAdmins(id).subscribe((rta) => {
           console.log("Resultado " + rta);
+          this.text = result;
+          this.displaySuccesDialog(
+            "¡Se elimino al administrador exitosamente!"
+          );
         });
-        console.log("Deleted");
         this.ngOnInit();
       }
     });
@@ -198,6 +205,11 @@ export class SubsidiaryDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
       this.text = result;
+      if (result) {
+        this.displaySuccesDialog(
+          "¡Se agrego al administrador de la farmacia exitosamente!"
+        );
+      }
       this.ngOnInit();
     });
   }
@@ -211,8 +223,20 @@ export class SubsidiaryDetailComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
-      this.text = result;
-      this.ngOnInit();
+      if (result) {
+        this.displaySuccesDialog(
+          "¡Se actualizo los datos del administrador exitosamente!"
+        );
+        this.ngOnInit();
+      }
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }
