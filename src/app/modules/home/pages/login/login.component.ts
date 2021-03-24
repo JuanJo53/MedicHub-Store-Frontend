@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
       this.isLoginFail = false;
-      this.roles = this.tokenService.getAuthorities();
     }
     this.form = this.fromBuilder.group({
       email: ["", [Validators.required, Validators.email]],
@@ -43,18 +42,22 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       const usr = this.form.value;
       console.log(usr);
+      this.tokenService.setAuthorities(this.form.get("role").value);
       this.onLogin(usr);
     }
   }
   onLogin(user: LoginUser) {
+    this.roles = parseInt(this.tokenService.getAuthorities());
     this.authService.logIn(user).subscribe(
       (data) => {
         this.isLogged = true;
         this.isLoginFail = false;
         this.tokenService.setToken(data.jwt);
+
         // this.tokenService.setUserName(data.nombreUsuario);
         // this.tokenService.setAuthorities(data.authorities);
         // this.roles = data.authorities;
+
         if (this.roles == 1) {
           this.router.navigate(["/admin/dashboard"]);
         } else if (this.roles == 2) {

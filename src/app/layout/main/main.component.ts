@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
+import { TokenService } from "src/app/core/authentication/token.service";
 @Component({
   selector: "app-main",
   templateUrl: "./main.component.html",
@@ -8,7 +9,10 @@ import { Location } from "@angular/common";
 export class MainComponent implements OnInit {
   isSidebarOpen2: boolean = true;
   contentMargin = 25;
-  constructor(private _location: Location) {}
+  constructor(
+    private _location: Location,
+    private tokenService: TokenService
+  ) {}
   ngOnInit() {}
   receiveOpen(event) {
     this.isSidebarOpen2 = event;

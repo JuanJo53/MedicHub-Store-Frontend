@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { TokenService } from "src/app/core/authentication/token.service";
 
 @Component({
   selector: "app-sidebar",
@@ -7,9 +8,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class SidebarComponent implements OnInit {
   userId: number;
-  userRole = 1;
+  userRole: number;
+  constructor(private tokenService: TokenService) {}
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.userRole = parseInt(this.tokenService.getAuthorities());
+  }
 }

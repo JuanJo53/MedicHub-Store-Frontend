@@ -12,7 +12,7 @@
   </div>
 
   <a
-    *ngIf="userRole == 0"
+    *ngIf="userRole == 1"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
@@ -21,7 +21,7 @@
     ><span class="link__text">Dashboard</span></a
   >
   <a
-    *ngIf="userRole == 1"
+    *ngIf="userRole == 2"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
@@ -39,7 +39,7 @@
     ><span class="link__text">Reportes</span></a
   >
   <a
-    *ngIf="userRole == 0"
+    *ngIf="userRole == 1"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
@@ -48,7 +48,7 @@
     ><span class="link__text">Farmacias</span></a
   >
   <a
-    *ngIf="userRole == 1"
+    *ngIf="userRole == 2"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
@@ -57,7 +57,7 @@
     ><span class="link__text">Products</span></a
   >
   <a
-    *ngIf="userRole == 0"
+    *ngIf="userRole == 1"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
@@ -66,7 +66,7 @@
     ><span class="link__text">Clientes</span></a
   >
   <a
-    *ngIf="userRole == 1"
+    *ngIf="userRole == 2"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"

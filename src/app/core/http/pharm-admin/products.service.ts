@@ -23,7 +23,13 @@ export class ProductsService {
     );
   }
   getProduct(prodId: number) {
-    return this.http.get<Product>(apiKey.api + `/product/${prodId}`);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.get<Product>(apiKey.api + `/product/${prodId}`, {
+      headers: headers,
+    });
   }
   updateProduct(pharmacy: Product) {
     return this.http.put(apiKey.api + `/product`, pharmacy);
