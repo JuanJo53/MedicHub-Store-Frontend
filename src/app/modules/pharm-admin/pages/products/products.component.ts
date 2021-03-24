@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { TokenService } from "src/app/core/authentication/token.service";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { Product } from "src/app/shared/models/product";
 import { CreateProductComponent } from "../../components/dialogs/create-product/create-product.component";
 
@@ -42,9 +43,10 @@ export class ProductsComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      this.name = result;
-      this.ngOnInit();
+      if (result) {
+        this.displaySuccesDialog("¡Se agrego el producto exitosamente!");
+        this.ngOnInit();
+      }
     });
   }
   fecthProducts(id: number): void {
@@ -52,6 +54,14 @@ export class ProductsComponent implements OnInit {
     this.productsServide.getSubsidiaryProducts(id).subscribe((products) => {
       this.products = products;
       console.log(products);
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

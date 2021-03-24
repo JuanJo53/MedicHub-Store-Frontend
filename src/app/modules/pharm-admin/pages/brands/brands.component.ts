@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { BrandService } from "src/app/core/http/pharm-admin/brand.service";
 import { Brand } from "src/app/shared/models/brand";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
   selector: "app-brands",
@@ -29,15 +30,24 @@ export class BrandsComponent implements OnInit {
       width: "500px",
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      this.name = result;
-      this.ngOnInit();
+      if (result) {
+        this.displaySuccesDialog("¡Se marca agregada exitosamente!");
+        this.ngOnInit();
+      }
     });
   }
   fecthBrands(): void {
     this.brandsService.getBrands().subscribe((bands) => {
       this.brands = bands;
       console.log(bands);
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

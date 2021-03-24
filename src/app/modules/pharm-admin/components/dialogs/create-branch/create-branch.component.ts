@@ -22,7 +22,7 @@ export class CreateBranchComponent implements OnInit {
     this.editPharm();
   }
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   editPharm(): void {
@@ -60,11 +60,10 @@ export class CreateBranchComponent implements OnInit {
       const pharmacy = this.form.value;
       console.log(pharmacy);
       this.createPharmacy(pharmacy);
-      this.dialogRef.close();
+      this.dialogRef.close(true);
     }
   }
   createPharmacy(newBrand: Brand): void {
-    var iduser = parseInt(localStorage.getItem("userId"));
     this.brandService.postNewBrand(newBrand).subscribe((brand) => {
       console.log(brand);
     });

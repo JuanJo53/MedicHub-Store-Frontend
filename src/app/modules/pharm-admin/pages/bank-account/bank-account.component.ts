@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { TokenService } from "src/app/core/authentication/token.service";
 import { BankAccountService } from "src/app/core/http/pharm-admin/bank-account.service";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { BankAccount } from "src/app/shared/models/bank-account";
 import { AddBankAccountComponent } from "../../components/dialogs/add-bank-account/add-bank-account.component";
 
@@ -60,6 +61,7 @@ export class BankAccountComponent implements OnInit {
       .subscribe((bankAccount) => {
         console.log("bankAccount: ");
         console.log(bankAccount);
+        this.displaySuccesDialog("¡Se actualizo los datos exitosamente!");
       });
   }
   editBankAccount(id: number): void {
@@ -100,8 +102,18 @@ export class BankAccountComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      this.ngOnInit();
+      if (result) {
+        this.displaySuccesDialog("¡Se agrego los datos exitosamente!");
+        this.ngOnInit();
+      }
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

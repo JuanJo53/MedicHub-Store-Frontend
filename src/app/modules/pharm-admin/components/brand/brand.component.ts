@@ -5,6 +5,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { BrandService } from "src/app/core/http/pharm-admin/brand.service";
 import { WarningDialogComponent } from "src/app/modules/admin/components/warning-dialog/warning-dialog.component";
 import { Brand } from "src/app/shared/models/brand";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
   selector: "app-brand",
@@ -114,6 +115,14 @@ export class BrandComponent implements OnInit {
       console.log("The dialog was closed");
       this.name = result;
       this.ngOnInit();
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

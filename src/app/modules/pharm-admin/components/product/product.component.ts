@@ -8,6 +8,7 @@ import { ProductsService } from "src/app/core/http/pharm-admin/products.service"
 import { WarningDialogComponent } from "src/app/modules/admin/components/warning-dialog/warning-dialog.component";
 import { Brand } from "src/app/shared/models/brand";
 import { Product } from "src/app/shared/models/product";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
   selector: "app-product",
@@ -118,6 +119,7 @@ export class ProductComponent implements OnInit {
     this.productsServide.updateProduct(updateProduct).subscribe((product) => {
       console.log("Producto: ");
       console.log(product);
+      this.displaySuccesDialog("¡Se actualizo el producto exitosamente!");
       this.ngOnInit();
     });
   }
@@ -133,7 +135,7 @@ export class ProductComponent implements OnInit {
         this.productsServide.deleteProduct(id).subscribe((rta) => {
           console.log("Resultado " + rta);
         });
-        console.log("Deleted");
+        this.displaySuccesDialog("¡Se elimino el producto exitosamente!");
         this.ngOnDestroy();
       }
     });
@@ -142,6 +144,14 @@ export class ProductComponent implements OnInit {
     this.brandsService.getBrands().subscribe((bands) => {
       this.brands = bands;
       console.log(bands);
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

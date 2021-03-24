@@ -28,7 +28,7 @@ export class CreateProductComponent implements OnInit {
     this.editProduct();
   }
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
   editProduct(): void {
     this.form = this.fromBuilder.group({
@@ -80,11 +80,10 @@ export class CreateProductComponent implements OnInit {
       const pharmacy = this.form.value;
       console.log(pharmacy);
       this.createPharmacy(pharmacy);
-      this.dialogRef.close();
+      this.dialogRef.close(true);
     }
   }
   createPharmacy(newProduct: Product): void {
-    var iduser = parseInt(localStorage.getItem("userId"));
     this.prodcutService.postNewProduct(newProduct).subscribe((prodcut) => {
       console.log(prodcut);
     });

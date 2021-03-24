@@ -14,7 +14,6 @@ export class AddBankAccountComponent implements OnInit {
   form: FormGroup;
   constructor(
     private fromBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
     private bankAccountService: BankAccountService,
     public dialogRef: MatDialogRef<AddBankAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number }
@@ -24,7 +23,7 @@ export class AddBankAccountComponent implements OnInit {
     this.editBankAccount();
   }
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
   saveChanges(event: Event): void {
     event.preventDefault();
@@ -41,7 +40,7 @@ export class AddBankAccountComponent implements OnInit {
       .subscribe((bankAccount) => {
         console.log("bankAccount: ");
         console.log(bankAccount);
-        this.onNoClick();
+        this.dialogRef.close(false);
       });
   }
   editBankAccount(): void {
