@@ -42,7 +42,10 @@ export class CreateProductComponent implements OnInit {
           Validators.minLength(3),
         ],
       ],
-      stock: ["", [Validators.required, Validators]],
+      stock: [
+        "",
+        [Validators.required, Validators.min(2), Validators.max(800)],
+      ],
       price: ["", [Validators.required]],
       type: [
         "",

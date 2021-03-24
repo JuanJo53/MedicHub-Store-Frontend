@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.form.valid) {
       const usr = this.form.value;
-      console.log(usr);
       this.tokenService.setAuthorities(this.form.get("role").value);
       this.onLogin(usr);
     }

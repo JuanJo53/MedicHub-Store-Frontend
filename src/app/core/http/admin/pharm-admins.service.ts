@@ -15,7 +15,9 @@ export class PharmAdminsService {
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.post(apiKey.api + "/pharmacyAdmin", newAdmin);
+    return this.http.post(apiKey.api + "/pharmacyAdmin", newAdmin, {
+      headers: headers,
+    });
   }
   getAdmins(subsidId: number) {
     var authToken = this.tokenService.getToken();

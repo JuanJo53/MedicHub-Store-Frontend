@@ -63,7 +63,7 @@ export class ProductComponent implements OnInit {
           Validators.minLength(3),
         ],
       ],
-      stock: ["", [Validators.required, Validators]],
+      stock: ["", [Validators.required]],
       price: ["", [Validators.required]],
       type: [
         "",

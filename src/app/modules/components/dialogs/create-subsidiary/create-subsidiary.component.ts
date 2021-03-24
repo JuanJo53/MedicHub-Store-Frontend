@@ -17,7 +17,7 @@ export class CreateSubsidiaryComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private subsidiariesService: SubsidiariesService,
     public dialogRef: MatDialogRef<CreateSubsidiaryComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { name: string; id: number }
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class CreateSubsidiaryComponent implements OnInit {
 
   editSubsidiary(): void {
     this.form = this.fromBuilder.group({
-      subsidiaryId: [0, [Validators.required]],
+      pharmacyId: [this.data.id, [Validators.required]],
       subsidiaryName: [
         "",
         [
@@ -55,7 +55,7 @@ export class CreateSubsidiaryComponent implements OnInit {
           Validators.minLength(6),
         ],
       ],
-      number: ["", [Validators.maxLength(45), Validators.maxLength(2)]],
+      number: ["", [Validators.maxLength(45), Validators.minLength(2)]],
       street: [
         "",
         [
@@ -89,11 +89,11 @@ export class CreateSubsidiaryComponent implements OnInit {
         ],
       ],
     });
-    this.form.get("pharmacyId").setValue(this.data.id);
   }
   saveSubsidiary(): void {
     if (this.form.valid) {
       const subsidiary = this.form.value;
+      console.log(subsidiary);
       this.createSubsidiary(subsidiary);
       this.dialogRef.close();
     } else {

@@ -38,7 +38,8 @@ export class EditSubsiAdminsComponent implements OnInit {
   }
   editAdmin(): void {
     this.form = this.fromBuilder.group({
-      subsidiaryId: [0, [Validators.required]],
+      subsidiaryId: [this.data.subsidiaryId, [Validators.required]],
+      pharmacyId: [this.data.id, [Validators.required]],
       firstName: [
         "",
         [
@@ -105,9 +106,6 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
     });
-    this.form.get("subsidiaryId").setValue(+this.data.subsidiaryId);
-    this.form.get("personId").setValue(this.pharmAdmin.pharmacyId);
-
     // console.log(this.form.value);
   }
   saveAdmin(id: number): void {

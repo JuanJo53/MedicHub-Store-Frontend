@@ -28,7 +28,6 @@ export class CreatePharmacyComponent implements OnInit {
 
   editPharm(): void {
     this.form = this.fromBuilder.group({
-      pharmacyId: [0, [Validators.required]],
       name: [
         "",
         [

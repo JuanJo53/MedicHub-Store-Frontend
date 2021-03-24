@@ -21,7 +21,6 @@ export class PharmacyComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
-  name: string;
   pharmId: number;
 
   constructor(
@@ -125,13 +124,11 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CreateSubsidiaryComponent, {
       width: "500px",
       data: {
-        name: this.name,
         id: this.pharmacy.pharmacyId,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
-      this.name = result;
       this.ngOnInit();
     });
   }

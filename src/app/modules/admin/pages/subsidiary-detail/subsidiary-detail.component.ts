@@ -117,7 +117,7 @@ export class SubsidiaryDetailComponent implements OnInit {
   }
   editSubsidiary(id: number): void {
     this.form = this.fromBuilder.group({
-      subsidiaryId: [0, [Validators.required]],
+      subsidiaryId: [id, [Validators.required]],
       subsidiaryName: [
         "",
         [
@@ -128,8 +128,11 @@ export class SubsidiaryDetailComponent implements OnInit {
       ],
       phone: [
         "",
-        [Validators.required, Validators.maxLength(18)],
-        Validators.minLength(12),
+        [
+          Validators.required,
+          Validators.maxLength(18),
+          Validators.minLength(12),
+        ],
       ],
       email: [
         "",
@@ -174,7 +177,6 @@ export class SubsidiaryDetailComponent implements OnInit {
         ],
       ],
     });
-    this.form.get("subsidiaryId").setValue(id);
     this.form.get("subsidiaryName").setValue(this.subsidiary.subsidiaryName);
     this.form.get("phone").setValue(this.subsidiary.phone);
     this.form.get("email").setValue(this.subsidiary.email);
@@ -208,7 +210,7 @@ export class SubsidiaryDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
       this.text = result;
-      this.ngOnInit();
+      // this.ngOnInit();
     });
   }
 }
