@@ -21,10 +21,11 @@
   font-size: 16px;
 }
 .login-container {
-  padding-top: 30%;
+  padding-top: 20%;
 }
 .login-card {
   background-color: transparent;
+  align-self: center;
 }
 .form-letter {
   color: #2f4a85;
@@ -83,4 +84,13 @@
    background-size: cover;
    height: 100%;
   }
+}
+.loginentrada{
+  margin-right: 50%;
+}
+.buttonsradioeleccion{
+  margin-right: 50%;
+}
+.form{
+  margin-right: 50%;
 }

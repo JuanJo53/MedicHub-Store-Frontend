@@ -1,16 +1,23 @@
 .sucursal{
+    //display: inline-flex;
     display: flex;
     align-items: center;
-    margin-left: 5px;
+    //background-color: #75852f;
+    //padding: 0% !important;
+    //padding-left: 0rem;
+    justify-content: center;
+    border-radius: 0px 0px 20px 20px !important;
+    //flex-flow: row;
+
 
 }
 .sucursalall{
     padding: 0% !important;
-    background-color: #2F4A85;
+    background-color: #944e26;
     padding-left: 0rem;
     border-radius: 0px 0px 20px 20px !important;
-
-    
+    display: flex;
+    flex-flow: row;
 
 }
 .titlesucursal{
@@ -25,12 +32,16 @@
 .namesucursal{
     color: white;
     font-size: 15px;
-    margin-left: 3px;
-    margin-right: 0px;
+    //margin-left: 50%;
+    //margin-right: 50%;
     //font-style: italic;
     //font-weight: bolder;
 }
 .btnsucu{
     color: #fff;
     margin-left: 0px;
+}
+.sucaux{
+    display: inline-flex;
+    align-items: center;
 }
