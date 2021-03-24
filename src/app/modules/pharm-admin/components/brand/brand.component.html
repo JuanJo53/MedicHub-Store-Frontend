@@ -2,6 +2,7 @@
 <div class="moldeexterno" *ngIf="brand && !destroyed">
   <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titlePharmacy">
+
       <mat-card-title>
         <h3>
           <strong>{{ brand.name }}</strong>
@@ -24,16 +25,22 @@
     <table>
       <tr>
         <td>
-          <div class="blocImagen"></div>
+          <div class="blocImagen">
+            <img
+            src="assets/images/marcafarmacia.png"
+            width="110px"
+            height="130px"
+          />
+          </div>
         </td>
         <td>
           <mat-card-content>
             <h3>
-              <strong class="textEdit">Email777:</strong>
+              <strong class="textEdit">EMAIL:</strong>
               <p class="textEdit">{{ brand.email }}</p>
             </h3>
             <h3>
-              <strong class="textEdit">Phone:</strong>
+              <strong class="textEdit">PHONE:</strong>
               <p class="textEdit">{{ brand.phone }}</p>
             </h3>
           </mat-card-content>
@@ -46,7 +53,7 @@
       <mat-card class="pharm_card">
         <mat-card-content>
           <mat-form-field class="form">
-            <mat-label>Nombre</mat-label>
+            <mat-label class="texteditcard">Nombre</mat-label>
             <input
               matInput
               type="text"
@@ -54,10 +61,11 @@
               placeholder="Nombre Certificado"
               [(ngModel)]="brand.name"
               required
+              class="texteditcard"
             />
           </mat-form-field>
           <mat-form-field class="form">
-            <mat-label>Email</mat-label>
+            <mat-label class="texteditcard">Email</mat-label>
             <input
               matInput
               type="text"
@@ -65,10 +73,11 @@
               placeholder="Email de la Faramacia"
               [(ngModel)]="brand.email"
               required
+              class="texteditcard"
             />
           </mat-form-field>
           <mat-form-field class="form">
-            <mat-label>Telefono</mat-label>
+            <mat-label class="texteditcard">Telefono</mat-label>
             <input
               matInput
               type="text"
@@ -76,15 +85,18 @@
               placeholder="Telefono de la Faramacia"
               [(ngModel)]="brand.phone"
               required
+              class="texteditcard"
             />
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
+          <div class="buttons">
           <button
             id="{{ brand.brandId }}"
             type="submit"
             mat-button
             color="primary"
+            class="btn-edit"
           >
             Guardar Cambios
           </button>
@@ -93,9 +105,11 @@
             (click)="cancel()"
             mat-button
             color="warn"
+            class="btn-edit"
           >
             Cancelar
           </button>
+        </div>
         </mat-card-actions>
       </mat-card>
     </form>
