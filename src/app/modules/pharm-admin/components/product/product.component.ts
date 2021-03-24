@@ -49,12 +49,23 @@ export class ProductComponent implements OnInit {
       this.product = product;
     });
   }
-  editProduct(): void {
+  setBrandId(brandName: string) {
+    this.brands.forEach((brand) => {
+      if (brand.name == brandName) {
+        this.product.brandId = brand.brandId;
+        console.log(brand.name);
+        console.log(brand.brandId);
+      }
+    });
+  }
+  editProduct(productId: number): void {
     this.edit = true;
+    this.setBrandId(this.product.brandName);
+    console.log(this.product.brandId);
     this.form = this.fromBuilder.group({
-      productId: [0, [Validators.required]],
-      subsidiaryId: [0, [Validators.required]],
-      brandId: [0, [Validators.required]],
+      productId: [productId, [Validators.required]],
+      subsidiaryId: [this.subsidiaryId, [Validators.required]],
+      brandId: [this.product.brandId, [Validators.required]],
       name: [
         "",
         [
@@ -90,7 +101,6 @@ export class ProductComponent implements OnInit {
         ],
       ],
     });
-    this.form.get("subsidiaryId").setValue(this.subsidiaryId);
   }
   saveProduct(event: Event, id: number): void {
     event.preventDefault();
@@ -107,6 +117,7 @@ export class ProductComponent implements OnInit {
     this.productsServide.updateProduct(updateProduct).subscribe((product) => {
       console.log("Producto: ");
       console.log(product);
+      this.ngOnInit();
     });
   }
   deleteProduct(id: number): void {
