@@ -104,22 +104,18 @@
       </mat-card-actions>
     </mat-card>
   </form>
-<<<<<<< HEAD
   <mat-divider></mat-divider>
   <div class="">
     <br />
     <h1 class="title"><strong>Administradores de Sucursal</strong></h1>
-    <button (click)="addAdmin()" mat-fab class="btn" color="primary" class="formfarmacia">
-      <mat-icon >add_icon</mat-icon>
-=======
-  <div class="container">
-    <br />
-    <mat-divider></mat-divider>
-    <br />
-    <h1><strong>Administradores de Sucursal</strong></h1>
-    <button (click)="addAdmin()" mat-fab class="btn" color="primary">
+    <button
+      (click)="addAdmin()"
+      mat-fab
+      class="btn"
+      color="primary"
+      class="formfarmacia"
+    >
       <mat-icon>add_icon</mat-icon>
->>>>>>> 13e2db325ab7ad090740572309931628829642c4
     </button>
 
     <br />
@@ -134,7 +130,11 @@
     </mat-form-field>
 
     <!-- Tabla de los admins -->
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 formfarmacia" >
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 formfarmacia"
+    >
       <!-- Position Column -->
       <ng-container matColumnDef="id_usuario">
         <th mat-header-cell *matHeaderCellDef>Nro.</th>
