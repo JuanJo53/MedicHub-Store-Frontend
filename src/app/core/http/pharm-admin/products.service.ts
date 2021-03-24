@@ -10,7 +10,13 @@ import apiKey from "../../apiKey";
 export class ProductsService {
   constructor(private http: HttpClient, private tokenService: TokenService) {}
   postNewProduct(product: Product) {
-    return this.http.post(apiKey.api + "/product", product);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.post(apiKey.api + "/product", product, {
+      headers: headers,
+    });
   }
   getSubsidiaryProducts(prodId: number) {
     var authToken = this.tokenService.getToken();
@@ -32,9 +38,21 @@ export class ProductsService {
     });
   }
   updateProduct(pharmacy: Product) {
-    return this.http.put(apiKey.api + `/product`, pharmacy);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.put(apiKey.api + `/product`, pharmacy, {
+      headers: headers,
+    });
   }
   deleteProduct(prodId: number) {
-    return this.http.delete(apiKey.api + `/product/${prodId}`);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.delete(apiKey.api + `/product/${prodId}`, {
+      headers: headers,
+    });
   }
 }

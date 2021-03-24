@@ -10,7 +10,11 @@ import { TokenService } from "../../authentication/token.service";
 export class BrandService {
   constructor(private http: HttpClient, private tokenService: TokenService) {}
   postNewBrand(brand: Brand) {
-    return this.http.post(apiKey.api + "/brand", brand);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.post(apiKey.api + "/brand", brand, { headers: headers });
   }
   getBrands() {
     var authToken = this.tokenService.getToken();
@@ -20,12 +24,28 @@ export class BrandService {
     return this.http.get<Brand[]>(apiKey.api + `/brand`, { headers: headers });
   }
   getBrand(brandId: number) {
-    return this.http.get<Brand>(apiKey.api + `/brand/${brandId}`);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.get<Brand>(apiKey.api + `/brand/${brandId}`, {
+      headers: headers,
+    });
   }
   updateBrand(id: number, brand: Brand) {
-    return this.http.put(apiKey.api + `/brand`, brand);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.put(apiKey.api + `/brand`, brand, { headers: headers });
   }
   deleteBrand(brandId: number) {
-    return this.http.delete(apiKey.api + `/brand/${brandId}`);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.delete(apiKey.api + `/brand/${brandId}`, {
+      headers: headers,
+    });
   }
 }
