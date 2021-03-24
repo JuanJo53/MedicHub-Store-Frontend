@@ -55,7 +55,7 @@ export class CreateSubsidiaryComponent implements OnInit {
           Validators.minLength(6),
         ],
       ],
-      number: ["", [Validators.maxLength(45), Validators.minLength(2)]],
+      number: [null, [Validators.maxLength(45), Validators.minLength(2)]],
       street: [
         "",
         [

@@ -82,6 +82,8 @@ export class SubsidiaryDetailComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const pharm = this.form.value;
+      console.log("sucursal: ");
+      console.log(pharm);
       pharm.pharmacyId = id;
       this.updateSubsidiary(id, pharm);
     } else {
@@ -210,7 +212,7 @@ export class SubsidiaryDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
       this.text = result;
-      // this.ngOnInit();
+      this.ngOnInit();
     });
   }
 }
