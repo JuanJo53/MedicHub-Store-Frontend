@@ -12,7 +12,7 @@ import { TokenService } from "../authentication/token.service";
 @Injectable({
   providedIn: "root",
 })
-export class AdminGuard implements CanActivate {
+export class PharmAdminGuard implements CanActivate {
   constructor(private tokenService: TokenService, private router: Router) {}
 
   redirect(flag: boolean): any {
@@ -29,7 +29,7 @@ export class AdminGuard implements CanActivate {
     | boolean
     | UrlTree {
     const role = parseInt(this.tokenService.getAuthorities());
-    if (role == 1) {
+    if (role == 2) {
       this.redirect(true);
       return true;
     } else {
