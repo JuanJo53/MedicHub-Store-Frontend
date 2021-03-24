@@ -11,13 +11,15 @@ export class ProductsService {
   postNewProduct(product: Product) {
     return this.http.post(apiKey.api + "/product", product);
   }
-  getAllProducts(prodId: number) {
-    return this.http.get<Product[]>(apiKey.api + "/product" + prodId);
+  getSubsidiaryProducts(prodId: number) {
+    return this.http.get<Product[]>(
+      apiKey.api + `/subsidiary/${prodId}/product`
+    );
   }
-  getProducts(prodId: number) {
-    return this.http.get<Product>(apiKey.api + "/product/" + prodId);
+  getProduct(prodId: number) {
+    return this.http.get<Product>(apiKey.api + `/product/${prodId}`);
   }
-  updateProduct(prodId: number, pharmacy: Product) {
+  updateProduct(pharmacy: Product) {
     return this.http.put(apiKey.api + `/product`, pharmacy);
   }
   deleteProduct(prodId: number) {

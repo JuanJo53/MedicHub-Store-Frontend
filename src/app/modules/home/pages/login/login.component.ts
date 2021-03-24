@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     this.form = this.fromBuilder.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(5)]],
+      userRol: ["", [Validators.required]],
     });
   }
   login() {
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       const usr = this.form.value;
       console.log(usr);
-      this.loginAdmin(usr);
+      // this.loginAdmin(usr);
     }
   }
   loginAdmin(admin: LoginUser) {

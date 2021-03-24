@@ -41,6 +41,11 @@ import { CreateSubsiAdminComponent } from "../components/dialogs/create-subsi-ad
 import { ProductComponent } from "./../pharm-admin/components/product/product.component";
 import { MatTableModule } from "@angular/material/table";
 import { EditSubsiAdminsComponent } from "../components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
+import { BrandComponent } from "../pharm-admin/components/brand/brand.component";
+import { BrandsComponent } from "../pharm-admin/pages/brands/brands.component";
+import { CreateBranchComponent } from "../pharm-admin/components/dialogs/create-branch/create-branch.component";
+import { BankAccountComponent } from "../pharm-admin/pages/bank-account/bank-account.component";
+import { MatRadioModule } from "@angular/material/radio";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -69,6 +74,10 @@ import { EditSubsiAdminsComponent } from "../components/dialogs/edit-subsi-admin
     CreateProductComponent,
     ProductComponent,
     EditSubsiAdminsComponent,
+    BrandComponent,
+    BrandsComponent,
+    CreateBranchComponent,
+    BankAccountComponent,
   ],
   imports: [
     CommonModule,
@@ -89,6 +98,7 @@ import { EditSubsiAdminsComponent } from "../components/dialogs/edit-subsi-admin
     MatToolbarModule,
     MatSelectModule,
     MatTableModule,
+    MatRadioModule,
   ],
   entryComponents: [
     LoginComponent,
@@ -100,6 +110,7 @@ import { EditSubsiAdminsComponent } from "../components/dialogs/edit-subsi-admin
     CreateSubsiAdminComponent,
     CreateProductComponent,
     EditSubsiAdminsComponent,
+    CreateBranchComponent,
   ],
 })
 export class HomeModule {}

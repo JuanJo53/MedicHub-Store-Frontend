@@ -1,7 +1,7 @@
 <mat-toolbar class="topbar header">
-  <div><h4 class="usuario">Hola, Ximena</h4></div> 
-  <div>  
-  <button
+  <div><h4 class="usuario">Hola, Ximena</h4></div>
+  <div>
+    <button
       mat-icon-button
       matTooltip="Notifications"
       [style.overflow]="'visible'"
@@ -25,6 +25,10 @@
         <mat-icon class="maticon_nav">account_box</mat-icon>
         <span>Profile</span>
       </button>
+      <button mat-menu-item [routerLink]="['/pharmAdmin/1/bankAccount']">
+        <mat-icon class="maticon_nav">account_balance</mat-icon>
+        <span>Cuenta de Banco</span>
+      </button>
       <button mat-menu-item>
         <span>Disable alerts</span>
       </button>
@@ -37,6 +41,5 @@
     <button mat-icon-button class="img-button">
       <img src="assets/images/4.jpg" alt="" />
     </button>
-  
   </div>
 </mat-toolbar>

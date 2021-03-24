@@ -10,11 +10,13 @@ import { DashboardComponent } from "./modules/admin/pages/dashboard/dashboard.co
 import { PharmaciesComponent } from "./modules/admin/pages/pharmacies/pharmacies.component";
 import { ProductsComponent } from "./modules/pharm-admin/pages/products/products.component";
 import { PharmDashboardComponent } from "./modules/pharm-admin/pages/pharm-dashboard/pharm-dashboard.component";
+import { BrandsComponent } from "./modules/pharm-admin/pages/brands/brands.component";
+import { BankAccountComponent } from "./modules/pharm-admin/pages/bank-account/bank-account.component";
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/admin",
+    redirectTo: "/login",
     pathMatch: "full",
   },
   {
@@ -26,36 +28,44 @@ const routes: Routes = [
     component: SignupComponent,
   },
   {
-    path: "admin",
+    path: "",
     component: MainComponent,
     // canActivate: [AdminGuard],
     children: [
       {
-        path: "dashboard",
+        path: "admin/dashboard",
         component: DashboardComponent,
       },
       {
-        path: "pharmacy",
+        path: "admin/pharmacy",
         component: PharmaciesComponent,
       },
       {
-        path: "pharmacy/subsidiary/:id",
+        path: "admin/pharmacy/subsidiary/:id",
         component: SubsidiaryDetailComponent,
       },
     ],
   },
   {
-    path: "adminFarmacia",
+    path: "",
     component: MainComponent,
     // canActivate: [AdminGuard],
     children: [
       {
-        path: "dashboard",
+        path: "pharmAdmin/dashboard",
         component: PharmDashboardComponent,
       },
       {
-        path: "products",
+        path: "pharmAdmin/:id/products",
         component: ProductsComponent,
+      },
+      {
+        path: "pharmAdmin/:id/brands",
+        component: BrandsComponent,
+      },
+      {
+        path: "pharmAdmin/:id/bankAccount",
+        component: BankAccountComponent,
       },
     ],
   },

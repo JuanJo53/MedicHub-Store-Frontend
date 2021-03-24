@@ -1,6 +1,6 @@
 export interface PharmAdmin {
   subsidiaryId: number;
-  rolUserId: number;
+  pharmacyId: number;
   firstName: string;
   firstSurname: string;
   secondSurname: string;

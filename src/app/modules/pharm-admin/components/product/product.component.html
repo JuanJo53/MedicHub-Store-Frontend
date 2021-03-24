@@ -1,1 +1,149 @@
-<p>product works!</p>
+<!--<h1>farmacia# linea</h1> -->
+<br />
+<div class="moldeexterno" *ngIf="product && !destroyed">
+  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
+    <mat-card-header class="titleProduc">
+      <mat-card-title>
+        <h3>
+          <strong>{{ product.name }}</strong>
+        </h3>
+      </mat-card-title>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editProduct(product.productId)">
+          <mat-icon>edit</mat-icon>
+          <span>Editar</span>
+        </button>
+        <button mat-menu-item (click)="deleteProduct(product.productId)">
+          <mat-icon>delete</mat-icon>
+          <span>Eliminar</span>
+        </button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </mat-card-header>
+    <table>
+      <tr>
+        <td>
+          <div class="blocImagen"></div>
+        </td>
+        <td>
+          <mat-card-content>
+            <h3>
+              <strong class="textEdit">Precio:</strong>
+              <p class="textEdit">{{ product.price }}</p>
+            </h3>
+            <h3>
+              <strong class="textEdit">Stock:</strong>
+              <p class="textEdit">{{ product.stock }}</p>
+            </h3>
+            <h3>
+              <strong class="textEdit">Descripcion:</strong>
+              <p class="textEdit">{{ product.description }}</p>
+            </h3>
+            <h3>
+              <strong class="textEdit">Docis:</strong>
+              <p class="textEdit">{{ product.dose }}</p>
+            </h3>
+            <h3>
+              <strong class="textEdit">Tipo:</strong>
+              <p class="textEdit">{{ product.type }}</p>
+            </h3>
+            <h3>
+              <strong class="textEdit">Marca:</strong>
+              <p class="textEdit">{{ product.brandName }}</p>
+            </h3>
+          </mat-card-content>
+        </td>
+      </tr>
+    </table>
+  </mat-card>
+  <ng-template #elseBlock>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="saveProduct($event, product.productId)"
+      class="form"
+    >
+      <mat-dialog-content>
+        <mat-form-field class="form">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Ibuprofeno"
+            [(ngModel)]="product.name"
+            required
+          /> </mat-form-field
+        ><br />
+        <mat-form-field class="form">
+          <mat-label>Stock</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="stock"
+            placeholder="500"
+            [(ngModel)]="product.stock"
+            required
+          /> </mat-form-field
+        ><br />
+        <mat-form-field class="form">
+          <mat-label>Precio</mat-label
+          ><input
+            matInput
+            type="text"
+            formControlName="price"
+            placeholder="0.50"
+            [(ngModel)]="product.price"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="form">
+          <mat-label>Tipo</mat-label
+          ><input
+            matInput
+            type="text"
+            formControlName="type"
+            placeholder="tableta"
+            [(ngModel)]="product.type"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="form">
+          <mat-label>Docis</mat-label
+          ><input
+            matInput
+            type="text"
+            formControlName="dose"
+            placeholder="250 ml gr"
+            [(ngModel)]="product.dose"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="form">
+          <mat-label>Descripcion</mat-label
+          ><input
+            matInput
+            type="text"
+            formControlName="description"
+            placeholder="Este es un producto"
+            [(ngModel)]="product.description"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Marcas</mat-label>
+          <mat-select formControlName="brandId">
+            <mat-option *ngFor="let brand of brands" [value]="brand.brandId">{{
+              brand.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button type="submit" mat-button class="btnform">Guardar</button>
+        <button mat-button (click)="cancel()" class="btnform">Cancelar</button>
+      </mat-dialog-actions>
+    </form>
+  </ng-template>
+</div>

@@ -67,7 +67,7 @@ export class SubsidiaryDetailComponent implements OnInit {
         this.subsidiary = subsidiary;
         console.log("subsidiaries reached");
         this.editSubsidiary(id);
-        this.getAdmins(id);
+        this.getAdmins(this.id);
       });
   }
   getAdmins(id: number) {
@@ -94,6 +94,7 @@ export class SubsidiaryDetailComponent implements OnInit {
       .subscribe((subsidiary) => {
         console.log("subsidiary: ");
         console.log(subsidiary);
+        this.getAdmins(id);
       });
   }
   deleteAdmin(id: number): void {
@@ -154,6 +155,7 @@ export class SubsidiaryDetailComponent implements OnInit {
       width: "500px",
       data: {
         id: adminId,
+        subsidiaryId: this.id,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {

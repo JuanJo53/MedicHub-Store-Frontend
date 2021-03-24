@@ -1,75 +1,80 @@
+<div class="display-all">
+  <div class="column-left">
+    <div class="container1">
+      <div class="login-container">
+        <div class="login-header">
+          <!-- <img [src]="logo" alt="SmartIdea-logo" /> -->
+          <h1 class="title1"><strong>MEDIC - HUB</strong></h1>
+          <h4 class="title2">
+            Bienvenido de nuevo, por favor introduzca su usuario y contraseña.
+          </h4>
+          <br />
+          <br />
+          <br />
+        </div>
+        <div class="row_center_xs">
+          <mat-card class="login-card">
+            <form [formGroup]="form" (ngSubmit)="login()">
+              <mat-icon class="form-letter">account_circle</mat-icon>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Correo Electronico</mat-label>
+                <input
+                  matInput
+                  formControlName="email"
+                  placeholder="Correo Electronico"
+                  required
+                /> </mat-form-field
+              ><br />
+              <br />
+              <mat-icon class="form-letter">lock</mat-icon>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Contraseña</mat-label>
 
-  <div class="display-all">
-    <div class="column-left">
-      <div class="container1">
-        <div class="login-container">
-          <div class="login-header">
-            <!-- <img [src]="logo" alt="SmartIdea-logo" /> -->
-            <h1 class="title1"><strong>MEDIC - HUB</strong></h1>
-            <h4 class="title2">
-              Bienvenido de nuevo, por favor introduzca su usuario y contraseña.
-            </h4>
-            <br />
-            <br />
-            <br />
-          </div>
-          <div class="row_center_xs">
-            <mat-card class="login-card">
-              <form [formGroup]="form" (ngSubmit)="login()">
-                <mat-icon class="form-letter">account_circle</mat-icon>
-                <mat-form-field class="form-input">
-                  <mat-label class="form-letter">Correo Electronico</mat-label>
-                  <input
-                    matInput
-                    formControlName="email"
-                    placeholder="Correo Electronico"
-                    required
-                  /> </mat-form-field
+                <input
+                  matInput
+                  formControlName="password"
+                  placeholder="Contraseña"
+                  required
+                  type="password"
+                  class="inputuc"
+                /> </mat-form-field
+              ><br />
+              <mat-radio-group
+                aria-label="Select an option"
+                formControlName="userRol"
+              >
+                <mat-radio-button value="1"
+                  >Administrador del Sistema</mat-radio-button
                 ><br />
-                <br />
-                <mat-icon class="form-letter">lock</mat-icon>
-                <mat-form-field class="form-input">
-                  <mat-label class="form-letter">Contraseña</mat-label>
-
-                  <input
-                    matInput
-                    formControlName="password"
-                    placeholder="Contraseña"
-                    required
-                    type="password"
-                    class="inputuc"
-                  />
-                </mat-form-field>
-                <br /><br /><br />
-                <button
-                  type="submit"
-                  mat-raised-button
-                  color="primary"
-                  class="form__button"
-                  routerLink="/admin"
-                  class="button_login"
-                >
-                  Iniciar Sesión
-                </button>
-                <button
-                  mat-raised-button
-                  color="accent"
-                  class="form__button"
-                  routerLink="/signup"
-                  class="button_regis"
-                >
-                  Registrarse
-                </button>
-              </form>
-            </mat-card>
-          </div>
+                <mat-radio-button value="2"
+                  >Administrador del Farmacia</mat-radio-button
+                ><br />
+                <mat-radio-button value="3">Cliente</mat-radio-button>
+              </mat-radio-group>
+              <br /><br /><br />
+              <button
+                type="submit"
+                mat-raised-button
+                color="primary"
+                class="form__button"
+                class="button_login"
+              >
+                Iniciar Sesión
+              </button>
+              <!-- <button
+                mat-raised-button
+                color="accent"
+                class="form__button"
+                routerLink="/signup"
+                class="button_regis"
+              >
+                Registrarse
+              </button> -->
+            </form>
+          </mat-card>
         </div>
       </div>
     </div>
-    <div class="column-right">
-
-       
-      </div>
-
   </div>
-
+  <div class="column-right"></div>
+</div>

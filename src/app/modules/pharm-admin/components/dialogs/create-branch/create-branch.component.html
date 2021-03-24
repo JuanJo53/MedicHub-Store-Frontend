@@ -1,0 +1,42 @@
+<!--<h1>#farmaciacrear</h1>-->
+<div class="form">
+  <h1 mat-dialog-title class="title1">Nueva Marca</h1>
+  <form [formGroup]="form" (ngSubmit)="saveBrand()" class="form">
+    <mat-dialog-content>
+      <mat-form-field class="form">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          placeholder="Nombre Marca"
+          required
+        /> </mat-form-field
+      ><br />
+      <mat-form-field class="form">
+        <mat-label>Telefono</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="phone"
+          placeholder="Telefono Marca"
+          required
+        /> </mat-form-field
+      ><br />
+      <mat-form-field class="form">
+        <mat-label>Email</mat-label
+        ><input
+          matInput
+          type="text"
+          formControlName="email"
+          placeholder="Correo Electronico"
+          required
+        />
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button type="submit" mat-button class="btnform">Guardar</button>
+      <button mat-button (click)="onNoClick()" class="btnform">Cancelar</button>
+    </mat-dialog-actions>
+  </form>
+</div>

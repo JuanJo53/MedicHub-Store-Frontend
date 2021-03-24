@@ -13,35 +13,33 @@ import { PharmAdmin } from "src/app/shared/models/pharm-admin";
 export class EditSubsiAdminsComponent implements OnInit {
   pharmAdmin: PharmAdmin;
   form: FormGroup;
-  subsidiaryId: number;
   constructor(
     private fromBuilder: FormBuilder,
     private pharmAdminService: PharmAdminsService,
     private activatedRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<EditSubsiAdminsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: number }
+    @Inject(MAT_DIALOG_DATA) public data: { id: number; subsidiaryId: number }
   ) {}
 
   ngOnInit() {
-    this.subsidiaryId = this.activatedRoute.snapshot.params.id;
     this.fetchAdminDetails(this.data.id);
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
-  fetchAdminDetails(adminId) {
+  fetchAdminDetails(adminId: number) {
     this.pharmAdminService
       .getAdminDetail(adminId)
       .subscribe((administrator) => {
         this.pharmAdmin = administrator;
-        console.log(this.pharmAdmin);
+        // console.log(this.pharmAdmin);
         this.editAdmin();
       });
   }
   editAdmin(): void {
     this.form = this.fromBuilder.group({
       subsidiaryId: [0, [Validators.required]],
-      rolUserId: [0, [Validators.required]],
+      personId: [0, [Validators.required]],
       firstName: ["", [Validators.required]],
       firstSurname: ["", [Validators.required]],
       secondSurname: ["", [Validators.required]],
@@ -51,16 +49,10 @@ export class EditSubsiAdminsComponent implements OnInit {
       userName: ["", [Validators.required]],
       password: ["", [Validators.required]],
     });
-    this.form.get("subsidiaryId").setValue(this.subsidiaryId);
-    this.form.get("rolUserId").setValue(this.pharmAdmin.rolUserId);
-    this.form.get("firstName").setValue(this.pharmAdmin.firstName);
-    this.form.get("firstSurname").setValue(this.pharmAdmin.firstSurname);
-    this.form.get("secondSurname").setValue(this.pharmAdmin.secondSurname);
-    this.form.get("ci").setValue(this.pharmAdmin.ci);
-    this.form.get("phone").setValue(this.pharmAdmin.phone);
-    this.form.get("email").setValue(this.pharmAdmin.email);
-    this.form.get("userName").setValue(this.pharmAdmin.userName);
-    this.form.get("password").setValue(this.pharmAdmin.password);
+    this.form.get("subsidiaryId").setValue(+this.data.subsidiaryId);
+    this.form.get("personId").setValue(this.pharmAdmin.pharmacyId);
+
+    // console.log(this.form.value);
   }
   saveAdmin(id: number): void {
     if (this.form.valid) {
