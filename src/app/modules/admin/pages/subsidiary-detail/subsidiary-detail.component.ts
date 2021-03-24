@@ -118,17 +118,61 @@ export class SubsidiaryDetailComponent implements OnInit {
   editSubsidiary(id: number): void {
     this.form = this.fromBuilder.group({
       subsidiaryId: [0, [Validators.required]],
-      subsidiaryName: ["", [Validators.required, Validators.maxLength(100)]],
-      phone: ["", [Validators.required, Validators.maxLength(45)]],
+      subsidiaryName: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(100),
+          Validators.minLength(6),
+        ],
+      ],
+      phone: [
+        "",
+        [Validators.required, Validators.maxLength(18)],
+        Validators.minLength(12),
+      ],
       email: [
         "",
-        [Validators.required, Validators.email, Validators.maxLength(150)],
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(150),
+          Validators.minLength(6),
+        ],
       ],
-      number: ["", [Validators.required, Validators.maxLength(45)]],
-      street: ["", [Validators.required, Validators.maxLength(150)]],
-      zone: ["", [Validators.required, Validators.maxLength(150)]],
-      city: ["", [Validators.required, Validators.maxLength(150)]],
-      country: ["", [Validators.required, Validators.maxLength(150)]],
+      number: ["", [Validators.maxLength(45), Validators.minLength(2)]],
+      street: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      zone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      city: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      country: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
     });
     this.form.get("subsidiaryId").setValue(id);
     this.form.get("subsidiaryName").setValue(this.subsidiary.subsidiaryName);

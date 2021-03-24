@@ -34,12 +34,40 @@ export class CreateProductComponent implements OnInit {
     this.form = this.fromBuilder.group({
       subsidiaryId: [0, [Validators.required]],
       brandId: [0, [Validators.required]],
-      name: ["", [Validators.required, Validators.maxLength(150)]],
-      stock: ["", [Validators.required]],
+      name: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      stock: ["", [Validators.required, Validators]],
       price: ["", [Validators.required]],
-      type: ["", [Validators.required, Validators.maxLength(150)]],
-      dose: ["", [Validators.required, Validators.maxLength(45)]],
-      description: ["", [Validators.required, Validators.maxLength(300)]],
+      type: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(4),
+        ],
+      ],
+      dose: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(45),
+          Validators.minLength(4),
+        ],
+      ],
+      description: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(280),
+          Validators.minLength(10),
+        ],
+      ],
     });
     this.form.get("subsidiaryId").setValue(this.data.id);
     this.form.get("brandId").setValue(1);

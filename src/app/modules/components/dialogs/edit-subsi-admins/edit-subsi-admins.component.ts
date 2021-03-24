@@ -39,18 +39,71 @@ export class EditSubsiAdminsComponent implements OnInit {
   editAdmin(): void {
     this.form = this.fromBuilder.group({
       subsidiaryId: [0, [Validators.required]],
-      personId: [0, [Validators.required]],
-      firstName: ["", [Validators.required, Validators.maxLength(150)]],
-      firstSurname: ["", [Validators.required, Validators.maxLength(150)]],
-      secondSurname: ["", [Validators.required, Validators.maxLength(150)]],
-      ci: ["", [Validators.required, Validators.maxLength(45)]],
-      phone: ["", [Validators.required, Validators.maxLength(45)]],
+      firstName: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      firstSurname: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      secondSurname: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      ci: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(145),
+          Validators.minLength(6),
+        ],
+      ],
+      phone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(18),
+          Validators.minLength(12),
+        ],
+      ],
       email: [
         "",
-        [Validators.required, Validators.email, Validators.maxLength(150)],
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(150),
+          Validators.minLength(6),
+        ],
       ],
-      userName: ["", [Validators.required, Validators.maxLength(150)]],
-      password: ["", [Validators.required, Validators.maxLength(150)]],
+      userName: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      password: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(6),
+        ],
+      ],
     });
     this.form.get("subsidiaryId").setValue(+this.data.subsidiaryId);
     this.form.get("personId").setValue(this.pharmAdmin.pharmacyId);
