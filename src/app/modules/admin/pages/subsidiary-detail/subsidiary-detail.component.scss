@@ -21,10 +21,12 @@ table {
   background-color: #2f4a85;
   color: white;
   margin-bottom: 10px;
+  
 }
 
 .subtitle{
   color: #2f4a85;
+  margin-bottom: 15px;
 }
 
 .linea{
@@ -52,4 +54,13 @@ td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:la
  .mat-header-cell {    text-align: center;    }
  .mat-cell {
   text-align: center;
+}
+.buttons{
+  display: flex;
+    justify-content: flex-end;
+}
+.entradas{
+  display: flex;
+  justify-content: space-between;
+  //background-color: yellow;
 }
