@@ -63,8 +63,8 @@ export class BankAccountComponent implements OnInit {
       bankAccountId: [0, [Validators.required]],
       pharmacyId: ["", [Validators.required]],
       accountNumber: ["", [Validators.required]],
-      bank: ["", [Validators.required, Validators.email]],
-      accountType: ["", [Validators.required]],
+      bank: ["", [Validators.required, Validators.maxLength(45)]],
+      accountType: ["", [Validators.required, Validators.maxLength(45)]],
     });
     this.form.get("bankAccountId").setValue(id);
     this.form.get("pharmacyId").setValue(this.bankAccount.pharmacyId);

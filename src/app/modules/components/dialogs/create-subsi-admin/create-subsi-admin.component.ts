@@ -30,14 +30,17 @@ export class CreateSubsiAdminComponent implements OnInit {
   editAdmin(): void {
     this.form = this.fromBuilder.group({
       subsidiaryId: [0, [Validators.required]],
-      firstName: ["", [Validators.required]],
-      firstSurname: ["", [Validators.required]],
-      secondSurname: ["", [Validators.required]],
-      ci: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
-      userName: ["", [Validators.required]],
-      password: ["", [Validators.required]],
+      firstName: ["", [Validators.required, Validators.maxLength(150)]],
+      firstSurname: ["", [Validators.required, Validators.maxLength(150)]],
+      secondSurname: ["", [Validators.required, Validators.maxLength(150)]],
+      ci: ["", [Validators.required, Validators.maxLength(145)]],
+      phone: ["", [Validators.required, Validators.maxLength(45)]],
+      email: [
+        "",
+        [Validators.required, Validators.email, Validators.maxLength(150)],
+      ],
+      userName: ["", [Validators.required, Validators.maxLength(150)]],
+      password: ["", [Validators.required, Validators.maxLength(150)]],
     });
     this.form.get("subsidiaryId").setValue(this.data.id);
   }

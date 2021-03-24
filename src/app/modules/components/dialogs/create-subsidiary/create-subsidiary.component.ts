@@ -29,15 +29,18 @@ export class CreateSubsidiaryComponent implements OnInit {
 
   editSubsidiary(): void {
     this.form = this.fromBuilder.group({
-      pharmacyId: [0, [Validators.required]],
-      subsidiaryName: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
-      number: ["", [Validators.required]],
-      street: ["", [Validators.required]],
-      zone: ["", [Validators.required]],
-      city: ["", [Validators.required]],
-      country: ["", [Validators.required]],
+      subsidiaryId: [0, [Validators.required]],
+      subsidiaryName: ["", [Validators.required, Validators.maxLength(100)]],
+      phone: ["", [Validators.required, Validators.maxLength(45)]],
+      email: [
+        "",
+        [Validators.required, Validators.email, Validators.maxLength(150)],
+      ],
+      number: ["", [Validators.required, Validators.maxLength(45)]],
+      street: ["", [Validators.required, Validators.maxLength(150)]],
+      zone: ["", [Validators.required, Validators.maxLength(150)]],
+      city: ["", [Validators.required, Validators.maxLength(150)]],
+      country: ["", [Validators.required, Validators.maxLength(150)]],
     });
     this.form.get("pharmacyId").setValue(this.data.id);
   }

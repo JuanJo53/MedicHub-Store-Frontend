@@ -50,9 +50,12 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     this.edit = true;
     this.form = this.fromBuilder.group({
       pharmacyId: [0, [Validators.required]],
-      name: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
+      name: ["", [Validators.required, Validators.maxLength(150)]],
+      phone: ["", [Validators.required, Validators.maxLength(45)]],
+      email: [
+        "",
+        [Validators.required, Validators.email, Validators.maxLength(150)],
+      ],
       // picture: ["", [Validators.required]],
     });
   }
