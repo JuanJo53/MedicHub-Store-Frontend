@@ -1,9 +1,6 @@
-<div class="container" *ngIf="bankAccount; else elseBlock">
-  <h1 mat-dialog-title>Detalles Cuenta de Banco</h1>
-  <form
-    [formGroup]="form"
-    (ngSubmit)="saveChanges($event, bankAccount.bankAccountId)"
-  >
+<div class="container">
+  <h1 mat-dialog-title>Ingrese los Datos de la Cuenta de Banco</h1>
+  <form [formGroup]="form" (ngSubmit)="saveChanges($event)">
     <mat-card class="pharm_card">
       <mat-card-content>
         <mat-form-field class="form">
@@ -38,24 +35,10 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
-        <button
-          id="{{ bankAccount.bankAccountId }}"
-          type="submit"
-          mat-button
-          color="primary"
-        >
-          Guardar Cambios
+        <button type="submit" mat-button color="primary">
+          Registrar Datos
         </button>
       </mat-card-actions>
     </mat-card>
   </form>
 </div>
-<ng-template #elseBlock>
-  <div class="container">
-    <h1>No registro su cuenta de banco!</h1>
-    <h1>Ingrese los Datos de Cuenta de Banco</h1>
-    <button (click)="addBankAccount()" mat-fab class="btn" color="primary">
-      <mat-icon class="button-add">credit_card</mat-icon>
-    </button>
-  </div>
-</ng-template>

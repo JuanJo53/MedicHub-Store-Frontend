@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { CreateBranchComponent } from "./modules/pharm-admin/components/dialogs/create-branch/create-branch.component";
 import { BankAccountComponent } from "./modules/pharm-admin/pages/bank-account/bank-account.component";
+import { AddBankAccountComponent } from "./modules/pharm-admin/components/dialogs/add-bank-account/add-bank-account.component";
 @NgModule({
   declarations: [AppComponent],
   imports: [

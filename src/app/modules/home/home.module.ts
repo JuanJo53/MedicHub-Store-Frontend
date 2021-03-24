@@ -46,6 +46,7 @@ import { BrandsComponent } from "../pharm-admin/pages/brands/brands.component";
 import { CreateBranchComponent } from "../pharm-admin/components/dialogs/create-branch/create-branch.component";
 import { BankAccountComponent } from "../pharm-admin/pages/bank-account/bank-account.component";
 import { MatRadioModule } from "@angular/material/radio";
+import { AddBankAccountComponent } from "../pharm-admin/components/dialogs/add-bank-account/add-bank-account.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -78,6 +79,7 @@ import { MatRadioModule } from "@angular/material/radio";
     BrandsComponent,
     CreateBranchComponent,
     BankAccountComponent,
+    AddBankAccountComponent,
   ],
   imports: [
     CommonModule,
@@ -111,6 +113,7 @@ import { MatRadioModule } from "@angular/material/radio";
     CreateProductComponent,
     EditSubsiAdminsComponent,
     CreateBranchComponent,
+    AddBankAccountComponent,
   ],
 })
 export class HomeModule {}

@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { BankAccountService } from "src/app/core/http/pharm-admin/bank-account.service";
 import { BankAccount } from "src/app/shared/models/bank-account";
+import { AddBankAccountComponent } from "../../components/dialogs/add-bank-account/add-bank-account.component";
 
 @Component({
   selector: "app-bank-account",
@@ -38,6 +39,8 @@ export class BankAccountComponent implements OnInit {
     this.bankAccountService.getBankAccoun(id).subscribe((bankAccount) => {
       this.bankAccount = bankAccount;
       console.log("bank details reached");
+      console.log(this.bankAccount);
+      this.editBankAccount(bankAccount.bankAccountId);
     });
   }
   saveChanges(event: Event, id: number): void {
@@ -60,10 +63,10 @@ export class BankAccountComponent implements OnInit {
   }
   editBankAccount(id: number): void {
     this.form = this.fromBuilder.group({
-      bankAccountId: [0, [Validators.required]],
-      pharmacyId: ["", [Validators.required]],
+      bankAccountId: [id, [Validators.required]],
+      pharmacyId: [this.bankAccount.pharmacyId, [Validators.required]],
       accountNumber: [
-        "",
+        this.bankAccount.accountNumber,
         [
           Validators.required,
           Validators.maxLength(18),
@@ -71,7 +74,7 @@ export class BankAccountComponent implements OnInit {
         ],
       ],
       bank: [
-        "",
+        this.bankAccount.bank,
         [
           Validators.required,
           Validators.maxLength(25),
@@ -79,7 +82,7 @@ export class BankAccountComponent implements OnInit {
         ],
       ],
       accountType: [
-        "",
+        this.bankAccount.accountType,
         [
           Validators.required,
           Validators.maxLength(25),
@@ -87,10 +90,17 @@ export class BankAccountComponent implements OnInit {
         ],
       ],
     });
-    this.form.get("bankAccountId").setValue(id);
-    this.form.get("pharmacyId").setValue(this.bankAccount.pharmacyId);
-    this.form.get("accountNumber").setValue(this.bankAccount.accountNumber);
-    this.form.get("bank").setValue(this.bankAccount.bank);
-    this.form.get("accountType").setValue(this.bankAccount.accountType);
+  }
+  addBankAccount() {
+    const dialogRef = this.dialog.open(AddBankAccountComponent, {
+      width: "500px",
+      data: {
+        id: this.id,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed");
+      this.ngOnInit();
+    });
   }
 }
