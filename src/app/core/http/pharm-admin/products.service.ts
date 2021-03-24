@@ -42,7 +42,7 @@ export class ProductsService {
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.put(apiKey.api + `/product`, pharmacy, {
+    return this.http.put(apiKey.api + "/product", pharmacy, {
       headers: headers,
     });
   }
