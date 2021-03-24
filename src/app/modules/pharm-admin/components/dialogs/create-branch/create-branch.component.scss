@@ -1,0 +1,79 @@
+.form{
+    background-color: white;
+}
+.btnform{
+    background-color: #2f4a85;
+    color: white;
+}
+.title1 {
+    color: #2f4a85;
+    white-space: nowrap;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: normal;
+    font-weight:bolder;
+    font-size: 30px;
+}
+.title2 {
+  color: #2f4a85;
+  white-space: nowrap;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+}
+  .login-container {
+    padding-top: 30%;
+  }
+  .login-card {
+    background-color: transparent;
+  }
+  .form-letter {
+    color: #2f4a85;
+    font-size: small;
+    font-style: normal;
+    border-bottom: solid #e9e9f0 0.1rem;
+  }
+  .row_center_xs {
+    padding-right: 20%;
+    padding-left: 20%;
+  }
+  .buttons{
+    display: flex;
+    justify-content: flex-end;
+    
+  }
+
+  .formall{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    //box-sizing: border-box;
+    //height: 50vh;
+    //background-color: #2F4A85;
+    //border-radius: 30px;
+  }
+  .form{
+    &-left{
+    margin-top: 16px;
+    margin-left: 25%;
+    margin-right: 3%;
+    //background-color: yellow;
+    // width: 50%;
+    //background: url(../../../../../assets/images/RDC_01.png);
+    //background-repeat: no-repeat;
+    // width: 35%;
+    //background-size: cover;
+     height: 100%;
+    }
+    &-right{
+        //background-color: red;
+        width: 60%;
+        height: 100%;
+    }
+  }
+  .link__icon{
+    color: #2f4a85;
+  }
+  

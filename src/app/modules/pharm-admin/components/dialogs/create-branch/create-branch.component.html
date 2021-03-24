@@ -1,40 +1,61 @@
-<!--<h1>#farmaciacrear</h1>-->
+<!--<h1>crear marca</h1>-->
 <div class="form">
   <h1 mat-dialog-title class="title1">Nueva Marca</h1>
   <form [formGroup]="form" (ngSubmit)="saveBrand()" class="form">
     <mat-dialog-content>
-      <mat-form-field class="form">
-        <mat-label>Nombre</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="name"
-          placeholder="Nombre Marca"
-          required
-        /> </mat-form-field
-      ><br />
-      <mat-form-field class="form">
-        <mat-label>Telefono</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="phone"
-          placeholder="Telefono Marca"
-          required
-        /> </mat-form-field
-      ><br />
-      <mat-form-field class="form">
-        <mat-label>Email</mat-label
-        ><input
-          matInput
-          type="text"
-          formControlName="email"
-          placeholder="Correo Electronico"
-          required
-        />
-      </mat-form-field>
+      <div class="formall">
+        <div class="form-left">
+          <mat-icon class="link__icon">medication</mat-icon>
+        </div>
+        <div class="form-right">
+          <mat-form-field class="form">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="name"
+              placeholder="Nombre Marca"
+              required
+            /> 
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="formall">
+        <div class="form-left">
+          <mat-icon class="link__icon">phone</mat-icon>
+        </div>
+        <div class="form-right">
+          <mat-form-field class="form">
+            <mat-label>Telefono</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="phone"
+              placeholder="Telefono Marca"
+              required
+            /> 
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="formall">
+        <div class="form-left">
+          <mat-icon class="link__icon">mail</mat-icon>
+        </div>
+        <div class="form-right">
+          <mat-form-field class="form">
+            <mat-label>Email</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="email"
+              placeholder="Correo Electronico"
+              required
+            />
+          </mat-form-field>
+        </div>
+      </div>
     </mat-dialog-content>
-    <mat-dialog-actions>
+    <mat-dialog-actions class="buttons">
       <button type="submit" mat-button class="btnform">Guardar</button>
       <button mat-button (click)="onNoClick()" class="btnform">Cancelar</button>
     </mat-dialog-actions>

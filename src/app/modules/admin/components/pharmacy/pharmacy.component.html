@@ -1,7 +1,7 @@
 <!--<h1>farmacia# linea</h1> -->
 <br />
 <div class="moldeexterno" *ngIf="pharmacy && !destroyed">
-  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
+  <mat-card class="pharm_cardmoldeinterno" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titlePharmacy">
       <mat-card-title>
         <h3 class="titlefarmacia">
@@ -69,7 +69,7 @@
       (ngSubmit)="savePharmacy($event, pharmacy.pharmacyId)"
     >
       <mat-card class="pharm_cardedit">
-        <mat-card-content class="form">
+        <mat-card-content class="entradas">
           <mat-form-field class="form">
             <mat-label class="texteditcard">Nombre</mat-label>
             <input
@@ -105,14 +105,16 @@
             />
           </mat-form-field >
 
-          <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
+          
         </mat-card-content>
-        <mat-card-actions>
+        <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
+        <mat-card-actions >
+        <div class="buttons">
           <button
             id="{{ pharmacy.pharmacyId }}"
             type="submit"
             mat-button
-            color="primary"
+            class="btn-edit"
           >
             Guardar Cambios
           </button>
@@ -121,9 +123,11 @@
             (click)="cancel()"
             mat-button
             color="warn"
+            class="btn-edit"
           >
             Cancelar
           </button>
+        </div>
         </mat-card-actions>
       </mat-card>
     </form>

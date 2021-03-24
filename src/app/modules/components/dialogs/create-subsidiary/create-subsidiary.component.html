@@ -1,5 +1,5 @@
 <!--h1>#sucursal</h1-->
-<h1 mat-dialog-title>Nueva Sucursal</h1>
+<h1 mat-dialog-title class="title1">Nueva Sucursal</h1>
 <form [formGroup]="form" (ngSubmit)="saveSubsidiary()">
   <mat-dialog-content>
     <mat-form-field class="form">
@@ -84,10 +84,10 @@
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button type="submit" mat-button color="primary" cdkFocusInitial>
+    <button type="submit" mat-button color="primary" cdkFocusInitial class="btn-create">
       Guardar
     </button>
-    <button mat-button mat-raised-button color="warn" (click)="onNoClick()">
+    <button mat-button mat-raised-button color="warn" (click)="onNoClick()" class="btn-create">
       Cancelar
     </button>
   </mat-dialog-actions>

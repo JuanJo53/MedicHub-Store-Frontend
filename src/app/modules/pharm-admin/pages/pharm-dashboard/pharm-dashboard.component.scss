@@ -1,0 +1,56 @@
+.title{
+    margin-left: 45px;
+    margin-bottom: 35px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+    font-size: 40px;
+    color: #2F4A85;
+}
+.subtitle{
+    //margin-left: 45px;
+    margin-bottom: 35px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+    font-size: 15px;
+    color: #2F4A85;
+}
+.subtitle2{
+    margin-left: 0%;
+    margin-top: 40%;
+    margin-bottom: 10%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+    font-size: 40px;
+    color: #fff;
+}
+.cardall{
+    display: flex;
+    //box-sizing: border-box;
+    height: 50vh;
+    background-color: #2F4A85;
+    border-radius: 30px;
+  }
+  .column{
+    &-left{
+    //margin-left: 5%;
+    background-color: yellow;
+     width: 100%;
+    background: url(../../../../../assets/images/RDC_01.png);
+    background-repeat: no-repeat;
+     //width: 50%;
+    background-size: cover;
+     height: 100%;
+    }
+    &-right{
+        //background-color: red;
+        width: 50%;
+        height: 100%;
+    }
+  }
+.button_logout{
+    background-color: #fff;
+    color: #2f4a85;
+    margin-left:35%;
+    width: 30%;
+    border-radius: 25px;
+  }

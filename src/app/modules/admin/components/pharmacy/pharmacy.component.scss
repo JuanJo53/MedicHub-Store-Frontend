@@ -69,6 +69,24 @@
 }
 .form{
   color: white;
+  margin-right: 10% !important;
 }
 
-
+.pharm_cardmoldeinterno{
+  padding: 0% !important;
+  border-radius: 20px 20px 20px 20px !important;
+}
+.btn-edit{
+  background-color: white;
+  color: #2f4a85;
+}
+.buttons{
+  display: flex;
+  justify-content: flex-end;
+  
+}
+.entradas{
+  display: flex;
+  justify-content: space-between;
+  //background-color: yellow;
+}
