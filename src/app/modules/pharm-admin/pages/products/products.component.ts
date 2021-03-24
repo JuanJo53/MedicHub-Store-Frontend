@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
+import { TokenService } from "src/app/core/authentication/token.service";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
 import { Product } from "src/app/shared/models/product";
 import { CreateProductComponent } from "../../components/dialogs/create-product/create-product.component";
@@ -19,12 +20,12 @@ export class ProductsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private productsServide: ProductsService,
-    private activatedRoute: ActivatedRoute
+    private tokenService: TokenService
   ) {}
 
   ngOnInit() {
     console.log("OnInit excecuted");
-    this.id = this.activatedRoute.snapshot.params.id;
+    this.id = parseInt(this.tokenService.getUserName());
     try {
       if (this.id) {
         this.fecthProducts(this.id);

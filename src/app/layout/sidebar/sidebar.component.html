@@ -52,7 +52,7 @@
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
-    routerLink="/pharmAdmin/1/products"
+    routerLink="/pharmAdmin/products"
     ><mat-icon class="link__icon">shopping_cart</mat-icon
     ><span class="link__text">Products</span></a
   >
@@ -61,7 +61,7 @@
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
-    routerLink="/admin/1/clients"
+    routerLink="/admin/clients"
     ><mat-icon class="link__icon">person</mat-icon
     ><span class="link__text">Clientes</span></a
   >
@@ -70,8 +70,17 @@
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
-    routerLink="/pharmAdmin/1/brands"
+    routerLink="/pharmAdmin/brands"
     ><mat-icon class="link__icon">local_shipping</mat-icon
     ><span class="link__text">Marcas</span></a
+  >
+  <a
+    *ngIf="userRole == 2"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/pharmAdmin/bankAccount"
+    ><mat-icon class="link__icon">account_balance</mat-icon
+    ><span class="link__text">Cuenta de Banco</span></a
   >
 </mat-nav-list>

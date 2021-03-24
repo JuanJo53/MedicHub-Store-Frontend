@@ -58,15 +58,15 @@ const routes: Routes = [
         component: PharmDashboardComponent,
       },
       {
-        path: "pharmAdmin/:id/products",
+        path: "pharmAdmin/products",
         component: ProductsComponent,
       },
       {
-        path: "pharmAdmin/:id/brands",
+        path: "pharmAdmin/brands",
         component: BrandsComponent,
       },
       {
-        path: "pharmAdmin/:id/bankAccount",
+        path: "pharmAdmin/bankAccount",
         component: BankAccountComponent,
       },
     ],

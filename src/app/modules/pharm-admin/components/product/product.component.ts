@@ -1,3 +1,4 @@
+import { TokenService } from "src/app/core/authentication/token.service";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -26,12 +27,12 @@ export class ProductComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private productsServide: ProductsService,
     private brandsService: BrandService,
-    private activatedRoute: ActivatedRoute,
+    private tokenService: TokenService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    this.subsidiaryId = this.activatedRoute.snapshot.params.id;
+    this.subsidiaryId = parseInt(this.tokenService.getUserName());
     const id = this.product.productId;
     if (id) {
       this.fetchProduct(id);

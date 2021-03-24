@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
+import { TokenService } from "src/app/core/authentication/token.service";
 import { BankAccountService } from "src/app/core/http/pharm-admin/bank-account.service";
 import { BankAccount } from "src/app/shared/models/bank-account";
 import { AddBankAccountComponent } from "../../components/dialogs/add-bank-account/add-bank-account.component";
@@ -20,13 +21,13 @@ export class BankAccountComponent implements OnInit {
 
   constructor(
     private fromBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
     private bankAccountService: BankAccountService,
+    private tokenService: TokenService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params.id;
+    this.id = parseInt(this.tokenService.getUserName());
     try {
       if (this.id) {
         this.getDetails(this.id);

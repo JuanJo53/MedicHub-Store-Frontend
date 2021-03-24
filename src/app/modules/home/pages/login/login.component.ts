@@ -4,6 +4,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LoginUser } from "src/app/shared/models/login-user";
 import { Router } from "@angular/router";
+import { stringify } from "@angular/compiler/src/util";
 
 @Component({
   selector: "app-login",
@@ -51,11 +52,9 @@ export class LoginComponent implements OnInit {
       (data) => {
         this.isLogged = true;
         this.isLoginFail = false;
+        console.log(data);
         this.tokenService.setToken(data.jwt);
-
-        // this.tokenService.setUserName(data.nombreUsuario);
-        // this.tokenService.setAuthorities(data.authorities);
-        // this.roles = data.authorities;
+        this.tokenService.setUserName(data.subsidiaryId);
 
         if (this.roles == 1) {
           this.router.navigate(["/admin/dashboard"]);

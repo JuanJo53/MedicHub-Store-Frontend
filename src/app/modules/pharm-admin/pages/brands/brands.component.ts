@@ -21,7 +21,6 @@ export class BrandsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params.id;
     console.log("OnInit excecuted");
     this.fecthBrands();
   }
