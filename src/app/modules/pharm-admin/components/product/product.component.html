@@ -4,7 +4,7 @@
   <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titleProduc">
       <mat-card-title>
-        <h3>
+        <h3 class="titlefarmacia">
           <strong>{{ product.name }}</strong>
         </h3>
       </mat-card-title>
@@ -25,32 +25,38 @@
     <table>
       <tr>
         <td>
-          <div class="blocImagen"></div>
+          <div class="blocImagen">
+            <img
+            src="assets/images/pastilla.png"
+            width="200px"
+            height="200px"
+          />
+          </div>
         </td>
         <td>
-          <mat-card-content>
+          <mat-card-content class="" >
             <h3>
-              <strong class="textEdit">Precio:</strong>
+              <strong class="textEdit">PRECIO:</strong>
               <p class="textEdit">{{ product.price }}</p>
             </h3>
             <h3>
-              <strong class="textEdit">Stock:</strong>
+              <strong class="textEdit">STOCK:</strong>
               <p class="textEdit">{{ product.stock }}</p>
             </h3>
             <h3>
-              <strong class="textEdit">Descripcion:</strong>
+              <strong class="textEdit">DESCRIPCIÓN:</strong>
               <p class="textEdit">{{ product.description }}</p>
             </h3>
             <h3>
-              <strong class="textEdit">Dosis:</strong>
+              <strong class="textEdit">DOSIS:</strong>
               <p class="textEdit">{{ product.dose }}</p>
             </h3>
             <h3>
-              <strong class="textEdit">Tipo:</strong>
+              <strong class="textEdit">TIPO:</strong>
               <p class="textEdit">{{ product.type }}</p>
             </h3>
             <h3>
-              <strong class="textEdit">Marca:</strong>
+              <strong class="textEdit">MARCA:</strong>
               <p class="textEdit">{{ product.brandName }}</p>
             </h3>
           </mat-card-content>
@@ -59,14 +65,18 @@
     </table>
   </mat-card>
   <ng-template #elseBlock>
+    <mat-card class="pharm_card2">
+    <div  class="pharm_cardedit">
     <form
       [formGroup]="form"
       (ngSubmit)="saveProduct($event, product.productId)"
-      class="form"
+      
     >
-      <mat-dialog-content>
+    
+      <mat-dialog-content >
+        <div class="entradas">
         <mat-form-field class="form">
-          <mat-label>Nombre</mat-label>
+          <mat-label class="texteditcard">Nombre</mat-label>
           <input
             matInput
             type="text"
@@ -77,7 +87,7 @@
           /> </mat-form-field
         ><br />
         <mat-form-field class="form">
-          <mat-label>Stock</mat-label>
+          <mat-label class="texteditcard" >Stock</mat-label>
           <input
             matInput
             type="text"
@@ -88,7 +98,7 @@
           /> </mat-form-field
         ><br />
         <mat-form-field class="form">
-          <mat-label>Precio</mat-label
+          <mat-label class="texteditcard">Precio</mat-label
           ><input
             matInput
             type="text"
@@ -98,8 +108,10 @@
             required
           />
         </mat-form-field>
+        </div>
+        <div class="entradas">
         <mat-form-field class="form">
-          <mat-label>Tipo</mat-label
+          <mat-label class="texteditcard">Tipo</mat-label
           ><input
             matInput
             type="text"
@@ -110,7 +122,7 @@
           />
         </mat-form-field>
         <mat-form-field class="form">
-          <mat-label>Docis</mat-label
+          <mat-label class="texteditcard">Dosis</mat-label
           ><input
             matInput
             type="text"
@@ -121,7 +133,7 @@
           />
         </mat-form-field>
         <mat-form-field class="form">
-          <mat-label>Descripcion</mat-label
+          <mat-label class="texteditcard">Descripcion</mat-label
           ><input
             matInput
             type="text"
@@ -131,19 +143,27 @@
             required
           />
         </mat-form-field>
+      </div>
         <mat-form-field appearance="fill">
-          <mat-label>Marcas</mat-label>
+          <mat-label class="texteditcard">Marcas</mat-label>
           <mat-select formControlName="brandId">
             <mat-option *ngFor="let brand of brands" [value]="brand.brandId">{{
               brand.name
             }}</mat-option>
           </mat-select>
         </mat-form-field>
+      
       </mat-dialog-content>
+    
+
       <mat-dialog-actions>
-        <button type="submit" mat-button class="btnform">Guardar</button>
-        <button mat-button (click)="cancel()" class="btnform">Cancelar</button>
+        <div class="buttons">
+        <button type="submit" mat-button class="btn-edit">Guardar</button>
+        <button mat-button (click)="cancel()" class="btn-edit">Cancelar</button>
+      </div>
       </mat-dialog-actions>
     </form>
+  </div>
+</mat-card>
   </ng-template>
 </div>

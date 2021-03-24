@@ -1,4 +1,4 @@
-.titlePharmacy{
+.titleProduc{
     //background: #2F4A85;
     display: flex;
     justify-content: space-between;
@@ -16,7 +16,7 @@
   color: #2F4A85;
 }
 .moldeexterno {
-  background: transparent;
+  background: white;
 }
 .moldeinterno {
   background: white;
@@ -62,10 +62,13 @@
 //EDITAR FARMACIA
 .pharm_cardedit{
   background-color: #2F4A85;
+  border-radius: 20px 20px 20px 20px !important;
+
 }
 
 .texteditcard{
   color: white;
+  margin-right: 10px;
 }
 .form{
   color: white;
@@ -79,5 +82,38 @@
 .btn-edit{
   background-color: white;
   color: #2f4a85;
+  margin-right: 10px;
+}
+.buttons{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+.entradas{
+  margin-top: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  //background-color: yellow;
+}
+.subsidiaries-grid{
+  background-color:#2f4a85 ;
+  color: white;
+  border-radius: 0px 0px 20px 20px !important;
+  align-content: center;
+}
+.titlesucursal{
+  //color: #2f4a85;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+  font-style: italic;
+  font-weight: bolder;
+  margin-left: 45%;
+  //margin-top: 115px;
+}
+.pharm_card2{
+  background-color: #2f4a85;
+  border-radius: 20px 20px 20px 20px !important;
 }
 

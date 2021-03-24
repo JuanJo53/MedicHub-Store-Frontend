@@ -6,7 +6,8 @@
     class="formfarmacia"
   >
     <mat-card class="pharm_card">
-      <mat-card-content>
+      <mat-card-content >
+        <div class="">
         <mat-form-field class="form">
           <mat-label>Nombre</mat-label
           ><input
@@ -37,10 +38,12 @@
             required
           />
         </mat-form-field>
+      </div>
         <br />
         <mat-divider class="linea"></mat-divider>
         <br />
         <h1 class="subtitle">Dirección</h1>
+        <div class="entradas">
         <mat-form-field class="form">
           <mat-label>Nro.</mat-label
           ><input
@@ -90,8 +93,10 @@
             required
           />
         </mat-form-field>
+      </div>
       </mat-card-content>
       <mat-card-actions>
+        <div class="buttons">
         <button
           id="{{ subsidiary.subsidiaryId }}"
           type="submit"
@@ -101,6 +106,7 @@
         >
           Guardar Cambios
         </button>
+      </div>
         <!--mat-divider></mat-divider-->
       </mat-card-actions>
     </mat-card>
