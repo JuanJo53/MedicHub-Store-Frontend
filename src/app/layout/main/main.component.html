@@ -6,43 +6,43 @@
     [class.menu-close]="!isSidebarOpen2"
     opened
   >
-    
-  <app-sidebar (openEvent)="receiveOpen($event)"></app-sidebar>
-  <mat-nav-list class="sidebar__list">
-   
-  <h5 class="otros">OTROS</h5>
-    <a
-      class="link"
-      mat-list-item
-      routerLinkActive="list-item-active-link"
-      routerLink="dashboard"
-      ><mat-icon class="link__icon">speaker_notes</mat-icon
-      ><span class="link__text">Mensajes</span></a
-    >
-    <a
-      class="link"
-      mat-list-item
-      routerLinkActive="list-item-active-link"
-      routerLink="reports"
-      ><mat-icon class="link__icon">call</mat-icon
-      ><span class="link__text">Contactenos</span></a
-    >
-    <button
-      type="submit"
-      mat-raised-button
-      color="primary"
-      class="form__button"
-      routerLink="/login"
-      class="button_logout"
-    >
-    Cerrar Sesión
-    </button>
-  
-  </mat-nav-list>
-  
+    <app-sidebar (openEvent)="receiveOpen($event)"></app-sidebar>
+    <mat-nav-list class="sidebar__list">
+      <h5 class="otros">OTROS</h5>
+      <a
+        class="link"
+        mat-list-item
+        routerLinkActive="list-item-active-link"
+        routerLink="dashboard"
+        ><mat-icon class="link__icon">speaker_notes</mat-icon
+        ><span class="link__text">Mensajes</span></a
+      >
+      <a
+        class="link"
+        mat-list-item
+        routerLinkActive="list-item-active-link"
+        routerLink="reports"
+        ><mat-icon class="link__icon">call</mat-icon
+        ><span class="link__text">Contactenos</span></a
+      >
+      <button
+        type="submit"
+        mat-raised-button
+        (click)="tokenService.logOut()"
+        color="primary"
+        class="form__button"
+        routerLink="/login"
+        class="button_logout"
+      >
+        Cerrar Sesión
+      </button>
+    </mat-nav-list>
   </mat-drawer>
 
-  <mat-drawer-content [ngStyle]="{ 'margin-left.rem': contentMargin }" class="p-3">
+  <mat-drawer-content
+    [ngStyle]="{ 'margin-left.rem': contentMargin }"
+    class="p-3"
+  >
     <app-header></app-header>
     <router-outlet> </router-outlet>
   </mat-drawer-content>

@@ -1,4 +1,5 @@
-import { HttpClient } from "@angular/common/http";
+import { TokenService } from "src/app/core/authentication/token.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Product } from "src/app/shared/models/product";
 import apiKey from "../../apiKey";
@@ -7,22 +8,51 @@ import apiKey from "../../apiKey";
   providedIn: "root",
 })
 export class ProductsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
   postNewProduct(product: Product) {
-    return this.http.post(apiKey.api + "/product", product);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.post(apiKey.api + "/product", product, {
+      headers: headers,
+    });
   }
   getSubsidiaryProducts(prodId: number) {
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
     return this.http.get<Product[]>(
-      apiKey.api + `/subsidiary/${prodId}/product`
+      apiKey.api + `/subsidiary/${prodId}/product`,
+      { headers: headers }
     );
   }
   getProduct(prodId: number) {
-    return this.http.get<Product>(apiKey.api + `/product/${prodId}`);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.get<Product>(apiKey.api + `/product/${prodId}`, {
+      headers: headers,
+    });
   }
   updateProduct(pharmacy: Product) {
-    return this.http.put(apiKey.api + `/product`, pharmacy);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.put(apiKey.api + `/product`, pharmacy, {
+      headers: headers,
+    });
   }
   deleteProduct(prodId: number) {
-    return this.http.delete(apiKey.api + `/product/${prodId}`);
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.delete(apiKey.api + `/product/${prodId}`, {
+      headers: headers,
+    });
   }
 }
