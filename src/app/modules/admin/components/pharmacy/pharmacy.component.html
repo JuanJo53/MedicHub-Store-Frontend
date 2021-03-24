@@ -4,7 +4,7 @@
   <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titlePharmacy">
       <mat-card-title>
-        <h3>
+        <h3 class="">
           <strong>{{ pharmacy.name }}</strong>
         </h3>
       </mat-card-title>
@@ -29,7 +29,9 @@
     <table>
       <tr>
         <td>
-          <div class="blocImagen"></div>
+          <div class="blocImagen">
+            <img src="assets/images/pnglogo1.png" width="200px" height="200px"/>
+          </div>
         </td>
         <td>
           <mat-card-content>

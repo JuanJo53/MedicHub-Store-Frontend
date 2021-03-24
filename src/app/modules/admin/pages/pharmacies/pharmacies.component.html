@@ -1,13 +1,24 @@
-<div class="container">
-  <br />
-  <h1><strong>Gestión de Farmacias</strong></h1>
-  <button (click)="addPharmacy()" class="btn" color="primary">
-    <mat-icon class="button-add">add_business</mat-icon>
-  </button>
-  <div class="pharmacies-grid">
+<h1 class="title"><strong>Gestión de Farmacias</strong></h1>
+<div class="header-farmacias">
+  <div>
+    <button (click)="addPharmacy()" class="btn" color="primary">
+      <mat-icon class="button-add">add_business</mat-icon>
+    </button>
+  </div>
+  <div>
+    <div fxFlex fxHide.lt-sm="true" class="search-bar">
+      <form class="top-search-form">
+        <mat-icon role="img">search</mat-icon>
+        <input autofocus="true" placeholder="Search" type="text" />
+      </form>
+    </div>
+  </div>
+</div>
+
+  <div class="pharmacies">
     <app-pharmacy
       *ngFor="let pharmacy of pharmacies"
       [pharmacy]="pharmacy"
     ></app-pharmacy>
   </div>
-</div>
+

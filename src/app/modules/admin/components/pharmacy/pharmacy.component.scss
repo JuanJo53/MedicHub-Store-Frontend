@@ -3,6 +3,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #2F4A85;
+    
 }
 .moldeexterno {
   background: transparent;
@@ -13,11 +15,19 @@
   border: 1.4px solid #2f4a85;
 }
 .blocImagen {
-  background: #2f4a85;
+  //background: #2f4a85;
   width: 200px;
   height: 200px;
   margin: 20px 40px 20px 20px;
-  position: relative;
+  //position: relative;
+  //margin-left: 5%;
+  //background-color: yellow;
+  //width: 100%;
+  //background: url(../../../../../assets/images/pnglogo1.png);
+    //background-repeat: no-repeat;
+     //width: 50%;
+  //background-size: cover;
+  //height: 100%;
 }
 .textEdit {
   color: black;

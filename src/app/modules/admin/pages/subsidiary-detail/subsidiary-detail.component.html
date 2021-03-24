@@ -1,8 +1,9 @@
-<div class="container" *ngIf="subsidiary">
-  <h1 mat-dialog-title>Detalles Sucursal</h1>
+<div class="" *ngIf="subsidiary">
+  <h1 class="title">Detalles Sucursal</h1>
   <form
     [formGroup]="form"
     (ngSubmit)="saveChanges($event, subsidiary.subsidiaryId)"
+    class="formfarmacia"
   >
     <mat-card class="pharm_card">
       <mat-card-content>
@@ -102,15 +103,15 @@
     </mat-card>
   </form>
   <mat-divider></mat-divider>
-  <div class="container">
+  <div class="">
     <br />
-    <h1><strong>Administradores de Sucursal</strong></h1>
-    <button (click)="addAdmin()" mat-fab class="btn" color="primary">
-      <mat-icon>add_icon</mat-icon>
+    <h1 class="title"><strong>Administradores de Sucursal</strong></h1>
+    <button (click)="addAdmin()" mat-fab class="btn" color="primary" class="formfarmacia">
+      <mat-icon >add_icon</mat-icon>
     </button>
 
     <br />
-    <mat-form-field>
+    <mat-form-field class="formfarmacia">
       <mat-label>Filtro</mat-label>
       <input
         matInput
@@ -121,7 +122,7 @@
     </mat-form-field>
 
     <!-- Tabla de los admins -->
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 formfarmacia" >
       <!-- Position Column -->
       <ng-container matColumnDef="id_usuario">
         <th mat-header-cell *matHeaderCellDef>Nro.</th>
