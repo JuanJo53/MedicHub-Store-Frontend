@@ -117,17 +117,66 @@ export class SubsidiaryDetailComponent implements OnInit {
   }
   editSubsidiary(id: number): void {
     this.form = this.fromBuilder.group({
-      subsidiaryId: [0, [Validators.required]],
-      subsidiaryName: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
-      number: ["", [Validators.required]],
-      street: ["", [Validators.required]],
-      zone: ["", [Validators.required]],
-      city: ["", [Validators.required]],
-      country: ["", [Validators.required]],
+      subsidiaryId: [id, [Validators.required]],
+      subsidiaryName: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(100),
+          Validators.minLength(6),
+        ],
+      ],
+      phone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(18),
+          Validators.minLength(12),
+        ],
+      ],
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(150),
+          Validators.minLength(6),
+        ],
+      ],
+      number: ["", [Validators.maxLength(45), Validators.minLength(2)]],
+      street: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      zone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      city: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      country: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
     });
-    this.form.get("subsidiaryId").setValue(id);
     this.form.get("subsidiaryName").setValue(this.subsidiary.subsidiaryName);
     this.form.get("phone").setValue(this.subsidiary.phone);
     this.form.get("email").setValue(this.subsidiary.email);
@@ -161,7 +210,7 @@ export class SubsidiaryDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
       this.text = result;
-      this.ngOnInit();
+      // this.ngOnInit();
     });
   }
 }

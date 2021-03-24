@@ -28,10 +28,32 @@ export class CreatePharmacyComponent implements OnInit {
 
   editPharm(): void {
     this.form = this.fromBuilder.group({
-      id: [0, [Validators.required]],
-      name: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
+      name: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(8),
+        ],
+      ],
+      phone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(18),
+          Validators.minLength(12),
+        ],
+      ],
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(150),
+          Validators.minLength(6),
+        ],
+      ],
+      // picture: ["", [Validators.required]],
     });
   }
   savePharmacy(): void {

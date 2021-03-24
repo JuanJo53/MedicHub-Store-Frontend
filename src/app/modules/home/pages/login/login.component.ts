@@ -1,10 +1,9 @@
+import { TokenService } from "src/app/core/authentication/token.service";
 import { AuthService } from "./../../../../core/authentication/auth.service";
-import { logging } from "protractor";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatDialog, MatDialogRef } from "@angular/material";
 import { LoginUser } from "src/app/shared/models/login-user";
-import { SignupComponent } from "../signup/signup.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -13,30 +12,61 @@ import { SignupComponent } from "../signup/signup.component";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+
   isLogged = false;
   isLoginFail = false;
+  roles: number;
+
   loginUser: LoginUser;
+
+  errMsj: string;
 
   constructor(
     private fromBuilder: FormBuilder,
-    private authService: AuthService
+    private tokenService: TokenService,
+    private authService: AuthService,
+    private router: Router
   ) {}
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+      this.isLoginFail = false;
+    }
     this.form = this.fromBuilder.group({
       email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(5)]],
-      userRol: ["", [Validators.required]],
+      password: ["", [Validators.required]],
+      role: ["", [Validators.required]],
     });
   }
   login() {
-    console.log("login");
     if (this.form.valid) {
       const usr = this.form.value;
-      console.log(usr);
-      // this.loginAdmin(usr);
+      this.tokenService.setAuthorities(this.form.get("role").value);
+      this.onLogin(usr);
     }
   }
-  loginAdmin(admin: LoginUser) {
-    this.authService.logIn(admin);
+  onLogin(user: LoginUser) {
+    this.roles = parseInt(this.tokenService.getAuthorities());
+    this.authService.logIn(user).subscribe(
+      (data) => {
+        this.isLogged = true;
+        this.isLoginFail = false;
+        this.tokenService.setToken(data.jwt);
+
+        // this.tokenService.setUserName(data.nombreUsuario);
+        // this.tokenService.setAuthorities(data.authorities);
+        // this.roles = data.authorities;
+
+        if (this.roles == 1) {
+          this.router.navigate(["/admin/dashboard"]);
+        } else if (this.roles == 2) {
+          this.router.navigate(["/pharmAdmin/dashboard"]);
+        }
+      },
+      (err) => {
+        this.isLogged = false;
+        this.isLoginFail = true;
+      }
+    );
   }
 }

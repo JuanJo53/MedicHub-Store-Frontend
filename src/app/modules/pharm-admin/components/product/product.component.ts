@@ -55,12 +55,40 @@ export class ProductComponent implements OnInit {
       productId: [0, [Validators.required]],
       subsidiaryId: [0, [Validators.required]],
       brandId: [0, [Validators.required]],
-      name: ["", [Validators.required]],
+      name: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
       stock: ["", [Validators.required]],
       price: ["", [Validators.required]],
-      type: ["", [Validators.required]],
-      dose: ["", [Validators.required]],
-      description: ["", [Validators.required]],
+      type: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(4),
+        ],
+      ],
+      dose: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(45),
+          Validators.minLength(4),
+        ],
+      ],
+      description: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(280),
+          Validators.minLength(10),
+        ],
+      ],
     });
     this.form.get("subsidiaryId").setValue(this.subsidiaryId);
   }

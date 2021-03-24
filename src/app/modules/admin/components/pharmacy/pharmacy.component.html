@@ -30,7 +30,11 @@
       <tr>
         <td>
           <div class="blocImagen">
-            <img src="assets/images/pnglogo1.png" width="200px" height="200px"/>
+            <img
+              src="assets/images/pnglogo1.png"
+              width="200px"
+              height="200px"
+            />
           </div>
         </td>
         <td>
@@ -56,7 +60,7 @@
         </td>
       </tr>
     </table>
-    <div class="subsidiaries-grid textEdit">
+    <div class="subsidiaries-grid textEdit" *ngIf="subsidiaries">
       <app-subsidiary
         *ngFor="let subsidiary of subsidiaries"
         [subsidiary]="subsidiary"
@@ -92,7 +96,7 @@
               required
             />
           </mat-form-field>
-          <br>
+          <br />
           <mat-form-field class="form">
             <mat-label class="texteditcard">Telefono</mat-label>
             <input
@@ -103,7 +107,7 @@
               [(ngModel)]="pharmacy.phone"
               required
             />
-          </mat-form-field >
+          </mat-form-field>
 
           
         </mat-card-content>

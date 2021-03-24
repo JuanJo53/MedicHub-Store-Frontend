@@ -42,20 +42,33 @@ export class BrandComponent implements OnInit {
     this.edit = true;
     this.form = this.fromBuilder.group({
       pharmacyId: [0, [Validators.required]],
-      name: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
-      // picture: ["", [Validators.required]],
+      name: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(2),
+        ],
+      ],
+      phone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(18),
+          Validators.minLength(12),
+        ],
+      ],
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(150),
+          Validators.minLength(6),
+        ],
+      ],
     });
   }
-  // fetchSubsidiaries(id: number): void {
-  //   this.subsidiaries = [];
-  //   this.subsidiariesService.getSubsidiaries(id).subscribe((subsidiary) => {
-  //     subsidiary.map((sub) => {
-  //       this.subsidiaries.push(sub);
-  //     });
-  //   });
-  // }
   saveBrand(event: Event, id: number): void {
     event.preventDefault();
     if (this.form.valid) {

@@ -17,7 +17,7 @@ export class CreateSubsidiaryComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private subsidiariesService: SubsidiariesService,
     public dialogRef: MatDialogRef<CreateSubsidiaryComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { name: string; id: number }
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }
   ) {}
 
   ngOnInit(): void {
@@ -29,21 +29,71 @@ export class CreateSubsidiaryComponent implements OnInit {
 
   editSubsidiary(): void {
     this.form = this.fromBuilder.group({
-      pharmacyId: [0, [Validators.required]],
-      subsidiaryName: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
-      number: ["", [Validators.required]],
-      street: ["", [Validators.required]],
-      zone: ["", [Validators.required]],
-      city: ["", [Validators.required]],
-      country: ["", [Validators.required]],
+      pharmacyId: [this.data.id, [Validators.required]],
+      subsidiaryName: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(100),
+          Validators.minLength(6),
+        ],
+      ],
+      phone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(18),
+          Validators.minLength(12),
+        ],
+      ],
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(150),
+          Validators.minLength(6),
+        ],
+      ],
+      number: ["", [Validators.maxLength(45), Validators.minLength(2)]],
+      street: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      zone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      city: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
+      country: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(3),
+        ],
+      ],
     });
-    this.form.get("pharmacyId").setValue(this.data.id);
   }
   saveSubsidiary(): void {
     if (this.form.valid) {
       const subsidiary = this.form.value;
+      console.log(subsidiary);
       this.createSubsidiary(subsidiary);
       this.dialogRef.close();
     } else {

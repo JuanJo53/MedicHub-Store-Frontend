@@ -21,7 +21,6 @@ export class PharmacyComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
-  name: string;
   pharmId: number;
 
   constructor(
@@ -50,9 +49,31 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     this.edit = true;
     this.form = this.fromBuilder.group({
       pharmacyId: [0, [Validators.required]],
-      name: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]],
+      name: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(150),
+          Validators.minLength(8),
+        ],
+      ],
+      phone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(18),
+          Validators.minLength(12),
+        ],
+      ],
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(150),
+          Validators.minLength(6),
+        ],
+      ],
       // picture: ["", [Validators.required]],
     });
   }
@@ -103,13 +124,11 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CreateSubsidiaryComponent, {
       width: "500px",
       data: {
-        name: this.name,
         id: this.pharmacy.pharmacyId,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
-      this.name = result;
       this.ngOnInit();
     });
   }
