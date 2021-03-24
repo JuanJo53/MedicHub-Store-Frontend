@@ -45,6 +45,7 @@ import { BrandComponent } from "../pharm-admin/components/brand/brand.component"
 import { BrandsComponent } from "../pharm-admin/pages/brands/brands.component";
 import { CreateBranchComponent } from "../pharm-admin/components/dialogs/create-branch/create-branch.component";
 import { BankAccountComponent } from "../pharm-admin/pages/bank-account/bank-account.component";
+import { MatRadioModule } from "@angular/material/radio";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -97,6 +98,7 @@ import { BankAccountComponent } from "../pharm-admin/pages/bank-account/bank-acc
     MatToolbarModule,
     MatSelectModule,
     MatTableModule,
+    MatRadioModule,
   ],
   entryComponents: [
     LoginComponent,

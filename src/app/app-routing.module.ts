@@ -16,7 +16,7 @@ import { BankAccountComponent } from "./modules/pharm-admin/pages/bank-account/b
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/admin/dashboard",
+    redirectTo: "/login",
     pathMatch: "full",
   },
   {
