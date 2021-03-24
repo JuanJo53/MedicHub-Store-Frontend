@@ -1,14 +1,17 @@
-<h1>sucursal</h1>
+<!--QUITAR EL PADDING URGENTE-->
+<div class="sucursalall">
+<h1 class="titlesucursal">Sucursales</h1>
 <div *ngIf="!destroyed">
   <div class="sucursal">
   <a
-    class="link"
+    class="namesucursal"
     mat-list-item
     routerLink="subsidiary/{{ subsidiary.subsidiaryId }}"
     >{{ subsidiary.subsidiaryName }}
   </a>
   <button mat-menu-item (click)="deleteSubsidiary(subsidiary.subsidiaryId)">
-    <mat-icon style="color: #2F4A85;">delete</mat-icon>
+    <mat-icon class="btnsucu">delete</mat-icon>
   </button>
+</div>
 </div>
 </div>

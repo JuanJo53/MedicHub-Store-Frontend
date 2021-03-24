@@ -4,7 +4,7 @@
   <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titlePharmacy">
       <mat-card-title>
-        <h3 class="">
+        <h3 class="titlefarmacia">
           <strong>{{ pharmacy.name }}</strong>
         </h3>
       </mat-card-title>
@@ -36,15 +36,15 @@
         <td>
           <mat-card-content>
             <h3>
-              <strong class="textEdit">Email:</strong>
-              <p class="textEdit">{{ pharmacy.email }}</p>
+              <strong class="textEdit">EMAIL:</strong>
+              <p class="textEditr">{{ pharmacy.email }}</p>
             </h3>
             <h3>
-              <strong class="textEdit">Phone:</strong>
-              <p class="textEdit">{{ pharmacy.phone }}</p>
+              <strong class="textEdit">TELEFONO:</strong>
+              <p class="textEditr">{{ pharmacy.phone }}</p>
             </h3>
             <h3>
-              <strong class="textEdit">Status: </strong>
+              <strong class="textEdit">ESTADO: </strong>
               <p class="statusTextGreen" *ngIf="pharmacy.status == 1">
                 {{ pharmacy.status | pharmacyStatus }}
               </p>
@@ -68,10 +68,10 @@
       [formGroup]="form"
       (ngSubmit)="savePharmacy($event, pharmacy.pharmacyId)"
     >
-      <mat-card class="pharm_card">
-        <mat-card-content>
+      <mat-card class="pharm_cardedit">
+        <mat-card-content class="form">
           <mat-form-field class="form">
-            <mat-label>Nombre</mat-label>
+            <mat-label class="texteditcard">Nombre</mat-label>
             <input
               matInput
               type="text"
@@ -82,7 +82,7 @@
             />
           </mat-form-field>
           <mat-form-field class="form">
-            <mat-label>Email</mat-label>
+            <mat-label class="texteditcard">Email</mat-label>
             <input
               matInput
               type="text"
@@ -92,8 +92,9 @@
               required
             />
           </mat-form-field>
+          <br>
           <mat-form-field class="form">
-            <mat-label>Telefono</mat-label>
+            <mat-label class="texteditcard">Telefono</mat-label>
             <input
               matInput
               type="text"
@@ -102,7 +103,8 @@
               [(ngModel)]="pharmacy.phone"
               required
             />
-          </mat-form-field>
+          </mat-form-field >
+
           <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
         </mat-card-content>
         <mat-card-actions>

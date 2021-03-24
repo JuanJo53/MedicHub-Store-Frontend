@@ -6,6 +6,15 @@
     color: #2F4A85;
     
 }
+.titlefarmacia{
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight:bold;
+  font-size: 32px;
+  color: #2F4A85;
+}
 .moldeexterno {
   background: transparent;
 }
@@ -30,12 +39,36 @@
   //height: 100%;
 }
 .textEdit {
-  color: black;
+  color: #2F4A85;
+  //font-style: oblique;
+  font-weight: bolder;
+  font-size: 15px;
+}
+.textEditr{
+  //color: #2F4A85;
+  font-size: 22px;
 }
 
 .statusTextGreen {
   color: green;
+  font-size: 22px;
 }
 .statusTextRed {
   color: red;
+  font-size: 22px;
 }
+
+
+//EDITAR FARMACIA
+.pharm_cardedit{
+  background-color: #2F4A85;
+}
+
+.texteditcard{
+  color: white;
+}
+.form{
+  color: white;
+}
+
+

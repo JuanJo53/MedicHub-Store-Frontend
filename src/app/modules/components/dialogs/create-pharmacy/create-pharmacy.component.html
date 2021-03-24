@@ -3,26 +3,45 @@
 <h1 mat-dialog-title class="title1">Nueva Farmacia</h1>
 <form [formGroup]="form" (ngSubmit)="savePharmacy()" class="form">
   <mat-dialog-content>
-    <mat-form-field class="form">
-      <mat-label >Nombre</mat-label>
-      <input
-        matInput
-        type="text"
-        formControlName="name"
-        placeholder="Nombre Farmacia"
-        required
-      /> </mat-form-field
-    ><br />
-    <mat-form-field class="form">
-      <mat-label>Telefono</mat-label>
-      <input
-        matInput
-        type="text"
-        formControlName="phone"
-        placeholder="Telefono Farmacia"
-        required
-      /> </mat-form-field
-    ><br />
+    <div class="formall">
+      <div class="form-left">
+        <mat-icon class="link__icon">medication</mat-icon>
+      </div>
+      <div class="form-right">
+        <mat-form-field class="form">
+          <mat-label >Nombre</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Nombre Farmacia"
+            required
+          /> 
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="formall">
+      <div class="form-left">
+        <mat-icon class="link__icon">phone</mat-icon>
+      </div>
+      <div class="form-right">
+        <mat-form-field class="form">
+          <mat-label>Telefono</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="phone"
+            placeholder="Telefono Farmacia"
+            required
+          /> 
+        </mat-form-field>
+      </div>
+    </div>   
+    <div class="formall">
+      <div class="form-left">
+        <mat-icon class="link__icon">mail</mat-icon>
+      </div>
+      <div class="form-right">     
     <mat-form-field class="form">
       <mat-label>Email</mat-label
       ><input
@@ -33,6 +52,8 @@
         required
       />
     </mat-form-field>
+      </div>
+    </div>
   </mat-dialog-content>
   <mat-dialog-actions class="buttons">
     <button type="submit" mat-button class="btnform">

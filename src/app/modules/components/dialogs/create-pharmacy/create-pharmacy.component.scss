@@ -44,3 +44,36 @@
     justify-content: flex-end;
     
   }
+
+  .formall{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    //box-sizing: border-box;
+    //height: 50vh;
+    //background-color: #2F4A85;
+    //border-radius: 30px;
+  }
+  .form{
+    &-left{
+    margin-top: 16px;
+    margin-left: 25%;
+    margin-right: 3%;
+    //background-color: yellow;
+    // width: 50%;
+    //background: url(../../../../../assets/images/RDC_01.png);
+    //background-repeat: no-repeat;
+    // width: 35%;
+    //background-size: cover;
+     height: 100%;
+    }
+    &-right{
+        //background-color: red;
+        width: 60%;
+        height: 100%;
+    }
+  }
+  .link__icon{
+    color: #2f4a85;
+  }
+  

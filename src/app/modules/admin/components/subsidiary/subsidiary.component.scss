@@ -1,5 +1,34 @@
 .sucursal{
     display: flex;
     align-items: center;
+    margin-left: 5px;
 
+}
+.sucursalall{
+    padding: 8px;
+    background-color: #2F4A85;
+    padding-left: 0rem;
+    
+
+}
+.titlesucursal{
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    font-style: italic;
+    font-weight: bolder;
+    margin-left: 45%;
+    //margin-top: 115px;
+}
+.namesucursal{
+    color: white;
+    font-size: 15px;
+    margin-left: 3px;
+    margin-right: 0px;
+    //font-style: italic;
+    //font-weight: bolder;
+}
+.btnsucu{
+    color: #fff;
+    margin-left: 0px;
 }
