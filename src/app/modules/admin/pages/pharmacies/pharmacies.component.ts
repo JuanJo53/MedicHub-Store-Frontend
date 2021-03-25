@@ -2,8 +2,8 @@ import { Pharmacy } from "./../../../../shared/models/pharmacy";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { PharmaciesService } from "src/app/core/http/admin/pharmacies.service";
-import { CreatePharmacyComponent } from "src/app/modules/components/dialogs/create-pharmacy/create-pharmacy.component";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { CreatePharmacyComponent } from "../../components/dialogs/create-pharmacy/create-pharmacy.component";
 
 @Component({
   selector: "app-pharmacies",

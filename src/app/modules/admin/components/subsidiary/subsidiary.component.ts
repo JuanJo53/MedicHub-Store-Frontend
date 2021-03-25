@@ -1,9 +1,9 @@
 import { SubsidiaryListRequest } from "./../../../../shared/models/subsidiary-list-request";
 import { Component, Input, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { MatDialog } from "@angular/material/dialog";
-import { WarningDialogComponent } from "../warning-dialog/warning-dialog.component";
+import { WarningDialogComponent } from "../../../components/dialogs/warning-dialog/warning-dialog.component";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
@@ -21,7 +21,6 @@ export class SubsidiaryComponent implements OnInit {
   destroyed = false;
 
   constructor(
-    private fromBuilder: FormBuilder,
     private subsidiariesService: SubsidiariesService,
     public dialog: MatDialog
   ) {}

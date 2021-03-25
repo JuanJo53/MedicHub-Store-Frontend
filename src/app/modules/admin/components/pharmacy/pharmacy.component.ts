@@ -1,14 +1,13 @@
 import { SubsidiaryListRequest } from "./../../../../shared/models/subsidiary-list-request";
-import { CreateSubsidiaryComponent } from "./../../../components/dialogs/create-subsidiary/create-subsidiary.component";
+import { CreateSubsidiaryComponent } from "../dialogs/create-subsidiary/create-subsidiary.component";
 import { PharmaciesService } from "src/app/core/http/admin/pharmacies.service";
 import { Pharmacy } from "src/app/shared/models/pharmacy";
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { PharmacyRequest } from "src/app/shared/models/pharmacy-request";
-import { WarningDialogComponent } from "../warning-dialog/warning-dialog.component";
+import { WarningDialogComponent } from "../../../components/dialogs/warning-dialog/warning-dialog.component";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
-import { throwToolbarMixedModesError } from "@angular/material";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
@@ -132,9 +131,11 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("Resultado post:" + result);
-      this.displaySuccesDialog("¡Se agrego la sucursal exitosamente!");
-      this.ngOnInit();
+      if (result) {
+        console.log("Resultado post:" + result);
+        this.displaySuccesDialog("¡Se agrego la sucursal exitosamente!");
+        this.ngOnInit();
+      }
     });
   }
   displaySuccesDialog(text: string) {

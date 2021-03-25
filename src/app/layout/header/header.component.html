@@ -25,11 +25,16 @@
         <mat-icon class="maticon_nav">account_box</mat-icon>
         <span>Profile</span>
       </button>
-      <button mat-menu-item [routerLink]="['/pharmAdmin/bankAccount']">
+      <button
+        *ngIf="role == 2"
+        mat-menu-item
+        [routerLink]="['/pharmAdmin/bankAccount']"
+      >
         <mat-icon class="maticon_nav">account_balance</mat-icon>
         <span>Cuenta de Banco</span>
       </button>
       <button mat-menu-item>
+        <mat-icon class="maticon_nav">notifications_off</mat-icon>
         <span>Disable alerts</span>
       </button>
       <button mat-menu-item (click)="toeknServide.logOut()">

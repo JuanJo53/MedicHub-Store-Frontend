@@ -1,7 +1,7 @@
+import { TokenService } from "./../../../../../core/authentication/token.service";
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
 import { PharmAdminsService } from "src/app/core/http/admin/pharm-admins.service";
 import { PharmAdmin } from "src/app/shared/models/pharm-admin";
 
@@ -13,34 +13,39 @@ import { PharmAdmin } from "src/app/shared/models/pharm-admin";
 export class EditSubsiAdminsComponent implements OnInit {
   pharmAdmin: PharmAdmin;
   form: FormGroup;
+  subsidiaryId: number;
+
   constructor(
     private fromBuilder: FormBuilder,
     private pharmAdminService: PharmAdminsService,
     public dialogRef: MatDialogRef<EditSubsiAdminsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: number; subsidiaryId: number }
+    private tokenService: TokenService,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { pharmAdminId: number; subsidiaryId: number }
   ) {}
 
   ngOnInit() {
-    this.fetchAdminDetails(this.data.id);
+    this.fetchAdminDetails(this.data.pharmAdminId);
   }
   onNoClick(): void {
     this.dialogRef.close(false);
   }
+
   fetchAdminDetails(adminId: number) {
     this.pharmAdminService
       .getAdminDetail(adminId)
       .subscribe((administrator) => {
         this.pharmAdmin = administrator;
-        console.log(this.pharmAdmin);
         this.editAdmin();
       });
   }
   editAdmin(): void {
+    this.subsidiaryId = parseInt(this.tokenService.getUserName());
     this.form = this.fromBuilder.group({
-      subsidiaryId: [this.data.subsidiaryId, [Validators.required]],
-      pharmacyId: [this.data.id, [Validators.required]],
+      subsidiaryId: [0, [Validators.required]],
+      pharmacyId: [0, [Validators.required]],
       firstName: [
-        this.pharmAdmin.firstName,
+        "",
         [
           Validators.required,
           Validators.maxLength(150),
@@ -48,7 +53,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       firstSurname: [
-        this.pharmAdmin.firstSurname,
+        "",
         [
           Validators.required,
           Validators.maxLength(150),
@@ -56,7 +61,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       secondSurname: [
-        this.pharmAdmin.secondSurname,
+        "",
         [
           Validators.required,
           Validators.maxLength(150),
@@ -64,7 +69,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       ci: [
-        this.pharmAdmin.ci,
+        "",
         [
           Validators.required,
           Validators.maxLength(145),
@@ -72,7 +77,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       phone: [
-        this.pharmAdmin.phone,
+        "",
         [
           Validators.required,
           Validators.maxLength(18),
@@ -80,7 +85,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       email: [
-        this.pharmAdmin.email,
+        "",
         [
           Validators.required,
           Validators.email,
@@ -89,7 +94,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       userName: [
-        this.pharmAdmin.userName,
+        "",
         [
           Validators.required,
           Validators.maxLength(150),
@@ -97,7 +102,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       password: [
-        this.pharmAdmin.password,
+        "",
         [
           Validators.required,
           Validators.maxLength(150),
@@ -105,18 +110,30 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
     });
+    this.form.get("subsidiaryId").setValue(this.data.subsidiaryId);
+    this.form.get("pharmacyId").setValue(this.data.pharmAdminId);
+    this.form.get("firstName").setValue(this.pharmAdmin.firstName);
+    this.form.get("firstSurname").setValue(this.pharmAdmin.firstSurname);
+    this.form.get("secondSurname").setValue(this.pharmAdmin.secondSurname);
+    this.form.get("ci").setValue(this.pharmAdmin.ci);
+    this.form.get("phone").setValue(this.pharmAdmin.phone);
+    this.form.get("email").setValue(this.pharmAdmin.email);
+    this.form.get("userName").setValue(this.pharmAdmin.userName);
+    this.form.get("password").setValue(this.pharmAdmin.password);
+    console.log(this.form.value);
   }
-  saveAdmin(id: number): void {
+  saveAdmin(): void {
     if (this.form.valid) {
       const subsidiary = this.form.value;
-      this.updateAdmin(id, subsidiary);
+      console.log(subsidiary);
+      this.updateAdmin(subsidiary);
       this.dialogRef.close(true);
     } else {
       console.log("bad form");
     }
   }
-  updateAdmin(id: number, admin: PharmAdmin): void {
-    this.pharmAdminService.updateAdmins(id, admin).subscribe((admin) => {
+  updateAdmin(admin: PharmAdmin): void {
+    this.pharmAdminService.updateAdmins(admin).subscribe((admin) => {
       console.log(admin);
     });
   }

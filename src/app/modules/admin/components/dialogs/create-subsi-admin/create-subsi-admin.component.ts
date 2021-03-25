@@ -1,8 +1,7 @@
-import { PharmAdminsService } from "./../../../../core/http/admin/pharm-admins.service";
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
+import { PharmAdminsService } from "src/app/core/http/admin/pharm-admins.service";
 import { PharmAdmin } from "src/app/shared/models/pharm-admin";
 
 @Component({

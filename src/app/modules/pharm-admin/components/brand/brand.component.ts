@@ -3,9 +3,10 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { BrandService } from "src/app/core/http/pharm-admin/brand.service";
-import { WarningDialogComponent } from "src/app/modules/admin/components/warning-dialog/warning-dialog.component";
+import { WarningDialogComponent } from "src/app/modules/components/dialogs/warning-dialog/warning-dialog.component";
 import { Brand } from "src/app/shared/models/brand";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { ContentObserver } from "@angular/cdk/observers";
 
 @Component({
   selector: "app-brand",
@@ -27,12 +28,7 @@ export class BrandComponent implements OnInit {
 
   edit = false;
   destroyed = false;
-  ngOnInit() {
-    const id = this.brand.brandId;
-    if (id) {
-      // this.fetchSubsidiaries(id);
-    }
-  }
+  ngOnInit() {}
   ngOnDestroy(): void {
     this.destroyed = true;
   }
@@ -42,7 +38,7 @@ export class BrandComponent implements OnInit {
   editBrand(id: number): void {
     this.edit = true;
     this.form = this.fromBuilder.group({
-      pharmacyId: [0, [Validators.required]],
+      pharmacyId: [id, [Validators.required]],
       name: [
         "",
         [
@@ -84,6 +80,7 @@ export class BrandComponent implements OnInit {
   updatePharmacy(id: number, updateBrand: Brand): void {
     this.brandService.updateBrand(id, updateBrand).subscribe((response) => {
       console.log("Response: " + response);
+      this.displaySuccesDialog("¡Marca actualizada exitosamente!");
     });
   }
   deleteBrand(id: number): void {
@@ -98,25 +95,13 @@ export class BrandComponent implements OnInit {
       if (result) {
         this.brandService.deleteBrand(id).subscribe((rta) => {
           console.log("Response " + rta);
+          this.displaySuccesDialog("¡Marca eliminada exitosamente!");
         });
         this.ngOnDestroy();
       }
     });
   }
-  addSubsidiary() {
-    const dialogRef = this.dialog.open(CreateBranchComponent, {
-      width: "500px",
-      data: {
-        name: this.name,
-        id: this.brand.brandId,
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      this.name = result;
-      this.ngOnInit();
-    });
-  }
+
   displaySuccesDialog(text: string) {
     this.dialog.open(SuccesDialogComponent, {
       width: "500px",

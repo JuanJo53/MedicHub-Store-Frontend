@@ -38,7 +38,7 @@ export class PharmAdminsService {
       headers: headers,
     });
   }
-  updateAdmins(adminId: number, pharmAdmin: PharmAdmin) {
+  updateAdmins(pharmAdmin: PharmAdmin) {
     var authToken = this.tokenService.getToken();
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,

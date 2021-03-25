@@ -8,6 +8,8 @@ import { TokenService } from "src/app/core/authentication/token.service";
 })
 export class HeaderComponent implements OnInit {
   constructor(public toeknServide: TokenService) {}
-
-  ngOnInit() {}
+  role: number;
+  ngOnInit() {
+    this.role = parseInt(this.toeknServide.getAuthorities());
+  }
 }

@@ -20,7 +20,6 @@
         matInput
         type="text"
         formControlName="firstSurname"
-        [(ngModel)]="pharmAdmin.firstSurname"
         placeholder="Morales"
         required
       />
@@ -32,7 +31,6 @@
         matInput
         type="text"
         formControlName="secondSurname"
-        [(ngModel)]="pharmAdmin.secondSurname"
         placeholder="Perez"
         required
       />
@@ -43,7 +41,6 @@
         matInput
         type="text"
         formControlName="ci"
-        [(ngModel)]="pharmAdmin.ci"
         placeholder="4568799"
         required
       />
@@ -54,7 +51,6 @@
         matInput
         type="text"
         formControlName="phone"
-        [(ngModel)]="pharmAdmin.phone"
         placeholder="7895654"
         required
       />
@@ -65,7 +61,6 @@
         matInput
         type="text"
         formControlName="email"
-        [(ngModel)]="pharmAdmin.email"
         placeholder="pepito@peptio.com"
         required
       />
@@ -76,7 +71,6 @@
         matInput
         type="text"
         formControlName="userName"
-        [(ngModel)]="pharmAdmin.userName"
         placeholder="pepito"
         required
       />
@@ -87,17 +81,28 @@
         matInput
         type="password"
         formControlName="password"
-        [(ngModel)]="pharmAdmin.password"
         placeholder="*******"
         required
       />
     </mat-form-field>
+    <mat-form-field class="invisible">
+      <input matInput type="number" formControlName="subsidiaryId" required />
+    </mat-form-field>
+    <mat-form-field class="invisible">
+      <input matInput type="number" formControlName="pharmacyId" required />
+    </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button type="submit" mat-button color="primary" cdkFocusInitial>
+    <button
+      id="{{ pharmAdmin.pharmacyId }}"
+      type="submit"
+      mat-button
+      color="primary"
+      cdkFocusInitial
+    >
       Guardar Cambios
     </button>
-    <button mat-button mat-raised-button color="warn" (click)="onNoClick()">
+    <button mat-button mat-raised-button (click)="onNoClick()" color="warn">
       Cancelar
     </button>
   </mat-dialog-actions>

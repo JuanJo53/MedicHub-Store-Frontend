@@ -1,7 +1,6 @@
 import { CreateBranchComponent } from "./../../components/dialogs/create-branch/create-branch.component";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
 import { BrandService } from "src/app/core/http/pharm-admin/brand.service";
 import { Brand } from "src/app/shared/models/brand";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
@@ -15,11 +14,7 @@ export class BrandsComponent implements OnInit {
   brands: Brand[] = [];
   id: number;
   name: string;
-  constructor(
-    public dialog: MatDialog,
-    private brandsService: BrandService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  constructor(public dialog: MatDialog, private brandsService: BrandService) {}
 
   ngOnInit() {
     console.log("OnInit excecuted");
@@ -31,7 +26,7 @@ export class BrandsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.displaySuccesDialog("¡Se marca agregada exitosamente!");
+        this.displaySuccesDialog("¡Marca agregada exitosamente!");
         this.ngOnInit();
       }
     });

@@ -22,11 +22,10 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { SignupComponent } from "./pages/signup/signup.component";
 import { DashboardComponent } from "../admin/pages/dashboard/dashboard.component";
 import { PharmaciesComponent } from "../admin/pages/pharmacies/pharmacies.component";
-import { CreatePharmacyComponent } from "../components/dialogs/create-pharmacy/create-pharmacy.component";
 import { PharmacyComponent } from "../admin/components/pharmacy/pharmacy.component";
 import { PharmacyStatusPipe } from "src/app/shared/pipes/pharmacy-status.pipe";
 import { MatMenuModule } from "@angular/material/menu";
-import { WarningDialogComponent } from "../admin/components/warning-dialog/warning-dialog.component";
+import { WarningDialogComponent } from "../components/dialogs/warning-dialog/warning-dialog.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { PharmDashboardComponent } from "../pharm-admin/pages/pharm-dashboard/pharm-dashboard.component";
 import { ProductsComponent } from "../pharm-admin/pages/products/products.component";
@@ -35,12 +34,10 @@ import { MatSelectModule } from "@angular/material/select";
 import { SubsidiaryComponent } from "../admin/components/subsidiary/subsidiary.component";
 import { PharmAdminsComponent } from "../admin/pages/pharm-admins/pharm-admins.component";
 import { PharmAdminComponent } from "../admin/components/pharm-admin/pharm-admin.component";
-import { CreateSubsidiaryComponent } from "../components/dialogs/create-subsidiary/create-subsidiary.component";
+import { CreateSubsidiaryComponent } from "../admin/components/dialogs/create-subsidiary/create-subsidiary.component";
 import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subsidiary-detail.component";
-import { CreateSubsiAdminComponent } from "../components/dialogs/create-subsi-admin/create-subsi-admin.component";
 import { ProductComponent } from "./../pharm-admin/components/product/product.component";
 import { MatTableModule } from "@angular/material/table";
-import { EditSubsiAdminsComponent } from "../components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
 import { BrandComponent } from "../pharm-admin/components/brand/brand.component";
 import { BrandsComponent } from "../pharm-admin/pages/brands/brands.component";
 import { CreateBranchComponent } from "../pharm-admin/components/dialogs/create-branch/create-branch.component";
@@ -48,6 +45,9 @@ import { BankAccountComponent } from "../pharm-admin/pages/bank-account/bank-acc
 import { MatRadioModule } from "@angular/material/radio";
 import { AddBankAccountComponent } from "../pharm-admin/components/dialogs/add-bank-account/add-bank-account.component";
 import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succes-dialog.component";
+import { CreatePharmacyComponent } from "../admin/components/dialogs/create-pharmacy/create-pharmacy.component";
+import { CreateSubsiAdminComponent } from "../admin/components/dialogs/create-subsi-admin/create-subsi-admin.component";
+import { EditSubsiAdminsComponent } from "../admin/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
 @NgModule({
   declarations: [
     HomeComponent,

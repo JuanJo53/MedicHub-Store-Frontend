@@ -4,13 +4,13 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { PharmAdminsService } from "src/app/core/http/admin/pharm-admins.service";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
-import { CreateSubsiAdminComponent } from "src/app/modules/components/dialogs/create-subsi-admin/create-subsi-admin.component";
 import { SubsidiaryRequest } from "src/app/shared/models/subsidiary-request";
-import { WarningDialogComponent } from "../../components/warning-dialog/warning-dialog.component";
+import { WarningDialogComponent } from "../../../components/dialogs/warning-dialog/warning-dialog.component";
 import { MatTableDataSource } from "@angular/material/table";
 import { PharmAdminList } from "src/app/shared/models/pharm-admin-list";
-import { EditSubsiAdminsComponent } from "src/app/modules/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { CreateSubsiAdminComponent } from "../../components/dialogs/create-subsi-admin/create-subsi-admin.component";
+import { EditSubsiAdminsComponent } from "../../components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
 
 @Component({
   selector: "app-subsidiary-detail",
@@ -128,7 +128,7 @@ export class SubsidiaryDetailComponent implements OnInit {
     this.form = this.fromBuilder.group({
       subsidiaryId: [id, [Validators.required]],
       subsidiaryName: [
-        "",
+        this.subsidiary.subsidiaryName,
         [
           Validators.required,
           Validators.maxLength(100),
@@ -136,7 +136,7 @@ export class SubsidiaryDetailComponent implements OnInit {
         ],
       ],
       phone: [
-        "",
+        this.subsidiary.phone,
         [
           Validators.required,
           Validators.maxLength(18),
@@ -144,7 +144,7 @@ export class SubsidiaryDetailComponent implements OnInit {
         ],
       ],
       email: [
-        "",
+        this.subsidiary.email,
         [
           Validators.required,
           Validators.email,
@@ -152,9 +152,12 @@ export class SubsidiaryDetailComponent implements OnInit {
           Validators.minLength(6),
         ],
       ],
-      number: ["", [Validators.maxLength(45), Validators.minLength(2)]],
+      number: [
+        this.subsidiary.number,
+        [Validators.maxLength(45), Validators.minLength(2)],
+      ],
       street: [
-        "",
+        this.subsidiary.street,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -162,7 +165,7 @@ export class SubsidiaryDetailComponent implements OnInit {
         ],
       ],
       zone: [
-        "",
+        this.subsidiary.zone,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -170,7 +173,7 @@ export class SubsidiaryDetailComponent implements OnInit {
         ],
       ],
       city: [
-        "",
+        this.subsidiary.city,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -178,7 +181,7 @@ export class SubsidiaryDetailComponent implements OnInit {
         ],
       ],
       country: [
-        "",
+        this.subsidiary.country,
         [
           Validators.required,
           Validators.maxLength(150),
@@ -186,14 +189,6 @@ export class SubsidiaryDetailComponent implements OnInit {
         ],
       ],
     });
-    this.form.get("subsidiaryName").setValue(this.subsidiary.subsidiaryName);
-    this.form.get("phone").setValue(this.subsidiary.phone);
-    this.form.get("email").setValue(this.subsidiary.email);
-    this.form.get("number").setValue(this.subsidiary.number);
-    this.form.get("street").setValue(this.subsidiary.street);
-    this.form.get("zone").setValue(this.subsidiary.zone);
-    this.form.get("city").setValue(this.subsidiary.city);
-    this.form.get("country").setValue(this.subsidiary.country);
   }
   addAdmin() {
     const dialogRef = this.dialog.open(CreateSubsiAdminComponent, {
@@ -217,12 +212,12 @@ export class SubsidiaryDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(EditSubsiAdminsComponent, {
       width: "500px",
       data: {
-        id: adminId,
+        pharmAdminId: adminId,
         subsidiaryId: this.id,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
+      console.log(result);
       if (result) {
         this.displaySuccesDialog(
           "¡Se actualizo los datos del administrador exitosamente!"
