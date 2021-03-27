@@ -48,6 +48,8 @@ import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succe
 import { CreatePharmacyComponent } from "../admin/components/dialogs/create-pharmacy/create-pharmacy.component";
 import { CreateSubsiAdminComponent } from "../admin/components/dialogs/create-subsi-admin/create-subsi-admin.component";
 import { EditSubsiAdminsComponent } from "../admin/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
+import { ClientsPageComponent } from "../admin/pages/clients-page/clients-page.component";
+import { ReportsPageComponent } from "../admin/pages/reports-page/reports-page.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -82,6 +84,8 @@ import { EditSubsiAdminsComponent } from "../admin/components/dialogs/edit-subsi
     BankAccountComponent,
     AddBankAccountComponent,
     SuccesDialogComponent,
+    ClientsPageComponent,
+    ReportsPageComponent,
   ],
   imports: [
     CommonModule,

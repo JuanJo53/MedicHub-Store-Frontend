@@ -12,6 +12,8 @@ import { PharmDashboardComponent } from "./modules/pharm-admin/pages/pharm-dashb
 import { BrandsComponent } from "./modules/pharm-admin/pages/brands/brands.component";
 import { BankAccountComponent } from "./modules/pharm-admin/pages/bank-account/bank-account.component";
 import { PharmAdminGuard } from "./core/guards/pharm-admin.guard";
+import { ReportsPageComponent } from "./modules/admin/pages/reports-page/reports-page.component";
+import { ClientsPageComponent } from "./modules/admin/pages/clients-page/clients-page.component";
 
 const routes: Routes = [
   {
@@ -37,6 +39,11 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
+        path: "admin/reports",
+        canActivate: [AdminGuard],
+        component: ReportsPageComponent,
+      },
+      {
         path: "admin/pharmacy",
         canActivate: [AdminGuard],
         component: PharmaciesComponent,
@@ -45,6 +52,11 @@ const routes: Routes = [
         path: "admin/pharmacy/subsidiary/:id",
         canActivate: [AdminGuard],
         component: SubsidiaryDetailComponent,
+      },
+      {
+        path: "admin/clients",
+        canActivate: [AdminGuard],
+        component: ClientsPageComponent,
       },
     ],
   },
