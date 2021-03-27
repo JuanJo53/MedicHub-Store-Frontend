@@ -17,6 +17,7 @@
         <input
           matInput
           type="number"
+          min="2"
           formControlName="stock"
           placeholder="500"
           required
@@ -27,6 +28,8 @@
         ><input
           matInput
           type="number"
+          min="0.1"
+          step=".01"
           formControlName="price"
           placeholder="0.50"
           required

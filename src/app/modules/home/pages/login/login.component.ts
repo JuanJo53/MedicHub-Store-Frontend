@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
       (data) => {
         this.isLogged = true;
         this.isLoginFail = false;
-        console.log(data);
         this.tokenService.setToken(data.jwt);
         this.tokenService.setUserName(data.subsidiaryId);
 
