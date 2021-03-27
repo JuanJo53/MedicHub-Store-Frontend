@@ -50,6 +50,7 @@ import { CreateSubsiAdminComponent } from "../admin/components/dialogs/create-su
 import { EditSubsiAdminsComponent } from "../admin/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
 import { ClientsPageComponent } from "../admin/pages/clients-page/clients-page.component";
 import { ReportsPageComponent } from "../admin/pages/reports-page/reports-page.component";
+import { EditClientComponent } from "../admin/components/dialogs/edit-client/edit-client.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -86,6 +87,7 @@ import { ReportsPageComponent } from "../admin/pages/reports-page/reports-page.c
     SuccesDialogComponent,
     ClientsPageComponent,
     ReportsPageComponent,
+    EditClientComponent,
   ],
   imports: [
     CommonModule,
@@ -121,6 +123,7 @@ import { ReportsPageComponent } from "../admin/pages/reports-page/reports-page.c
     CreateBranchComponent,
     AddBankAccountComponent,
     SuccesDialogComponent,
+    EditClientComponent,
   ],
 })
 export class HomeModule {}

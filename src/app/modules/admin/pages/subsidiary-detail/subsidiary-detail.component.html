@@ -6,107 +6,107 @@
     class="formfarmacia"
   >
     <mat-card class="pharm_card">
-      <mat-card-content >
+      <mat-card-content>
         <div class="">
-        <mat-form-field class="form">
-          <mat-label>Nombre</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="subsidiaryName"
-            placeholder="Farmacias Algo Sucursal 1"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form">
-          <mat-label>Email</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="email"
-            placeholder="farmacia@algo.com"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form">
-          <mat-label>Telefono</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="phone"
-            placeholder="+8965 2324598"
-            required
-          />
-        </mat-form-field>
-      </div>
+          <mat-form-field class="form">
+            <mat-label>Nombre</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="subsidiaryName"
+              placeholder="Farmacias Algo Sucursal 1"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Email</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="email"
+              placeholder="farmacia@algo.com"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Telefono</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="phone"
+              placeholder="+8965 2324598"
+              required
+            />
+          </mat-form-field>
+        </div>
         <br />
         <mat-divider class="linea"></mat-divider>
         <br />
         <h1 class="subtitle">Dirección</h1>
         <div class="entradas">
-        <mat-form-field class="form">
-          <mat-label>Nro.</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="number"
-            placeholder="Numero de domicilio E: Nro. 123"
-          />
-        </mat-form-field>
-        <mat-form-field class="form">
-          <mat-label>Calle</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="street"
-            placeholder="Calle Algo"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form">
-          <mat-label>Zona</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="zone"
-            placeholder="El Prado"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form">
-          <mat-label>Ciudad</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="city"
-            placeholder="La Paz"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form">
-          <mat-label>Pais</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="country"
-            placeholder="Bolivia"
-            required
-          />
-        </mat-form-field>
-      </div>
+          <mat-form-field class="form">
+            <mat-label>Nro.</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="number"
+              placeholder="Numero de domicilio E: Nro. 123"
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Calle</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="street"
+              placeholder="Calle Algo"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Zona</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="zone"
+              placeholder="El Prado"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Ciudad</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="city"
+              placeholder="La Paz"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Pais</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="country"
+              placeholder="Bolivia"
+              required
+            />
+          </mat-form-field>
+        </div>
       </mat-card-content>
       <mat-card-actions>
         <div class="buttons">
-        <button
-          id="{{ subsidiary.subsidiaryId }}"
-          type="submit"
-          mat-button
-          color="primary"
-          class="btn-guardar"
-        >
-          Guardar Cambios
-        </button>
-      </div>
+          <button
+            id="{{ subsidiary.subsidiaryId }}"
+            type="submit"
+            mat-button
+            color="primary"
+            class="btn-guardar"
+          >
+            Guardar Cambios
+          </button>
+        </div>
         <!--mat-divider></mat-divider-->
       </mat-card-actions>
     </mat-card>
@@ -127,7 +127,7 @@
 
     <br />
     <mat-form-field class="formfarmacia2">
-      <mat-label>Filtro</mat-label>
+      <mat-label>Buscar</mat-label>
       <input
         matInput
         (keyup)="applyFilter($event)"
