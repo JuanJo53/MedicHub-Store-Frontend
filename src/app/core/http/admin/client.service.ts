@@ -36,7 +36,7 @@ export class ClientService {
       headers: headers,
     });
   }
-  updateAdmins(client: Client) {
+  updateClient(client: Client) {
     var authToken = this.tokenService.getToken();
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
@@ -45,7 +45,7 @@ export class ClientService {
       headers: headers,
     });
   }
-  deleteAdmins(clientId: number) {
+  deleteClient(clientId: number) {
     var authToken = this.tokenService.getToken();
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,

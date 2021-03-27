@@ -23,6 +23,7 @@ export class ClientsPageComponent implements OnInit {
     "FirstSurname",
     "SecondSurname",
     "Ci",
+    "Email",
     "id_userEdit",
     "id_userDel",
   ];
@@ -74,12 +75,10 @@ export class ClientsPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.clientService.deleteAdmins(id).subscribe((rta) => {
+        this.clientService.deleteClient(id).subscribe((rta) => {
           console.log("Resultado " + rta);
           this.text = result;
-          this.displaySuccesDialog(
-            "¡Se elimino al administrador exitosamente!"
-          );
+          this.displaySuccesDialog("¡Se elimino al cliente exitosamente!");
         });
         this.ngOnInit();
       }

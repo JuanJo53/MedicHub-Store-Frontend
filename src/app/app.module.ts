@@ -6,9 +6,11 @@ import { HomeModule } from "./modules/home/home.module";
 import { CookieService } from "ngx-cookie-service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
-import { EditClientComponent } from "./modules/admin/components/dialogs/edit-client/edit-client.component";
+import { PharmaciesComponent } from './modules/client/pages/pharmacies/pharmacies.component';
+import { ProfileComponent } from './modules/client/pages/profile/profile.component';
+import { CreditCardsComponent } from './modules/client/pages/credit-cards/credit-cards.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PharmaciesComponent, ProfileComponent, CreditCardsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
