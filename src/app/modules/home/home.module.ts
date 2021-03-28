@@ -36,6 +36,10 @@ import { BankAccountComponent } from "../pharm-admin/pages/bank-account/bank-acc
 import { MatRadioModule } from "@angular/material/radio";
 import { AddBankAccountComponent } from "../pharm-admin/components/dialogs/add-bank-account/add-bank-account.component";
 import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succes-dialog.component";
+import { ClientProfilePageComponent } from "../client/pages/client-profile-page/client-profile-page.component";
+import { ClientCardsComponent } from "../client/pages/client-cards/client-cards.component";
+import { PharmaciesPageComponent } from "../client/pages/pharmacies-page/pharmacies-page.component";
+import { ProductsPageComponent } from "../client/pages/products-page/products-page.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -58,6 +62,10 @@ import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succe
     AddBankAccountComponent,
     SuccesDialogComponent,
     PharmDashboardComponent,
+    ClientProfilePageComponent,
+    ClientCardsComponent,
+    PharmaciesPageComponent,
+    ProductsPageComponent,
   ],
   imports: [
     CommonModule,
