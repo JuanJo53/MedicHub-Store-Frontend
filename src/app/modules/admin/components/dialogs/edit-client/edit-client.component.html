@@ -1,1 +1,109 @@
-<p>edit-client works!</p>
+<div *ngIf="client">
+  <h1 mat-dialog-title class="title1">
+    Editando Datos del Cliente: {{ client.userName }}
+  </h1>
+  <form [formGroup]="form" (ngSubmit)="saveClient()">
+    <mat-dialog-content>
+      <mat-form-field class="form">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="firstName"
+          placeholder="Pepeluis"
+          required
+        /> </mat-form-field
+      ><br />
+      <mat-form-field class="form">
+        <mat-label>Apellido Paterno</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="firstSurname"
+          placeholder="Morales"
+          required
+        /> </mat-form-field
+      ><br />
+      <mat-form-field class="form">
+        <mat-label>Apellido Materno</mat-label
+        ><input
+          matInput
+          type="text"
+          formControlName="secondSurname"
+          placeholder="Perez"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form">
+        <mat-label>CI</mat-label
+        ><input
+          matInput
+          type="text"
+          formControlName="ci"
+          placeholder="4568799"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form">
+        <mat-label>Telefono de Referencia</mat-label
+        ><input
+          matInput
+          type="text"
+          formControlName="phone"
+          placeholder="7895654"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form">
+        <mat-label>Email</mat-label
+        ><input
+          matInput
+          type="text"
+          formControlName="email"
+          placeholder="pepito@peptio.com"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form">
+        <mat-label>Nombre de Usuario</mat-label
+        ><input
+          matInput
+          type="text"
+          formControlName="userName"
+          placeholder="pepito"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form">
+        <mat-label>Contraseña</mat-label
+        ><input
+          matInput
+          type="password"
+          formControlName="password"
+          placeholder="*******"
+          required
+        />
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons">
+      <button
+        type="submit"
+        mat-button
+        color="primary"
+        cdkFocusInitial
+        class="btnform"
+      >
+        Guardar
+      </button>
+      <button
+        mat-button
+        mat-raised-button
+        color="warn"
+        (click)="onNoClick()"
+        class="btnform"
+      >
+        Cancelar
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

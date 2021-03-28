@@ -23,7 +23,7 @@ export class ClientService {
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.get<Client[]>(apiKey.api + `/clients`, {
+    return this.http.get<Client[]>(apiKey.api + `/client`, {
       headers: headers,
     });
   }
@@ -32,7 +32,7 @@ export class ClientService {
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.get<Client>(apiKey.api + `/clients/${clientId}`, {
+    return this.http.get<Client>(apiKey.api + `/client/${clientId}`, {
       headers: headers,
     });
   }
@@ -41,7 +41,7 @@ export class ClientService {
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.put(apiKey.api + `/clients`, client, {
+    return this.http.put(apiKey.api + `/client`, client, {
       headers: headers,
     });
   }
@@ -50,7 +50,7 @@ export class ClientService {
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.delete(apiKey.api + `/clients/${clientId}`, {
+    return this.http.delete(apiKey.api + `/client/${clientId}`, {
       headers: headers,
     });
   }

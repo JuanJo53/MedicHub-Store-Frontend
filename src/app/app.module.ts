@@ -6,15 +6,14 @@ import { HomeModule } from "./modules/home/home.module";
 import { CookieService } from "ngx-cookie-service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
-import { PharmaciesComponent } from './modules/client/pages/pharmacies/pharmacies.component';
-import { ProfileComponent } from './modules/client/pages/profile/profile.component';
-import { CreditCardsComponent } from './modules/client/pages/credit-cards/credit-cards.component';
+import { HomeAdminModule } from "./modules/admin/homeAdmin.module";
 @NgModule({
-  declarations: [AppComponent, PharmaciesComponent, ProfileComponent, CreditCardsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HomeModule,
+    HomeAdminModule,
     BrowserAnimationsModule,
     HttpClientModule,
   ],
