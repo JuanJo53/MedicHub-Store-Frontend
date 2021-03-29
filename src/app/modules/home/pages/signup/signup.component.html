@@ -1,1 +1,66 @@
-<p>signup works!</p>
+<div class="display-all">
+    <div class="column-left">
+      <div class="container1">
+        <div class="signup-container">
+          <div class="signup-header">
+            <!-- <img [src]="logo" alt="SmartIdea-logo" /> -->
+            <h1 class="title1"><strong>MEDIC - HUB</strong></h1>
+            <h4 class="title2">
+              Bienvenido de nuevo, por favor introduzca su usuario y contraseña.
+            </h4>
+            <br />
+            <br />
+            <br />
+          </div>
+          <div class="row_center_xs">
+            <mat-card class="signup-card">
+              <form [formGroup]="form" (ngSubmit)="signup()">
+                <div class="signupentrada">
+                <mat-form-field class="form-input">
+                  <mat-label class="form-letter">Correo Electronico</mat-label>
+                  <input
+                    matInput
+                    formControlName="email"
+                    placeholder="Correo Electronico"
+                    required
+                  /> 
+                </mat-form-field>
+                </div>
+                <mat-form-field class="form-input">
+                  <mat-label class="form-letter">Contraseña</mat-label>
+  
+                  <input
+                    matInput
+                    formControlName="password"
+                    placeholder="Contraseña"
+                    required
+                    type="password"
+                    class="inputuc"
+                  /> </mat-form-field
+                ><br />
+                <button
+                  type="submit"
+                  mat-raised-button
+                  color="primary"
+                  class="button_signup"
+                >
+                  Registrarse
+                </button>
+                <!-- <button
+                  mat-raised-button
+                  color="accent"
+                  class="form__button"
+                  routerLink="/signup"
+                  class="button_regis"
+                >
+                  Registrarse
+                </button> -->
+              </form>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column-right"></div>
+  </div>
+  
