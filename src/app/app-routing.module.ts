@@ -14,6 +14,10 @@ import { BankAccountComponent } from "./modules/pharm-admin/pages/bank-account/b
 import { PharmAdminGuard } from "./core/guards/pharm-admin.guard";
 import { ReportsPageComponent } from "./modules/admin/pages/reports-page/reports-page.component";
 import { ClientsPageComponent } from "./modules/admin/pages/clients-page/clients-page.component";
+import { ClientProfilePageComponent } from "./modules/client/pages/client-profile-page/client-profile-page.component";
+import { PharmaciesPageComponent } from "./modules/client/pages/pharmacies-page/pharmacies-page.component";
+import { ClientCardsComponent } from "./modules/client/pages/client-cards/client-cards.component";
+import { ClientGuard } from "./core/guards/client.guard";
 
 const routes: Routes = [
   {
@@ -69,6 +73,10 @@ const routes: Routes = [
         path: "pharmAdmin/dashboard",
         component: PharmDashboardComponent,
       },
+      // {
+      //   path: "pharmAdmin/reports",
+      //   component: ProductsComponent,
+      // },
       {
         path: "pharmAdmin/products",
         component: ProductsComponent,
@@ -80,6 +88,29 @@ const routes: Routes = [
       {
         path: "pharmAdmin/bankAccount",
         component: BankAccountComponent,
+      },
+    ],
+  },
+  {
+    path: "",
+    component: MainComponent,
+    canActivate: [ClientGuard],
+    children: [
+      {
+        path: "client/account",
+        component: ClientProfilePageComponent,
+      },
+      {
+        path: "client/pharmacies",
+        component: PharmaciesPageComponent,
+      },
+      // {
+      //   path: "client/bill",
+      //   component: BrandsComponent,
+      // },
+      {
+        path: "client/creditCards",
+        component: ClientCardsComponent,
       },
     ],
   },

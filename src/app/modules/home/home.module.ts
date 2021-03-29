@@ -40,6 +40,9 @@ import { ClientProfilePageComponent } from "../client/pages/client-profile-page/
 import { ClientCardsComponent } from "../client/pages/client-cards/client-cards.component";
 import { PharmaciesPageComponent } from "../client/pages/pharmacies-page/pharmacies-page.component";
 import { ProductsPageComponent } from "../client/pages/products-page/products-page.component";
+import { ProductItemComponent } from "../client/components/product-item/product-item.component";
+import { PharmacyItemComponent } from "../client/components/pharmacy-item/pharmacy-item.component";
+import { CardItemComponent } from "../client/components/card-item/card-item.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -66,6 +69,9 @@ import { ProductsPageComponent } from "../client/pages/products-page/products-pa
     ClientCardsComponent,
     PharmaciesPageComponent,
     ProductsPageComponent,
+    ProductItemComponent,
+    PharmacyItemComponent,
+    CardItemComponent,
   ],
   imports: [
     CommonModule,
