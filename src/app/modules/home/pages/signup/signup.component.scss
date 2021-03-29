@@ -1,0 +1,96 @@
+/*.container {
+  background-color: white;
+  border: 1.4px solid #2f4a85;
+}*/
+.title1 {
+    color: #2f4a85;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+  }
+  .title2 {
+    color: #2f4a85;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+  }
+  .login-container {
+    padding-top: 20%;
+  }
+  .login-card {
+    background-color: transparent;
+    align-self: center;
+  }
+  .form-letter {
+    color: #2f4a85;
+    font-size: small;
+    font-style: normal;
+    border-bottom: solid #e9e9f0 0.1rem;
+  }
+  .row_center_xs {
+    padding-right: 20%;
+    padding-left: 20%;
+  }
+  .button_login {
+    background-color: #2f4a85;
+    color: white;
+    margin-right: 50px;
+  }
+  
+  .button_regis {
+    background-color: white;
+    color: #2f4a85;
+  }
+  /*.inputuc{
+  
+      padding: .8rem;
+      margin: .5rem 0;
+      border: none;
+      border-bottom: solid #2F4A85 .1rem;
+      transition: all .5s;
+      overflow: visible;
+      white-space: nowrap;
+      line-height: 25px;
+      margin-top: -5px;
+      text-align: left;
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 15px;
+    }*/
+  .display-all{
+    display: flex;
+    //box-sizing: border-box;
+    height: 100vh;
+  }
+  .column{
+    &-left{
+      //background-color: red;
+      width: 50%;
+    }
+    &-right{
+      //background-color: yellow;
+     width: 50%;
+     //background: url(../../../assets/images/login_fondo1.jpg);
+     background: url(../../../../../assets/images/login_fondo1.jpg);
+     background-repeat: no-repeat;
+     width: 50%;
+     background-size: cover;
+     height: 100%;
+    }
+  }
+  .loginentrada{
+    margin-right: 50%;
+  }
+  .buttonsradioeleccion{
+    margin-right: 50%;
+  }
+  .form{
+    margin-right: 50%;
+  }
