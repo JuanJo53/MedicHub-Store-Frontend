@@ -57,6 +57,8 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MomentDateModule } from "@angular/material-moment-adapter";
 import { CreditCardNumberPipe } from "src/app/shared/pipes/credit-card-number.pipe";
+import { PharmacyItemComponent } from "../client/components/pharmacy-item/pharmacy-item.component";
+import { ClientHomeComponent } from "../client/pages/client-home/client-home.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -97,6 +99,8 @@ import { CreditCardNumberPipe } from "src/app/shared/pipes/credit-card-number.pi
     ReportsPageComponent,
     EditClientComponent,
     CreditCardNumberPipe,
+    PharmacyItemComponent,
+    ClientHomeComponent,
   ],
   imports: [
     CommonModule,
