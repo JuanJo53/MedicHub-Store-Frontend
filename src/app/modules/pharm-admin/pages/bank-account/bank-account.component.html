@@ -1,5 +1,5 @@
 <div class="container" *ngIf="bankAccount; else elseBlock">
-  <h1 mat-dialog-title >Detalles Cuenta de Banco</h1>
+  <h1 mat-dialog-title>Detalles Cuenta de Banco</h1>
   <form
     [formGroup]="form"
     (ngSubmit)="saveChanges($event, bankAccount.bankAccountId)"

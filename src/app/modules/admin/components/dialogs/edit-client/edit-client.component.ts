@@ -19,7 +19,6 @@ export class EditClientComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private clientService: ClientService,
     public dialogRef: MatDialogRef<EditClientComponent>,
-    private tokenService: TokenService,
     @Inject(MAT_DIALOG_DATA)
     public data: { clientId: number }
   ) {}
