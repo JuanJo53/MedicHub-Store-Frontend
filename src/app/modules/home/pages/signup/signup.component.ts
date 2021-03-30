@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
   }
   editClient(): void {
     this.form = this.fromBuilder.group({
-      clientId: [0, [Validators.required]],
+      //clientId: [0, [Validators.required]],
       firstName: ["", [Validators.required]],
       firstSurname: ["", [Validators.required]],
       secondSurname: ["", [Validators.required]],
@@ -47,9 +47,13 @@ export class SignupComponent implements OnInit {
       console.log(client);
       this.createClient(client);
     }
+    else{
+      console.log("Also salio mal");
+    }
   }
   createClient(newClient: Client): void {
-    this.userService.postNewClient(newClient).subscribe();
-
+    this.userService.postNewClient(newClient).subscribe((client) => {
+      console.log(client);
+    });
   }
 }

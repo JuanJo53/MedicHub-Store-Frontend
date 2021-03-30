@@ -14,7 +14,7 @@
           </div>
           <div class="row_center_xs">
             <mat-card ><!--class="signup-card"-->
-              <form [formGroup]="form" (ngSubmit)="saveClient($event, client.clientId)">
+              <form [formGroup]="form" (ngSubmit)="saveClient($event)">
                 <mat-form-field class="form-input">
                   <mat-label class="form-letter">Apellido Paterno</mat-label>
                   <input
@@ -59,8 +59,8 @@
 
             <input
               matInput
-              formControlName="password"
-              placeholder="birthdate"
+              formControlName="birthdate"
+              placeholder=""
               required
             /> 
         </mat-form-field>
@@ -75,7 +75,7 @@
             type="password"
           /> 
       </mat-form-field>
-      <mat-form-field class="form-input">
+      <!--<mat-form-field class="form-input">
         <mat-label class="form-letter">Confirmar Contraseña</mat-label>
 
         <input
@@ -85,7 +85,7 @@
           required
           type="password"
         /> 
-    </mat-form-field>
+    </mat-form-field>-->
     <mat-form-field class="form-input">
       <mat-label class="form-letter">Celular</mat-label>
 
@@ -154,7 +154,7 @@
   <input
     matInput
     formControlName="street"
-    placeholder="Contraseña"
+    placeholder="Calle"
     required
   /> 
 </mat-form-field>
@@ -164,8 +164,9 @@
   <input
     matInput
     formControlName="number"
-    placeholder="Contraseña"
+    placeholder="Numero"
     required
+    type="number"
   /> 
 </mat-form-field>
               <br />
