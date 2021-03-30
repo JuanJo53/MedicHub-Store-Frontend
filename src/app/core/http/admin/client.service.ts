@@ -30,7 +30,7 @@ export class ClientService {
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.get<Client>(apiKey.api + `/client/${clientId}/getClient`, {
+    return this.http.get<Client>(apiKey.api + `/client/${clientId}`, {
       headers: headers,
     });
   }
