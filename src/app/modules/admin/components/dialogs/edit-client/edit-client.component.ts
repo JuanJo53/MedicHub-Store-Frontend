@@ -1,10 +1,15 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
 import { ClientService } from "src/app/core/http/admin/client.service";
 import { Client } from "src/app/shared/models/client";
 import { MAT_DATE_FORMATS } from "@angular/material";
 import { DatePipe } from "@angular/common";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 export const MY_FORMATS = {
   parse: {
@@ -32,6 +37,7 @@ export class EditClientComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private clientService: ClientService,
     public dialogRef: MatDialogRef<EditClientComponent>,
+    public dialog: MatDialog,
     public datepipe: DatePipe,
     @Inject(MAT_DIALOG_DATA)
     public data: { clientId: number }
@@ -146,7 +152,18 @@ export class EditClientComponent implements OnInit {
       console.log(responseClient);
       if (responseClient) {
         this.dialogRef.close(true);
+        this.displaySuccesDialog(
+          "¡Los datos del cliente se actualizaron exitosamente!"
+        );
       }
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }
