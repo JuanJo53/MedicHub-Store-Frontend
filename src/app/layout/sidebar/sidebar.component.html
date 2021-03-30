@@ -30,10 +30,30 @@
     ><span class="link__text">Dashboard</span></a
   >
   <a
+    *ngIf="userRole == 3"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/client/account"
+    ><mat-icon class="link__icon">account</mat-icon
+    ><span class="link__text">Perfil de Usuario</span></a
+  >
+  <a
+    *ngIf="userRole == 1"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
     routerLink="/admin/reports"
+    disabled
+    ><mat-icon class="link__icon">table_view</mat-icon
+    ><span class="link__text">Reportes</span></a
+  >
+  <a
+    *ngIf="userRole == 2"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/pharmAdmin/reports"
     disabled
     ><mat-icon class="link__icon">table_view</mat-icon
     ><span class="link__text">Reportes</span></a
@@ -55,6 +75,15 @@
     routerLink="/pharmAdmin/products"
     ><mat-icon class="link__icon">shopping_cart</mat-icon
     ><span class="link__text">Products</span></a
+  >
+  <a
+    *ngIf="userRole == 3"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/client/pharmacies"
+    ><mat-icon class="link__icon">shopping_cart</mat-icon
+    ><span class="link__text">Farmacias</span></a
   >
   <a
     *ngIf="userRole == 1"
@@ -82,5 +111,14 @@
     routerLink="/pharmAdmin/bankAccount"
     ><mat-icon class="link__icon">account_balance</mat-icon
     ><span class="link__text">Cuenta de Banco</span></a
+  >
+  <a
+    *ngIf="userRole == 3"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/client/clientCards"
+    ><mat-icon class="link__icon">credit_card</mat-icon
+    ><span class="link__text">Tarjetas de Credito</span></a
   >
 </mat-nav-list>

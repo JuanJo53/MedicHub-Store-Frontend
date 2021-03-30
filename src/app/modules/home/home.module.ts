@@ -36,6 +36,23 @@ import { BankAccountComponent } from "../pharm-admin/pages/bank-account/bank-acc
 import { MatRadioModule } from "@angular/material/radio";
 import { AddBankAccountComponent } from "../pharm-admin/components/dialogs/add-bank-account/add-bank-account.component";
 import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succes-dialog.component";
+import { ClientProfilePageComponent } from "../client/pages/client-profile-page/client-profile-page.component";
+import { ClientCardsComponent } from "../client/pages/client-cards/client-cards.component";
+import { PharmaciesPageComponent } from "../client/pages/pharmacies-page/pharmacies-page.component";
+import { ProductsPageComponent } from "../client/pages/products-page/products-page.component";
+import { DashboardComponent } from "../admin/pages/dashboard/dashboard.component";
+import { PharmaciesComponent } from "../admin/pages/pharmacies/pharmacies.component";
+import { CreatePharmacyComponent } from "../admin/components/dialogs/create-pharmacy/create-pharmacy.component";
+import { PharmacyComponent } from "../admin/components/pharmacy/pharmacy.component";
+import { PharmacyStatusPipe } from "src/app/shared/pipes/pharmacy-status.pipe";
+import { SubsidiaryComponent } from "../admin/components/subsidiary/subsidiary.component";
+import { CreateSubsidiaryComponent } from "../admin/components/dialogs/create-subsidiary/create-subsidiary.component";
+import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subsidiary-detail.component";
+import { CreateSubsiAdminComponent } from "../admin/components/dialogs/create-subsi-admin/create-subsi-admin.component";
+import { EditSubsiAdminsComponent } from "../admin/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
+import { ClientsPageComponent } from "../admin/pages/clients-page/clients-page.component";
+import { ReportsPageComponent } from "../admin/pages/reports-page/reports-page.component";
+import { EditClientComponent } from "../admin/components/dialogs/edit-client/edit-client.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -58,6 +75,23 @@ import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succe
     AddBankAccountComponent,
     SuccesDialogComponent,
     PharmDashboardComponent,
+    ClientProfilePageComponent,
+    ClientCardsComponent,
+    PharmaciesPageComponent,
+    ProductsPageComponent,
+    DashboardComponent,
+    PharmaciesComponent,
+    CreatePharmacyComponent,
+    PharmacyComponent,
+    PharmacyStatusPipe,
+    SubsidiaryComponent,
+    CreateSubsidiaryComponent,
+    SubsidiaryDetailComponent,
+    CreateSubsiAdminComponent,
+    EditSubsiAdminsComponent,
+    ClientsPageComponent,
+    ReportsPageComponent,
+    EditClientComponent,
   ],
   imports: [
     CommonModule,
@@ -89,6 +123,11 @@ import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succe
     CreateBranchComponent,
     AddBankAccountComponent,
     SuccesDialogComponent,
+    CreatePharmacyComponent,
+    CreateSubsidiaryComponent,
+    CreateSubsiAdminComponent,
+    EditSubsiAdminsComponent,
+    EditClientComponent,
   ],
 })
 export class HomeModule {}

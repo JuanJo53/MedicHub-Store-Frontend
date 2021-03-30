@@ -14,8 +14,16 @@ import { BankAccountComponent } from "./modules/pharm-admin/pages/bank-account/b
 import { PharmAdminGuard } from "./core/guards/pharm-admin.guard";
 import { ReportsPageComponent } from "./modules/admin/pages/reports-page/reports-page.component";
 import { ClientsPageComponent } from "./modules/admin/pages/clients-page/clients-page.component";
+import { ClientProfilePageComponent } from "./modules/client/pages/client-profile-page/client-profile-page.component";
+import { PharmaciesPageComponent } from "./modules/client/pages/pharmacies-page/pharmacies-page.component";
+import { ClientCardsComponent } from "./modules/client/pages/client-cards/client-cards.component";
+import { ClientGuard } from "./core/guards/client.guard";
 
 const routes: Routes = [
+  // {
+  //   path: "**",
+  //   redirectTo: "login",
+  // },
   {
     path: "",
     redirectTo: "/login",
@@ -63,23 +71,57 @@ const routes: Routes = [
   {
     path: "",
     component: MainComponent,
-    canActivate: [PharmAdminGuard],
     children: [
       {
         path: "pharmAdmin/dashboard",
+        canActivate: [PharmAdminGuard],
         component: PharmDashboardComponent,
       },
+      // {
+      //   path: "pharmAdmin/reports",
+      //   canActivate: [PharmAdminGuard],
+      //   component: ProductsComponent,
+      // },
       {
         path: "pharmAdmin/products",
+        canActivate: [PharmAdminGuard],
         component: ProductsComponent,
       },
       {
         path: "pharmAdmin/brands",
+        canActivate: [PharmAdminGuard],
         component: BrandsComponent,
       },
       {
         path: "pharmAdmin/bankAccount",
+        canActivate: [PharmAdminGuard],
         component: BankAccountComponent,
+      },
+    ],
+  },
+  {
+    path: "",
+    component: MainComponent,
+    children: [
+      {
+        path: "client/account",
+        canActivate: [ClientGuard],
+        component: ClientProfilePageComponent,
+      },
+      {
+        path: "client/pharmacies",
+        canActivate: [ClientGuard],
+        component: PharmaciesPageComponent,
+      },
+      // {
+      //   path: "client/bill",
+      // canActivate: [ClientGuard],
+      //   component: BrandsComponent,
+      // },
+      {
+        path: "client/creditCards",
+        canActivate: [ClientGuard],
+        component: ClientCardsComponent,
       },
     ],
   },
