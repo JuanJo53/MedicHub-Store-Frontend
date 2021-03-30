@@ -6,16 +6,14 @@ import { HomeModule } from "./modules/home/home.module";
 import { CookieService } from "ngx-cookie-service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
-import { HomeAdminModule } from "./modules/admin/homeAdmin.module";
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HomeModule,
-    HomeAdminModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AppRoutingModule,
+    HomeModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

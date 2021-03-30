@@ -20,6 +20,10 @@ import { ClientCardsComponent } from "./modules/client/pages/client-cards/client
 import { ClientGuard } from "./core/guards/client.guard";
 
 const routes: Routes = [
+  // {
+  //   path: "**",
+  //   redirectTo: "login",
+  // },
   {
     path: "",
     redirectTo: "/login",
@@ -67,26 +71,30 @@ const routes: Routes = [
   {
     path: "",
     component: MainComponent,
-    canActivate: [PharmAdminGuard],
     children: [
       {
         path: "pharmAdmin/dashboard",
+        canActivate: [PharmAdminGuard],
         component: PharmDashboardComponent,
       },
       // {
       //   path: "pharmAdmin/reports",
+      //   canActivate: [PharmAdminGuard],
       //   component: ProductsComponent,
       // },
       {
         path: "pharmAdmin/products",
+        canActivate: [PharmAdminGuard],
         component: ProductsComponent,
       },
       {
         path: "pharmAdmin/brands",
+        canActivate: [PharmAdminGuard],
         component: BrandsComponent,
       },
       {
         path: "pharmAdmin/bankAccount",
+        canActivate: [PharmAdminGuard],
         component: BankAccountComponent,
       },
     ],
@@ -94,22 +102,25 @@ const routes: Routes = [
   {
     path: "",
     component: MainComponent,
-    canActivate: [ClientGuard],
     children: [
       {
         path: "client/account",
+        canActivate: [ClientGuard],
         component: ClientProfilePageComponent,
       },
       {
         path: "client/pharmacies",
+        canActivate: [ClientGuard],
         component: PharmaciesPageComponent,
       },
       // {
       //   path: "client/bill",
+      // canActivate: [ClientGuard],
       //   component: BrandsComponent,
       // },
       {
         path: "client/creditCards",
+        canActivate: [ClientGuard],
         component: ClientCardsComponent,
       },
     ],

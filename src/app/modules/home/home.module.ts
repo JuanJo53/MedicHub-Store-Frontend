@@ -40,9 +40,19 @@ import { ClientProfilePageComponent } from "../client/pages/client-profile-page/
 import { ClientCardsComponent } from "../client/pages/client-cards/client-cards.component";
 import { PharmaciesPageComponent } from "../client/pages/pharmacies-page/pharmacies-page.component";
 import { ProductsPageComponent } from "../client/pages/products-page/products-page.component";
-import { ProductItemComponent } from "../client/components/product-item/product-item.component";
-import { PharmacyItemComponent } from "../client/components/pharmacy-item/pharmacy-item.component";
-import { CardItemComponent } from "../client/components/card-item/card-item.component";
+import { DashboardComponent } from "../admin/pages/dashboard/dashboard.component";
+import { PharmaciesComponent } from "../admin/pages/pharmacies/pharmacies.component";
+import { CreatePharmacyComponent } from "../admin/components/dialogs/create-pharmacy/create-pharmacy.component";
+import { PharmacyComponent } from "../admin/components/pharmacy/pharmacy.component";
+import { PharmacyStatusPipe } from "src/app/shared/pipes/pharmacy-status.pipe";
+import { SubsidiaryComponent } from "../admin/components/subsidiary/subsidiary.component";
+import { CreateSubsidiaryComponent } from "../admin/components/dialogs/create-subsidiary/create-subsidiary.component";
+import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subsidiary-detail.component";
+import { CreateSubsiAdminComponent } from "../admin/components/dialogs/create-subsi-admin/create-subsi-admin.component";
+import { EditSubsiAdminsComponent } from "../admin/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
+import { ClientsPageComponent } from "../admin/pages/clients-page/clients-page.component";
+import { ReportsPageComponent } from "../admin/pages/reports-page/reports-page.component";
+import { EditClientComponent } from "../admin/components/dialogs/edit-client/edit-client.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -69,9 +79,19 @@ import { CardItemComponent } from "../client/components/card-item/card-item.comp
     ClientCardsComponent,
     PharmaciesPageComponent,
     ProductsPageComponent,
-    ProductItemComponent,
-    PharmacyItemComponent,
-    CardItemComponent,
+    DashboardComponent,
+    PharmaciesComponent,
+    CreatePharmacyComponent,
+    PharmacyComponent,
+    PharmacyStatusPipe,
+    SubsidiaryComponent,
+    CreateSubsidiaryComponent,
+    SubsidiaryDetailComponent,
+    CreateSubsiAdminComponent,
+    EditSubsiAdminsComponent,
+    ClientsPageComponent,
+    ReportsPageComponent,
+    EditClientComponent,
   ],
   imports: [
     CommonModule,
@@ -103,6 +123,11 @@ import { CardItemComponent } from "../client/components/card-item/card-item.comp
     CreateBranchComponent,
     AddBankAccountComponent,
     SuccesDialogComponent,
+    CreatePharmacyComponent,
+    CreateSubsidiaryComponent,
+    CreateSubsiAdminComponent,
+    EditSubsiAdminsComponent,
+    EditClientComponent,
   ],
 })
 export class HomeModule {}
