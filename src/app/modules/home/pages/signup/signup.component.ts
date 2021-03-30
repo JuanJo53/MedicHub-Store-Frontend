@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
       this.createClient(client);
     }
     else{
-      console.log("Also salio mal");
+      console.log("Algo salio mal");
     }
   }
   createClient(newClient: Client): void {
