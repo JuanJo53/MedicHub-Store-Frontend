@@ -1,10 +1,7 @@
-import { TokenService } from "src/app/core/authentication/token.service";
-import { AuthService } from "./../../../../core/authentication/auth.service";
 import { Component, OnInit } from "@angular/core";
+import { UserService } from "src/app/core/http/user/user.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Client } from "src/app/shared/models/client";
-import { Router } from "@angular/router";
-import { stringify } from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-signup',
@@ -14,61 +11,45 @@ import { stringify } from "@angular/compiler/src/util";
 export class SignupComponent implements OnInit {
 
   form: FormGroup;
-
-  isLogged = false;
-  isLoginFail = false;
-  roles: number;
-
   Client: Client;
-
-  //errMsj: string;*/
-
   constructor(
     private fromBuilder: FormBuilder,
-    private tokenService: TokenService,
-    private authService: AuthService,
-    private router: Router
+    private userService: UserService,
+    //private router: Router
 
    ) {}
 
-   ngOnInit(): void {
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-      this.isLoginFail = false;
-    }
+  ngOnInit(): void {
+    this.editClient();
+  }
+  editClient(): void {
     this.form = this.fromBuilder.group({
+      clientId: [0, [Validators.required]],
+      firstName: ["", [Validators.required]],
+      firstSurname: ["", [Validators.required]],
+      secondSurname: ["", [Validators.required]],
+      ci: ["", [Validators.required]],
+      phone: ["", [Validators.required,Validators.maxLength(18),Validators.minLength(12)]],
       email: ["", [Validators.required, Validators.email]],
+      userName: ["", [Validators.required]],
       password: ["", [Validators.required]],
-      role: ["", [Validators.required]],
+      birthdate: ["", [Validators.required]],
+      number:[0, [Validators.required]],
+      street:["", [Validators.required]],
+      zone: ["", [Validators.required]],
+      city: ["", [Validators.required]],
+      country: ["", [Validators.required]],
     });
   }
-  signup() {
+  saveClient(): void {
     if (this.form.valid) {
-      const usr = this.form.value;
-      this.tokenService.setAuthorities(this.form.get("role").value);
-      this.onLogin(usr);
+      const client = this.form.value;
+      console.log(client);
+      this.createClient(client);
     }
   }
-  onLogin(user: Client) {
-    /*this.roles = parseInt(this.tokenService.getAuthorities());
-    this.authService.logIn(user).subscribe(
-      (data) => {
-        this.isLogged = true;
-        this.isLoginFail = false;
-        this.tokenService.setToken(data.jwt);
-        this.tokenService.setUserName(data.subsidiaryId);
+  createClient(newClient: Client): void {
+    this.userService.postNewClient(newClient).subscribe();
 
-        if (this.roles == 1) {
-          this.router.navigate(["/admin/dashboard"]);
-        } else if (this.roles == 2) {
-          this.router.navigate(["/pharmAdmin/dashboard"]);
-        }
-      },
-      (err) => {
-        this.isLogged = false;
-        this.isLoginFail = true;
-      }
-    );
-  }*/
-}
+  }
 }
