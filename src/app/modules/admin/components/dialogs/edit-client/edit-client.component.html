@@ -74,6 +74,17 @@
           required
         />
       </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label class="form-letter">Fecha de Nacimiento</mat-label>
+        <input
+          [matDatepicker]="picker"
+          matInput
+          formControlName="birthdate"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker color="primary"></mat-datepicker>
+      </mat-form-field>
       <mat-form-field class="form">
         <mat-label>Contraseña</mat-label
         ><input
@@ -81,6 +92,56 @@
           type="password"
           formControlName="password"
           placeholder="*******"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label class="form-letter">Zona</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="zone"
+          placeholder="Zona"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label class="form-letter">Ciudad</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="city"
+          placeholder="Ciudad"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label class="form-letter">Pais</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="country"
+          placeholder="Pais"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label class="form-letter">Calle</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="street"
+          placeholder="Calle"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="form-input">
+        <mat-label class="form-letter">Numero</mat-label>
+        <input
+          type="number"
+          matInput
+          formControlName="number"
+          placeholder="Numero"
           required
         />
       </mat-form-field>

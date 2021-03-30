@@ -9,9 +9,9 @@ export interface Client {
   userName: string;
   password: string;
   birthdate: string;
-  number:number;
-  street:string;
+  number: number;
+  street: string;
   zone: string;
   city: string;
-  country: string; 
+  country: string;
 }
