@@ -7,6 +7,7 @@ import { CookieService } from "ngx-cookie-service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { DatePipe } from "@angular/common";
+import { CreditCardDirectivesModule } from "angular-cc-library";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { DatePipe } from "@angular/common";
     HttpClientModule,
     AppRoutingModule,
     HomeModule,
+    CreditCardDirectivesModule,
   ],
   providers: [CookieService, DatePipe],
   bootstrap: [AppComponent],
