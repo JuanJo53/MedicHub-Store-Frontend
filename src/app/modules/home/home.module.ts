@@ -53,6 +53,12 @@ import { EditSubsiAdminsComponent } from "../admin/components/dialogs/edit-subsi
 import { ClientsPageComponent } from "../admin/pages/clients-page/clients-page.component";
 import { ReportsPageComponent } from "../admin/pages/reports-page/reports-page.component";
 import { EditClientComponent } from "../admin/components/dialogs/edit-client/edit-client.component";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MomentDateModule } from "@angular/material-moment-adapter";
+import { CreditCardNumberPipe } from "src/app/shared/pipes/credit-card-number.pipe";
+import { PharmacyItemComponent } from "../client/components/pharmacy-item/pharmacy-item.component";
+import { ClientHomeComponent } from "../client/pages/client-home/client-home.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -92,6 +98,9 @@ import { EditClientComponent } from "../admin/components/dialogs/edit-client/edi
     ClientsPageComponent,
     ReportsPageComponent,
     EditClientComponent,
+    CreditCardNumberPipe,
+    PharmacyItemComponent,
+    ClientHomeComponent,
   ],
   imports: [
     CommonModule,
@@ -113,6 +122,9 @@ import { EditClientComponent } from "../admin/components/dialogs/edit-client/edi
     MatSelectModule,
     MatTableModule,
     MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MomentDateModule,
   ],
   entryComponents: [
     LoginComponent,

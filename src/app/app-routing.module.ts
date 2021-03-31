@@ -18,6 +18,7 @@ import { ClientProfilePageComponent } from "./modules/client/pages/client-profil
 import { PharmaciesPageComponent } from "./modules/client/pages/pharmacies-page/pharmacies-page.component";
 import { ClientCardsComponent } from "./modules/client/pages/client-cards/client-cards.component";
 import { ClientGuard } from "./core/guards/client.guard";
+import { ClientHomeComponent } from "./modules/client/pages/client-home/client-home.component";
 
 const routes: Routes = [
   // {
@@ -103,6 +104,11 @@ const routes: Routes = [
     path: "",
     component: MainComponent,
     children: [
+      {
+        path: "client/home",
+        canActivate: [ClientGuard],
+        component: ClientHomeComponent,
+      },
       {
         path: "client/account",
         canActivate: [ClientGuard],

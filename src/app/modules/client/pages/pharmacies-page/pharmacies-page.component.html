@@ -1,1 +1,17 @@
-<p>pharmacies-page works!</p>
+<h1 class="title"><strong>Todas las Farmacias Disponibles</strong></h1>
+<div class="header-farmacias">
+  <div>
+    <div fxFlex fxHide.lt-sm="true" class="search-bar">
+      <form class="top-search-form">
+        <mat-icon role="img">search</mat-icon>
+        <input placeholder="Buscar farmacia" type="text" class="lettersearch" />
+      </form>
+    </div>
+  </div>
+</div>
+<div class="pharmacies">
+  <app-pharmacy-item
+    *ngFor="let pharmacy of pharmacies"
+    [pharmacy]="pharmacy"
+  ></app-pharmacy-item>
+</div>

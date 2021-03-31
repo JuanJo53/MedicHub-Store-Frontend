@@ -34,8 +34,17 @@
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
+    routerLink="/client/home"
+    ><mat-icon class="link__icon">home</mat-icon
+    ><span class="link__text">Home</span></a
+  >
+  <a
+    *ngIf="userRole == 3"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
     routerLink="/client/account"
-    ><mat-icon class="link__icon">account</mat-icon
+    ><mat-icon class="link__icon">account_circle</mat-icon
     ><span class="link__text">Perfil de Usuario</span></a
   >
   <a

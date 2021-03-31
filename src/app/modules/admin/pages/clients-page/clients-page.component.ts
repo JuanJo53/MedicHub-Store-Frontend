@@ -24,6 +24,7 @@ export class ClientsPageComponent implements OnInit {
     "SecondSurname",
     "Ci",
     "Email",
+    "Username",
     "id_userEdit",
     "id_userDel",
   ];
@@ -45,6 +46,7 @@ export class ClientsPageComponent implements OnInit {
     this.clients = [];
     this.clientService.getClients().subscribe((clients) => {
       this.clients = clients;
+      this.dataSource = new MatTableDataSource(this.clients);
       console.log(clients);
     });
   }
@@ -79,8 +81,8 @@ export class ClientsPageComponent implements OnInit {
           console.log("Resultado " + rta);
           this.text = result;
           this.displaySuccesDialog("¡Se elimino al cliente exitosamente!");
+          this.ngOnInit();
         });
-        this.ngOnInit();
       }
     });
   }

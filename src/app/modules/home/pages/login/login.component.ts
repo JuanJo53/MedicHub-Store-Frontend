@@ -59,6 +59,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["/admin/dashboard"]);
         } else if (this.roles == 2) {
           this.router.navigate(["/pharmAdmin/dashboard"]);
+        } else if (this.roles == 3) {
+          this.router.navigate(["/client/home"]);
         }
       },
       (err) => {

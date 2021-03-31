@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
 import { TokenService } from "src/app/core/authentication/token.service";
 import { BankAccountService } from "src/app/core/http/pharm-admin/bank-account.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { BankAccount } from "src/app/shared/models/bank-account";
 import { AddBankAccountComponent } from "../../components/dialogs/add-bank-account/add-bank-account.component";
+import { CreditCardValidators } from "angular-cc-library";
 
 @Component({
   selector: "app-bank-account",
@@ -64,6 +64,7 @@ export class BankAccountComponent implements OnInit {
         this.displaySuccesDialog("¡Se actualizo los datos exitosamente!");
       });
   }
+  // TODO: https://www.npmjs.com/package/angular-credit-cards
   editBankAccount(id: number): void {
     this.form = this.fromBuilder.group({
       bankAccountId: [id, [Validators.required]],

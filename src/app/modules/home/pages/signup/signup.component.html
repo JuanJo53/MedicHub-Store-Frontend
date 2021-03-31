@@ -1,81 +1,89 @@
 <div class="display-all">
-    <div class="column-left">
-      <div class="container1">
-        <div ><!--class="signup-container"-->
-          <div ><!--class="signup-header"-->
-            <!-- <img [src]="logo" alt="SmartIdea-logo" /> -->
-            <h1 class="title1"><strong>MEDIC - HUB</strong></h1>
-            <h4 class="title2">
-              Bienvenido de nuevo, por favor introduzca su usuario y contraseña.
-            </h4>
-            <br />
-            <br />
-            <br />
-          </div>
-          <div class="row_center_xs">
-            <mat-card ><!--class="signup-card"-->
-              <form [formGroup]="form" (ngSubmit)="saveClient($event)">
-                <mat-form-field class="form-input">
-                  <mat-label class="form-letter">Apellido Paterno</mat-label>
-                  <input
-                    matInput
-                    formControlName="firstSurname"
-                    placeholder="Apellido Paterno"
-                    required
-                  /> 
-                </mat-form-field>
-                <mat-form-field class="form-input">
-                  <mat-label class="form-letter">Apellido Materno</mat-label>
-  
-                  <input
-                    matInput
-                    formControlName="secondSurname"
-                    placeholder="Apellido Materno"
-                    required
-                  /> 
+  <div class="column-left">
+    <div class="container1">
+      <div>
+        <!--class="signup-container"-->
+        <div>
+          <!--class="signup-header"-->
+          <!-- <img [src]="logo" alt="SmartIdea-logo" /> -->
+          <h1 class="title1"><strong>MEDIC - HUB</strong></h1>
+          <h4 class="title2">
+            Bienvenido de nuevo, por favor introduzca su usuario y contraseña.
+          </h4>
+          <br />
+          <br />
+          <br />
+        </div>
+        <div class="row_center_xs">
+          <mat-card
+            ><!--class="signup-card"-->
+            <form [formGroup]="form" (ngSubmit)="saveClient($event)">
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Apellido Paterno</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="firstSurname"
+                  placeholder="Apellido Paterno"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Apellido Materno</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="secondSurname"
+                  placeholder="Apellido Materno"
+                  required
+                />
               </mat-form-field>
               <mat-form-field class="form-input">
                 <mat-label class="form-letter">Nombre</mat-label>
-
                 <input
+                  type="text"
                   matInput
                   formControlName="firstName"
                   placeholder="Nombre"
                   required
-                /> 
-            </mat-form-field>
-            <mat-form-field class="form-input">
-              <mat-label class="form-letter">Nombre de Usuario</mat-label>
-
-              <input
-                matInput
-                formControlName="userName"
-                placeholder="Nombre de Usuario"
-                required
-              /> 
-          </mat-form-field>
-          <mat-form-field class="form-input">
-            <mat-label class="form-letter">Fecha de Nacimiento</mat-label>
-
-            <input
-              matInput
-              formControlName="birthdate"
-              placeholder="Fecha de Nacimiento"
-              required
-            /> 
-        </mat-form-field>
-        <mat-form-field class="form-input">
-          <mat-label class="form-letter">Contraseña</mat-label>
-
-          <input
-            matInput
-            formControlName="password"
-            placeholder="Contraseña"
-            required
-            type="password"
-          /> 
-      </mat-form-field>
-      <!--<mat-form-field class="form-input">
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Nombre de Usuario</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="userName"
+                  placeholder="Nombre de Usuario"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Fecha de Nacimiento</mat-label>
+                <input
+                  [matDatepicker]="picker"
+                  matInput
+                  formControlName="birthdate"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker color="primary"></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Contraseña</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="password"
+                  placeholder="Contraseña"
+                  required
+                  type="password"
+                />
+              </mat-form-field>
+              <!--<mat-form-field class="form-input">
         <mat-label class="form-letter">Confirmar Contraseña</mat-label>
 
         <input
@@ -86,113 +94,109 @@
           type="password"
         /> 
     </mat-form-field>-->
-    <mat-form-field class="form-input">
-      <mat-label class="form-letter">Celular</mat-label>
-
-      <input
-        matInput
-        formControlName="phone"
-        placeholder="Celular"
-        required
-        type="phone"
-      /> 
-  </mat-form-field>
-  <mat-form-field class="form-input">
-    <mat-label class="form-letter">Email</mat-label>
-
-    <input
-      matInput
-      formControlName="email"
-      placeholder="Email"
-      required
-      type="email"
-    /> 
-</mat-form-field>
-  <mat-form-field class="form-input">
-    <mat-label class="form-letter">Carnet de Identidad</mat-label>
-
-    <input
-      matInput
-      formControlName="ci"
-      placeholder="Carnet de Identidad"
-      required
-    /> 
-</mat-form-field>
-<mat-form-field class="form-input">
-  <mat-label class="form-letter">Zona</mat-label>
-
-  <input
-    matInput
-    formControlName="zone"
-    placeholder="Zona"
-    required
-  /> 
-</mat-form-field>
-<mat-form-field class="form-input">
-  <mat-label class="form-letter">Ciudad</mat-label>
-
-  <input
-    matInput
-    formControlName="city"
-    placeholder="Ciudad"
-    required
-  /> 
-</mat-form-field>
-<mat-form-field class="form-input">
-  <mat-label class="form-letter">Pais</mat-label>
-
-  <input
-    matInput
-    formControlName="country"
-    placeholder="Pais"
-    required
-  /> 
-</mat-form-field>
-<mat-form-field class="form-input">
-  <mat-label class="form-letter">Calle</mat-label>
-
-  <input
-    matInput
-    formControlName="street"
-    placeholder="Calle"
-    required
-  /> 
-</mat-form-field>
-<mat-form-field class="form-input">
-  <mat-label class="form-letter">Numero</mat-label>
-
-  <input
-    matInput
-    formControlName="number"
-    placeholder="Numero"
-    required
-    type="number"
-  /> 
-</mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Celular</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="phone"
+                  placeholder="Celular"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Email</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="email"
+                  placeholder="Email"
+                  required
+                  type="email"
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Carnet de Identidad</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ci"
+                  placeholder="Carnet de Identidad"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Zona</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="zone"
+                  placeholder="Zona"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Ciudad</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="city"
+                  placeholder="Ciudad"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Pais</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="country"
+                  placeholder="Pais"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Calle</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="street"
+                  placeholder="Calle"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="form-input">
+                <mat-label class="form-letter">Numero</mat-label>
+                <input
+                  type="number"
+                  matInput
+                  formControlName="number"
+                  placeholder="Numero"
+                  required
+                />
+              </mat-form-field>
               <br />
-                <button
-                  type="submit"
-                  mat-raised-button
-                  color="primary"
-                  class="button_signup"
-                >
-                  Registrarse
-                </button>
-                <button
-                  type="submit"
-                  mat-raised-button
-                  color="primary"
-                  routerLink="/login"
-                  class="button_signup"
-                >
-                  Ir a Inicio
-                </button>
-              </form>
-            </mat-card>
-          </div>
+              <button
+                type="submit"
+                mat-raised-button
+                color="primary"
+                class="button_signup"
+              >
+                Registrarse
+              </button>
+              <a
+                color="accent"
+                class="form__button"
+                routerLink="/login"
+                class="button_regis"
+              >
+                Ya tengo una cuenta...
+              </a>
+            </form>
+          </mat-card>
         </div>
       </div>
     </div>
-    <div class="column-right"></div>
   </div>
-  
+  <div class="column-right"></div>
+</div>

@@ -9,14 +9,12 @@ import { TokenService } from "../../authentication/token.service";
 })
 export class ClientService {
   constructor(private http: HttpClient, private tokenService: TokenService) {}
-  postNewClient(newClient: Client) {
+  postNewClient(client: Client) {
     var authToken = this.tokenService.getToken();
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.post(apiKey.api + "/client", newClient, {
-      headers: headers,
-    });
+    return this.http.post(apiKey.api + "/client", client, { headers: headers });
   }
   getClients() {
     var authToken = this.tokenService.getToken();
