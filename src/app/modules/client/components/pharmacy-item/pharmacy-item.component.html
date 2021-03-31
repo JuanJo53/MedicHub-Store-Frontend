@@ -3,7 +3,7 @@
     <mat-card-header>
       <div mat-card-avatar class="subsidiary-header-image"></div>
       <mat-card-title
-        ><a routerLink="pharmacies/{{ subsidiary.subsidiaryId }}">{{
+        ><a routerLink="{{ subsidiary.subsidiaryId }}">{{
           subsidiary.subsidiaryName
         }}</a></mat-card-title
       >
@@ -32,7 +32,7 @@
         id="{{ subsidiary.subsidiaryId }}"
         mat-raised-button
         color="primary"
-        routerLink="pharmacies/{{ subsidiary.subsidiaryId }}"
+        routerLink="{{ subsidiary.subsidiaryId }}"
       >
         VER
       </button>

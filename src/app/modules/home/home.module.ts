@@ -60,6 +60,7 @@ import { CreditCardNumberPipe } from "src/app/shared/pipes/credit-card-number.pi
 import { PharmacyItemComponent } from "../client/components/pharmacy-item/pharmacy-item.component";
 import { ClientHomeComponent } from "../client/pages/client-home/client-home.component";
 import { SubsidiaryDetailsComponent } from "../client/pages/subsidiary-details/subsidiary-details.component";
+import { ProductItemComponent } from "../client/components/product-item/product-item.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -103,6 +104,7 @@ import { SubsidiaryDetailsComponent } from "../client/pages/subsidiary-details/s
     PharmacyItemComponent,
     ClientHomeComponent,
     SubsidiaryDetailsComponent,
+    ProductItemComponent,
   ],
   imports: [
     CommonModule,

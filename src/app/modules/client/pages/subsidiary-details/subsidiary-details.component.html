@@ -1,3 +1,55 @@
-<div class="container">
-  <h1></h1>
+<div class="container" *ngIf="subsidiary">
+  <div class="row">
+    <div class="contact-section col">
+      <h1>{{ subsidiary.subsidiaryName }}</h1>
+      <br />
+      <h2>Contacto:</h2>
+      <strong>Email:</strong>
+      <p>{{ subsidiary.email }}</p>
+      <strong>Telefono de referencia:</strong>
+      <p>{{ subsidiary.phone }}</p>
+    </div>
+
+    <div class="direcction-section col">
+      <h2>Detalles de la Dirección:</h2>
+      <div class="row">
+        <div class="col">
+          <strong>Calle:</strong>
+          <p>{{ subsidiary.street }}</p>
+          <strong>Numero:</strong>
+          <p>{{ subsidiary.number }}</p>
+          <strong>Zona:</strong>
+          <p>{{ subsidiary.zone }}</p>
+        </div>
+        <div class="col">
+          <strong>Ciudad:</strong>
+          <p>{{ subsidiary.city }}</p>
+          <strong>Pais:</strong>
+          <p>{{ subsidiary.country }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container products">
+    <h1>Productos</h1>
+    <mat-form-field class="formfarmacia2">
+      <mat-label>Buscar</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Ex. ium"
+        #input
+      />
+    </mat-form-field>
+    <div class="container">
+      <div class="row row-cols-3">
+        <app-product-item
+          class="col mt-3 mb-3"
+          *ngFor="let product of dataSource.filteredData"
+          [product]="product"
+        >
+        </app-product-item>
+      </div>
+    </div>
+  </div>
 </div>
