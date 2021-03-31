@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { DatePipe } from "@angular/common";
 import { CreditCardDirectivesModule } from "angular-cc-library";
-import { ClientHomeComponent } from "./modules/client/pages/client-home/client-home.component";
 
 @NgModule({
   declarations: [AppComponent],
