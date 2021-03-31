@@ -18,23 +18,31 @@ export class CardService {
       headers: headers,
     });
   }
-  /*getBankAccoun(pharmacyId: number) {
+  getClientCards(clientId: number) {
     var authToken = this.tokenService.getToken();
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,
     });
-    return this.http.get<BankAccount>(
-      apiKey.api + `/bankAccount/${pharmacyId}`,
-      { headers: headers }
-    );
-  }
-  updateBankAccoun(bankAccount: BankAccount) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
-    return this.http.put(apiKey.api + `/bankAccount`, bankAccount, {
+    return this.http.get<Card[]>(apiKey.api + `/client/${clientId}/card`, {
       headers: headers,
     });
-  }*/
+  }
+  updateCard(card: Card) {
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.put(apiKey.api + `/card`, card, {
+      headers: headers,
+    });
+  }
+  deleteCard(cardId: Card) {
+    var authToken = this.tokenService.getToken();
+    var headers = new HttpHeaders({
+      Authorization: `${authToken}`,
+    });
+    return this.http.delete(apiKey.api + `/card/${cardId}`, {
+      headers: headers,
+    });
+  }
 }

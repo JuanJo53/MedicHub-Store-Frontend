@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { PharmaciesService } from "src/app/core/http/admin/pharmacies.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { CreatePharmacyComponent } from "../../components/dialogs/create-pharmacy/create-pharmacy.component";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
   selector: "app-pharmacies",
@@ -12,6 +13,7 @@ import { CreatePharmacyComponent } from "../../components/dialogs/create-pharmac
 })
 export class PharmaciesComponent implements OnInit {
   pharmacies: Pharmacy[] = [];
+  dataSource = new MatTableDataSource();
 
   name: string;
   phone: string;
@@ -37,9 +39,14 @@ export class PharmaciesComponent implements OnInit {
       }
     });
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   fecthPharmacies(): void {
     this.pharmaciesService.getAllPharmacies().subscribe((pharmacies) => {
       this.pharmacies = pharmacies;
+      this.dataSource = new MatTableDataSource(this.pharmacies);
       console.log(pharmacies);
     });
   }

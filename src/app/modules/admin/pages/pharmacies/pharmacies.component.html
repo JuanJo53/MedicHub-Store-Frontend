@@ -5,20 +5,22 @@
       <mat-icon class="button-add">add_business</mat-icon>
     </button>
   </div>
-  <div>
-    <div fxFlex fxHide.lt-sm="true" class="search-bar">
-      <form class="top-search-form">
-        <mat-icon role="img">search</mat-icon>
-        <input  placeholder="Buscar farmacia" type="text" class="lettersearch" />
-      </form>
-    </div>
+  <div class="filter">
+    <mat-form-field>
+      <mat-label>Buscar</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Ex. ium"
+        #input
+      />
+    </mat-form-field>
   </div>
 </div>
 
-  <div class="pharmacies">
-    <app-pharmacy
-      *ngFor="let pharmacy of pharmacies"
-      [pharmacy]="pharmacy"
-    ></app-pharmacy>
-  </div>
-
+<div class="pharmacies">
+  <app-pharmacy
+    *ngFor="let pharmacy of dataSource.filteredData"
+    [pharmacy]="pharmacy"
+  ></app-pharmacy>
+</div>

@@ -61,6 +61,8 @@ import { PharmacyItemComponent } from "../client/components/pharmacy-item/pharma
 import { ClientHomeComponent } from "../client/pages/client-home/client-home.component";
 import { SubsidiaryDetailsComponent } from "../client/pages/subsidiary-details/subsidiary-details.component";
 import { ProductItemComponent } from "../client/components/product-item/product-item.component";
+import { CreateCardComponent } from "../client/components/dialogs/create-card/create-card.component";
+import { CardItemComponent } from "../client/components/card-item/card-item.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -105,6 +107,8 @@ import { ProductItemComponent } from "../client/components/product-item/product-
     ClientHomeComponent,
     SubsidiaryDetailsComponent,
     ProductItemComponent,
+    CreateCardComponent,
+    CardItemComponent,
   ],
   imports: [
     CommonModule,
@@ -144,6 +148,7 @@ import { ProductItemComponent } from "../client/components/product-item/product-
     CreateSubsiAdminComponent,
     EditSubsiAdminsComponent,
     EditClientComponent,
+    CreateCardComponent,
   ],
 })
 export class HomeModule {}
