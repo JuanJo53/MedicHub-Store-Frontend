@@ -1,14 +1,32 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { TokenService } from "src/app/core/authentication/token.service";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from "@angular/material/dialog";
 import { ClientService } from "src/app/core/http/admin/client.service";
 import { Client } from "src/app/shared/models/client";
+import { MAT_DATE_FORMATS } from "@angular/material";
+import { DatePipe } from "@angular/common";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: "DD/MM/YYYY",
+  },
+  display: {
+    dateInput: "DD/MM/YYYY",
+    monthYearLabel: "YYYY",
+    dateA11yLabel: "LL",
+    monthYearA11yLabel: "YYYY",
+  },
+};
 @Component({
   selector: "app-edit-client",
   templateUrl: "./edit-client.component.html",
   styleUrls: ["./edit-client.component.scss"],
+  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }],
 })
 export class EditClientComponent implements OnInit {
   client: Client;
@@ -19,6 +37,8 @@ export class EditClientComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private clientService: ClientService,
     public dialogRef: MatDialogRef<EditClientComponent>,
+    public dialog: MatDialog,
+    public datepipe: DatePipe,
     @Inject(MAT_DIALOG_DATA)
     public data: { clientId: number }
   ) {}
@@ -34,6 +54,7 @@ export class EditClientComponent implements OnInit {
   fetchClientDetails(clientId: number) {
     this.clientService.getClientDetail(clientId).subscribe((client) => {
       this.client = client;
+      console.log(client);
       this.editClient();
     });
   }
@@ -105,21 +126,23 @@ export class EditClientComponent implements OnInit {
           Validators.minLength(6),
         ],
       ],
-      birthdate: [
-        this.client.birthdate,
-        [
-          Validators.required,
-          Validators.maxLength(150),
-          Validators.minLength(6),
-        ],
-      ],
+      birthdate: [this.client.birthdate, [Validators.required]],
+      number: [this.client.number, [Validators.required]],
+      street: [this.client.street, [Validators.required]],
+      zone: [this.client.zone, [Validators.required]],
+      city: [this.client.city, [Validators.required]],
+      country: [this.client.country, [Validators.required]],
     });
   }
   saveClient(): void {
     if (this.form.valid) {
       const client = this.form.value;
+      let date = this.datepipe.transform(
+        this.form.get("birthdate").value.toString(),
+        "yyyy-MM-dd"
+      );
+      client.birthdate = date;
       this.updateAdmin(client);
-      this.dialogRef.close(true);
     } else {
       console.log("bad form");
     }
@@ -127,6 +150,20 @@ export class EditClientComponent implements OnInit {
   updateAdmin(client: Client): void {
     this.clientService.updateClient(client).subscribe((responseClient) => {
       console.log(responseClient);
+      if (responseClient) {
+        this.dialogRef.close(true);
+        this.displaySuccesDialog(
+          "¡Los datos del cliente se actualizaron exitosamente!"
+        );
+      }
+    });
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
     });
   }
 }

@@ -59,6 +59,7 @@ import { MomentDateModule } from "@angular/material-moment-adapter";
 import { CreditCardNumberPipe } from "src/app/shared/pipes/credit-card-number.pipe";
 import { PharmacyItemComponent } from "../client/components/pharmacy-item/pharmacy-item.component";
 import { ClientHomeComponent } from "../client/pages/client-home/client-home.component";
+import { SubsidiaryDetailsComponent } from "../client/pages/subsidiary-details/subsidiary-details.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -101,6 +102,7 @@ import { ClientHomeComponent } from "../client/pages/client-home/client-home.com
     CreditCardNumberPipe,
     PharmacyItemComponent,
     ClientHomeComponent,
+    SubsidiaryDetailsComponent,
   ],
   imports: [
     CommonModule,

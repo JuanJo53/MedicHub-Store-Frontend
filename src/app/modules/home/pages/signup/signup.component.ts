@@ -41,10 +41,38 @@ export class SignupComponent implements OnInit {
   }
   editClient(): void {
     this.form = this.fromBuilder.group({
-      firstName: ["", [Validators.required, Validators.minLength(3),]],
-      firstSurname: ["", [Validators.required,Validators.minLength(3)]],
-      secondSurname: ["", [Validators.required,Validators.minLength(3)]],
-      ci: ["", [Validators.required,Validators.minLength(6)]],
+      firstName: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(25),
+        ],
+      ],
+      firstSurname: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(25),
+        ],
+      ],
+      secondSurname: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(25),
+        ],
+      ],
+      ci: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(20),
+          Validators.minLength(6),
+        ],
+      ],
       phone: [
         "",
         [
@@ -53,15 +81,65 @@ export class SignupComponent implements OnInit {
           Validators.minLength(12),
         ],
       ],
-      email: ["", [Validators.required, Validators.email,Validators.minLength(6)]],
-      userName: ["", [Validators.required,Validators.minLength(3)]],
-      password: ["", [Validators.required],Validators.minLength(6)],
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.email,
+          Validators.maxLength(50),
+          Validators.minLength(6),
+        ],
+      ],
+      userName: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(20),
+          Validators.minLength(6),
+        ],
+      ],
+      password: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(50),
+          Validators.minLength(6),
+        ],
+      ],
       birthdate: ["", [Validators.required]],
-      number: [0, [Validators.required]],
-      street: ["", [Validators.required,Validators.minLength(3)]],
-      zone: ["", [Validators.required,Validators.minLength(3)]],
-      city: ["", [Validators.required,Validators.minLength(3)]],
-      country: ["", [Validators.required,Validators.minLength(3)]],
+      number: ["", [Validators.required, Validators.maxLength(15)]],
+      street: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(145),
+          Validators.minLength(3),
+        ],
+      ],
+      zone: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(80),
+          Validators.minLength(3),
+        ],
+      ],
+      city: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(80),
+          Validators.minLength(3),
+        ],
+      ],
+      country: [
+        "",
+        [
+          Validators.required,
+          Validators.maxLength(80),
+          Validators.minLength(3),
+        ],
+      ],
     });
   }
 

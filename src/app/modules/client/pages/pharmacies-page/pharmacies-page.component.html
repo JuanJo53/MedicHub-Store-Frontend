@@ -9,9 +9,12 @@
     </div>
   </div>
 </div>
-<div class="pharmacies">
-  <app-pharmacy-item
-    *ngFor="let pharmacy of pharmacies"
-    [pharmacy]="pharmacy"
-  ></app-pharmacy-item>
+<div class="container">
+  <div class="row row-cols-3">
+    <app-pharmacy-item
+      class="col mt-3 mb-3"
+      *ngFor="let subsidiary of subsidiaies"
+      [subsidiary]="subsidiary"
+    ></app-pharmacy-item>
+  </div>
 </div>

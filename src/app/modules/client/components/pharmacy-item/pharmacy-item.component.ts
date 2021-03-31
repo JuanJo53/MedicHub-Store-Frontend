@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Pharmacy } from "src/app/shared/models/pharmacy";
+import { Subsidiary } from "src/app/shared/models/subsidiary";
+import { SubsidiaryFeedListRequest } from "src/app/shared/models/subsidiary-feed-list-request";
 
 @Component({
   selector: "app-pharmacy-item",
@@ -7,7 +8,7 @@ import { Pharmacy } from "src/app/shared/models/pharmacy";
   styleUrls: ["./pharmacy-item.component.scss"],
 })
 export class PharmacyItemComponent implements OnInit {
-  @Input() pharmacy: Pharmacy;
+  @Input() subsidiary: SubsidiaryFeedListRequest;
   constructor() {}
 
   ngOnInit() {}
