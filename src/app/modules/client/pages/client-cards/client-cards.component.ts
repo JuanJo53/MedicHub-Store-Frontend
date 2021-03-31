@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+/*import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { CardService } from "src/app/core/http/client/card.service";
-import { Card } from "src/app/shared/models/card";
+import { Card } from "src/app/shared/models/card";*/
 
 @Component({
   selector: 'app-client-cards',
@@ -11,18 +11,18 @@ import { Card } from "src/app/shared/models/card";
   styleUrls: ['./client-cards.component.scss']
 })
 export class ClientCardsComponent implements OnInit {
-  form: FormGroup;
+  //form: FormGroup;
   constructor(
-    private fromBuilder: FormBuilder,
-    private cardService: CardService,
-    @Inject(MAT_DIALOG_DATA) public data: { id: number }
+    //private fromBuilder: FormBuilder,
+    //private cardService: CardService,
+    //@Inject(MAT_DIALOG_DATA) public data: { id: number }
 
   ){ }
 
   ngOnInit() {
-    this.editCard();
+    //this.editCard();
   }
-  saveChanges(event: Event): void {
+  /*saveChanges(event: Event): void {
     event.preventDefault();
     if (this.form.valid) {
       const card = this.form.value;
@@ -92,6 +92,6 @@ export class ClientCardsComponent implements OnInit {
         ],
       ],
     });
-  }
+  }*/
 
 }
