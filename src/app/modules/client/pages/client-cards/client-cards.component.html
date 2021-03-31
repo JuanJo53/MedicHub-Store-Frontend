@@ -1,1 +1,75 @@
-<p>client-cards works!</p>
+<div class="container">
+    <h1 mat-dialog-title>Ingrese los Datos de la Cuenta de Banco</h1>
+    <form [formGroup]="form" (ngSubmit)="saveChanges($event)">
+      <mat-card class="pharm_card">
+        <mat-card-content>
+          <mat-form-field class="form">
+            <mat-label>Numero de Cuenta</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="accountNumber"
+              placeholder="123-2336-2326"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Banco</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="bank"
+              placeholder="Banco del Dineros"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Tipo de Cuenta</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="typeAccount"
+              placeholder="Ahorro"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>CVV CODE</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="cvvCode"
+              placeholder="CVV CODE"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Mes</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="month"
+              placeholder="Abril"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="form">
+            <mat-label>Año</mat-label
+            ><input
+              matInput
+              type="text"
+              formControlName="year"
+              placeholder="2021"
+              required
+            />
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button type="submit" mat-button color="primary">
+            Registrar Datos
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+  
