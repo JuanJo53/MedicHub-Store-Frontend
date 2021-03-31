@@ -41,10 +41,10 @@ export class SignupComponent implements OnInit {
   }
   editClient(): void {
     this.form = this.fromBuilder.group({
-      firstName: ["", [Validators.required]],
-      firstSurname: ["", [Validators.required]],
-      secondSurname: ["", [Validators.required]],
-      ci: ["", [Validators.required]],
+      firstName: ["", [Validators.required, Validators.minLength(3),]],
+      firstSurname: ["", [Validators.required,Validators.minLength(3)]],
+      secondSurname: ["", [Validators.required,Validators.minLength(3)]],
+      ci: ["", [Validators.required,Validators.minLength(6)]],
       phone: [
         "",
         [
@@ -53,15 +53,15 @@ export class SignupComponent implements OnInit {
           Validators.minLength(12),
         ],
       ],
-      email: ["", [Validators.required, Validators.email]],
-      userName: ["", [Validators.required]],
-      password: ["", [Validators.required]],
+      email: ["", [Validators.required, Validators.email,Validators.minLength(6)]],
+      userName: ["", [Validators.required,Validators.minLength(3)]],
+      password: ["", [Validators.required],Validators.minLength(6)],
       birthdate: ["", [Validators.required]],
       number: [0, [Validators.required]],
-      street: ["", [Validators.required]],
-      zone: ["", [Validators.required]],
-      city: ["", [Validators.required]],
-      country: ["", [Validators.required]],
+      street: ["", [Validators.required,Validators.minLength(3)]],
+      zone: ["", [Validators.required,Validators.minLength(3)]],
+      city: ["", [Validators.required,Validators.minLength(3)]],
+      country: ["", [Validators.required,Validators.minLength(3)]],
     });
   }
 
@@ -75,12 +75,7 @@ export class SignupComponent implements OnInit {
       client.birthdate = date;
       console.log(client);
       this.createClient(client);
-<<<<<<< HEAD
-    }
-    else{
-=======
     } else {
->>>>>>> 40daef0c45098ddef702e5bdd4da0ab0c5fec0f8
       console.log("Algo salio mal");
     }
   }
