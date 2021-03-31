@@ -1,20 +1,24 @@
-<h1 class="title"><strong>Todas las Farmacias Disponibles</strong></h1>
-<div class="header-farmacias">
-  <div>
-    <div fxFlex fxHide.lt-sm="true" class="search-bar">
-      <form class="top-search-form">
-        <mat-icon role="img">search</mat-icon>
-        <input placeholder="Buscar farmacia" type="text" class="lettersearch" />
-      </form>
-    </div>
-  </div>
-</div>
 <div class="container">
-  <div class="row row-cols-3">
-    <app-pharmacy-item
-      class="col mt-3 mb-3"
-      *ngFor="let subsidiary of subsidiaies"
-      [subsidiary]="subsidiary"
-    ></app-pharmacy-item>
+  <h1 class="title"><strong>Todas las Farmacias Disponibles</strong></h1>
+  <div class="header-farmacias">
+    <mat-form-field class="formfarmacia2">
+      <mat-label>Buscar</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Ex. ium"
+        #input
+      />
+    </mat-form-field>
+  </div>
+  <div class="container">
+    <div class="row row-cols-3">
+      <app-pharmacy-item
+        class="col mt-3 mb-3"
+        *ngFor="let subsidiary of dataSource.filteredData"
+        [subsidiary]="subsidiary"
+      >
+      </app-pharmacy-item>
+    </div>
   </div>
 </div>
