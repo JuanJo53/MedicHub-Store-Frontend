@@ -39,7 +39,6 @@ import { SuccesDialogComponent } from "../components/dialogs/succes-dialog/succe
 import { ClientProfilePageComponent } from "../client/pages/client-profile-page/client-profile-page.component";
 import { ClientCardsComponent } from "../client/pages/client-cards/client-cards.component";
 import { PharmaciesPageComponent } from "../client/pages/pharmacies-page/pharmacies-page.component";
-import { ProductsPageComponent } from "../client/pages/products-page/products-page.component";
 import { DashboardComponent } from "../admin/pages/dashboard/dashboard.component";
 import { PharmaciesComponent } from "../admin/pages/pharmacies/pharmacies.component";
 import { CreatePharmacyComponent } from "../admin/components/dialogs/create-pharmacy/create-pharmacy.component";
@@ -63,6 +62,7 @@ import { SubsidiaryDetailsComponent } from "../client/pages/subsidiary-details/s
 import { ProductItemComponent } from "../client/components/product-item/product-item.component";
 import { CreateCardComponent } from "../client/components/dialogs/create-card/create-card.component";
 import { CardItemComponent } from "../client/components/card-item/card-item.component";
+import { ProductDetailComponent } from "../client/pages/product-detail/product-detail.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -88,7 +88,6 @@ import { CardItemComponent } from "../client/components/card-item/card-item.comp
     ClientProfilePageComponent,
     ClientCardsComponent,
     PharmaciesPageComponent,
-    ProductsPageComponent,
     DashboardComponent,
     PharmaciesComponent,
     CreatePharmacyComponent,
@@ -109,6 +108,7 @@ import { CardItemComponent } from "../client/components/card-item/card-item.comp
     ProductItemComponent,
     CreateCardComponent,
     CardItemComponent,
+    ProductDetailComponent,
   ],
   imports: [
     CommonModule,
