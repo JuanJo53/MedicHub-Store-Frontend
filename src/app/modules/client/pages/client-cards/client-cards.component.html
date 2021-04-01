@@ -18,10 +18,13 @@
       </mat-form-field>
     </div>
   </div>
-  <div class="cards">
-    <app-card-item
-      *ngFor="let card of dataSource.filteredData"
-      [card]="card"
-    ></app-card-item>
+  <div class="container cards">
+    <div class="row row-cols-2">
+      <app-card-item
+        class="col mt-3 mb-3"
+        *ngFor="let card of dataSource.filteredData"
+        [card]="card"
+      ></app-card-item>
+    </div>
   </div>
 </div>
