@@ -1,4 +1,156 @@
-<div class="container">
-  <h1>{{ card.accountNumber }}</h1>
-  <p>{{ card.bank }}</p>
+<div class="container" *ngIf="card && !destroyed">
+  <mat-card class="pharm_cardmoldeinterno" *ngIf="!edit; else elseBlock">
+    <mat-card-header class="titlePharmacy">
+      <div class="row">
+        <mat-card-title class="col-sm-10">
+          <h1 class="titlefarmacia">
+            <strong>{{ card.bank }}</strong>
+          </h1>
+        </mat-card-title>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editCard()">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-menu-item (click)="deleteCard(card.cardId)">
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar</span>
+          </button>
+        </mat-menu>
+        <div class="col-2">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row row-cols-2">
+        <div class="col">
+          <strong>Numero de Tarjeta</strong>
+          <p>{{ card.accountNumber | creditCardNumber }}</p>
+        </div>
+        <div class="col">
+          <strong>Tipo de Cuenta</strong>
+          <p>{{ card.typeAccount }}</p>
+        </div>
+      </div>
+      <div class="row row-cols-3">
+        <div class="col">
+          <strong>CVV</strong>
+          <p>{{ card.cvvCode }}</p>
+        </div>
+        <div class="col">
+          <strong>Mes</strong>
+          <p>{{ card.month }}</p>
+        </div>
+        <div class="col">
+          <strong>Año</strong>
+          <p>{{ card.year }}</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <ng-template #elseBlock>
+    <form [formGroup]="form" (ngSubmit)="saveCard($event)">
+      <mat-card class="pharm_cardedit">
+        <mat-card-content class="entradas">
+          <mat-form-field class="form">
+            <mat-label class="texteditcard">Banco</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="bank"
+              [(ngModel)]="card.bank"
+              placeholder="Banco Bancario"
+              required
+            />
+          </mat-form-field>
+          <br />
+          <div class="row row-cols-2">
+            <mat-form-field class="form col">
+              <mat-label class="texteditcard">Numero de Tarjeta</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="accountNumber"
+                [(ngModel)]="card.accountNumber"
+                placeholder="123-8995-5416"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="form col">
+              <mat-label class="texteditcard">Tipo de Cuenta</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="typeAccount"
+                [(ngModel)]="card.typeAccount"
+                placeholder="Cuenta de Ahoro"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <br />
+          <div class="row row-cols-3">
+            <mat-form-field class="form col">
+              <mat-label class="texteditcard">CVV</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="cvvCode"
+                [(ngModel)]="card.cvvCode"
+                placeholder="123"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="form col">
+              <mat-label class="texteditcard">Mes</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="month"
+                [(ngModel)]="card.month"
+                placeholder="02"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="form col">
+              <mat-label class="texteditcard">Año</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="year"
+                [(ngModel)]="card.year"
+                placeholder="2002"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="buttons">
+            <button
+              id="{{ card.cardId }}"
+              type="submit"
+              mat-button
+              color="primary"
+              class="btn-edit"
+            >
+              Guardar Cambios
+            </button>
+            <button
+              id="{{ card.cardId }}"
+              (click)="cancel()"
+              mat-raised-button
+              color="warn"
+              class="btn-edit"
+            >
+              Cancelar
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </ng-template>
 </div>

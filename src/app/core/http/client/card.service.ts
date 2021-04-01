@@ -36,7 +36,7 @@ export class CardService {
       headers: headers,
     });
   }
-  deleteCard(cardId: Card) {
+  deleteCard(cardId: number) {
     var authToken = this.tokenService.getToken();
     var headers = new HttpHeaders({
       Authorization: `${authToken}`,

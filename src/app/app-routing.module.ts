@@ -20,6 +20,7 @@ import { ClientCardsComponent } from "./modules/client/pages/client-cards/client
 import { ClientGuard } from "./core/guards/client.guard";
 import { ClientHomeComponent } from "./modules/client/pages/client-home/client-home.component";
 import { SubsidiaryDetailsComponent } from "./modules/client/pages/subsidiary-details/subsidiary-details.component";
+import { ProductDetailComponent } from "./modules/client/pages/product-detail/product-detail.component";
 
 const routes: Routes = [
   // {
@@ -124,6 +125,11 @@ const routes: Routes = [
         path: "client/pharmacies/:id",
         canActivate: [ClientGuard],
         component: SubsidiaryDetailsComponent,
+      },
+      {
+        path: "client/pharmacies/:id/product/:pid",
+        canActivate: [ClientGuard],
+        component: ProductDetailComponent,
       },
       // {
       //   path: "client/bill",
