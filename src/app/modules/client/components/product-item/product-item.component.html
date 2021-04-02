@@ -2,17 +2,20 @@
   <img class="card-img-top" src="assets/images/marcafarmacia.png" width="1200px" height="200px" alt="Card image cap">
   <h1 class="name">{{ product.name }}</h1>
   <h2 class="price">{{product.price}} Bs.</h2>
+  <br>
   <!--<p class="descrip">{{ product.description }}</p>-->
-  <div class="loginentrada">
+  <div class="buttons">
+    <button type="submit" mat-raised-button color="primary" class="shop">
+      <mat-icon>favorite</mat-icon>
+    </button> 
     
     <button type="submit" mat-raised-button color="primary" class="shop">
-      <div class="column-left">
+      <div class="buttong">
       <mat-icon class="">add_shopping_cart</mat-icon>
-    </div>
-    <div class="column-right">
+      
+    
       <h2 class="aniadir">AÑADIR</h2>
     </div>
-      
     </button>
     <button type="submit" mat-raised-button color="primary" class="shop">
       <mat-icon>favorite</mat-icon>
