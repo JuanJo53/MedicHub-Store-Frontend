@@ -63,6 +63,7 @@ import { ProductItemComponent } from "../client/components/product-item/product-
 import { CreateCardComponent } from "../client/components/dialogs/create-card/create-card.component";
 import { CardItemComponent } from "../client/components/card-item/card-item.component";
 import { ProductDetailComponent } from "../client/pages/product-detail/product-detail.component";
+import { NotFoundComponent } from './pages/aux-pages/not-found/not-found.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -109,6 +110,7 @@ import { ProductDetailComponent } from "../client/pages/product-detail/product-d
     CreateCardComponent,
     CardItemComponent,
     ProductDetailComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
