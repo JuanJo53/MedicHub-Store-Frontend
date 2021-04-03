@@ -1,6 +1,16 @@
 <mat-toolbar class="topbar header">
-  <div><h4 class="usuario">Hola, Ximena</h4></div>
   <div>
+    <h4 class="usuario">Hola, {{ this.username }}</h4>
+  </div>
+  <div>
+    <button
+      mat-icon-button
+      [matBadge]="total$ | async"
+      [style.overflow]="'visible'"
+      class="topbar-button-right"
+    >
+      <mat-icon class="maticon">shopping_cart</mat-icon>
+    </button>
     <button
       mat-icon-button
       matTooltip="Notifications"
@@ -37,7 +47,7 @@
         <mat-icon class="maticon_nav">notifications_off</mat-icon>
         <span>Disable alerts</span>
       </button>
-      <button mat-menu-item (click)="toeknServide.logOut()">
+      <button mat-menu-item (click)="tokenServide.logOut()">
         <mat-icon class="maticon_nav">exit_to_app</mat-icon>
         <span>Sign out</span>
       </button>
