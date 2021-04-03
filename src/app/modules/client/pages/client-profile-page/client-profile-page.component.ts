@@ -45,7 +45,7 @@ export class ClientProfilePageComponent implements OnInit {
 
   ngOnInit() {
     try {
-      this.id = parseInt(this.tokenService.getUserName());
+      this.id = parseInt(this.tokenService.getUserId());
       if (this.id) {
         this.getDetails(this.id);
       }

@@ -23,7 +23,7 @@ export class CreateCardComponent implements OnInit {
 
   ngOnInit() {
     try {
-      this.id = parseInt(this.tokenService.getUserName());
+      this.id = parseInt(this.tokenService.getUserId());
       this.editCard();
     } catch (error) {
       console.error(error);

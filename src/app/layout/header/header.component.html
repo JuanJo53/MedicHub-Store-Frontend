@@ -31,7 +31,15 @@
     </button>
 
     <mat-menu #settingMenu="matMenu" class="matmenuestilo">
-      <button mat-menu-item [routerLink]="['/profile/overview']">
+      <button
+        *ngIf="role == 2"
+        mat-menu-item
+        [routerLink]="['/profile/overview']"
+      >
+        <mat-icon class="maticon_nav">account_box</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button *ngIf="role == 3" mat-menu-item routerLink="/client/account">
         <mat-icon class="maticon_nav">account_box</mat-icon>
         <span>Profile</span>
       </button>

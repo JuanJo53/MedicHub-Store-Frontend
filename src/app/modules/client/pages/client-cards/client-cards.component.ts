@@ -27,7 +27,7 @@ export class ClientCardsComponent implements OnInit {
 
   ngOnInit() {
     try {
-      this.id = parseInt(this.tokenService.getUserName());
+      this.id = parseInt(this.tokenService.getUserId());
       if (this.id) {
         this.fecthCards(this.id);
       }

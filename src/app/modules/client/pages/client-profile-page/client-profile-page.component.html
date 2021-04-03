@@ -1,9 +1,56 @@
 <div class="container" *ngIf="client">
   <div *ngIf="!editEnabled; else elseBlock">
-    <h1>Perfil de {{ client.userName }}</h1>
+    <h1>Detalles de Perfil</h1>
     <button (click)="editClient()" class="btn" color="primary">
       <mat-icon class="button-add">edit</mat-icon>
     </button>
+    <div class="container">
+      <div class="row">
+        <div class="contact-section col">
+          <h2>Datos Personales:</h2>
+          <div class="row">
+            <div class="col">
+              <strong>Nombre (s):</strong>
+              <p>{{ client.firstName }}</p>
+              <strong>Email:</strong>
+              <p>{{ client.email }}</p>
+              <strong>Telefono de referencia:</strong>
+              <p>{{ client.phone }}</p>
+              <strong>Fecha de Nacimiento:</strong>
+              <p>{{ client.birthdate | date: "dd/MM/yyyy" }}</p>
+            </div>
+            <div class="col">
+              <strong>Apellido(s):</strong>
+              <p>{{ client.firstSurname }} {{ client.secondSurname }}</p>
+              <strong>Nombre de Usuario:</strong>
+              <p>{{ client.userName }}</p>
+              <strong>CI:</strong>
+              <p>{{ client.ci }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="direcction-section col">
+          <h2>Detalles de la Dirección:</h2>
+          <div class="row">
+            <div class="col">
+              <strong>Calle:</strong>
+              <p>{{ client.street }}</p>
+              <strong>Numero:</strong>
+              <p>{{ client.number }}</p>
+              <strong>Zona:</strong>
+              <p>{{ client.zone }}</p>
+            </div>
+            <div class="col">
+              <strong>Ciudad:</strong>
+              <p>{{ client.city }}</p>
+              <strong>Pais:</strong>
+              <p>{{ client.country }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <ng-template #elseBlock>

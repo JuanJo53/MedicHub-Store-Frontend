@@ -56,14 +56,14 @@ export class LoginComponent implements OnInit {
 
         this.tokenService.setToken(data.access_token);
         if (data.clientId) {
-          this.tokenService.setUserName(data.clientId);
+          this.tokenService.setUserId(data.clientId);
         } else if (data.adminId) {
-          this.tokenService.setUserName(data.adminId);
+          this.tokenService.setUserId(data.adminId);
         } else if (data.pharmAdminId) {
           this.tokenService.setSubsidiaryId(data.subsidiaryId);
-          this.tokenService.setUserName(data.pharmAdminId);
+          this.tokenService.setUserId(data.pharmAdminId);
         }
-
+        this.tokenService.setUserName(data.userName);
         this.tokenService.setAuthorities(data.role);
         this.roles = parseInt(this.tokenService.getAuthorities());
 

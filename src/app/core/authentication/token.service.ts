@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 
 const TOKEN_KEY = "AuthToken";
 const USERNAME_KEY = "AuthUserName";
+const USERID_KEY = "UserId";
 const SUBSIDIARY_KEY = "SubsidiaryId";
 const AUTHORITIES_KEY = "AuthAuthorities";
 @Injectable({
@@ -27,6 +28,13 @@ export class TokenService {
   }
   public getUserName(): string {
     return sessionStorage.getItem(USERNAME_KEY);
+  }
+  public setUserId(userId: string): void {
+    window.sessionStorage.removeItem(USERID_KEY);
+    window.sessionStorage.setItem(USERID_KEY, userId);
+  }
+  public getUserId(): string {
+    return sessionStorage.getItem(USERID_KEY);
   }
 
   public setSubsidiaryId(subsidiaryId: string): void {
