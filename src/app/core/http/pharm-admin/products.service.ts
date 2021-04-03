@@ -8,51 +8,39 @@ import apiKey from "../../apiKey";
   providedIn: "root",
 })
 export class ProductsService {
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
-  postNewProduct(product: Product) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
+  authToken: string;
+  headers: any;
+  constructor(private http: HttpClient, private tokenService: TokenService) {
+    this.authToken = this.tokenService.getToken();
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
     });
+  }
+
+  postNewProduct(product: Product) {
     return this.http.post(apiKey.api + "/product", product, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   getSubsidiaryProducts(prodId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<Product[]>(
       apiKey.api + `/subsidiary/${prodId}/product`,
-      { headers: headers }
+      { headers: this.headers }
     );
   }
   getProduct(prodId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<Product>(apiKey.api + `/product/${prodId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   updateProduct(pharmacy: Product) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.put(apiKey.api + "/product", pharmacy, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   deleteProduct(prodId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.delete(apiKey.api + `/product/${prodId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
 }

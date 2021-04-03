@@ -32,7 +32,7 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.subsidiaryId = parseInt(this.tokenService.getUserName());
+    this.subsidiaryId = parseInt(this.tokenService.getSubsidiaryId());
     const id = this.product.productId;
     if (id) {
       this.fetchProduct(id);

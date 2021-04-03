@@ -8,48 +8,37 @@ import { TokenService } from "../../authentication/token.service";
   providedIn: "root",
 })
 export class ClientService {
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
-  postNewClient(client: Client) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
+  authToken: string;
+  headers: any;
+  constructor(private http: HttpClient, private tokenService: TokenService) {
+    this.authToken = this.tokenService.getToken();
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
     });
-    return this.http.post(apiKey.api + "/client", client, { headers: headers });
+  }
+  postNewClient(client: Client) {
+    return this.http.post(apiKey.api + "/client", client, {
+      headers: this.headers,
+    });
   }
   getClients() {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<Client[]>(apiKey.api + `/client`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   getClientDetail(clientId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<Client>(apiKey.api + `/client/${clientId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   updateClient(client: Client) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.put(apiKey.api + `/client`, client, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   deleteClient(clientId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.delete(apiKey.api + `/client/${clientId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
 }

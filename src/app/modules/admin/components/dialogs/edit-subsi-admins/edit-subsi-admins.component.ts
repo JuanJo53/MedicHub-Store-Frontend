@@ -41,7 +41,7 @@ export class EditSubsiAdminsComponent implements OnInit {
       });
   }
   editAdmin(): void {
-    this.subsidiaryId = parseInt(this.tokenService.getUserName());
+    this.subsidiaryId = parseInt(this.tokenService.getSubsidiaryId());
     this.form = this.fromBuilder.group({
       subsidiaryId: [this.data.subsidiaryId, [Validators.required]],
       pharmacyId: [this.data.pharmAdminId, [Validators.required]],

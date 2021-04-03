@@ -8,44 +8,37 @@ import { TokenService } from "../../authentication/token.service";
   providedIn: "root",
 })
 export class BrandService {
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
-  postNewBrand(brand: Brand) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
+  authToken: string;
+  headers: any;
+  constructor(private http: HttpClient, private tokenService: TokenService) {
+    this.authToken = this.tokenService.getToken();
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
     });
-    return this.http.post(apiKey.api + "/brand", brand, { headers: headers });
+  }
+  postNewBrand(brand: Brand) {
+    return this.http.post(apiKey.api + "/brand", brand, {
+      headers: this.headers,
+    });
   }
   getBrands() {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
+    return this.http.get<Brand[]>(apiKey.api + `/brand`, {
+      headers: this.headers,
     });
-    return this.http.get<Brand[]>(apiKey.api + `/brand`, { headers: headers });
   }
   getBrand(brandId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<Brand>(apiKey.api + `/brand/${brandId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   updateBrand(id: number, brand: Brand) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
+    return this.http.put(apiKey.api + `/brand`, brand, {
+      headers: this.headers,
     });
-    return this.http.put(apiKey.api + `/brand`, brand, { headers: headers });
   }
   deleteBrand(brandId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.delete(apiKey.api + `/brand/${brandId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
 }

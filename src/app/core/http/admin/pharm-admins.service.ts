@@ -9,51 +9,39 @@ import { TokenService } from "../../authentication/token.service";
   providedIn: "root",
 })
 export class PharmAdminsService {
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
-  postNewAdmin(newAdmin: PharmAdmin) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
+  authToken: string;
+  headers: any;
+  constructor(private http: HttpClient, private tokenService: TokenService) {
+    this.authToken = this.tokenService.getToken();
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
     });
+  }
+
+  postNewAdmin(newAdmin: PharmAdmin) {
     return this.http.post(apiKey.api + "/pharmacyAdmin", newAdmin, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   getAdmins(subsidId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<PharmAdminList[]>(
       apiKey.api + `/subsidiary/${subsidId}/admin`,
-      { headers: headers }
+      { headers: this.headers }
     );
   }
   getAdminDetail(adminId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<PharmAdmin>(apiKey.api + `/pharmacyAdmin/${adminId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   updateAdmins(pharmAdmin: PharmAdmin) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.put(apiKey.api + `/pharmacyAdmin`, pharmAdmin, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   deleteAdmins(adminId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.delete(apiKey.api + `/pharmacyAdmin/${adminId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
 }

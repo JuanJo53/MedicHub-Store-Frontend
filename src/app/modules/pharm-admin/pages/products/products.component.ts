@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     console.log("OnInit excecuted");
-    this.id = parseInt(this.tokenService.getUserName());
+    this.id = parseInt(this.tokenService.getSubsidiaryId());
     try {
       if (this.id) {
         this.fecthProducts(this.id);

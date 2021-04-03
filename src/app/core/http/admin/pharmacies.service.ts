@@ -9,51 +9,38 @@ import { TokenService } from "../../authentication/token.service";
   providedIn: "root",
 })
 export class PharmaciesService {
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  authToken: string;
+  headers: any;
+  constructor(private http: HttpClient, private tokenService: TokenService) {
+    this.authToken = this.tokenService.getToken();
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
+    });
+  }
 
   postNewPharmacy(pharmacy: PharmacyRequest) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.post(apiKey.api + "/pharmacy", pharmacy, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   getAllPharmacies() {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<Pharmacy[]>(apiKey.api + "/pharmacy", {
-      headers: headers,
+      headers: this.headers,
     });
   }
   getPharmacy(pharmId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<Pharmacy>(apiKey.api + "/pharmacy/" + pharmId, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   updatePharmacy(pharmId: number, pharmacy: PharmacyRequest) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.put(apiKey.api + `/pharmacy`, pharmacy, {
-      headers: headers,
+      headers: this.headers,
     });
   }
   deletePharmacy(pharmId: number) {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.delete(apiKey.api + `/pharmacy/${pharmId}`, {
-      headers: headers,
+      headers: this.headers,
     });
   }
 }

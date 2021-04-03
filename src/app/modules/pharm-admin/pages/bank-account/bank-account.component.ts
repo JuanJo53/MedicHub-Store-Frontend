@@ -28,7 +28,7 @@ export class BankAccountComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = parseInt(this.tokenService.getUserName());
+    this.id = parseInt(this.tokenService.getSubsidiaryId());
     try {
       if (this.id) {
         this.getDetails(this.id);

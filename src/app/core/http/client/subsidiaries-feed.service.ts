@@ -8,17 +8,20 @@ import { TokenService } from "../../authentication/token.service";
   providedIn: "root",
 })
 export class SubsidiariesFeedService {
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  authToken: string;
+  headers: any;
+  constructor(private http: HttpClient, private tokenService: TokenService) {
+    this.authToken = this.tokenService.getToken();
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
+    });
+  }
 
   getAllSibsidiaries() {
-    var authToken = this.tokenService.getToken();
-    var headers = new HttpHeaders({
-      Authorization: `${authToken}`,
-    });
     return this.http.get<SubsidiaryFeedListRequest[]>(
       apiKey.api + `/subsidiary`,
       {
-        headers: headers,
+        headers: this.headers,
       }
     );
   }
