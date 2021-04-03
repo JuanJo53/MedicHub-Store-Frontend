@@ -127,7 +127,7 @@ export class ClientProfilePageComponent implements OnInit {
         ],
       ],
       password: [
-        this.client.password,
+        "",
         [
           Validators.required,
           Validators.maxLength(50),

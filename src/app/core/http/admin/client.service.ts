@@ -17,9 +17,7 @@ export class ClientService {
     });
   }
   postNewClient(client: Client) {
-    return this.http.post(apiKey.api + "/client", client, {
-      headers: this.headers,
-    });
+    return this.http.post(apiKey.api + "/client", client);
   }
   getClients() {
     return this.http.get<Client[]>(apiKey.api + `/client`, {

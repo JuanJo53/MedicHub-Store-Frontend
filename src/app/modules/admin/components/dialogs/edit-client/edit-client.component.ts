@@ -119,7 +119,7 @@ export class EditClientComponent implements OnInit {
         ],
       ],
       password: [
-        this.client.password,
+        "",
         [
           Validators.required,
           Validators.maxLength(150),

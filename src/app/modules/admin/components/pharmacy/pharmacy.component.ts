@@ -118,8 +118,8 @@ export class PharmacyComponent implements OnInit, OnDestroy {
           console.log("Response " + rta);
           this.text = result;
           this.displaySuccesDialog("¡Se elimino la farmacia exitosamente!");
+          this.ngOnDestroy();
         });
-        this.ngOnDestroy();
       }
     });
   }
@@ -131,7 +131,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result == "OK") {
         console.log("Resultado post:" + result);
         this.displaySuccesDialog("¡Se agrego la sucursal exitosamente!");
         this.ngOnInit();

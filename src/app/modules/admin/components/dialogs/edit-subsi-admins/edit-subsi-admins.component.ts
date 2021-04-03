@@ -103,7 +103,7 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
       password: [
-        this.pharmAdmin.password,
+        "",
         [
           Validators.required,
           Validators.maxLength(150),
