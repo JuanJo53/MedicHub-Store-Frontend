@@ -1,7 +1,4 @@
-/*.container {
-  background-color: white;
-  border: 1.4px solid #2f4a85;
-}*/
+
 .title1 {
   color: #2f4a85;
   white-space: nowrap;
@@ -22,10 +19,13 @@
 }
 .login-container {
   padding-top: 20%;
+  
 }
 .login-card {
   background-color: transparent;
-  align-self: center;
+  background-color: white;
+  border: 1.4px solid #2f4a85;
+  align-content: center;
 }
 .form-letter {
   color: #2f4a85;
