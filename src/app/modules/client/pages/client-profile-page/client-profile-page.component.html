@@ -1,10 +1,11 @@
 <div class="container" *ngIf="client">
   <div *ngIf="!editEnabled; else elseBlock">
-    <h1>Detalles de Perfil</h1>
+    <h1 class="title">Detalles de Perfil</h1>
     <button (click)="editClient()" class="btn" color="primary">
       <mat-icon class="button-add">edit</mat-icon>
     </button>
-    <div class="container">
+    <br>
+    <div class="container conta">
       <div class="row">
         <div class="contact-section col">
           <h2>Datos Personales:</h2>
