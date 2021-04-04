@@ -3,18 +3,18 @@
     <mat-card-header>
       <div mat-card-avatar class="subsidiary-header-image"></div>
       <mat-card-title
-        ><a routerLink="{{ subsidiary.subsidiaryId }}">{{
+        ><a routerLink="{{ subsidiary.subsidiaryId }}" class="txtblue">{{
           subsidiary.subsidiaryName
         }}</a></mat-card-title
       >
       <mat-card-subtitle>{{ subsidiary.phone }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p class="card-text">
+      <p class="card-text txtblue">
         <strong>Email de contacto:</strong>
         {{ subsidiary.email }}
       </p>
-      <p class="card-text">
+      <p class="card-text txtblue">
         <strong>Direccion:</strong>
         {{ subsidiary.street }}
       </p>
@@ -27,11 +27,11 @@
       </p>
     </mat-card-footer>
     <mat-card-actions>
-      <button mat-button>SEGUIR</button>
+      <button mat-raised-button>SEGUIR</button>
       <button
         id="{{ subsidiary.subsidiaryId }}"
         mat-raised-button
-        color="primary"
+        class="bver"
         routerLink="{{ subsidiary.subsidiaryId }}"
       >
         VER

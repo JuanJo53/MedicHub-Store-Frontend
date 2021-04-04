@@ -3,18 +3,22 @@
     <div class="col">
       <h1 class="txtvermas">
         Ver mas productos de
-        <a href="https://www.facebook.com/pagina">Farmacias Bolivia</a>
+        <a href="https://www.facebook.com/pagina">{{ product.brandName }}</a>
       </h1>
       <br />
       <h1 class="txtproducto">{{ product.name }}</h1>
-      <h2>Dosis: {{ product.dose }}</h2>
       <br />
-      <div class="" *ngIf="product.stock != '0'">
+      <div class="">
         <h2 class="txtstock">
           <span class="material-icons"> check_circle </span>
-
           {{ product.stock }} En stock
         </h2>
+      </div>
+      <div class="">
+        <a href="https://www.facebook.com/pagina">
+          <span class="material-icons"> favorite </span>
+          Añadir a la lista de deseos</a
+        >
       </div>
       <div class="" *ngIf="product.stock == '0'">
         <h2 class="txtstock">
