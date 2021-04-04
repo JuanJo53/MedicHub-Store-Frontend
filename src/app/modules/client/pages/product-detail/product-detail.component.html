@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>Ver mas productos de <a href="https://www.facebook.com/pagina">Farmacias Bolivia</a></h1>
-      
-      <h1> Nombre del prodcutop</h1>
-    <div class="">
-        <h2 class=""><span class="material-icons">
+      <h1 class="txtvermas">Ver mas productos de <a href="https://www.facebook.com/pagina">Farmacias Bolivia</a></h1>
+      <br>
+      <h1 class="txtproducto"> {{ product.name }}</h1>
+    <br>
+      <div class="">
+        <h2 class="txtstock"><span class="material-icons">
             check_circle
             </span>
 
       En stock</h2>
     </div>
-  <br>
   <div class="">
     <a href="https://www.facebook.com/pagina">
     <span class="material-icons">
@@ -22,14 +22,22 @@
 
     </div>
     <div class="col">
-        <mat-card class="example-card tarjeta">
-            <h1>Precio</h1>
+        <mat-card class="example-card tarjeta tprecio">
+            <h1 class="lineaprecio">{{ product.price }} Bs.</h1>
+            <hr class="lineap">
+            <div class="cantidad">
             <h1>Cantidad</h1>
+            <input
+                  type="number"
+                  matInput
+                  required
+                />
             <h2 class=""><span class="material-icons">
                 check_circle
                 </span>
     
           En stock</h2>
+        </div>
             <button
             type="submit"
             mat-raised-button
@@ -38,12 +46,12 @@
             (click)="addCart()"
           >
             <div class="buttong">
-              <mat-icon class="">add_shopping_cart</mat-icon>
-        
+              <mat-icon class="">shopping_cart</mat-icon>
+              <br>
               <h2 class="aniadir">AÑADIR</h2>
             </div>
           </button>
-            <h2 class=""><span class="material-icons">
+            <h2 class="txttrans"><span class="material-icons">
                 https
                 </span>
     
@@ -61,26 +69,25 @@
         <img mat-card-image src="assets/images/colageno.png" >
       </div>
       <div class="col-5">
-        <mat-card class="example-card tarjeta">
-                <h2 class=""><span class="material-icons">
+        <mat-card class="example-card tarjetaazul">
+                <h2 class="txtb"><span class="material-icons txtb">
                     menu_book
                     </span>
         
               Lee las instrucciones </h2>
-                <h2 class=""><span class="material-icons">
+                <h2 class="txtb"><span class="material-icons txtb">
                     medication
                     </span>
         
                     de este medicamento y</h2>
-                <h2 class=""><span class="material-icons">
+                <h2 class="txtb"><span class="material-icons txtb">
                     local_hospital
                     </span>
         
               consulte al farmaceutico</h2>
         </mat-card>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit erat eget, risus parturient inceptos 
-            venenatis sodales aliquam condimentum mauris molestie mi, maecenas massa iaculis pharetra 
-            montes luctus eu nibh. Duis tincidunt ullamcorper volutpat rhoncus rutrum justo tortor mi, 
+        <p class="txtazul">{{ product.description }}Lorem ipsum dolor sit amet consectetur adipiscing elit erat eget, risus parturient inceptos 
+            Duis tincidunt ullamcorper volutpat rhoncus rutrum justo tortor mi, 
             lectus porttitor odio sagittis nostra et etiam non, est mollis malesuada aenean fermentum .</p> 
 
             <button
@@ -90,9 +97,9 @@
             class="shop"
             (click)="addCart()"
           >
-            <div class="buttong">
+            <div class="buttondesc">
         
-              <h2 class="aniadir">DESCARGAR PROSPECTO</h2>
+              <h4>DESCARGAR PROSPECTO</h4>
             </div>
           </button>
           <BR>

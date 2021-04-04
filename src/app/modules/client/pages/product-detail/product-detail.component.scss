@@ -1,16 +1,65 @@
 .shop {
   align-content: center;
-  border-radius: 15PX;
   background-color: #2f4a85;
   margin-bottom: 2%;
-  padding-right: 10px;
-  padding-left: 10px;
-  //margin-right: 5%;
-  margin-left: 5%;
+  width: 100%;
+  position: relative;
+  
 }
 .buttong {
   display: flex;
   align-items: center;
+  justify-content:center;
+  padding: 7px 5px;
+  width: 400px;
+}
+
+.lineap{
+  color: #2f4a85;
+  background-color: #2f4a85;
+}
+.lineaprecio{
+  color: red;
+  margin-left: 40%;
+}
+.cantidad{
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 7px 5px;
+  color: #2f4a85;
+}
+.txttrans{
+  color: #2f4a85;
+}
+.txtvermas{
+  color: #2f4a85;
+}
+.txtstock{
+  color: #2f4a85;
+}
+.txtproducto{
+  color: #2f4a85;
+  font-weight: bolder;
+}
+.tarjetaazul{
+  background-color: #2f4a85;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-left: 35%;
+}
+.txtb{
+  color: white;
+}
+.txtazul{
+  color: #2f4a85;
+}
+.buttondesc{
+  background-color: #2f4a85;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  padding: 7px 5px;
+  width: 400px;
+
 }
