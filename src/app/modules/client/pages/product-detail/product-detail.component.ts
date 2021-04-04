@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
 import { Product } from "src/app/shared/models/product";
+import { CartService } from "src/app/core/services/cart.service";
 
 @Component({
   selector: "app-product-detail",
@@ -15,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private productsServide: ProductsService,
     private activatedRoute: ActivatedRoute,
+    private cartService: CartService,
     public dialog: MatDialog
   ) {}
 
@@ -30,5 +32,10 @@ export class ProductDetailComponent implements OnInit {
       this.product = product;
       console.log(product);
     });
+  }
+  addCart() {
+    console.log("añadir al carrito");
+    this.cartService.addCart(this.product);
+    // this.productClicked.emit(this.product.id);
   }
 }

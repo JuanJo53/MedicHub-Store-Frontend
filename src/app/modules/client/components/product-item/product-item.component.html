@@ -11,23 +11,16 @@
   <br />
   <!--<p class="descrip">{{ product.description }}</p>-->
   <div class="buttons">
-    <button type="submit" mat-raised-button color="primary" class="shop">
-      <mat-icon>favorite</mat-icon>
-    </button>
-
     <button
       type="submit"
       mat-raised-button
       color="primary"
       class="shop"
-      (click)="addCart()"
+      routerLink="product/{{ product.productId }}"
     >
-      <div class="buttong">
-        <mat-icon class="">add_shopping_cart</mat-icon>
-
-        <h2 class="aniadir">AÑADIR</h2>
-      </div>
+      Ver Detalles
     </button>
+
     <button type="submit" mat-raised-button color="primary" class="shop">
       <mat-icon>favorite</mat-icon>
     </button>

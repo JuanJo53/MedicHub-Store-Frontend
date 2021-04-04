@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
-import { CartService } from "src/app/core/services/cart.service";
 import { Product } from "src/app/shared/models/product";
 
 @Component({
@@ -18,7 +17,6 @@ export class ProductItemComponent implements OnInit {
 
   constructor(
     private productsServide: ProductsService,
-    private cartService: CartService,
     public dialog: MatDialog
   ) {}
 
@@ -33,11 +31,5 @@ export class ProductItemComponent implements OnInit {
     this.productsServide.getProduct(id).subscribe((product) => {
       this.product = product;
     });
-  }
-
-  addCart() {
-    console.log("añadir al carrito");
-    this.cartService.addCart(this.product);
-    // this.productClicked.emit(this.product.id);
   }
 }

@@ -1,53 +1,38 @@
-.card{
-    background-color: transparent;
-    align-content: center;
-    border-color: #2F4A85;
-    border-radius: 5%;
+.card {
+  background-color: transparent;
+  align-content: center;
+  border-color: #2f4a85;
+  border-radius: 5%;
+}
+.name {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  //font-weight:bold;
+}
+.price {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+}
 
-}
-.name{
-    text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    //font-weight:bold;
-}
-.price{
-    text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight:bold;
-}
-.shop{
-    align-content: center;
-    border-radius: 10%;
-    background-color: #2F4A85;
-    margin-bottom: 2%;
-    padding-right: 10px;
-    padding-left: 10px;
-    //margin-right: 5%;
-    margin-left: 5%;
-}
-.column{
-    &-left{
-      //background-color: red;
-      width: 20%;
-    }
-    &-right{
-      //background-color: yellow;
-     width: 50%;
-     //background: url(../../../assets/images/login_fondo1.jpg);
-     background-repeat: no-repeat;
-     width: 50%;
-     background-size: cover;
-     height: 100%;
-    }
+.column {
+  &-left {
+    //background-color: red;
+    width: 20%;
   }
-.buttong{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 7px 5px;
+  &-right {
+    //background-color: yellow;
+    width: 50%;
+    //background: url(../../../assets/images/login_fondo1.jpg);
+    background-repeat: no-repeat;
+    width: 50%;
+    background-size: cover;
+    height: 100%;
+  }
 }
-.buttons{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
