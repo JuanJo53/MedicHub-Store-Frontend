@@ -68,11 +68,17 @@ export class CardItemComponent implements OnInit {
       ],
       month: [
         this.card.month,
-        [Validators.required, Validators.maxLength(2), Validators.minLength(1)],
+        [
+          Validators.required,
+          Validators.maxLength(2),
+          Validators.minLength(1),
+          Validators.max(12),
+          Validators.min(1),
+        ],
       ],
       year: [
         this.card.year,
-        [Validators.required, Validators.maxLength(4), Validators.minLength(2)],
+        [Validators.required, Validators.maxLength(2), Validators.min(10)],
       ],
     });
   }

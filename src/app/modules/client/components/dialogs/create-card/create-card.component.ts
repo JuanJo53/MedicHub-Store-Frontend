@@ -37,14 +37,17 @@ export class CreateCardComponent implements OnInit {
       const pharmacy = this.form.value;
       console.log(pharmacy);
       this.createPharmacy(pharmacy);
-      this.dialogRef.close(true);
     } else {
       console.log("bad form");
     }
   }
   createPharmacy(newCard: Card): void {
-    this.cardService.postNewCard(newCard).subscribe((card) => {
-      console.log(card);
+    this.cardService.postNewCard(newCard).subscribe((response) => {
+      if (response == "OK") {
+        this.dialogRef.close(true);
+      } else {
+        this.dialogRef.close(false);
+      }
     });
   }
   editCard(): void {
@@ -80,11 +83,17 @@ export class CreateCardComponent implements OnInit {
       ],
       month: [
         "",
-        [Validators.required, Validators.maxLength(2), Validators.minLength(1)],
+        [
+          Validators.required,
+          Validators.maxLength(2),
+          Validators.minLength(1),
+          Validators.max(12),
+          Validators.min(1),
+        ],
       ],
       year: [
         "",
-        [Validators.required, Validators.maxLength(4), Validators.minLength(2)],
+        [Validators.required, Validators.maxLength(2), Validators.min(10)],
       ],
     });
   }

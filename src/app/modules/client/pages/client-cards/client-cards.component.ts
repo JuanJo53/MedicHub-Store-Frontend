@@ -41,7 +41,9 @@ export class ClientCardsComponent implements OnInit {
   }
 
   fecthCards(id: number): void {
+    this.cards = [];
     this.cardService.getClientCards(id).subscribe((cards) => {
+      console.log("fetching cards");
       this.cards = cards;
       this.dataSource = new MatTableDataSource(this.cards);
       console.log(cards);
@@ -54,10 +56,10 @@ export class ClientCardsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.fecthCards(this.id);
         this.displaySuccesDialog(
           "¡Se agrego la tarjeta de credito exitosamente!"
         );
-        this.ngOnInit();
       }
     });
   }
