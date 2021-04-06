@@ -4,7 +4,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LoginUser } from "src/app/shared/models/login-user";
 import { Router } from "@angular/router";
-import { stringify } from "@angular/compiler/src/util";
+import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-login",
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private tokenService: TokenService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
@@ -78,7 +80,16 @@ export class LoginComponent implements OnInit {
       (err) => {
         this.isLogged = false;
         this.isLoginFail = true;
+        this.displayErrorDialog("Email y/o constraseña incorrectos.");
       }
     );
+  }
+  displayErrorDialog(text: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      width: "300px",
+      data: {
+        message: text,
+      },
+    });
   }
 }
