@@ -80,7 +80,7 @@ export class CreateCardComponent implements OnInit {
       ],
       month: [
         "",
-        [Validators.required, Validators.max(12), Validators.minLength(1)],
+        [Validators.required, Validators.max(2), Validators.minLength(1)],
       ],
       year: [
         "",
