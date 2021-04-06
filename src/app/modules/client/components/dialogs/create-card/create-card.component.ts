@@ -84,7 +84,7 @@ export class CreateCardComponent implements OnInit {
       ],
       year: [
         "",
-        [Validators.required, Validators.maxLength(4), Validators.minLength(3)],
+        [Validators.required, Validators.maxLength(4), Validators.minLength(2)],
       ],
     });
   }
