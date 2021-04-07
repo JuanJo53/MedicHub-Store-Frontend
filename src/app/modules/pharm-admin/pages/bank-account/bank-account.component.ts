@@ -6,7 +6,6 @@ import { BankAccountService } from "src/app/core/http/pharm-admin/bank-account.s
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { BankAccount } from "src/app/shared/models/bank-account";
 import { AddBankAccountComponent } from "../../components/dialogs/add-bank-account/add-bank-account.component";
-import { CreditCardValidators } from "angular-cc-library";
 
 @Component({
   selector: "app-bank-account",

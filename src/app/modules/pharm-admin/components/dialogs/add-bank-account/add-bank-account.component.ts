@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
 import { BankAccountService } from "src/app/core/http/pharm-admin/bank-account.service";
 import { BankAccount } from "src/app/shared/models/bank-account";
 

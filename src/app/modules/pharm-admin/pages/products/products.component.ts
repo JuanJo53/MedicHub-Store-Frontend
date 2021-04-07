@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
 import { TokenService } from "src/app/core/authentication/token.service";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";

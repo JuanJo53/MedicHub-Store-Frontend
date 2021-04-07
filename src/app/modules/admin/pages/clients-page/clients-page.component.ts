@@ -1,7 +1,6 @@
 import { MatTableDataSource } from "@angular/material/table";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { TokenService } from "src/app/core/authentication/token.service";
 import { ClientService } from "src/app/core/http/admin/client.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { Client } from "src/app/shared/models/client";

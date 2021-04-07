@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { DatePipe } from "@angular/common";
 import { CreditCardDirectivesModule } from "angular-cc-library";
-import { ErrorDialogComponent } from "./modules/components/dialogs/error-dialog/error-dialog.component";
 
 @NgModule({
   declarations: [AppComponent],

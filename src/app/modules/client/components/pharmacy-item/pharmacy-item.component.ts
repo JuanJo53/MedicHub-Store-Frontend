@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Subsidiary } from "src/app/shared/models/subsidiary";
 import { SubsidiaryFeedListRequest } from "src/app/shared/models/subsidiary-feed-list-request";
 
 @Component({

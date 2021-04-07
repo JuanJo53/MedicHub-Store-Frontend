@@ -1,6 +1,6 @@
 import { TokenService } from "src/app/core/authentication/token.service";
-import { Component, Inject, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 import { CardService } from "src/app/core/http/client/card.service";
 import { Card } from "src/app/shared/models/card";
 import { MatTableDataSource } from "@angular/material/table";

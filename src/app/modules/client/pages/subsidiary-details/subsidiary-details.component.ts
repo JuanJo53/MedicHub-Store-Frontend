@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
-import { PharmAdminsService } from "src/app/core/http/admin/pharm-admins.service";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { SubsidiaryRequest } from "src/app/shared/models/subsidiary-request";
 import { MatTableDataSource } from "@angular/material/table";

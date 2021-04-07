@@ -1,4 +1,3 @@
-import { CreateBranchComponent } from "./../dialogs/create-branch/create-branch.component";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -6,7 +5,6 @@ import { BrandService } from "src/app/core/http/pharm-admin/brand.service";
 import { WarningDialogComponent } from "src/app/modules/components/dialogs/warning-dialog/warning-dialog.component";
 import { Brand } from "src/app/shared/models/brand";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
-import { ContentObserver } from "@angular/cdk/observers";
 
 @Component({
   selector: "app-brand",
