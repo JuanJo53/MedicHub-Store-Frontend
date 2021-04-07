@@ -68,6 +68,8 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { ErrorDialogComponent } from "../components/dialogs/error-dialog/error-dialog.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { ScrollingModule } from "@angular/cdk/scrolling";
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -143,6 +145,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatBadgeModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    ScrollingModule,
   ],
   entryComponents: [
     LoginComponent,

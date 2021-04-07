@@ -1,6 +1,6 @@
 <br />
-<div class="container" *ngIf="brand && !destroyed">
-  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
+<div *ngIf="brand && !destroyed">
+  <mat-card class="pharm_card" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titlePharmacy">
       <mat-card-title>
         <h3>
