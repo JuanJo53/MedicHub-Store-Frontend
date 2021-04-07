@@ -1,11 +1,13 @@
 import { MatTableDataSource } from "@angular/material/table";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ClientService } from "src/app/core/http/admin/client.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { Client } from "src/app/shared/models/client";
 import { EditClientComponent } from "../../components/dialogs/edit-client/edit-client.component";
 import { WarningDialogComponent } from "src/app/modules/components/dialogs/warning-dialog/warning-dialog.component";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 
 @Component({
   selector: "app-clients-page",
@@ -14,6 +16,17 @@ import { WarningDialogComponent } from "src/app/modules/components/dialogs/warni
 })
 export class ClientsPageComponent implements OnInit {
   clients: Client[] = [];
+
+  isLoadingResults = true;
+  isRateLimitReached = false;
+
+  length = 0;
+  size = 15;
+  order = "clientId";
+  asc = true;
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   text: string;
   displayedColumns: string[] = [
@@ -31,7 +44,7 @@ export class ClientsPageComponent implements OnInit {
   constructor(public dialog: MatDialog, private clientService: ClientService) {}
   ngOnInit() {
     try {
-      this.fecthClients();
+      this.fecthClients(this.length);
     } catch (error) {
       console.error(error);
     }
@@ -41,13 +54,25 @@ export class ClientsPageComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  fecthClients(): void {
+  refreshClients(event) {
+    // this.paginator.pageIndex = 0;
+    // this.size = this.length * this.size;
+    // console.log((event.pageIndex + 1) * event.pageSize);
+    this.fecthClients(event.pageIndex + 1);
+  }
+  fecthClients(page: number): void {
     this.clients = [];
-    this.clientService.getClients().subscribe((clients) => {
-      this.clients = clients;
-      this.dataSource = new MatTableDataSource(this.clients);
-      console.log(clients);
-    });
+    this.isLoadingResults = true;
+    this.clientService
+      .getClients(page, this.size, this.order, this.asc)
+      .subscribe((clients) => {
+        this.clients = clients;
+        this.dataSource = new MatTableDataSource(this.clients);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        console.log(clients);
+        this.isLoadingResults = false;
+      });
   }
   editClient(clientId: number) {
     const dialogRef = this.dialog.open(EditClientComponent, {

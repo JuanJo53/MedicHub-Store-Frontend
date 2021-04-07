@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { PharmAdmin } from "src/app/shared/models/pharm-admin";
 import { PharmAdminList } from "src/app/shared/models/pharm-admin-list";
 import apiKey from "../../apiKey";
@@ -23,9 +24,16 @@ export class PharmAdminsService {
       headers: this.headers,
     });
   }
-  getAdmins(subsidId: number) {
+  getAdmins(
+    subsidId: number,
+    page: number,
+    size: number,
+    order: string,
+    asc: boolean
+  ): Observable<any> {
     return this.http.get<PharmAdminList[]>(
-      apiKey.api + `/subsidiary/${subsidId}/admin`,
+      apiKey.api +
+        `/subsidiary/${subsidId}/admin?page=${page}&size=${size}&order=${order}&asc=${asc}`,
       { headers: this.headers }
     );
   }

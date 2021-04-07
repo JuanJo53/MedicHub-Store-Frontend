@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
@@ -11,7 +11,11 @@ import { PharmAdminList } from "src/app/shared/models/pharm-admin-list";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { CreateSubsiAdminComponent } from "../../components/dialogs/create-subsi-admin/create-subsi-admin.component";
 import { EditSubsiAdminsComponent } from "../../components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
-
+import { MatSort } from "@angular/material/sort";
+import { MatPaginator } from "@angular/material/paginator";
+import { merge, Observable, of as observableOf } from "rxjs";
+import { catchError, map, startWith, switchMap } from "rxjs/operators";
+import { AdminIssue } from "src/app/shared/models/adminsIssue";
 @Component({
   selector: "app-subsidiary-detail",
   templateUrl: "./subsidiary-detail.component.html",
@@ -22,10 +26,19 @@ export class SubsidiaryDetailComponent implements OnInit {
 
   admins: PharmAdminList[];
 
+  page = 0;
+  size = 10;
+  order = "id";
+  asc = true;
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   text: string;
   id: number;
   form: FormGroup;
 
+  filteredAndPagedIssues: Observable<PharmAdminList[]>;
   displayedColumns: string[] = [
     "id_usuario",
     "Name",
@@ -60,6 +73,35 @@ export class SubsidiaryDetailComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  // ngAfterViewInit() {
+  //   this.filteredAndPagedIssues = merge(
+  //     this.sort.sortChange,
+  //     this.paginator.page
+  //   ).pipe(
+  //     startWith({}),
+  //     switchMap(() => {
+  //       this.isLoadingResults = true;
+  //       return this.admins;
+  //     }),
+  //     map((data) => {
+  //       // Flip flag to show that loading has finished.
+  //       this.isLoadingResults = false;
+  //       this.isRateLimitReached = false;
+  //       this.resultsLength = data.;
+
+  //       return data.items;
+  //     }),
+  //     catchError(() => {
+  //       this.isLoadingResults = false;
+  //       // Catch if the GitHub API has reached its rate limit. Return empty data.
+  //       this.isRateLimitReached = true;
+  //       return observableOf([]);
+  //     })
+  //   );
+  // }
+  resetPaging(): void {
+    this.paginator.pageIndex = 0;
+  }
 
   getDetails(id: number) {
     this.subsidiariesService
@@ -73,11 +115,13 @@ export class SubsidiaryDetailComponent implements OnInit {
   }
   getAdmins(id: number) {
     this.admins = [];
-    this.pharmAdminsService.getAdmins(id).subscribe((administrator) => {
-      this.admins = administrator;
-      this.dataSource = new MatTableDataSource(this.admins);
-      console.log(this.admins);
-    });
+    this.pharmAdminsService
+      .getAdmins(id, this.page, this.size, this.order, this.asc)
+      .subscribe((administrator) => {
+        this.admins = administrator;
+        this.dataSource = new MatTableDataSource(this.admins);
+        console.log(this.admins);
+      });
   }
   saveChanges(event: Event, id: number): void {
     event.preventDefault();
