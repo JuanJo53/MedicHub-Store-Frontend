@@ -24,6 +24,7 @@ export class ClientsPageComponent implements OnInit {
   size = 30;
   order = "id";
   asc = true;
+  actualPage = 0;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -58,7 +59,7 @@ export class ClientsPageComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   refreshClients(event) {
-    console.log(event.pageIndex);
+    this.actualPage = event.pageIndex;
     this.fecthClients(event.pageIndex + 1);
   }
   fecthClients(page: number): void {
@@ -86,9 +87,10 @@ export class ClientsPageComponent implements OnInit {
       console.log(result);
       if (result) {
         this.displaySuccesDialog(
-          "¡Se actualizo los datos del administrador exitosamente!"
+          "¡Los datos del cliente se actualizaron exitosamente!"
         );
-        this.ngOnInit();
+        this.fecthClients(this.actualPage + 1);
+        // this.ngOnInit();
       }
     });
   }
