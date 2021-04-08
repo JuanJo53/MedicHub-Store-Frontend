@@ -20,9 +20,9 @@ export class ClientsPageComponent implements OnInit {
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  length = 0;
-  size = 15;
-  order = "clientId";
+  length = 200;
+  size = 30;
+  order = "id";
   asc = true;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -44,7 +44,10 @@ export class ClientsPageComponent implements OnInit {
   constructor(public dialog: MatDialog, private clientService: ClientService) {}
   ngOnInit() {
     try {
-      this.fecthClients(this.length);
+      this.clientService.getTotalClients().subscribe((element) => {
+        this.length = element;
+      });
+      this.fecthClients(1);
     } catch (error) {
       console.error(error);
     }
@@ -55,9 +58,7 @@ export class ClientsPageComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   refreshClients(event) {
-    // this.paginator.pageIndex = 0;
-    // this.size = this.length * this.size;
-    // console.log((event.pageIndex + 1) * event.pageSize);
+    console.log(event.pageIndex);
     this.fecthClients(event.pageIndex + 1);
   }
   fecthClients(page: number): void {
@@ -69,7 +70,7 @@ export class ClientsPageComponent implements OnInit {
         this.clients = clients;
         this.dataSource = new MatTableDataSource(this.clients);
         this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
+        // this.dataSource.paginator = this.paginator;
         console.log(clients);
         this.isLoadingResults = false;
       });

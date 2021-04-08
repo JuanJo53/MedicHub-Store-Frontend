@@ -22,11 +22,18 @@ export class ClientService {
   getClients(page: number, size: number, order: string, asc: boolean) {
     return this.http.get<Client[]>(
       apiKey.api +
-        `/client?page=${page}&size=${size}&order=${order}&asc=${asc}`,
+        `/client?page=${
+          (page - 1) * size
+        }&size=${size}&order=${order}&asc=${asc}`,
       {
         headers: this.headers,
       }
     );
+  }
+  getTotalClients() {
+    return this.http.get<any>(apiKey.api + `/client/total`, {
+      headers: this.headers,
+    });
   }
   getClientDetail(clientId: number) {
     return this.http.get<Client>(apiKey.api + `/client/${clientId}`, {
