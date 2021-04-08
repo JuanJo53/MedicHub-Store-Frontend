@@ -24,6 +24,7 @@ export class ProductsComponent implements OnInit {
   size = 9;
   order = "id";
   asc = true;
+  actualPage = 0;
 
   id: number;
   name: string;
@@ -66,7 +67,7 @@ export class ProductsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.displaySuccesDialog("¡Se agrego el producto exitosamente!");
-        this.ngOnInit();
+        this.fecthProducts(this.id, this.actualPage + 1);
       }
     });
   }
@@ -82,7 +83,7 @@ export class ProductsComponent implements OnInit {
       });
   }
   refreshProducts(event) {
-    console.log(event.pageIndex);
+    this.actualPage = event.pageIndex;
     this.fecthProducts(this.id, event.pageIndex + 1);
   }
   displaySuccesDialog(text: string) {

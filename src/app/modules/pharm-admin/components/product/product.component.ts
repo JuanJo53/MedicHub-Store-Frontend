@@ -142,7 +142,6 @@ export class ProductComponent implements OnInit {
   fecthBrands(): void {
     this.brandsService.getBrands().subscribe((bands) => {
       this.brands = bands;
-      console.log(bands);
     });
   }
   displaySuccesDialog(text: string) {

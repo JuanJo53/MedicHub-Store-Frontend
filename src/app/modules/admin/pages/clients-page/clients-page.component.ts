@@ -90,7 +90,6 @@ export class ClientsPageComponent implements OnInit {
           "¡Los datos del cliente se actualizaron exitosamente!"
         );
         this.fecthClients(this.actualPage + 1);
-        // this.ngOnInit();
       }
     });
   }

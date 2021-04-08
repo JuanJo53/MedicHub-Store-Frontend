@@ -37,12 +37,10 @@ export class BrandsComponent implements OnInit {
   fecthBrands(): void {
     this.brandsService.getBrands().subscribe((bands) => {
       this.brands = bands;
-      console.log(bands);
     });
   }
   onScroll() {
     if (this.notscrolly && this.notEmptyPost) {
-      // this.spinner.show();
       this.notscrolly = false;
       this.loadNextPost();
     }
