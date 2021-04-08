@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
@@ -23,8 +22,8 @@ export class SubsidiaryDetailsComponent implements OnInit {
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  length = 1;
-  size = 30;
+  length = 200;
+  size = 9;
   order = "id";
   asc = true;
 
@@ -40,13 +39,13 @@ export class SubsidiaryDetailsComponent implements OnInit {
     public dialog: MatDialog
   ) {}
   ngOnInit() {
-    this.subsidiaryId = this.activatedRoute.snapshot.params.id;
     try {
+      this.subsidiaryId = this.activatedRoute.snapshot.params.id;
       this.productService.getTotalProducts().subscribe((element) => {
         this.length = element;
       });
       if (this.subsidiaryId) {
-        this.getDetails(this.subsidiaryId, this.length);
+        this.getDetails(this.subsidiaryId);
       }
     } catch (error) {
       console.error(error);
@@ -59,7 +58,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getDetails(id: number, page: number) {
+  getDetails(id: number) {
     this.subsidiariesService
       .getSpecificSubsidiary(id)
       .subscribe((subsidiary) => {
@@ -67,7 +66,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
         this.getProducts(id, this.length);
       });
   }
-  getProducts(id: number, page) {
+  getProducts(id: number, page: number) {
     this.isLoadingResults = true;
     this.productService
       .getSubsidiaryProducts(id, page, this.size, this.order, this.asc)
@@ -79,7 +78,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
         this.isLoadingResults = false;
       });
   }
-  refreshClients(event) {
+  refreshProducts(event) {
     console.log(event.pageIndex);
     this.getProducts(this.subsidiaryId, event.pageIndex + 1);
   }

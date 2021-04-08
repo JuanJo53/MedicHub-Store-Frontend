@@ -20,7 +20,7 @@ export class ClientsPageComponent implements OnInit {
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  length = 200;
+  length = 12;
   size = 30;
   order = "id";
   asc = true;

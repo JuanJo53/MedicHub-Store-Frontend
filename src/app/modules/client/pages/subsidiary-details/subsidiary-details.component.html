@@ -41,12 +41,19 @@
         #input
       />
     </mat-form-field>
+
     <div class="container">
+      <mat-paginator
+        [length]="length"
+        [pageSize]="size"
+        (page)="refreshClients($event)"
+      ></mat-paginator>
       <div class="row row-cols-3">
         <app-product-item
           class="col mt-3 mb-3"
           *ngFor="let product of dataSource.filteredData"
           [product]="product"
+          matSort
         >
         </app-product-item>
       </div>
