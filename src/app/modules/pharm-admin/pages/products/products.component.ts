@@ -14,6 +14,11 @@ import { CreateProductComponent } from "../../components/dialogs/create-product/
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
+  length = 0;
+  size = 30;
+  order = "id";
+  asc = true;
+
   id: number;
   name: string;
 
@@ -28,7 +33,7 @@ export class ProductsComponent implements OnInit {
     this.id = parseInt(this.tokenService.getSubsidiaryId());
     try {
       if (this.id) {
-        this.fecthProducts(this.id);
+        this.fecthProducts(this.id, this.length);
       }
     } catch (error) {
       console.error(error);
@@ -48,12 +53,14 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
-  fecthProducts(id: number): void {
+  fecthProducts(id: number, page: number): void {
     this.products = [];
-    this.productsServide.getSubsidiaryProducts(id).subscribe((products) => {
-      this.products = products;
-      console.log(products);
-    });
+    this.productsServide
+      .getSubsidiaryProducts(id, page, this.size, this.order, this.asc)
+      .subscribe((products) => {
+        this.products = products;
+        console.log(products);
+      });
   }
   displaySuccesDialog(text: string) {
     this.dialog.open(SuccesDialogComponent, {
