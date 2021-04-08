@@ -22,7 +22,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  length = 200;
+  length = 1;
   size = 9;
   order = "id";
   asc = true;
@@ -41,11 +41,13 @@ export class SubsidiaryDetailsComponent implements OnInit {
   ngOnInit() {
     try {
       this.subsidiaryId = this.activatedRoute.snapshot.params.id;
-      this.productService.getTotalProducts().subscribe((element) => {
-        this.length = element;
-      });
       if (this.subsidiaryId) {
         this.getDetails(this.subsidiaryId);
+        this.productService
+          .getTotalProducts(this.subsidiaryId)
+          .subscribe((element) => {
+            this.length = element;
+          });
       }
     } catch (error) {
       console.error(error);
@@ -63,6 +65,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
       .getSpecificSubsidiary(id)
       .subscribe((subsidiary) => {
         this.subsidiary = subsidiary;
+        console.log(this.length);
         this.getProducts(id, this.length);
       });
   }

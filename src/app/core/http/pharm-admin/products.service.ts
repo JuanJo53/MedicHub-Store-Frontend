@@ -22,8 +22,8 @@ export class ProductsService {
       headers: this.headers,
     });
   }
-  getTotalProducts() {
-    return this.http.get<any>(apiKey.api + `/product/total`, {
+  getTotalProducts(subId: number) {
+    return this.http.get<any>(apiKey.api + `/product/${subId}/total`, {
       headers: this.headers,
     });
   }
@@ -36,7 +36,7 @@ export class ProductsService {
   ) {
     return this.http.get<Product[]>(
       apiKey.api +
-        `/subsidiary/${prodId}/product?page=${
+        `/product/${prodId}/list?page=${
           (page - 1) * size
         }&size=${size}&order=${order}&asc=${asc}`,
       { headers: this.headers }

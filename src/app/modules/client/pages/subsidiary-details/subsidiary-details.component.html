@@ -41,14 +41,19 @@
         #input
       />
     </mat-form-field>
-
     <div class="container">
       <mat-paginator
         [length]="length"
         [pageSize]="size"
-        (page)="refreshClients($event)"
+        (page)="refreshProducts($event)"
       ></mat-paginator>
-      <div class="row row-cols-3">
+      <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+          Es el limite de los datos
+        </div>
+      </div>
+      <div class="row row-cols-3" *ngIf="!isLoadingResults">
         <app-product-item
           class="col mt-3 mb-3"
           *ngFor="let product of dataSource.filteredData"
