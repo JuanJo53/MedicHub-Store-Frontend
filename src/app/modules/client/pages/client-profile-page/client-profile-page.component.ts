@@ -57,12 +57,11 @@ export class ClientProfilePageComponent implements OnInit {
     this.editEnabled = false;
   }
   getDetails(id: number) {
+    console.log(id);
     this.clientService.getClientDetail(id).subscribe((client) => {
       this.client = client;
       console.log("client details reached");
       console.log(client);
-      // this.editClient(id);
-      // this.getAdress(this.id);
     });
   }
   editClient(): void {
