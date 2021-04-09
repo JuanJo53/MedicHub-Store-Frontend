@@ -1,23 +1,35 @@
-  <h1 class="title"><strong>Productos</strong></h1>
-  <div class="header-productos">
-    <div>
-      <button (click)="addProduct()" mat-fab class="btn" color="primary">
-        <mat-icon class="button-add">inventory_2</mat-icon>
-      </button>
-    </div>
-    <div>
-      <div fxFlex fxHide.lt-sm="true" class="search-bar">
-        <form class="top-search-form">
-          <mat-icon role="img">search</mat-icon>
-          <input  placeholder="Buscar producto" type="text" class="lettersearch" />
-        </form>
-      </div>
+<h1 class="title"><strong>Productos</strong></h1>
+<div class="header-productos">
+  <div>
+    <button (click)="addProduct()" mat-fab class="btn" color="primary">
+      <mat-icon class="button-add">inventory_2</mat-icon>
+    </button>
+  </div>
+  <mat-form-field class="formfarmacia2">
+    <mat-label>Buscar</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. ium"
+      #input
+    />
+  </mat-form-field>
+</div>
+
+<div class="products-grid">
+  <mat-paginator
+    [length]="length"
+    [pageSize]="size"
+    (page)="refreshProducts($event)"
+  ></mat-paginator>
+  <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+      Es el limite de los datos
     </div>
   </div>
-  
-  <div class="products-grid">
-    <app-product
-      *ngFor="let product of products"
-      [product]="product"
-    ></app-product>
-  </div>
+  <app-product
+    *ngFor="let product of dataSource.filteredData"
+    [product]="product"
+  ></app-product>
+</div>

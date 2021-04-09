@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { SubsidiaryRequest } from "src/app/shared/models/subsidiary-request";
 

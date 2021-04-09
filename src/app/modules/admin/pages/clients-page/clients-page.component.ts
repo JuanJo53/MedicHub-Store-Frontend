@@ -1,12 +1,13 @@
 import { MatTableDataSource } from "@angular/material/table";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { TokenService } from "src/app/core/authentication/token.service";
 import { ClientService } from "src/app/core/http/admin/client.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { Client } from "src/app/shared/models/client";
 import { EditClientComponent } from "../../components/dialogs/edit-client/edit-client.component";
 import { WarningDialogComponent } from "src/app/modules/components/dialogs/warning-dialog/warning-dialog.component";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 
 @Component({
   selector: "app-clients-page",
@@ -15,6 +16,18 @@ import { WarningDialogComponent } from "src/app/modules/components/dialogs/warni
 })
 export class ClientsPageComponent implements OnInit {
   clients: Client[] = [];
+
+  isLoadingResults = true;
+  isRateLimitReached = false;
+
+  length = 12;
+  size = 30;
+  order = "id";
+  asc = true;
+  actualPage = 0;
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   text: string;
   displayedColumns: string[] = [
@@ -32,7 +45,10 @@ export class ClientsPageComponent implements OnInit {
   constructor(public dialog: MatDialog, private clientService: ClientService) {}
   ngOnInit() {
     try {
-      this.fecthClients();
+      this.clientService.getTotalClients().subscribe((element) => {
+        this.length = element;
+      });
+      this.fecthClients(1);
     } catch (error) {
       console.error(error);
     }
@@ -42,13 +58,23 @@ export class ClientsPageComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  fecthClients(): void {
+  refreshClients(event) {
+    this.actualPage = event.pageIndex;
+    this.fecthClients(event.pageIndex + 1);
+  }
+  fecthClients(page: number): void {
     this.clients = [];
-    this.clientService.getClients().subscribe((clients) => {
-      this.clients = clients;
-      this.dataSource = new MatTableDataSource(this.clients);
-      console.log(clients);
-    });
+    this.isLoadingResults = true;
+    this.clientService
+      .getClients(page, this.size, this.order, this.asc)
+      .subscribe((clients) => {
+        this.clients = clients;
+        this.dataSource = new MatTableDataSource(this.clients);
+        this.dataSource.sort = this.sort;
+        // this.dataSource.paginator = this.paginator;
+        console.log(clients);
+        this.isLoadingResults = false;
+      });
   }
   editClient(clientId: number) {
     const dialogRef = this.dialog.open(EditClientComponent, {
@@ -61,9 +87,9 @@ export class ClientsPageComponent implements OnInit {
       console.log(result);
       if (result) {
         this.displaySuccesDialog(
-          "¡Se actualizo los datos del administrador exitosamente!"
+          "¡Los datos del cliente se actualizaron exitosamente!"
         );
-        this.ngOnInit();
+        this.fecthClients(this.actualPage + 1);
       }
     });
   }

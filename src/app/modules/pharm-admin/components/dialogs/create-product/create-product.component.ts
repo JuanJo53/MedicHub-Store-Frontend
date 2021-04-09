@@ -88,7 +88,6 @@ export class CreateProductComponent implements OnInit {
   fecthBrands(): void {
     this.brandsService.getBrands().subscribe((bands) => {
       this.brands = bands;
-      console.log(bands);
     });
   }
 }

@@ -127,11 +127,42 @@ export class EditClientComponent implements OnInit {
         ],
       ],
       birthdate: [this.client.birthdate, [Validators.required]],
-      number: [this.client.number, [Validators.required]],
-      street: [this.client.street, [Validators.required]],
-      zone: [this.client.zone, [Validators.required]],
-      city: [this.client.city, [Validators.required]],
-      country: [this.client.country, [Validators.required]],
+      number: [
+        this.client.number,
+        [Validators.required, Validators.maxLength(15)],
+      ],
+      street: [
+        this.client.street,
+        [
+          Validators.required,
+          Validators.maxLength(145),
+          Validators.minLength(3),
+        ],
+      ],
+      zone: [
+        this.client.zone,
+        [
+          Validators.required,
+          Validators.maxLength(80),
+          Validators.minLength(3),
+        ],
+      ],
+      city: [
+        this.client.city,
+        [
+          Validators.required,
+          Validators.maxLength(80),
+          Validators.minLength(3),
+        ],
+      ],
+      country: [
+        this.client.country,
+        [
+          Validators.required,
+          Validators.maxLength(80),
+          Validators.minLength(3),
+        ],
+      ],
     });
   }
   saveClient(): void {
@@ -142,28 +173,17 @@ export class EditClientComponent implements OnInit {
         "yyyy-MM-dd"
       );
       client.birthdate = date;
-      this.updateAdmin(client);
+      this.updateClient(client);
     } else {
       console.log("bad form");
     }
   }
-  updateAdmin(client: Client): void {
+  updateClient(client: Client): void {
     this.clientService.updateClient(client).subscribe((responseClient) => {
       console.log(responseClient);
       if (responseClient) {
         this.dialogRef.close(true);
-        this.displaySuccesDialog(
-          "¡Los datos del cliente se actualizaron exitosamente!"
-        );
       }
-    });
-  }
-  displaySuccesDialog(text: string) {
-    this.dialog.open(SuccesDialogComponent, {
-      width: "500px",
-      data: {
-        message: text,
-      },
     });
   }
 }

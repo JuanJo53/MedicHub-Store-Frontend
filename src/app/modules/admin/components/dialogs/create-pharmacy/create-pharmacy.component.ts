@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
 import { PharmaciesService } from "src/app/core/http/admin/pharmacies.service";
 import { PharmacyRequest } from "src/app/shared/models/pharmacy-request";
 

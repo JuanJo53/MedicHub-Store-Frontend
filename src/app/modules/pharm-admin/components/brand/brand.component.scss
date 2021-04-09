@@ -1,26 +1,25 @@
-.titlePharmacy{
-    //background: #2F4A85;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #2F4A85;
-    
+.titlePharmacy {
+  //background: #2F4A85;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #2f4a85;
 }
-.titlefarmacia{
+.titlefarmacia {
   margin-left: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight:bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
   font-size: 32px;
-  color: #2F4A85;
+  color: #2f4a85;
 }
 .moldeexterno {
   background: transparent;
 }
-.moldeinterno {
+.pharm_card {
   background: white;
-  width: 40%;
+  width: 100%;
   border-radius: 15px;
   border: 1.4px solid #2f4a85;
 }
@@ -34,18 +33,18 @@
   //background-color: yellow;
   //width: 100%;
   //background: url(../../../../../assets/images/pnglogo1.png);
-    //background-repeat: no-repeat;
-     //width: 50%;
+  //background-repeat: no-repeat;
+  //width: 50%;
   //background-size: cover;
   //height: 100%;
 }
 .textEdit {
-  color: #2F4A85;
+  color: #2f4a85;
   //font-style: oblique;
   font-weight: bolder;
   font-size: 15px;
 }
-.textEditr{
+.textEditr {
   //color: #2F4A85;
   font-size: 22px;
 }
@@ -59,48 +58,46 @@
   font-size: 22px;
 }
 
-
 //EDITAR FARMACIA
-.pharm_cardedit{
-  background-color: #2F4A85;
+.pharm_cardedit {
+  background-color: #2f4a85;
 }
 
-.texteditcard{
-  color: #2F4A85;
+.texteditcard {
+  color: #2f4a85;
 }
-.form{
+.form {
   color: white;
   margin-right: 10% !important;
 }
 
-.pharm_cardmoldeinterno{
+.pharm_cardmoldeinterno {
   padding: 0% !important;
   border-radius: 20px 20px 20px 20px !important;
 }
-.btn-edit{
+.btn-edit {
   background-color: #2f4a85;
   color: white;
 }
-.buttons{
+.buttons {
   display: flex;
   justify-content: flex-end;
-  
 }
-.entradas{
+.entradas {
   display: flex;
   justify-content: space-between;
   //background-color: yellow;
 }
-.subsidiaries-grid{
-  background-color:#2f4a85 ;
+.subsidiaries-grid {
+  background-color: #2f4a85;
   color: white;
   border-radius: 0px 0px 20px 20px !important;
   align-content: center;
 }
-.titlesucursal{
+.titlesucursal {
   //color: #2f4a85;
   color: white;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 25px;
   font-style: italic;
   font-weight: bolder;

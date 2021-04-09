@@ -22,9 +22,23 @@ export class ProductsService {
       headers: this.headers,
     });
   }
-  getSubsidiaryProducts(prodId: number) {
+  getTotalProducts(subId: number) {
+    return this.http.get<any>(apiKey.api + `/product/${subId}/total`, {
+      headers: this.headers,
+    });
+  }
+  getSubsidiaryProducts(
+    prodId: number,
+    page: number,
+    size: number,
+    order: string,
+    asc: boolean
+  ) {
     return this.http.get<Product[]>(
-      apiKey.api + `/subsidiary/${prodId}/product`,
+      apiKey.api +
+        `/product/${prodId}/list?page=${
+          (page - 1) * size
+        }&size=${size}&order=${order}&asc=${asc}`,
       { headers: this.headers }
     );
   }

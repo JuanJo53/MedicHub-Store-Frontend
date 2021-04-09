@@ -65,6 +65,11 @@ import { CardItemComponent } from "../client/components/card-item/card-item.comp
 import { ProductDetailComponent } from "../client/pages/product-detail/product-detail.component";
 import { NotFoundComponent } from "./pages/aux-pages/not-found/not-found.component";
 import { MatBadgeModule } from "@angular/material/badge";
+import { ErrorDialogComponent } from "../components/dialogs/error-dialog/error-dialog.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { ScrollingModule } from "@angular/cdk/scrolling";
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -112,6 +117,7 @@ import { MatBadgeModule } from "@angular/material/badge";
     CardItemComponent,
     ProductDetailComponent,
     NotFoundComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -137,6 +143,9 @@ import { MatBadgeModule } from "@angular/material/badge";
     MatNativeDateModule,
     MomentDateModule,
     MatBadgeModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    ScrollingModule,
   ],
   entryComponents: [
     LoginComponent,
@@ -153,6 +162,7 @@ import { MatBadgeModule } from "@angular/material/badge";
     EditSubsiAdminsComponent,
     EditClientComponent,
     CreateCardComponent,
+    ErrorDialogComponent,
   ],
 })
 export class HomeModule {}

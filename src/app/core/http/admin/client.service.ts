@@ -19,8 +19,19 @@ export class ClientService {
   postNewClient(client: Client) {
     return this.http.post(apiKey.api + "/client", client);
   }
-  getClients() {
-    return this.http.get<Client[]>(apiKey.api + `/client`, {
+  getClients(page: number, size: number, order: string, asc: boolean) {
+    return this.http.get<Client[]>(
+      apiKey.api +
+        `/client?page=${
+          (page - 1) * size
+        }&size=${size}&order=${order}&asc=${asc}`,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+  getTotalClients() {
+    return this.http.get<any>(apiKey.api + `/client/total`, {
       headers: this.headers,
     });
   }

@@ -1,6 +1,6 @@
 import { SubsidiaryListRequest } from "./../../../../shared/models/subsidiary-list-request";
 import { Component, Input, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { MatDialog } from "@angular/material/dialog";
 import { WarningDialogComponent } from "../../../components/dialogs/warning-dialog/warning-dialog.component";

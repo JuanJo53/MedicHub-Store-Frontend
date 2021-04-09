@@ -1,20 +1,25 @@
-  <h1 class="title"><strong>Marcas</strong></h1>
-  <div class="header-marcas">
-    <div>
-      <button (click)="addBrand()" mat-fab class="btn" color="primary">
-        <mat-icon>picture_in_picture</mat-icon>
-      </button>
-    </div>
-    <div>
-      <div fxFlex fxHide.lt-sm="true" class="search-bar">
-        <form class="top-search-form">
-          <mat-icon role="img">search</mat-icon>
-          <input  placeholder="Buscar marca" type="text" class="lettersearch" />
-        </form>
-      </div>
+<h1 class="title"><strong>Marcas</strong></h1>
+<div class="header-marcas">
+  <div>
+    <button (click)="addBrand()" mat-fab class="btn" color="primary">
+      <mat-icon>picture_in_picture</mat-icon>
+    </button>
+  </div>
+  <div>
+    <div fxFlex fxHide.lt-sm="true" class="search-bar">
+      <form class="top-search-form">
+        <mat-icon role="img">search</mat-icon>
+        <input placeholder="Buscar marca" type="text" class="lettersearch" />
+      </form>
     </div>
   </div>
-  
-  <div class="marcas-grid">
-    <app-brand *ngFor="let brand of brands" [brand]="brand"></app-brand>
+</div>
+<div class="container">
+  <div class="row row-cols-4">
+    <app-brand
+      class="col"
+      *ngFor="let brand of brands"
+      [brand]="brand"
+    ></app-brand>
   </div>
+</div>

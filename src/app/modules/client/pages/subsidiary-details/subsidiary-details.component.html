@@ -42,11 +42,23 @@
       />
     </mat-form-field>
     <div class="container">
-      <div class="row row-cols-3">
+      <mat-paginator
+        [length]="length"
+        [pageSize]="size"
+        (page)="refreshProducts($event)"
+      ></mat-paginator>
+      <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+          Es el limite de los datos
+        </div>
+      </div>
+      <div class="row row-cols-3" *ngIf="!isLoadingResults">
         <app-product-item
           class="col mt-3 mb-3"
           *ngFor="let product of dataSource.filteredData"
           [product]="product"
+          matSort
         >
         </app-product-item>
       </div>

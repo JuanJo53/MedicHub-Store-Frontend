@@ -1,6 +1,6 @@
 import { TokenService } from "src/app/core/authentication/token.service";
-import { Component, Inject, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 import { CardService } from "src/app/core/http/client/card.service";
 import { Card } from "src/app/shared/models/card";
 import { MatTableDataSource } from "@angular/material/table";
@@ -41,7 +41,9 @@ export class ClientCardsComponent implements OnInit {
   }
 
   fecthCards(id: number): void {
+    this.cards = [];
     this.cardService.getClientCards(id).subscribe((cards) => {
+      console.log("fetching cards");
       this.cards = cards;
       this.dataSource = new MatTableDataSource(this.cards);
       console.log(cards);
@@ -54,10 +56,10 @@ export class ClientCardsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.fecthCards(this.id);
         this.displaySuccesDialog(
           "¡Se agrego la tarjeta de credito exitosamente!"
         );
-        this.ngOnInit();
       }
     });
   }

@@ -1,6 +1,6 @@
 <br />
-<div class="moldeexterno" *ngIf="brand && !destroyed">
-  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
+<div *ngIf="brand && !destroyed">
+  <mat-card class="pharm_card" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titlePharmacy">
       <mat-card-title>
         <h3>
@@ -21,9 +21,9 @@
         <mat-icon>more_vert</mat-icon>
       </button>
     </mat-card-header>
-    <table>
-      <tr>
-        <td>
+    <mat-card-content>
+      <div class="row row-cols-2">
+        <div class="col">
           <div class="blocImagen">
             <img
               src="assets/images/marcafarmacia.png"
@@ -31,57 +31,60 @@
               height="130px"
             />
           </div>
-        </td>
-        <td>
-          <mat-card-content>
-            <h3>
-              <strong class="textEdit">EMAIL:</strong>
-              <p class="textEdit">{{ brand.email }}</p>
-            </h3>
-            <h3>
-              <strong class="textEdit">PHONE:</strong>
-              <p class="textEdit">{{ brand.phone }}</p>
-            </h3>
-          </mat-card-content>
-        </td>
-      </tr>
-    </table>
+        </div>
+        <div class="col">
+          <h3>
+            <strong class="textEdit">EMAIL:</strong>
+            <p class="textEdit">{{ brand.email }}</p>
+          </h3>
+          <h3>
+            <strong class="textEdit">PHONE:</strong>
+            <p class="textEdit">{{ brand.phone }}</p>
+          </h3>
+        </div>
+      </div>
+    </mat-card-content>
   </mat-card>
   <ng-template #elseBlock>
     <form [formGroup]="form" (ngSubmit)="saveBrand($event, brand.brandId)">
       <mat-card class="pharm_card">
+        <mat-card-header class="titlePharmacy">
+          <mat-card-title>
+            <mat-form-field class="form">
+              <mat-label class="texteditcard">Nombre</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="name"
+                placeholder="Nombre Marca"
+                [(ngModel)]="brand.name"
+                required
+                class="texteditcard"
+              />
+            </mat-form-field>
+          </mat-card-title>
+        </mat-card-header>
         <mat-card-content>
-          <mat-form-field class="form">
-            <mat-label class="texteditcard">Nombre</mat-label>
-            <input
-              matInput
-              type="text"
-              formControlName="name"
-              placeholder="Nombre Certificado"
-              [(ngModel)]="brand.name"
-              required
-              class="texteditcard"
-            />
-          </mat-form-field>
           <mat-form-field class="form">
             <mat-label class="texteditcard">Email</mat-label>
             <input
               matInput
               type="text"
               formControlName="email"
-              placeholder="Email de la Faramacia"
+              placeholder="Email de la marca"
               [(ngModel)]="brand.email"
               required
               class="texteditcard"
             />
           </mat-form-field>
+          <br />
           <mat-form-field class="form">
             <mat-label class="texteditcard">Telefono</mat-label>
             <input
               matInput
               type="text"
               formControlName="phone"
-              placeholder="Telefono de la Faramacia"
+              placeholder="Telefono de la Marca"
               [(ngModel)]="brand.phone"
               required
               class="texteditcard"

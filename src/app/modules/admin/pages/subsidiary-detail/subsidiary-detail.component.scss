@@ -4,62 +4,92 @@ mat-divider {
 table {
   width: 100%;
 }
-.title{
+.loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rate-limit-reached {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
+}
+.adminlist {
+  position: relative;
+  height: 540px;
+  overflow: auto;
+}
+.table-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.title {
   margin-left: 45px;
   margin-bottom: 10px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight:bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
   font-size: 40px;
-  color: #2F4A85;
+  color: #2f4a85;
 }
-.formfarmacia{
+.formfarmacia {
   margin-left: 230px;
   margin-right: 230px;
 }
 
-.btn-guardar{
+.btn-guardar {
   background-color: #2f4a85;
   color: white;
   margin-bottom: 10px;
-  
 }
 
-.subtitle{
+.subtitle {
   color: #2f4a85;
   margin-bottom: 15px;
 }
 
-.linea{
+.linea {
   background-color: #2f4a85;
 }
 
-.formfarmacia2{
+.formfarmacia2 {
   margin-left: 120px;
   margin-right: 420px;
 }
-.formfarmaciatabla{
+.formfarmaciatabla {
   width: 85%;
   //background-color: red;
 }
-.adminlist{
- // background-color: yellow;
+.adminlist {
+  // background-color: yellow;
   display: flex;
   justify-content: center;
 }
 
-td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type,
+th.mat-header-cell:last-of-type {
   padding-right: 0px !important;
 }
 
- .mat-header-cell {    text-align: center;    }
- .mat-cell {
+.mat-header-cell {
   text-align: center;
 }
-.buttons{
-  display: flex;
-    justify-content: flex-end;
+.mat-cell {
+  text-align: center;
 }
-.entradas{
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.entradas {
   display: flex;
   justify-content: space-between;
   //background-color: yellow;
