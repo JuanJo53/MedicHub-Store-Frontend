@@ -1,3 +1,4 @@
+import { AppPage } from "./../../../../../../e2e/src/app.po";
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -26,10 +27,14 @@ export class SubsidiaryDetailComponent implements OnInit {
 
   admins: PharmAdminList[];
 
-  page = 0;
-  size = 10;
+  isLoadingResults = true;
+  isRateLimitReached = false;
+
+  length = 12;
+  size = 30;
   order = "id";
   asc = true;
+  actualPage = 0;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -73,34 +78,10 @@ export class SubsidiaryDetailComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  // ngAfterViewInit() {
-  //   this.filteredAndPagedIssues = merge(
-  //     this.sort.sortChange,
-  //     this.paginator.page
-  //   ).pipe(
-  //     startWith({}),
-  //     switchMap(() => {
-  //       this.isLoadingResults = true;
-  //       return this.admins;
-  //     }),
-  //     map((data) => {
-  //       // Flip flag to show that loading has finished.
-  //       this.isLoadingResults = false;
-  //       this.isRateLimitReached = false;
-  //       this.resultsLength = data.;
 
-  //       return data.items;
-  //     }),
-  //     catchError(() => {
-  //       this.isLoadingResults = false;
-  //       // Catch if the GitHub API has reached its rate limit. Return empty data.
-  //       this.isRateLimitReached = true;
-  //       return observableOf([]);
-  //     })
-  //   );
-  // }
-  resetPaging(): void {
-    this.paginator.pageIndex = 0;
+  refreshAdmins(event) {
+    this.actualPage = event.pageIndex;
+    this.getAdmins(this.id, event.pageIndex + 1);
   }
 
   getDetails(id: number) {
@@ -110,17 +91,20 @@ export class SubsidiaryDetailComponent implements OnInit {
         this.subsidiary = subsidiary;
         console.log("subsidiaries reached");
         this.editSubsidiary(id);
-        this.getAdmins(this.id);
+        this.getAdmins(this.id, this.actualPage + 1);
       });
   }
-  getAdmins(id: number) {
+  getAdmins(id: number, page: number) {
     this.admins = [];
+    this.isLoadingResults = true;
     this.pharmAdminsService
-      .getAdmins(id, this.page, this.size, this.order, this.asc)
+      .getAdmins(id, page, this.size, this.order, this.asc)
       .subscribe((administrator) => {
         this.admins = administrator;
         this.dataSource = new MatTableDataSource(this.admins);
+        this.dataSource.sort = this.sort;
         console.log(this.admins);
+        this.isLoadingResults = false;
       });
   }
   saveChanges(event: Event, id: number): void {
@@ -141,7 +125,6 @@ export class SubsidiaryDetailComponent implements OnInit {
       .subscribe((subsidiary) => {
         console.log("subsidiary: ");
         console.log(subsidiary);
-        this.getAdmins(id);
         this.displaySuccesDialog(
           "¡Se actualizo los datos de la sucursal exitosamente!"
         );
@@ -164,7 +147,6 @@ export class SubsidiaryDetailComponent implements OnInit {
             "¡Se elimino al administrador exitosamente!"
           );
         });
-        this.ngOnInit();
       }
     });
   }
@@ -242,14 +224,12 @@ export class SubsidiaryDetailComponent implements OnInit {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      this.text = result;
       if (result) {
+        this.text = result;
         this.displaySuccesDialog(
           "¡Se agrego al administrador de la farmacia exitosamente!"
         );
       }
-      this.ngOnInit();
     });
   }
   openDetailDialog(adminId: number) {
@@ -266,16 +246,22 @@ export class SubsidiaryDetailComponent implements OnInit {
         this.displaySuccesDialog(
           "¡Se actualizo los datos del administrador exitosamente!"
         );
-        this.ngOnInit();
+        // this.getAdmins(this.id, this.actualPage + 1);
       }
     });
   }
   displaySuccesDialog(text: string) {
-    this.dialog.open(SuccesDialogComponent, {
+    const dialogRef = this.dialog.open(SuccesDialogComponent, {
       width: "500px",
       data: {
         message: text,
       },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(result);
+        this.getAdmins(this.id, this.actualPage + 1);
+      }
     });
   }
 }
