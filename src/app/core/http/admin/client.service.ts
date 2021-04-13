@@ -1,3 +1,4 @@
+import { PasswordRequest } from "src/app/shared/models/passwordRequest";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Client } from "src/app/shared/models/client";
@@ -47,6 +48,12 @@ export class ClientService {
   }
   deleteClient(clientId: number) {
     return this.http.delete(apiKey.api + `/client/${clientId}`, {
+      headers: this.headers,
+    });
+  }
+
+  changePassword(password: PasswordRequest) {
+    return this.http.put(apiKey.api + `/client`, password, {
       headers: this.headers,
     });
   }

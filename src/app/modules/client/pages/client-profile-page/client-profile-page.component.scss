@@ -4,12 +4,12 @@
   height: 0;
   width: 0;
 }
-.title{
+.title {
   margin-bottom: 35px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight:bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
   font-size: 40px;
-  color: #2F4A85;
+  color: #2f4a85;
 }
 .button-add {
   color: white;
@@ -18,6 +18,9 @@
   font-size: 30px !important;
   margin-bottom: 15px;
 }
-.conta{
+.conta {
   margin-top: 35px;
+}
+mat-form-field {
+  margin: 5px;
 }
