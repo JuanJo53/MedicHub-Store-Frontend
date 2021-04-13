@@ -53,9 +53,4 @@ export class PharmAdminsService {
       headers: this.headers,
     });
   }
-  changePassword(password: PasswordRequest) {
-    return this.http.put(apiKey.api + `/pharmacyAdmin`, password, {
-      headers: this.headers,
-    });
-  }
 }

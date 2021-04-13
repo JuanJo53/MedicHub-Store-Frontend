@@ -13,6 +13,7 @@ import { PasswordRequest } from "src/app/shared/models/passwordRequest";
 export class ChangePasswordComponent implements OnInit {
   form: FormGroup;
   id: number;
+  role: number;
 
   constructor(
     private fromBuilder: FormBuilder,
@@ -24,6 +25,7 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit() {
     try {
       this.id = parseInt(this.tokenService.getUserId());
+      this.role = parseInt(this.tokenService.getAuthorities());
       this.editPassword();
     } catch (error) {
       console.error(error);
@@ -44,13 +46,15 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
   updatePassword(password: PasswordRequest): void {
-    this.passwordService.changePassword(password).subscribe((response) => {
-      if (response == "OK") {
-        this.dialogRef.close(true);
-      } else {
-        this.dialogRef.close(false);
-      }
-    });
+    this.passwordService
+      .changePassword(password, this.role)
+      .subscribe((response) => {
+        if (response == "OK") {
+          this.dialogRef.close(true);
+        } else {
+          this.dialogRef.close(false);
+        }
+      });
   }
   editPassword(): void {
     this.form = this.fromBuilder.group(

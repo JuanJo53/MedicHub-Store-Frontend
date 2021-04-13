@@ -37,7 +37,6 @@ export class ClientProfilePageComponent implements OnInit {
 
   constructor(
     private fromBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
     private clientService: ClientService,
     private tokenService: TokenService,
     public datepipe: DatePipe,

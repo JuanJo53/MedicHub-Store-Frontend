@@ -52,9 +52,20 @@ export class ClientService {
     });
   }
 
-  changePassword(password: PasswordRequest) {
-    return this.http.put(apiKey.api + `/client`, password, {
-      headers: this.headers,
-    });
+  changePassword(password: PasswordRequest, role: number) {
+    console.log(role);
+    if (role == 1) {
+      return this.http.put(apiKey.api + `/admin`, password, {
+        headers: this.headers,
+      });
+    } else if (role == 2) {
+      return this.http.put(apiKey.api + `/pharmAdmin`, password, {
+        headers: this.headers,
+      });
+    } else {
+      return this.http.put(apiKey.api + `/client`, password, {
+        headers: this.headers,
+      });
+    }
   }
 }
