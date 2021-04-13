@@ -86,16 +86,6 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker color="primary"></mat-datepicker>
       </mat-form-field>
-      <mat-form-field class="form">
-        <mat-label>Contraseña</mat-label
-        ><input
-          matInput
-          type="password"
-          formControlName="password"
-          placeholder="*******"
-          required
-        />
-      </mat-form-field>
       <mat-form-field class="form-input">
         <mat-label class="form-letter">Zona</mat-label>
         <input
@@ -139,7 +129,7 @@
       <mat-form-field class="form-input">
         <mat-label class="form-letter">Numero</mat-label>
         <input
-          type="number"
+          type="text"
           matInput
           formControlName="number"
           placeholder="Numero"

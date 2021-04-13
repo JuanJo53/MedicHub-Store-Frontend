@@ -118,19 +118,7 @@ export class EditClientComponent implements OnInit {
           Validators.minLength(3),
         ],
       ],
-      password: [
-        "",
-        [
-          Validators.required,
-          Validators.maxLength(150),
-          Validators.minLength(6),
-        ],
-      ],
       birthdate: [this.client.birthdate, [Validators.required]],
-      number: [
-        this.client.number,
-        [Validators.required, Validators.maxLength(15)],
-      ],
       street: [
         this.client.street,
         [
@@ -162,6 +150,10 @@ export class EditClientComponent implements OnInit {
           Validators.maxLength(80),
           Validators.minLength(3),
         ],
+      ],
+      number: [
+        this.client.number,
+        [Validators.required, Validators.maxLength(15)],
       ],
     });
   }

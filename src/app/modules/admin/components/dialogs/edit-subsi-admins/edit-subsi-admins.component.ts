@@ -102,14 +102,6 @@ export class EditSubsiAdminsComponent implements OnInit {
           Validators.minLength(3),
         ],
       ],
-      password: [
-        "",
-        [
-          Validators.required,
-          Validators.maxLength(150),
-          Validators.minLength(6),
-        ],
-      ],
     });
     console.log(this.form.value);
   }
