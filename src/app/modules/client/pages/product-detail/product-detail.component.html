@@ -35,7 +35,17 @@
         <hr class="lineap" />
         <div class="cantidad">
           <h1>Cantidad:</h1>
-          <input type="number" matInput required />
+          <mat-form-field class="product_quantity">
+            <mat-label>Cantidad a Adquirir</mat-label>
+            <input
+              [(ngModel)]="quantity"
+              matInput
+              type="number"
+              min="1"
+              placeholder="100"
+              #input
+            />
+          </mat-form-field>
           <h2 class="">
             <span class="material-icons"> check_circle </span>
             En stock
