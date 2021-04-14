@@ -70,6 +70,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { ChangePasswordComponent } from "../client/components/dialogs/change-password/change-password.component";
+import { MatStepperModule } from "@angular/material/stepper";
+import { OrderComponent } from "../client/pages/order/order.component";
 
 @NgModule({
   declarations: [
@@ -120,6 +122,7 @@ import { ChangePasswordComponent } from "../client/components/dialogs/change-pas
     NotFoundComponent,
     ErrorDialogComponent,
     ChangePasswordComponent,
+    OrderComponent,
   ],
   imports: [
     CommonModule,
@@ -148,6 +151,7 @@ import { ChangePasswordComponent } from "../client/components/dialogs/change-pas
     MatProgressSpinnerModule,
     MatPaginatorModule,
     ScrollingModule,
+    MatStepperModule,
   ],
   entryComponents: [
     LoginComponent,
