@@ -4,6 +4,7 @@
   </div>
   <div>
     <button
+      *ngIf="role == 3"
       mat-icon-button
       [matBadge]="total$ | async"
       [style.overflow]="'visible'"

@@ -73,7 +73,7 @@ export class ProductsComponent implements OnInit {
   }
   fecthProducts(id: number, page: number): void {
     this.productsServide
-      .getSubsidiaryProducts(id, page, this.size, this.order, this.asc)
+      .getSubsidiaryProducts(id, page, this.size, this.order, this.asc, 0)
       .subscribe((products) => {
         this.products = products;
         this.dataSource = new MatTableDataSource(this.products);

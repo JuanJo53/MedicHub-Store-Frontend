@@ -32,13 +32,14 @@ export class ProductsService {
     page: number,
     size: number,
     order: string,
-    asc: boolean
+    asc: boolean,
+    price: number
   ) {
     return this.http.get<Product[]>(
       apiKey.api +
         `/product/${prodId}/list?page=${
           (page - 1) * size
-        }&size=${size}&order=${order}&asc=${asc}`,
+        }&size=${size}&order=${order}&asc=${asc}&price=${price}`,
       { headers: this.headers }
     );
   }

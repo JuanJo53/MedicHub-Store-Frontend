@@ -41,6 +41,14 @@
         #input
       />
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Filtro</mat-label>
+      <mat-select formControlName="filterType">
+        <mat-option *ngFor="let type of filterTypes" [value]="type">{{
+          type
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <div class="container">
       <mat-paginator
         [length]="length"

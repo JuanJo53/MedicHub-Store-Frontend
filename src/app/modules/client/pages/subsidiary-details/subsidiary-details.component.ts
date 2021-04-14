@@ -8,6 +8,8 @@ import { Product } from "src/app/shared/models/product";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
 import { MatSort } from "@angular/material/sort";
 import { MatPaginator } from "@angular/material/paginator";
+import { isFormattedError } from "@angular/compiler";
+import { FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-subsidiary-details",
@@ -19,6 +21,8 @@ export class SubsidiaryDetailsComponent implements OnInit {
 
   products: Product[];
 
+  filterTypes = ["Precio", "Nombre", "Tipo de Medicamento", "Dosis", "Marca"];
+
   isLoadingResults = true;
   isRateLimitReached = false;
 
@@ -26,6 +30,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
   size = 9;
   order = "id";
   asc = true;
+  priceFilter = 0;
 
   subsidiaryId: number;
 
@@ -41,6 +46,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
   ngOnInit() {
     try {
       this.subsidiaryId = this.activatedRoute.snapshot.params.id;
+      this.priceFilter = 0;
       if (this.subsidiaryId) {
         this.getDetails(this.subsidiaryId);
         this.productService
@@ -53,11 +59,17 @@ export class SubsidiaryDetailsComponent implements OnInit {
       console.error(error);
     }
   }
-
+  filterType: FormGroup;
   dataSource = new MatTableDataSource();
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log(this.filterType);
+    if (filterValue) {
+      this.priceFilter = parseFloat(filterValue);
+    } else {
+      this.priceFilter = 0;
+    }
+    this.getProducts(this.subsidiaryId, 1);
   }
 
   getDetails(id: number) {
@@ -72,7 +84,14 @@ export class SubsidiaryDetailsComponent implements OnInit {
   getProducts(id: number, page: number) {
     this.isLoadingResults = true;
     this.productService
-      .getSubsidiaryProducts(id, page, this.size, this.order, this.asc)
+      .getSubsidiaryProducts(
+        id,
+        page,
+        this.size,
+        this.order,
+        this.asc,
+        this.priceFilter
+      )
       .subscribe((products) => {
         this.products = products;
         this.dataSource = new MatTableDataSource(this.products);
