@@ -50,12 +50,12 @@ export class SubsidiaryDetailsComponent implements OnInit {
       this.subsidiaryId = this.activatedRoute.snapshot.params.id;
       this.filter = 0;
       if (this.subsidiaryId) {
-        this.getDetails(this.subsidiaryId);
         this.productService
           .getTotalProducts(this.subsidiaryId)
           .subscribe((element) => {
             this.length = element;
           });
+        this.getDetails(this.subsidiaryId);
       }
     } catch (error) {
       console.error(error);
@@ -85,7 +85,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
         this.subsidiary = subsidiary;
         console.log(this.length);
         this.filter = 0;
-        this.getProducts(id, this.length);
+        this.getProducts(id, 1);
       });
   }
   getProducts(id: number, page: number) {

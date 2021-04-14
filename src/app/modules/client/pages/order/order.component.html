@@ -1,9 +1,17 @@
 <div class="container">
   <mat-horizontal-stepper>
     <mat-step label="Confirmar Productos" state="products">
-      <h2>Productos en tu Carrito</h2>
-      <div>
-        <button mat-button matStepperNext>Siguiente</button>
+      <div class="products" *ngIf="orderProducts.length > 0">
+        <h2>Productos en tu Carrito</h2>
+        <div class="products_list" *ngFor="let product of orderProducts">
+          <app-order-item [product]="product"></app-order-item>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </div>
+      <div class="no_products" *ngIf="orderProducts.length == 0">
+        <h1>¡No tiene productos en su carrito de compras!</h1>
       </div>
     </mat-step>
 

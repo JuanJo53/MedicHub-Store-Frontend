@@ -72,6 +72,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { ChangePasswordComponent } from "../client/components/dialogs/change-password/change-password.component";
 import { MatStepperModule } from "@angular/material/stepper";
 import { OrderComponent } from "../client/pages/order/order.component";
+import { OrderItemComponent } from "../client/components/order-item/order-item.component";
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { OrderComponent } from "../client/pages/order/order.component";
     ErrorDialogComponent,
     ChangePasswordComponent,
     OrderComponent,
+    OrderItemComponent,
   ],
   imports: [
     CommonModule,

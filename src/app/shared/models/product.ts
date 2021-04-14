@@ -9,4 +9,5 @@ export interface Product {
   type: string;
   dose: string;
   description: string;
+  quantity: number;
 }
