@@ -30,7 +30,9 @@ export class SubsidiaryDetailsComponent implements OnInit {
   size = 9;
   order = "id";
   asc = true;
-  priceFilter = 0;
+
+  filter: any;
+  filterType: string;
 
   subsidiaryId: number;
 
@@ -46,7 +48,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
   ngOnInit() {
     try {
       this.subsidiaryId = this.activatedRoute.snapshot.params.id;
-      this.priceFilter = 0;
+      this.filter = 0;
       if (this.subsidiaryId) {
         this.getDetails(this.subsidiaryId);
         this.productService
@@ -59,25 +61,30 @@ export class SubsidiaryDetailsComponent implements OnInit {
       console.error(error);
     }
   }
-  filterType: FormGroup;
+
   dataSource = new MatTableDataSource();
-  applyFilter(event: Event) {
+  applyFilter(event: Event, type: string) {
     const filterValue = (event.target as HTMLInputElement).value;
+    this.filterType = type;
     console.log(this.filterType);
     if (filterValue) {
-      this.priceFilter = parseFloat(filterValue);
+      if (typeof this.filterType == "number") {
+        this.filter = parseFloat(filterValue);
+      } else {
+        this.filter = filterValue;
+      }
     } else {
-      this.priceFilter = 0;
+      this.filter = 0;
     }
     this.getProducts(this.subsidiaryId, 1);
   }
-
   getDetails(id: number) {
     this.subsidiariesService
       .getSpecificSubsidiary(id)
       .subscribe((subsidiary) => {
         this.subsidiary = subsidiary;
         console.log(this.length);
+        this.filter = 0;
         this.getProducts(id, this.length);
       });
   }
@@ -90,7 +97,8 @@ export class SubsidiaryDetailsComponent implements OnInit {
         this.size,
         this.order,
         this.asc,
-        this.priceFilter
+        this.filter,
+        this.filterType
       )
       .subscribe((products) => {
         this.products = products;

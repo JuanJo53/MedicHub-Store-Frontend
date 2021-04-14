@@ -8,6 +8,7 @@ import { CreateProductComponent } from "../../components/dialogs/create-product/
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
 import { MatPaginator } from "@angular/material/paginator";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: "app-products",
@@ -73,7 +74,15 @@ export class ProductsComponent implements OnInit {
   }
   fecthProducts(id: number, page: number): void {
     this.productsServide
-      .getSubsidiaryProducts(id, page, this.size, this.order, this.asc, 0)
+      .getSubsidiaryProducts(
+        id,
+        page,
+        this.size,
+        this.order,
+        this.asc,
+        0,
+        "precio"
+      )
       .subscribe((products) => {
         this.products = products;
         this.dataSource = new MatTableDataSource(this.products);

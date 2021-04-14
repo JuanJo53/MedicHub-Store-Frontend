@@ -36,14 +36,14 @@
       <mat-label>Buscar</mat-label>
       <input
         matInput
-        (keyup)="applyFilter($event)"
+        (keyup)="applyFilter($event, type.value)"
         placeholder="Ex. ium"
         #input
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Tipo de Filtro</mat-label>
-      <mat-select formControlName="filterType">
+      <mat-select #type>
         <mat-option *ngFor="let type of filterTypes" [value]="type">{{
           type
         }}</mat-option>
