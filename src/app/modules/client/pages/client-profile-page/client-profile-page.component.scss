@@ -4,13 +4,7 @@
   height: 0;
   width: 0;
 }
-.title {
-  margin-bottom: 35px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: bold;
-  font-size: 40px;
-  color: #2f4a85;
-}
+
 .button-add {
   color: white;
   height: 22px !important;
@@ -20,7 +14,27 @@
 }
 .conta {
   margin-top: 35px;
+  color: #2f4a85;
+
 }
 mat-form-field {
   margin: 5px;
+}
+.btnform{
+  margin-top: 10px;
+  background-color: #2f4a85;
+  color: white;
+}
+.t2{
+  font-size: 32px;
+  font-style: normal;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.title {
+  margin-bottom: 35px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  color: #2f4a85;
 }
