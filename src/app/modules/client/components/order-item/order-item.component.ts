@@ -26,6 +26,6 @@ export class OrderItemComponent implements OnInit {
     this.product.quantity = total;
   }
   removeProduct(id: number) {
-    // this.cartService.removeCart(id);
+    this.cartService.removeItem(id);
   }
 }
