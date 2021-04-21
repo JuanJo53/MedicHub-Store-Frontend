@@ -1,22 +1,27 @@
 <div class="container">
   <mat-horizontal-stepper>
     <mat-step label="Confirmar Productos" state="products">
-      <div class="products" *ngIf="orderProducts.length > 0">
-        <h2>Productos en tu Carrito</h2>
-        <div class="products_list" *ngFor="let product of orderProducts">
-          <app-order-item [product]="product"></app-order-item>
+      <div class="products" *ngIf="products$ | async as products">
+        <div *ngIf="products.length > 0">
+          <h2>Productos en tu Carrito</h2>
+          <div class="products_list" *ngFor="let product of products">
+            <app-order-item [product]="product"></app-order-item>
+          </div>
+          <div>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-        <div>
-          <button mat-button matStepperNext>Siguiente</button>
-        </div>
-      </div>
-      <div class="no_products" *ngIf="orderProducts.length == 0" align="center">
-        <img src="assets/images/nocant.png" width="500px" height="500px" />
-        <h1 class="txtvermas">¡No tiene productos en su carrito de compras!</h1>
-        <a href="">
-          <span class="material-icons"> production_quantity_limits </span>
-          Revisa nuestros productos a la venta,</a>
+        <div class="no_products" *ngIf="products.length == 0" align="center">
+          <img src="assets/images/nocant.png" width="500px" height="500px" />
+          <h1 class="txtvermas">
+            ¡No tiene productos en su carrito de compras!
+          </h1>
+          <a href="">
+            <span class="material-icons"> production_quantity_limits </span>
+            Revisa nuestros productos a la venta,</a
+          >
           es un placer atenderte
+        </div>
       </div>
     </mat-step>
 

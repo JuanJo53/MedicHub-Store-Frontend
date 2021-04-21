@@ -74,6 +74,7 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { OrderComponent } from "../client/pages/order/order.component";
 import { OrderItemComponent } from "../client/components/order-item/order-item.component";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { CartPipe } from "src/app/shared/pipes/cart.pipe";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -113,6 +114,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     ReportsPageComponent,
     EditClientComponent,
     CreditCardNumberPipe,
+    CartPipe,
     PharmacyItemComponent,
     ClientHomeComponent,
     SubsidiaryDetailsComponent,

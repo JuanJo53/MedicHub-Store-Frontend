@@ -44,7 +44,6 @@ export class ProductDetailComponent implements OnInit {
     if (this.quantity) {
       for (let i = 0; i < this.quantity; i++) {
         this.cartService.addCart(this.product);
-        // this.productClicked.emit(this.product.id);
       }
     }
     this._snackBar.open("Agregado a carrito de compras", "OK", {
