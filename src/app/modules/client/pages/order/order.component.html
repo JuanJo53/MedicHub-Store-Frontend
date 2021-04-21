@@ -1,0 +1,48 @@
+<div class="container">
+  <mat-horizontal-stepper>
+    <mat-step label="Confirmar Productos" state="products">
+      <div class="products" *ngIf="orderProducts.length > 0">
+        <h2>Productos en tu Carrito</h2>
+        <div class="products_list" *ngFor="let product of orderProducts">
+          <app-order-item [product]="product"></app-order-item>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </div>
+      <div class="no_products" *ngIf="orderProducts.length == 0" align="center">
+        <img src="assets/images/nocant.png" width="500px" height="500px" />
+        <h1 class="txtvermas">¡No tiene productos en su carrito de compras!</h1>
+        <a href="">
+          <span class="material-icons"> production_quantity_limits </span>
+          Revisa nuestros productos a la venta,</a>
+          es un placer atenderte
+      </div>
+    </mat-step>
+
+    <mat-step label="Seleccionar Metodo de Pago" state="cards">
+      <h2>Elige la Tarjeta con la que Quieres Pagar</h2>
+      <div>
+        <button mat-button matStepperPrevious>Atras</button>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+    </mat-step>
+
+    <mat-step label="Confirmar Compra" state="confirm">
+      <h2>¡Ultimo paso! Confirma la compra.</h2>
+      <button mat-button matStepperPrevious>Atras</button>
+      <button mat-button>Comprar</button>
+    </mat-step>
+
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="products">
+      <mat-icon>shopping_bag</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="cards">
+      <mat-icon>credit_card</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="confirm">
+      <mat-icon>fact_check</mat-icon>
+    </ng-template>
+  </mat-horizontal-stepper>
+</div>

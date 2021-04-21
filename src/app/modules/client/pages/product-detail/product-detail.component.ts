@@ -14,6 +14,9 @@ import { Location } from "@angular/common";
 export class ProductDetailComponent implements OnInit {
   product: Product;
   id: number;
+
+  quantity?: number;
+
   constructor(
     private productsServide: ProductsService,
     private activatedRoute: ActivatedRoute,
@@ -36,9 +39,12 @@ export class ProductDetailComponent implements OnInit {
     });
   }
   addCart() {
-    console.log("añadir al carrito");
-    this.cartService.addCart(this.product);
-    // this.productClicked.emit(this.product.id);
+    if (this.quantity) {
+      for (let i = 0; i < this.quantity; i++) {
+        this.cartService.addCart(this.product);
+        // this.productClicked.emit(this.product.id);
+      }
+    }
   }
   backClicked() {
     this._location.back();

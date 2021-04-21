@@ -1,3 +1,4 @@
+import { PasswordRequest } from "src/app/shared/models/passwordRequest";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Client } from "src/app/shared/models/client";
@@ -49,5 +50,22 @@ export class ClientService {
     return this.http.delete(apiKey.api + `/client/${clientId}`, {
       headers: this.headers,
     });
+  }
+
+  changePassword(password: PasswordRequest, role: number) {
+    console.log(role);
+    if (role == 1) {
+      return this.http.put(apiKey.api + `/admin`, password, {
+        headers: this.headers,
+      });
+    } else if (role == 2) {
+      return this.http.put(apiKey.api + `/pharmAdmin`, password, {
+        headers: this.headers,
+      });
+    } else {
+      return this.http.put(apiKey.api + `/client`, password, {
+        headers: this.headers,
+      });
+    }
   }
 }

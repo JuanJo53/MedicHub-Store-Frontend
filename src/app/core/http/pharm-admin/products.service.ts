@@ -32,13 +32,56 @@ export class ProductsService {
     page: number,
     size: number,
     order: string,
-    asc: boolean
+    asc: boolean,
+    filterValue: any,
+    filterType: string
   ) {
+    if (filterType == "Precio") {
+      return this.http.get<Product[]>(
+        apiKey.api +
+          `/product/${prodId}/list?page=${
+            (page - 1) * size
+          }&size=${size}&order=${order}&asc=${asc}&price=${filterValue}`,
+        { headers: this.headers }
+      );
+    } else if (filterType == "Nombre") {
+      return this.http.get<Product[]>(
+        apiKey.api +
+          `/product/${prodId}/list?page=${
+            (page - 1) * size
+          }&size=${size}&order=${order}&asc=${asc}&name=${filterValue}`,
+        { headers: this.headers }
+      );
+    } else if (filterType == "Tipo de Medicamento") {
+      return this.http.get<Product[]>(
+        apiKey.api +
+          `/product/${prodId}/list?page=${
+            (page - 1) * size
+          }&size=${size}&order=${order}&asc=${asc}&type=${filterValue}`,
+        { headers: this.headers }
+      );
+    } else if (filterType == "Dosis") {
+      return this.http.get<Product[]>(
+        apiKey.api +
+          `/product/${prodId}/list?page=${
+            (page - 1) * size
+          }&size=${size}&order=${order}&asc=${asc}&dose=${filterValue}`,
+        { headers: this.headers }
+      );
+    } else if (filterType == "Marca") {
+      return this.http.get<Product[]>(
+        apiKey.api +
+          `/product/${prodId}/list?page=${
+            (page - 1) * size
+          }&size=${size}&order=${order}&asc=${asc}&brand=${filterValue}`,
+        { headers: this.headers }
+      );
+    }
     return this.http.get<Product[]>(
       apiKey.api +
         `/product/${prodId}/list?page=${
           (page - 1) * size
-        }&size=${size}&order=${order}&asc=${asc}`,
+        }&size=${size}&order=${order}&asc=${asc}&price=${0}`,
       { headers: this.headers }
     );
   }

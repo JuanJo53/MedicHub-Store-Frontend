@@ -1,9 +1,9 @@
-<div class="container" *ngIf="subsidiary">
+<div class="container conta" *ngIf="subsidiary">
   <div class="row">
     <div class="contact-section col">
-      <h1>{{ subsidiary.subsidiaryName }}</h1>
+      <h1 class="title">{{ subsidiary.subsidiaryName }}</h1>
       <br />
-      <h2>Contacto:</h2>
+      <h2 class="t2">Contacto:</h2>
       <strong>Email:</strong>
       <p>{{ subsidiary.email }}</p>
       <strong>Telefono de referencia:</strong>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="direcction-section col">
-      <h2>Detalles de la Dirección:</h2>
+      <h2 class="t3" >Detalles de la Dirección:</h2>
       <div class="row">
         <div class="col">
           <strong>Calle:</strong>
@@ -31,22 +31,48 @@
     </div>
   </div>
   <div class="container products">
-    <h1>Productos</h1>
+    <h1 class="title">Productos</h1>
     <mat-form-field class="formfarmacia2">
-      <mat-label>Buscar</mat-label>
-      <input
+        <!--form class="top-search-form">
+          <mat-icon role="img">search</mat-icon>
+          <input placeholder="Buscar marca" type="text" class="lettersearch" (keyup)="applyFilter($event, type.value)" #input />
+
+          
+        </form-->
+        
+        <input
         matInput
-        (keyup)="applyFilter($event)"
-        placeholder="Ex. ium"
+        (keyup)="applyFilter($event, type.value)"
+        placeholder="Buscar producto"
+        class="lettersearch"
         #input
+        
       />
+      <!--div fxFlex fxHide.lt-sm="true" class="search-bar">
+        <form class="top-search-form">
+          <mat-icon role="img">search</mat-icon>
+          <input  matInput
+          (keyup)="applyFilter($event, type.value)"
+          placeholder="Buscar producto"
+          #input class="lettersearch" />
+        </form>
+      </div-->
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="filtro">
+      <mat-label class="titlefiltro">Tipo de Filtro</mat-label>
+      <mat-select #type class="filtro2">
+        <mat-option *ngFor="let type of filterTypes" [value]="type" class="filtro2">{{
+          type
+        }}</mat-option>
+      </mat-select>
     </mat-form-field>
     <div class="container">
       <mat-paginator
         [length]="length"
         [pageSize]="size"
         (page)="refreshProducts($event)"
-      ></mat-paginator>
+        class="pagina"   
+           ></mat-paginator>
       <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
         <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
         <div class="rate-limit-reached" *ngIf="isRateLimitReached">

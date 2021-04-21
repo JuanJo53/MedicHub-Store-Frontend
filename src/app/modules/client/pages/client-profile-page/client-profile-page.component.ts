@@ -8,6 +8,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { DatePipe } from "@angular/common";
 import { MAT_DATE_FORMATS } from "@angular/material";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { ChangePasswordComponent } from "../../components/dialogs/change-password/change-password.component";
 
 export const MY_FORMATS = {
   parse: {
@@ -36,7 +37,6 @@ export class ClientProfilePageComponent implements OnInit {
 
   constructor(
     private fromBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
     private clientService: ClientService,
     private tokenService: TokenService,
     public datepipe: DatePipe,
@@ -125,14 +125,6 @@ export class ClientProfilePageComponent implements OnInit {
           Validators.minLength(6),
         ],
       ],
-      password: [
-        "",
-        [
-          Validators.required,
-          Validators.maxLength(50),
-          Validators.minLength(6),
-        ],
-      ],
       birthdate: [this.client.birthdate, [Validators.required]],
       number: [
         this.client.number,
@@ -192,6 +184,16 @@ export class ClientProfilePageComponent implements OnInit {
       this.editEnabled = false;
       this.displaySuccesDialog("¡Sus datos se actualizaron exitosamente!");
       this.ngOnInit();
+    });
+  }
+  changePassword() {
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      width: "500px",
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.displaySuccesDialog("¡Se cambio su contraseña exitosamente!");
+      }
     });
   }
   displaySuccesDialog(text: string) {

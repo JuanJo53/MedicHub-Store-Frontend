@@ -4,11 +4,11 @@
     <button (click)="editClient()" class="btn" color="primary">
       <mat-icon class="button-add">edit</mat-icon>
     </button>
-    <br>
+    <br />
     <div class="container conta">
       <div class="row">
         <div class="contact-section col">
-          <h2>Datos Personales:</h2>
+          <h2 class="t2">Datos Personales:</h2>
           <div class="row">
             <div class="col">
               <strong>Nombre (s):</strong>
@@ -30,9 +30,8 @@
             </div>
           </div>
         </div>
-
         <div class="direcction-section col">
-          <h2>Detalles de la Dirección:</h2>
+          <h2 class="t2">Detalles de la Dirección:</h2>
           <div class="row">
             <div class="col">
               <strong>Calle:</strong>
@@ -51,6 +50,16 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <button
+          mat-button
+          mat-raised-button
+          (click)="changePassword()"
+          class="btnform"
+        >
+          Cambiar Contraseña
+        </button>
+      </div>
     </div>
   </div>
 
@@ -68,8 +77,8 @@
             formControlName="firstName"
             placeholder="Pepeluis"
             required
-          /> </mat-form-field
-        ><br />
+          />
+        </mat-form-field>
         <mat-form-field class="form">
           <mat-label>Apellido Paterno</mat-label>
           <input
@@ -78,8 +87,8 @@
             formControlName="firstSurname"
             placeholder="Morales"
             required
-          /> </mat-form-field
-        ><br />
+          />
+        </mat-form-field>
         <mat-form-field class="form">
           <mat-label>Apellido Materno</mat-label
           ><input
@@ -90,6 +99,7 @@
             required
           />
         </mat-form-field>
+        <br />
         <mat-form-field class="form">
           <mat-label>CI</mat-label
           ><input
@@ -110,17 +120,6 @@
             required
           />
         </mat-form-field>
-        <mat-form-field class="email form">
-          <mat-label>Email</mat-label
-          ><input
-            matInput
-            type="text"
-            formControlName="email"
-            placeholder="pepito@peptio.com"
-            disabled
-            required
-          />
-        </mat-form-field>
         <mat-form-field class="form">
           <mat-label>Nombre de Usuario</mat-label
           ><input
@@ -131,6 +130,7 @@
             required
           />
         </mat-form-field>
+        <br />
         <mat-form-field class="form-input">
           <mat-label class="form-letter">Fecha de Nacimiento</mat-label>
           <input
@@ -144,16 +144,6 @@
             [for]="picker"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker color="primary"></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field class="form">
-          <mat-label>Contraseña</mat-label
-          ><input
-            matInput
-            type="password"
-            formControlName="password"
-            placeholder="*******"
-            required
-          />
         </mat-form-field>
         <mat-form-field class="form-input">
           <mat-label class="form-letter">Zona</mat-label>
@@ -202,6 +192,17 @@
             matInput
             formControlName="number"
             placeholder="Numero"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="email form">
+          <mat-label>Email</mat-label
+          ><input
+            matInput
+            type="text"
+            formControlName="email"
+            placeholder="pepito@peptio.com"
+            disabled
             required
           />
         </mat-form-field>

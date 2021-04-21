@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { PasswordRequest } from "src/app/shared/models/passwordRequest";
 import { PharmAdmin } from "src/app/shared/models/pharm-admin";
 import { PharmAdminList } from "src/app/shared/models/pharm-admin-list";
 import apiKey from "../../apiKey";

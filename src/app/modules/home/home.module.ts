@@ -69,6 +69,10 @@ import { ErrorDialogComponent } from "../components/dialogs/error-dialog/error-d
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ScrollingModule } from "@angular/cdk/scrolling";
+import { ChangePasswordComponent } from "../client/components/dialogs/change-password/change-password.component";
+import { MatStepperModule } from "@angular/material/stepper";
+import { OrderComponent } from "../client/pages/order/order.component";
+import { OrderItemComponent } from "../client/components/order-item/order-item.component";
 
 @NgModule({
   declarations: [
@@ -118,6 +122,9 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
     ProductDetailComponent,
     NotFoundComponent,
     ErrorDialogComponent,
+    ChangePasswordComponent,
+    OrderComponent,
+    OrderItemComponent,
   ],
   imports: [
     CommonModule,
@@ -146,6 +153,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
     MatProgressSpinnerModule,
     MatPaginatorModule,
     ScrollingModule,
+    MatStepperModule,
   ],
   entryComponents: [
     LoginComponent,

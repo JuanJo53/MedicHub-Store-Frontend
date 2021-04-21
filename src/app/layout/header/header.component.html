@@ -4,10 +4,12 @@
   </div>
   <div>
     <button
+      *ngIf="role == 3"
       mat-icon-button
       [matBadge]="total$ | async"
       [style.overflow]="'visible'"
       class="topbar-button-right"
+      routerLink="/client/order"
     >
       <mat-icon class="maticon">shopping_cart</mat-icon>
     </button>
@@ -32,12 +34,12 @@
 
     <mat-menu #settingMenu="matMenu" class="matmenuestilo">
       <button
-        *ngIf="role == 2"
+        *ngIf="role == 2 || role == 1"
         mat-menu-item
-        [routerLink]="['/profile/overview']"
+        (click)="changePassword()"
       >
-        <mat-icon class="maticon_nav">account_box</mat-icon>
-        <span>Profile</span>
+        <mat-icon class="maticon_nav">lock</mat-icon>
+        <span>Change Password</span>
       </button>
       <button *ngIf="role == 3" mat-menu-item routerLink="/client/account">
         <mat-icon class="maticon_nav">account_box</mat-icon>
