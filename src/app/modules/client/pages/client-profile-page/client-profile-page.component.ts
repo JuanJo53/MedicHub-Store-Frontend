@@ -9,6 +9,7 @@ import { DatePipe } from "@angular/common";
 import { MAT_DATE_FORMATS } from "@angular/material";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { ChangePasswordComponent } from "../../components/dialogs/change-password/change-password.component";
+import { FileService } from "src/app/core/services/file.service";
 
 export const MY_FORMATS = {
   parse: {
@@ -39,6 +40,7 @@ export class ClientProfilePageComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private clientService: ClientService,
     private tokenService: TokenService,
+    private fileService: FileService,
     public datepipe: DatePipe,
     public dialog: MatDialog
   ) {}
@@ -60,9 +62,10 @@ export class ClientProfilePageComponent implements OnInit {
     console.log(id);
     this.clientService.getClientDetail(id).subscribe((client) => {
       this.client = client;
-      console.log("client details reached");
-      console.log(client);
     });
+  }
+  getUserPhoto() {
+    // this.fileService.getUserPhoto(id)
   }
   editClient(): void {
     this.editEnabled = true;
