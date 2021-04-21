@@ -8,7 +8,7 @@
             <app-order-item [product]="product"></app-order-item>
           </div>
           <div>
-            <button mat-button matStepperNext>Siguiente</button>
+            <button mat-raised-button matStepperNext>Siguiente</button>
           </div>
         </div>
         <div class="no_products" *ngIf="products.length == 0" align="center">
@@ -16,7 +16,7 @@
           <h1 class="txtvermas">
             ¡No tiene productos en su carrito de compras!
           </h1>
-          <a href="">
+          <a href="#" routerLink="../../client/pharmacies/">
             <span class="material-icons"> production_quantity_limits </span>
             Revisa nuestros productos a la venta,</a
           >

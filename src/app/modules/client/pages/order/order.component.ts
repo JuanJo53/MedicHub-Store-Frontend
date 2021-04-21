@@ -4,6 +4,7 @@ import { STEPPER_GLOBAL_OPTIONS } from "@angular/cdk/stepper";
 import { Product } from "src/app/shared/models/product";
 import { CartService } from "src/app/core/services/cart.service";
 import { Observable } from "rxjs";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-order",
@@ -20,7 +21,16 @@ export class OrderComponent implements OnInit {
   products$: Observable<Product[]>;
   orderProducts: Product[] = [];
 
-  constructor(private cartService: CartService) {
+  isLinear = false;
+
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+
+  constructor(
+    private cartService: CartService,
+    private _formBuilder: FormBuilder
+  ) {
     this.products$ = this.cartService.cart$.pipe(
       map((products: []) => {
         const distintos = [...new Set(products)];
@@ -29,34 +39,5 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.getCartProducts();
-  }
-  getCartProducts() {
-    // this.products$ = this.cartService.getProducts();
-    // this.orderProducts = this.cartService.getProducts();
-    // for (let i = 0; i < this.products.length; i++) {
-    //   var c = 0;
-    //   for (let j = 0; j < this.orderProducts.length; j++) {
-    //     if (this.products[i].productId == this.orderProducts[j].productId) {
-    //       c++;
-    //       delete this.products[j];
-    //       i++;
-    //     }
-    //   }
-    //   if (c > 0) {
-    //     this.orderProducts.push(this.products[i]);
-    //   }
-    // }
-    var unique = this.orderProducts.filter(function (elem, index, self) {
-      return index === self.indexOf(elem);
-    });
-    // console.log(unique);
-  }
-  filterItem(key: number) {
-    this.orderProducts.find(function (elem, index, self) {
-      return index === self.indexOf(elem);
-    });
-    return key;
-  }
+  ngOnInit() {}
 }

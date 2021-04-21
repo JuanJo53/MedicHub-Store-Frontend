@@ -17,6 +17,11 @@ export class CartService {
     this.products = [...this.products, product];
     this.cart.next(this.products);
   }
+  // removeCart(productId: number) {
+  //   this.products = this.products.filter(function (obj) {
+  //     return obj.productId !== productId;
+  //   });
+  // }
   getProducts() {
     return this.products;
   }

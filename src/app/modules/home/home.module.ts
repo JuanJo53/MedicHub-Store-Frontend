@@ -114,7 +114,6 @@ import { CartPipe } from "src/app/shared/pipes/cart.pipe";
     ReportsPageComponent,
     EditClientComponent,
     CreditCardNumberPipe,
-    CartPipe,
     PharmacyItemComponent,
     ClientHomeComponent,
     SubsidiaryDetailsComponent,

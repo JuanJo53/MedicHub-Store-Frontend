@@ -6,7 +6,7 @@ import { Product } from "../models/product";
   name: "cart",
 })
 export class CartPipe implements PipeTransform {
-  products: Product[];
+  // products: Product[];
 
   constructor(private cartService: CartService) {}
 
