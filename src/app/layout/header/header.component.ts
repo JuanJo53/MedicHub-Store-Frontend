@@ -15,6 +15,9 @@ import { FileService } from "src/app/core/services/file.service";
 })
 export class HeaderComponent implements OnInit {
   total$: Observable<number>;
+  role: number;
+  username: string;
+
   constructor(
     public tokenServide: TokenService,
     private cartService: CartService,
@@ -25,8 +28,7 @@ export class HeaderComponent implements OnInit {
       map((products) => products.length)
     );
   }
-  role: number;
-  username: string;
+
   ngOnInit() {
     this.username = this.tokenServide.getUserName();
     this.role = parseInt(this.tokenServide.getAuthorities());

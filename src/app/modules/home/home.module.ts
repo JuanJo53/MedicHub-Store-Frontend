@@ -73,7 +73,7 @@ import { ChangePasswordComponent } from "../client/components/dialogs/change-pas
 import { MatStepperModule } from "@angular/material/stepper";
 import { OrderComponent } from "../client/pages/order/order.component";
 import { OrderItemComponent } from "../client/components/order-item/order-item.component";
-
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -154,6 +154,7 @@ import { OrderItemComponent } from "../client/components/order-item/order-item.c
     MatPaginatorModule,
     ScrollingModule,
     MatStepperModule,
+    MatSnackBarModule,
   ],
   entryComponents: [
     LoginComponent,

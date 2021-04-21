@@ -5,6 +5,7 @@ import { ProductsService } from "src/app/core/http/pharm-admin/products.service"
 import { Product } from "src/app/shared/models/product";
 import { CartService } from "src/app/core/services/cart.service";
 import { Location } from "@angular/common";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-product-detail",
@@ -22,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private cartService: CartService,
     private _location: Location,
+    private _snackBar: MatSnackBar,
     public dialog: MatDialog
   ) {}
 
@@ -45,6 +47,9 @@ export class ProductDetailComponent implements OnInit {
         // this.productClicked.emit(this.product.id);
       }
     }
+    this._snackBar.open("Agregado a carrito de compras", "OK", {
+      duration: 3000,
+    });
   }
   backClicked() {
     this._location.back();
