@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { AuthService } from "src/app/core/authentication/auth.service";
 import { TokenService } from "src/app/core/authentication/token.service";
 import { ClientService } from "src/app/core/http/admin/client.service";
 import { PasswordRequest } from "src/app/shared/models/passwordRequest";
@@ -17,7 +18,7 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(
     private fromBuilder: FormBuilder,
-    private passwordService: ClientService,
+    private passwordService: AuthService,
     private tokenService: TokenService,
     public dialogRef: MatDialogRef<ChangePasswordComponent>
   ) {}
@@ -47,24 +48,19 @@ export class ChangePasswordComponent implements OnInit {
   }
   updatePassword(password: PasswordRequest): void {
     this.passwordService
-      .changePassword(password, this.role)
+      .changePassword(password, this.role, this.id)
       .subscribe((response) => {
-        if (response == "OK") {
-          this.dialogRef.close(true);
-        } else {
-          this.dialogRef.close(false);
-        }
+        this.dialogRef.close(response);
       });
   }
   editPassword(): void {
     this.form = this.fromBuilder.group(
       {
-        clientId: [this.id, [Validators.required]],
+        id: [this.id, [Validators.required]],
         oldPassword: ["", [Validators.required]],
         newPassword: [
           "",
           [
-            Validators.required,
             Validators.maxLength(50),
             Validators.minLength(6),
             Validators.compose([Validators.required]),
@@ -73,7 +69,6 @@ export class ChangePasswordComponent implements OnInit {
         confirmPassword: [
           "",
           [
-            Validators.required,
             Validators.maxLength(50),
             Validators.minLength(6),
             Validators.compose([Validators.required]),
