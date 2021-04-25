@@ -6,26 +6,7 @@
           <h2>Productos en tu Carrito</h2>
           <div class="products_list" *ngFor="let product of products">
             <app-order-item [product]="product">
-              <mat-card>
-                <h1>Resumen de pedido</h1>
-                <p>Subtotal <p> 121123 Bs.</p></p>
-                <p>Total <p> 121123 Bs.</p> </p>
-        
-        
-            </mat-card>
-            <mat-card>
-                Carrito (4)
-                <p>Ofertas de las farmacias</p>
-                <input name="all" type="checkbox" />Seleccione todos
-            </mat-card>
-            <mat-card>
-                <input name="all" type="checkbox" />Seleccione todos
-                <img src=""/>
-                <p>Nombre del producto</p>
-                <p>Cantidad</p>
-                <p>Precio</p>
-                <p></p>
-            </mat-card>
+              
             </app-order-item>
           </div>
           <div>
