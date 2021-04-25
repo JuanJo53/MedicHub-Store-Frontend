@@ -62,7 +62,7 @@ export class AuthService {
       );
     } else {
       return this.httpClient.put(
-        apiKey.api + `/client/${userId}/updatepassword`,
+        apiKey.api + `/client/updatepassword`,
         password,
         {
           headers: this.headers,
