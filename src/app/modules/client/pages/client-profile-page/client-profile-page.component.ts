@@ -10,6 +10,7 @@ import { MAT_DATE_FORMATS } from "@angular/material";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { ChangePasswordComponent } from "../../components/dialogs/change-password/change-password.component";
 import { FileService } from "src/app/core/services/file.service";
+import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
 
 export const MY_FORMATS = {
   parse: {
@@ -194,13 +195,23 @@ export class ClientProfilePageComponent implements OnInit {
       width: "500px",
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result == "OK") {
         this.displaySuccesDialog("¡Se cambio su contraseña exitosamente!");
+      } else if (result == "BAD_REQUEST") {
+        this.displayFailureDialog("¡Hubo un error al cambiar la contraseña!");
       }
     });
   }
   displaySuccesDialog(text: string) {
     this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
+    });
+  }
+  displayFailureDialog(text: string) {
+    this.dialog.open(ErrorDialogComponent, {
       width: "500px",
       data: {
         message: text,

@@ -46,7 +46,7 @@ export class AuthService {
       headers: httpHeaders,
     });
   }
-  changePassword(password: PasswordRequest, role: number, userId: number) {
+  changePassword(password: PasswordRequest, role: number) {
     console.log(role);
     if (role == 1) {
       return this.httpClient.put(apiKey.api + `/admin`, password, {

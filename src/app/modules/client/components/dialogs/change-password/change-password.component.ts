@@ -48,8 +48,9 @@ export class ChangePasswordComponent implements OnInit {
   }
   updatePassword(password: PasswordRequest): void {
     this.passwordService
-      .changePassword(password, this.role, this.id)
+      .changePassword(password, this.role)
       .subscribe((response) => {
+        console.error(response);
         this.dialogRef.close(response);
       });
   }
