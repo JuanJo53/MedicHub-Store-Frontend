@@ -11,7 +11,7 @@ import { CreditCardDirectivesModule } from "angular-cc-library";
 import { CartPipe } from "./shared/pipes/cart.pipe";
 
 @NgModule({
-  declarations: [AppComponent,],
+  declarations: [AppComponent, ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
