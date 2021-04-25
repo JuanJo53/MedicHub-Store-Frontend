@@ -9,11 +9,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { DatePipe } from "@angular/common";
 import { CreditCardDirectivesModule } from "angular-cc-library";
 import { CartPipe } from "./shared/pipes/cart.pipe";
-import { PictureclientComponent } from './app/modules/client/components/pictureclient/pictureclient.component';
-import { UploadImageComponent } from './modules/client/components/upload-image/upload-image.component';
 
 @NgModule({
-  declarations: [AppComponent, PictureclientComponent, UploadImageComponent],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
