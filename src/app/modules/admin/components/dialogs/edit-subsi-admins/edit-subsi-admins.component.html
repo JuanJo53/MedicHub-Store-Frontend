@@ -75,31 +75,15 @@
         required
       />
     </mat-form-field>
-    <mat-form-field class="form">
-      <mat-label>Contraseña</mat-label
-      ><input
-        matInput
-        type="password"
-        formControlName="password"
-        placeholder="*******"
-        required
-      />
-    </mat-form-field>
-    <mat-form-field class="invisible">
+    <!-- <mat-form-field class="invisible">
       <input matInput type="number" formControlName="subsidiaryId" required />
     </mat-form-field>
     <mat-form-field class="invisible">
       <input matInput type="number" formControlName="pharmacyId" required />
-    </mat-form-field>
+    </mat-form-field> -->
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button
-      id="{{ pharmAdmin.pharmacyId }}"
-      type="submit"
-      mat-button
-      color="primary"
-      cdkFocusInitial
-    >
+    <button type="submit" mat-button color="primary" cdkFocusInitial>
       Guardar Cambios
     </button>
     <button mat-button mat-raised-button (click)="onNoClick()" color="warn">

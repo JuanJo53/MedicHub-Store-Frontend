@@ -94,7 +94,6 @@ export class CreateSubsidiaryComponent implements OnInit {
       const subsidiary = this.form.value;
       console.log(subsidiary);
       this.createSubsidiary(subsidiary);
-      this.dialogRef.close();
     } else {
       console.log("bad form");
     }
@@ -103,8 +102,8 @@ export class CreateSubsidiaryComponent implements OnInit {
     // var iduser = parseInt(localStorage.getItem("userId"));
     this.subsidiariesService
       .postNewSubsidiary(newSubsidiary)
-      .subscribe((subsidiary) => {
-        console.log(subsidiary);
+      .subscribe((result) => {
+        this.dialogRef.close(result);
       });
   }
 }

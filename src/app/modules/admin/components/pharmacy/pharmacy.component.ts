@@ -34,9 +34,9 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   destroyed = false;
 
   ngOnInit() {
-    const id = this.pharmacy.pharmacyId;
-    if (id) {
-      this.fetchSubsidiaries(id);
+    this.pharmId = this.pharmacy.pharmacyId;
+    if (this.pharmId) {
+      this.fetchSubsidiaries(this.pharmId);
     }
   }
   ngOnDestroy(): void {
@@ -102,6 +102,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
         console.log("Response PUT: " + response);
         this.displaySuccesDialog("¡Se actualizó la farmacia exitosamente!");
+        this.fetchSubsidiaries(this.pharmId);
       });
   }
   deletePharmacy(id: number): void {
@@ -134,7 +135,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       if (result == "OK") {
         console.log("Resultado post:" + result);
         this.displaySuccesDialog("¡Se agrego la sucursal exitosamente!");
-        this.ngOnInit();
+        this.fetchSubsidiaries(this.pharmId);
       }
     });
   }
