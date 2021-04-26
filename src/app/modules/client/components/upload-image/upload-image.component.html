@@ -1,1 +1,32 @@
-<p>upload-image works!</p>
+<h2 class="title">Suba la nueva foto de perfil</h2>
+<img src="./../../../assets/images/{{ ar.nombre }}" height="200px" />
+<form #formulario="ngForm">
+    <input type="file" (change)="fileEvent($event)" />
+    <button (click)="subirArchivo($event)" class="botonsubida">Subir archivo</button>
+  </form>
+
+
+
+
+
+
+
+
+<!--h5>Ultimas Imagenes guardadas</h5>
+<ul class="list-group" *ngFor="let ar of archivosServer">
+  <li class="list-group-item active">
+    {{ ar.nombre }}
+  </li>
+  <li class="list-group-item">
+    <img src="./../../../assets/images/{{ ar.nombre }}" height="200px" />
+  </li>
+  <li class="list-group-item">Formato: {{ ar.imagen }}</li>
+</ul>
+
+<hr />
+
+<form #formulario="ngForm">
+  <input type="file" (change)="fileEvent($event)" />
+  <button (click)="subirArchivo($event)">Subir archivo</button>
+</form>
+<br /-->
