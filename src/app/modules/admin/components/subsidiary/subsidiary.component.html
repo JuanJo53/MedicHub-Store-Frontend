@@ -1,15 +1,23 @@
 <!--QUITAR EL PADDING URGENTE-->
 
-<div class="sucursal" *ngIf="!destroyed">
-  <div class="sucaux">
+<!-- <div class="sucursal" > -->
+<div class="sucaux row" *ngIf="!destroyed">
+  <div class="col-8">
     <a
       class="namesucursal"
       mat-list-item
       routerLink="subsidiary/{{ subsidiary.subsidiaryId }}"
       >{{ subsidiary.subsidiaryName }}
     </a>
-    <button mat-menu-item (click)="deleteSubsidiary(subsidiary.subsidiaryId)">
+  </div>
+  <div class="col-4">
+    <button
+      mat-mini-fab
+      color="warn"
+      (click)="deleteSubsidiary(subsidiary.subsidiaryId)"
+    >
       <mat-icon class="btnsucu">delete</mat-icon>
     </button>
   </div>
 </div>
+<!-- </div> -->

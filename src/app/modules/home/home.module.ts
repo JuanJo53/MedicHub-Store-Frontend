@@ -77,6 +77,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { CartPipe } from "src/app/shared/pipes/cart.pipe";
 import { UploadImageComponent } from "../client/components/upload-image/upload-image.component";
 import { UploadImageProductComponent } from "../pharm-admin/components/upload-image-product/upload-image-product.component";
+import { UploadPharmImageComponent } from "../admin/components/upload-pharm-image/upload-pharm-image.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -130,6 +131,7 @@ import { UploadImageProductComponent } from "../pharm-admin/components/upload-im
     OrderItemComponent,
     UploadImageComponent,
     UploadImageProductComponent,
+    UploadPharmImageComponent,
   ],
   imports: [
     CommonModule,

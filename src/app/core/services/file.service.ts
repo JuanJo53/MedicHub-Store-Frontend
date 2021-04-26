@@ -17,10 +17,10 @@ export class FileService {
     });
   }
 
-  uploadUserPhoto(formData, depto: string, municipality: boolean) {
+  uploadUserPhoto(formData) {
     const userId = this.tokenService.getUserId();
     return this.http.post<FormData>(
-      apiKey.api + `/api/v1/data/${depto}/admin/${userId}`,
+      apiKey.api + `/api/v1/data/admin/${userId}`,
       formData,
       {
         headers: this.headers,
@@ -29,10 +29,22 @@ export class FileService {
       }
     );
   }
-  uploadProductPhoto(formData, depto: string, municipality: boolean) {
+  uploadProductPhoto(formData) {
     const userId = this.tokenService.getUserId();
     return this.http.post<FormData>(
-      apiKey.api + `/api/v1/data/${depto}/admin/${userId}`,
+      apiKey.api + `/api/v1/data/admin/${userId}`,
+      formData,
+      {
+        headers: this.headers,
+        reportProgress: true,
+        observe: "events",
+      }
+    );
+  }
+  uploadPharmacyPhoto(formData) {
+    const userId = this.tokenService.getUserId();
+    return this.http.post<FormData>(
+      apiKey.api + `/api/v1/data/admin/${userId}`,
       formData,
       {
         headers: this.headers,
@@ -54,6 +66,18 @@ export class FileService {
     );
   }
   getProductPic(productId: number) {
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
+    });
+    return this.http.get(
+      apiKey.api + `/api/v1/data/department/${productId}/download`,
+      {
+        headers: header,
+        responseType: "blob",
+      }
+    );
+  }
+  getPharmacyPic(productId: number) {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });
