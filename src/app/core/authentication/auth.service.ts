@@ -49,9 +49,13 @@ export class AuthService {
   changePassword(password: PasswordRequest, role: number) {
     console.log(role);
     if (role == 1) {
-      return this.httpClient.put(apiKey.api + `/admin`, password, {
-        headers: this.headers,
-      });
+      return this.httpClient.put(
+        apiKey.api + `/admin/updatepassword`,
+        password,
+        {
+          headers: this.headers,
+        }
+      );
     } else if (role == 2) {
       return this.httpClient.put(
         apiKey.api + `/pharmacyAdmin/password`,
