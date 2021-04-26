@@ -1,16 +1,16 @@
 import { HttpEventType } from "@angular/common/http";
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { FileService } from "src/app/core/services/file.service";
 import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
-  selector: "app-upload-pharm-image",
-  templateUrl: "./upload-pharm-image.component.html",
-  styleUrls: ["./upload-pharm-image.component.scss"],
+  selector: "app-upload-client-image",
+  templateUrl: "./upload-client-image.component.html",
+  styleUrls: ["./upload-client-image.component.scss"],
 })
-export class UploadPharmImageComponent implements OnInit {
+export class UploadClientImageComponent implements OnInit {
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef;
 
   files = [];
@@ -50,7 +50,7 @@ export class UploadPharmImageComponent implements OnInit {
     const formData = new FormData();
     formData.append("file", file.data);
     file.inProgress = true;
-    this.fileUploadService.uploadPharmacyPhoto(formData).subscribe((rsp) => {
+    this.fileUploadService.uploadUserPhoto(formData).subscribe((rsp) => {
       console.log(rsp);
       if (rsp.type === HttpEventType.Response) {
         this.displaySuccesDialog("¡El archivo se subio exitosamente!");

@@ -75,9 +75,9 @@ import { OrderComponent } from "../client/pages/order/order.component";
 import { OrderItemComponent } from "../client/components/order-item/order-item.component";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { CartPipe } from "src/app/shared/pipes/cart.pipe";
-import { UploadImageComponent } from "../client/components/upload-image/upload-image.component";
 import { UploadImageProductComponent } from "../pharm-admin/components/upload-image-product/upload-image-product.component";
 import { UploadPharmImageComponent } from "../admin/components/upload-pharm-image/upload-pharm-image.component";
+import { UploadClientImageComponent } from "../client/components/upload-client-image/upload-client-image.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -129,9 +129,9 @@ import { UploadPharmImageComponent } from "../admin/components/upload-pharm-imag
     ChangePasswordComponent,
     OrderComponent,
     OrderItemComponent,
-    UploadImageComponent,
-    UploadImageProductComponent,
     UploadPharmImageComponent,
+    UploadImageProductComponent,
+    UploadClientImageComponent,
   ],
   imports: [
     CommonModule,

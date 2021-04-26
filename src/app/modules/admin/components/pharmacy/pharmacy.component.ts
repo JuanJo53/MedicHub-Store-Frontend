@@ -9,6 +9,7 @@ import { PharmacyRequest } from "src/app/shared/models/pharmacy-request";
 import { WarningDialogComponent } from "../../../components/dialogs/warning-dialog/warning-dialog.component";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { FileService } from "src/app/core/services/file.service";
 
 @Component({
   selector: "app-pharmacy",
@@ -27,6 +28,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     private fromBuilder: FormBuilder,
     private pharmaciesService: PharmaciesService,
     private subsidiariesService: SubsidiariesService,
+    private fileService: FileService,
     public dialog: MatDialog
   ) {}
 
@@ -36,6 +38,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.pharmId = this.pharmacy.pharmacyId;
     if (this.pharmId) {
+      this.fetchPharmPhoto();
       this.fetchSubsidiaries(this.pharmId);
     }
   }
@@ -83,6 +86,11 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       subsidiary.map((sub) => {
         this.subsidiaries.push(sub);
       });
+    });
+  }
+  fetchPharmPhoto() {
+    this.fileService.getPharmacyPic(this.pharmId).subscribe((result) => {
+      console.log(result);
     });
   }
   savePharmacy(event: Event, id: number): void {

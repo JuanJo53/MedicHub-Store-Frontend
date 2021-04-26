@@ -53,6 +53,7 @@ export class FileService {
       }
     );
   }
+
   getUserPhoto(userId: number) {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
