@@ -21,8 +21,6 @@ export class SubsidiaryDetailsComponent implements OnInit {
 
   products: Product[];
 
-  filterTypes = ["Precio", "Nombre", "Tipo de Medicamento", "Dosis", "Marca"];
-
   isLoadingResults = true;
   isRateLimitReached = false;
 
@@ -55,7 +53,9 @@ export class SubsidiaryDetailsComponent implements OnInit {
           .subscribe((element) => {
             this.length = element;
           });
+        this.filterType = "all";
         this.getDetails(this.subsidiaryId);
+        this.getProducts(this.subsidiaryId, 1);
       }
     } catch (error) {
       console.error(error);
@@ -63,9 +63,8 @@ export class SubsidiaryDetailsComponent implements OnInit {
   }
 
   dataSource = new MatTableDataSource();
-  applyFilter(event: Event, type: string) {
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.filterType = type;
     console.log(this.filterType);
     if (filterValue) {
       if (typeof this.filterType == "number") {
@@ -85,7 +84,6 @@ export class SubsidiaryDetailsComponent implements OnInit {
         this.subsidiary = subsidiary;
         console.log(this.length);
         this.filter = 0;
-        this.getProducts(id, 1);
       });
   }
   getProducts(id: number, page: number) {
