@@ -25,7 +25,6 @@ export class PharmaciesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("OnInit excecuted");
     this.fecthPharmacies();
   }
   addPharmacy(): void {
@@ -35,8 +34,8 @@ export class PharmaciesComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.displaySuccesDialog("¡Se agrego la pharmacia exitosamente!");
-        this.ngOnInit();
       }
+      this.fecthPharmacies();
     });
   }
   applyFilter(event: Event) {

@@ -63,6 +63,7 @@
     <div class="subsidiaries-grid textEdit" *ngIf="subsidiaries">
       <h1 class="titlesucursal">Sucursales</h1>
       <app-subsidiary
+        class="subsidiary_item"
         *ngFor="let subsidiary of subsidiaries"
         [subsidiary]="subsidiary"
       ></app-subsidiary>
@@ -111,26 +112,26 @@
           </mat-form-field>
         </mat-card-content>
         <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
-        <mat-card-actions >
-        <div class="buttons">
-          <button
-            id="{{ pharmacy.pharmacyId }}"
-            type="submit"
-            mat-button
-            class="btn-edit"
-          >
-            Guardar Cambios
-          </button>
-          <button
-            id="{{ pharmacy.pharmacyId }}"
-            (click)="cancel()"
-            mat-button
-            color="warn"
-            class="btn-edit"
-          >
-            Cancelar
-          </button>
-        </div>
+        <mat-card-actions>
+          <div class="buttons">
+            <button
+              id="{{ pharmacy.pharmacyId }}"
+              type="submit"
+              mat-button
+              class="btn-edit"
+            >
+              Guardar Cambios
+            </button>
+            <button
+              id="{{ pharmacy.pharmacyId }}"
+              (click)="cancel()"
+              mat-button
+              color="warn"
+              class="btn-edit"
+            >
+              Cancelar
+            </button>
+          </div>
         </mat-card-actions>
       </mat-card>
     </form>

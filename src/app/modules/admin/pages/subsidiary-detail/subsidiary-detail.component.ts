@@ -1,4 +1,3 @@
-import { AppPage } from "./../../../../../../e2e/src/app.po";
 import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
