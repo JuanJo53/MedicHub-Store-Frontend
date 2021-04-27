@@ -10,6 +10,7 @@ import { WarningDialogComponent } from "../../../components/dialogs/warning-dial
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { FileService } from "src/app/core/services/file.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-pharmacy",
@@ -24,11 +25,14 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   text: string;
   pharmId: number;
 
+  image: any;
+
   constructor(
     private fromBuilder: FormBuilder,
     private pharmaciesService: PharmaciesService,
     private subsidiariesService: SubsidiariesService,
     private fileService: FileService,
+    private sanitizer: DomSanitizer,
     public dialog: MatDialog
   ) {}
 
@@ -77,7 +81,6 @@ export class PharmacyComponent implements OnInit, OnDestroy {
           Validators.minLength(6),
         ],
       ],
-      // picture: ["", [Validators.required]],
     });
   }
   fetchSubsidiaries(id: number): void {
@@ -89,10 +92,14 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     });
   }
   fetchPharmPhoto() {
-    this.fileService.getPharmacyPic(this.pharmId).subscribe((result) => {
-      console.log(result);
-    });
+    this.fileService
+      .getPharmacyPic(this.pharmacy.picture)
+      .subscribe((result) => {
+        let objectURL = URL.createObjectURL(result);
+        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      });
   }
+
   savePharmacy(event: Event, id: number): void {
     event.preventDefault();
     if (this.form.valid) {

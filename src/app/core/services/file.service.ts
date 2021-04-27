@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import apiKey from "../apiKey";
 import { TokenService } from "../authentication/token.service";
 
@@ -73,11 +74,11 @@ export class FileService {
       }
     );
   }
-  getPharmacyPic(pharmId: number) {
+  getPharmacyPic(pictureUrl: string): Observable<Blob> {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });
-    return this.http.get(apiKey.api + `/pharmacy/${pharmId}/image`, {
+    return this.http.get(apiKey.api + `/pharmacy/image/${pictureUrl}`, {
       headers: header,
       responseType: "blob",
     });
