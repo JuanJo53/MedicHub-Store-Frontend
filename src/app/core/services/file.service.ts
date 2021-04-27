@@ -20,15 +20,11 @@ export class FileService {
 
   uploadUserPhoto(formData) {
     const userId = this.tokenService.getUserId();
-    return this.http.post<FormData>(
-      apiKey.api + `/api/v1/data/admin/${userId}`,
-      formData,
-      {
-        headers: this.headers,
-        reportProgress: true,
-        observe: "events",
-      }
-    );
+    return this.http.put(apiKey.api + `/client/${userId}/image`, formData, {
+      headers: this.headers,
+      reportProgress: true,
+      observe: "events",
+    });
   }
   uploadProductPhoto(formData) {
     const userId = this.tokenService.getUserId();
@@ -50,17 +46,14 @@ export class FileService {
     });
   }
 
-  getUserPhoto(userId: number) {
+  getUserPhoto(imagUrl: string) {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });
-    return this.http.get(
-      apiKey.api + `/api/v1/data/department/${userId}/download`,
-      {
-        headers: header,
-        responseType: "blob",
-      }
-    );
+    return this.http.get(apiKey.api + `/client/image/${imagUrl}`, {
+      headers: header,
+      responseType: "blob",
+    });
   }
   getProductPic(productId: number) {
     const header = new HttpHeaders({

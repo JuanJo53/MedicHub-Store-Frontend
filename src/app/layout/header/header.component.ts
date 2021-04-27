@@ -8,6 +8,8 @@ import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes
 import { ChangePasswordComponent } from "src/app/modules/client/components/dialogs/change-password/change-password.component";
 import { FileService } from "src/app/core/services/file.service";
 import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
+import { DomSanitizer } from "@angular/platform-browser";
+import { ClientService } from "src/app/core/http/admin/client.service";
 
 @Component({
   selector: "app-header",
@@ -18,11 +20,16 @@ export class HeaderComponent implements OnInit {
   total$: Observable<number>;
   role: number;
   username: string;
+  image: any;
+  userId: number;
+  imageUrl: string;
 
   constructor(
     public tokenServide: TokenService,
     private cartService: CartService,
+    private clientService: ClientService,
     private fileService: FileService,
+    private sanitizer: DomSanitizer,
     public dialog: MatDialog
   ) {
     this.total$ = this.cartService.cart$.pipe(
@@ -33,6 +40,21 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.username = this.tokenServide.getUserName();
     this.role = parseInt(this.tokenServide.getAuthorities());
+    this.userId = parseInt(this.tokenServide.getUserId());
+    this.getDetails(this.userId);
+  }
+  getDetails(id: number) {
+    console.log(id);
+    this.clientService.getClientDetail(id).subscribe((client) => {
+      this.imageUrl = client.picture;
+      this.fetchUserPhoto();
+    });
+  }
+  fetchUserPhoto() {
+    this.fileService.getUserPhoto(this.imageUrl).subscribe((data) => {
+      let objectURL = URL.createObjectURL(data);
+      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    });
   }
   changePassword() {
     const dialogRef = this.dialog.open(ChangePasswordComponent, {

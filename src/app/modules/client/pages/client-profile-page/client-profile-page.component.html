@@ -11,14 +11,15 @@
           <div class="image_display">
             <div class="blocImagen">
               <img
+                *ngIf="image"
                 class="rounded mx-auto d-block img-fluid"
-                src="assets/images/4.jpg"
+                [src]="image"
                 width="200px"
                 height="200px"
               />
             </div>
             <div class="add_image_btn">
-              <app-upload-pharm-image></app-upload-pharm-image>
+              <app-upload-client-image></app-upload-client-image>
             </div>
           </div>
           <br />

@@ -64,7 +64,7 @@
     </mat-menu>
 
     <button mat-icon-button class="img-button">
-      <img src="assets/images/4.jpg" alt="" />
+      <img *ngIf="image" [src]="image" alt="" />
     </button>
   </div>
 </mat-toolbar>

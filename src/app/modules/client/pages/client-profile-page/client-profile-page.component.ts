@@ -11,6 +11,7 @@ import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes
 import { ChangePasswordComponent } from "../../components/dialogs/change-password/change-password.component";
 import { FileService } from "src/app/core/services/file.service";
 import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
+import { DomSanitizer } from "@angular/platform-browser";
 
 export const MY_FORMATS = {
   parse: {
@@ -31,6 +32,7 @@ export const MY_FORMATS = {
 })
 export class ClientProfilePageComponent implements OnInit {
   client: Client;
+  image: any;
 
   text: string;
   id: number;
@@ -43,6 +45,7 @@ export class ClientProfilePageComponent implements OnInit {
     private tokenService: TokenService,
     private fileService: FileService,
     public datepipe: DatePipe,
+    private sanitizer: DomSanitizer,
     public dialog: MatDialog
   ) {}
 
@@ -63,10 +66,14 @@ export class ClientProfilePageComponent implements OnInit {
     console.log(id);
     this.clientService.getClientDetail(id).subscribe((client) => {
       this.client = client;
+      this.fetchUserPhoto();
     });
   }
-  getUserPhoto() {
-    // this.fileService.getUserPhoto(id)
+  fetchUserPhoto() {
+    this.fileService.getUserPhoto(this.client.picture).subscribe((data) => {
+      let objectURL = URL.createObjectURL(data);
+      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    });
   }
   editClient(): void {
     this.editEnabled = true;

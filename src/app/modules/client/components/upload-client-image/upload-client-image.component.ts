@@ -48,7 +48,7 @@ export class UploadClientImageComponent implements OnInit {
   }
   uploadFile(file) {
     const formData = new FormData();
-    formData.append("file", file.data);
+    formData.append("image", file.data);
     file.inProgress = true;
     this.fileUploadService.uploadUserPhoto(formData).subscribe((rsp) => {
       console.log(rsp);
