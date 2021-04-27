@@ -40,7 +40,7 @@ export class ProductsService {
       apiKey.api +
         `/product/${prodId}/list?page=${
           (page - 1) * size
-        }&size=${size}&order=${order}&asc=${asc}&value=${filterValue}&filterType=${filterType}`,
+        }&size=${size}&order=${order}&asc=${asc}&value=${filterValue}&typevalue=${filterType}`,
       { headers: this.headers }
     );
   }

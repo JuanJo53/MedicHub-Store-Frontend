@@ -33,33 +33,29 @@
   <div class="container products">
     <h1 class="title">Productos</h1>
     <mat-form-field class="formfarmacia2">
-      <!--form class="top-search-form">
-          <mat-icon role="img">search</mat-icon>
-          <input placeholder="Buscar marca" type="text" class="lettersearch" (keyup)="applyFilter($event, type.value)" #input />
-
-          
-        </form-->
-
       <input
         matInput
-        (keyup)="applyFilter($event)"
         placeholder="Buscar producto"
         class="lettersearch"
-        #input
+        [(ngModel)]="filter"
+        (keyup.enter)="applyFilter($event)"
       />
-      <!--div fxFlex fxHide.lt-sm="true" class="search-bar">
-        <form class="top-search-form">
-          <mat-icon role="img">search</mat-icon>
-          <input  matInput
-          (keyup)="applyFilter($event, type.value)"
-          placeholder="Buscar producto"
-          #input class="lettersearch" />
-        </form>
-      </div-->
     </mat-form-field>
+    <button
+      mat-icon-button
+      color="primary"
+      (click)="getProducts(this.subsidiaryId, 1)"
+      aria-label="Example icon button with a home icon"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
     <mat-form-field appearance="fill" class="filtro">
       <mat-label class="titlefiltro">Tipo de Filtro</mat-label>
-      <mat-select [(value)]="filterType" class="filtro2">
+      <mat-select
+        [(value)]="filterType"
+        class="filtro2"
+        (selectionChange)="getProducts(this.subsidiaryId, 1)"
+      >
         <mat-option value="all">Todos</mat-option>
         <mat-option value="price">Precio</mat-option>
         <mat-option value="name">Nombre de Producto</mat-option>
@@ -75,13 +71,13 @@
         (page)="refreshProducts($event)"
         class="pagina"
       ></mat-paginator>
-      <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+      <div class="loading-shade" *ngIf="isLoadingResults">
         <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-        <div class="rate-limit-reached" *ngIf="isRateLimitReached">
-          Es el limite de los datos
-        </div>
       </div>
-      <div class="row row-cols-3" *ngIf="!isLoadingResults">
+      <div
+        class="row row-cols-3"
+        *ngIf="!isLoadingResults && !isRateLimitReached"
+      >
         <app-product-item
           class="col mt-3 mb-3"
           *ngFor="let product of dataSource.filteredData"
@@ -89,6 +85,9 @@
           matSort
         >
         </app-product-item>
+      </div>
+      <div class="no_data" *ngIf="isRateLimitReached">
+        <h1>¡No se encontraron resultados para su busqueda!</h1>
       </div>
     </div>
   </div>

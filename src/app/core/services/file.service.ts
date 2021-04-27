@@ -41,10 +41,9 @@ export class FileService {
       }
     );
   }
-  uploadPharmacyPhoto(formData) {
-    const userId = this.tokenService.getUserId();
+  uploadPharmacyPhoto(formData, pharmId: number) {
     return this.http.post<FormData>(
-      apiKey.api + `/api/v1/data/admin/${userId}`,
+      apiKey.api + `/pharmacy/${pharmId}/image`,
       formData,
       {
         headers: this.headers,
@@ -78,17 +77,14 @@ export class FileService {
       }
     );
   }
-  getPharmacyPic(productId: number) {
+  getPharmacyPic(pharmId: number) {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });
-    return this.http.get(
-      apiKey.api + `/api/v1/data/department/${productId}/download`,
-      {
-        headers: header,
-        responseType: "blob",
-      }
-    );
+    return this.http.get(apiKey.api + `/pharmacy/${pharmId}/image`, {
+      headers: header,
+      responseType: "blob",
+    });
   }
   download(depto: string): any {
     const header = new HttpHeaders({

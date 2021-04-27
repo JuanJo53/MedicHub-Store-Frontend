@@ -12,7 +12,7 @@ import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes
 })
 export class UploadPharmImageComponent implements OnInit {
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef;
-
+  @Input() pharmId: number;
   files = [];
   fileName: string;
 
@@ -50,17 +50,19 @@ export class UploadPharmImageComponent implements OnInit {
     const formData = new FormData();
     formData.append("file", file.data);
     file.inProgress = true;
-    this.fileUploadService.uploadPharmacyPhoto(formData).subscribe((rsp) => {
-      console.log(rsp);
-      if (rsp.type === HttpEventType.Response) {
-        this.displaySuccesDialog("¡El archivo se subio exitosamente!");
-      }
-      if (rsp.type === HttpEventType.UploadProgress) {
-        const percentDone = Math.round((100 * rsp.loaded) / rsp.total);
-        console.log("Progress " + percentDone + "%");
-      }
-      this.uploading = false;
-    }),
+    this.fileUploadService
+      .uploadPharmacyPhoto(formData, this.pharmId)
+      .subscribe((rsp) => {
+        console.log(rsp);
+        if (rsp.type === HttpEventType.Response) {
+          this.displaySuccesDialog("¡El archivo se subio exitosamente!");
+        }
+        if (rsp.type === HttpEventType.UploadProgress) {
+          const percentDone = Math.round((100 * rsp.loaded) / rsp.total);
+          console.log("Progress " + percentDone + "%");
+        }
+        this.uploading = false;
+      }),
       (error) => {
         this.displayFailureDialog("¡Error critico!\n" + error);
       };
