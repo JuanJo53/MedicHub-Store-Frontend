@@ -106,8 +106,8 @@ export class SubsidiaryDetailsComponent implements OnInit {
         }
       });
     this.isLoadingResults = false;
-    if (this.filterType == "all") {
-      this.filter = "";
+    if (this.filterType == "all" || this.filter == "" || this.filter == 0) {
+      // this.filter = "";
       this.getProductTotal();
     }
   }

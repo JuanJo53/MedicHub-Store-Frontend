@@ -1,11 +1,17 @@
 .subsidiary-card {
-  max-width: 400px;
+  max-width: 800px;
+  margin: 10px;
 }
 
 .subsidiary-header-image {
   background-size: cover;
+  height: 100%;
+  width: 100px;
+  text-align: center;
 }
-
+.pharm_img {
+  padding: 20px 0;
+}
 .txtblue {
   color: #2f4a85;
 }
