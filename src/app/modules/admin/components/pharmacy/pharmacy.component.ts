@@ -11,6 +11,7 @@ import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.servic
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { FileService } from "src/app/core/services/file.service";
 import { DomSanitizer } from "@angular/platform-browser";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 @Component({
   selector: "app-pharmacy",
@@ -33,6 +34,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     private subsidiariesService: SubsidiariesService,
     private fileService: FileService,
     private sanitizer: DomSanitizer,
+    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 
@@ -40,10 +42,22 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   destroyed = false;
 
   ngOnInit() {
-    this.pharmId = this.pharmacy.pharmacyId;
-    if (this.pharmId) {
-      this.fetchPharmPhoto();
-      this.fetchSubsidiaries(this.pharmId);
+    try {
+      this.pharmId = this.pharmacy.pharmacyId;
+      if (this.pharmId) {
+        this.fetchPharmPhoto();
+        this.fetchSubsidiaries(this.pharmId);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    if (this.eventEmitterService.pharmSubs == undefined) {
+      this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
+        (name: string) => {
+          this.fetchPharmPhoto();
+          this.displaySuccesDialog(name);
+        }
+      );
     }
   }
   ngOnDestroy(): void {
@@ -92,6 +106,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     });
   }
   fetchPharmPhoto() {
+    console.log("photo reached");
     this.fileService
       .getPharmacyPic(this.pharmacy.picture)
       .subscribe((result) => {

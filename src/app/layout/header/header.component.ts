@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
     this.role = parseInt(this.tokenServide.getAuthorities());
     this.userId = parseInt(this.tokenServide.getUserId());
     this.getDetails(this.userId);
-    this.eventEmitterService.subsVar = this.eventEmitterService.invokeFirstComponentFunction.subscribe(
+    this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
       (name: string) => {
         this.getDetails(this.userId);
         console.log(name);
@@ -52,10 +52,11 @@ export class HeaderComponent implements OnInit {
     );
   }
   getDetails(id: number) {
-    console.log(id);
     this.clientService.getClientDetail(id).subscribe((client) => {
       this.imageUrl = client.picture;
-      this.fetchUserPhoto();
+      if (this.role == 3) {
+        this.fetchUserPhoto();
+      }
     });
   }
   fetchUserPhoto() {

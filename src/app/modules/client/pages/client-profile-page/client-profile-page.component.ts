@@ -60,7 +60,7 @@ export class ClientProfilePageComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
-    this.eventEmitterService.subsVar = this.eventEmitterService.invokeFirstComponentFunction.subscribe(
+    this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
       (name: string) => {
         this.getDetails(this.id);
         this.displaySuccesDialog(name);

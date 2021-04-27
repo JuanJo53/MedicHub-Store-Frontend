@@ -1,6 +1,7 @@
 import { HttpEventType } from "@angular/common/http";
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 import { FileService } from "src/app/core/services/file.service";
 import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
@@ -20,6 +21,7 @@ export class UploadPharmImageComponent implements OnInit {
 
   constructor(
     private fileUploadService: FileService,
+    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 
@@ -53,13 +55,14 @@ export class UploadPharmImageComponent implements OnInit {
     this.fileUploadService
       .uploadPharmacyPhoto(formData, this.pharmId)
       .subscribe((rsp) => {
-        console.log(rsp);
-        if (rsp.type === HttpEventType.Response) {
-          this.displaySuccesDialog("¡El archivo se subio exitosamente!");
-        }
         if (rsp.type === HttpEventType.UploadProgress) {
           const percentDone = Math.round((100 * rsp.loaded) / rsp.total);
           console.log("Progress " + percentDone + "%");
+          if (percentDone == 100) {
+            this.eventEmitterService.onPharmacyPhotoUpdated(
+              "¡La foto se actualizo exitosamente!"
+            );
+          }
         }
         this.uploading = false;
       }),
@@ -67,14 +70,6 @@ export class UploadPharmImageComponent implements OnInit {
         this.displayFailureDialog("¡Error critico!\n" + error);
       };
     this.files = [];
-  }
-  displaySuccesDialog(text: string) {
-    this.dialog.open(SuccesDialogComponent, {
-      width: "500px",
-      data: {
-        message: text,
-      },
-    });
   }
   displayFailureDialog(text: string) {
     this.dialog.open(ErrorDialogComponent, {

@@ -5,12 +5,17 @@ import { Subscription } from "rxjs";
   providedIn: "root",
 })
 export class EventEmitterService {
-  invokeFirstComponentFunction = new EventEmitter();
-  subsVar: Subscription;
+  pharmPhotoEvent = new EventEmitter();
+  clientPhotoEvent = new EventEmitter();
+  pharmSubs: Subscription;
+  clientSubs: Subscription;
 
   constructor() {}
 
-  onFirstComponentButtonClick(message: string) {
-    this.invokeFirstComponentFunction.emit(message);
+  onClientPhotoUpdated(message: string) {
+    this.clientPhotoEvent.emit(message);
+  }
+  onPharmacyPhotoUpdated(message: string) {
+    this.pharmPhotoEvent.emit(message);
   }
 }
