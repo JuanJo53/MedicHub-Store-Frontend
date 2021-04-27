@@ -48,7 +48,7 @@ export class UploadPharmImageComponent implements OnInit {
   }
   uploadFile(file) {
     const formData = new FormData();
-    formData.append("file", file.data);
+    formData.append("image", file.data);
     file.inProgress = true;
     this.fileUploadService
       .uploadPharmacyPhoto(formData, this.pharmId)

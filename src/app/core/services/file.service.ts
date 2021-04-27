@@ -42,15 +42,11 @@ export class FileService {
     );
   }
   uploadPharmacyPhoto(formData, pharmId: number) {
-    return this.http.post<FormData>(
-      apiKey.api + `/pharmacy/${pharmId}/image`,
-      formData,
-      {
-        headers: this.headers,
-        reportProgress: true,
-        observe: "events",
-      }
-    );
+    return this.http.put(apiKey.api + `/pharmacy/${pharmId}/image`, formData, {
+      headers: this.headers,
+      reportProgress: true,
+      observe: "events",
+    });
   }
 
   getUserPhoto(userId: number) {
