@@ -1,7 +1,22 @@
 <div class="container">
   <mat-card class="subsidiary-card card">
     <mat-card-header>
-      <div mat-card-avatar class="subsidiary-header-image"></div>
+      <div mat-card-avatar class="subsidiary-header-image">
+        <img
+          *ngIf="image"
+          class="img-fluid rounded"
+          [src]="image"
+          width="2000px"
+          height="2000px"
+        />
+        <img
+          *ngIf="!image"
+          class="img-fluid rounded"
+          src="../../../../../assets/images/pnglogo1.png"
+          width="2000px"
+          height="2000px"
+        />
+      </div>
       <mat-card-title
         ><a routerLink="{{ subsidiary.subsidiaryId }}" class="txtblue">{{
           subsidiary.subsidiaryName
