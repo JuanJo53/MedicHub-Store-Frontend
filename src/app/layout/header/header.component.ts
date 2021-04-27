@@ -10,6 +10,7 @@ import { FileService } from "src/app/core/services/file.service";
 import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ClientService } from "src/app/core/http/admin/client.service";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 @Component({
   selector: "app-header",
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit {
     private clientService: ClientService,
     private fileService: FileService,
     private sanitizer: DomSanitizer,
+    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {
     this.total$ = this.cartService.cart$.pipe(
@@ -42,6 +44,12 @@ export class HeaderComponent implements OnInit {
     this.role = parseInt(this.tokenServide.getAuthorities());
     this.userId = parseInt(this.tokenServide.getUserId());
     this.getDetails(this.userId);
+    this.eventEmitterService.subsVar = this.eventEmitterService.invokeFirstComponentFunction.subscribe(
+      (name: string) => {
+        this.getDetails(this.userId);
+        console.log(name);
+      }
+    );
   }
   getDetails(id: number) {
     console.log(id);

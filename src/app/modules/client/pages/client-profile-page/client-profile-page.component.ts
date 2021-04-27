@@ -12,6 +12,7 @@ import { ChangePasswordComponent } from "../../components/dialogs/change-passwor
 import { FileService } from "src/app/core/services/file.service";
 import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
 import { DomSanitizer } from "@angular/platform-browser";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 export const MY_FORMATS = {
   parse: {
@@ -46,6 +47,7 @@ export class ClientProfilePageComponent implements OnInit {
     private fileService: FileService,
     public datepipe: DatePipe,
     private sanitizer: DomSanitizer,
+    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 
@@ -58,12 +60,17 @@ export class ClientProfilePageComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+    this.eventEmitterService.subsVar = this.eventEmitterService.invokeFirstComponentFunction.subscribe(
+      (name: string) => {
+        this.getDetails(this.id);
+        this.displaySuccesDialog(name);
+      }
+    );
   }
   cancel() {
     this.editEnabled = false;
   }
   getDetails(id: number) {
-    console.log(id);
     this.clientService.getClientDetail(id).subscribe((client) => {
       this.client = client;
       this.fetchUserPhoto();

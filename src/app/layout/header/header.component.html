@@ -65,6 +65,7 @@
 
     <button mat-icon-button class="img-button">
       <img *ngIf="image" [src]="image" alt="" />
+      <img *ngIf="!image" src="../../../assets/images/face.png" alt="" />
     </button>
   </div>
 </mat-toolbar>
