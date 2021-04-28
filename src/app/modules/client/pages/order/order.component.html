@@ -33,12 +33,14 @@
       <div>
         <div class="container cards">
           <div class="row row-cols-2">
-            <app-card-item
-              class="col mt-3 mb-3"
-              *ngFor="let card of cards"
-              [card]="card"
-              [displayType]="order"
-            ></app-card-item>
+            <button mat-button>
+              <app-card-item
+                class="col mt-3 mb-3"
+                *ngFor="let card of cards"
+                [card]="card"
+                [displayType]="'order'"
+              ></app-card-item>
+            </button>
           </div>
         </div>
         <button mat-button matStepperPrevious class="btnform">Atras</button>

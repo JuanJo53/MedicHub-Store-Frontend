@@ -170,11 +170,14 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     });
   }
   displaySuccesDialog(text: string) {
-    this.dialog.open(SuccesDialogComponent, {
+    const dialogRef = this.dialog.open(SuccesDialogComponent, {
       width: "500px",
       data: {
         message: text,
       },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      window.location.reload();
     });
   }
 }
