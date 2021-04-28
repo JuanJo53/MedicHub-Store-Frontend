@@ -179,6 +179,7 @@ import { UploadClientImageComponent } from "../client/components/upload-client-i
     EditClientComponent,
     CreateCardComponent,
     ErrorDialogComponent,
+    ChangePasswordComponent
   ],
 })
 export class HomeModule {}
