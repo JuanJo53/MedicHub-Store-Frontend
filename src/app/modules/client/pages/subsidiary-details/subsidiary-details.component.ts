@@ -8,6 +8,8 @@ import { Product } from "src/app/shared/models/product";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
 import { MatSort } from "@angular/material/sort";
 import { MatPaginator } from "@angular/material/paginator";
+import { DomSanitizer } from "@angular/platform-browser";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 @Component({
   selector: "app-subsidiary-details",
