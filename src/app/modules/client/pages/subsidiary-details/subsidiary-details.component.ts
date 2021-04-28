@@ -96,6 +96,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
       )
       .subscribe((products) => {
         if (products != null) {
+          console.log(products);
           this.products = products;
           this.dataSource = new MatTableDataSource(this.products);
           this.dataSource.sort = this.sort;

@@ -19,7 +19,6 @@ export class PharmacyItemComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.subsidiary.picture);
     this.fetchPharmPhoto();
   }
 

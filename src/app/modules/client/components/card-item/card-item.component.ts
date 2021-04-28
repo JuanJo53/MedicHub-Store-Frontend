@@ -13,6 +13,7 @@ import { Card } from "src/app/shared/models/card";
 })
 export class CardItemComponent implements OnInit {
   @Input() card: Card;
+  @Input() displayType: string;
   form: FormGroup;
 
   id: number;

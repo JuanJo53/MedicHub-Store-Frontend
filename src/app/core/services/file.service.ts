@@ -55,7 +55,7 @@ export class FileService {
       responseType: "blob",
     });
   }
-  getProductPic(productId: number) {
+  getProductPhoto(productId: number) {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });

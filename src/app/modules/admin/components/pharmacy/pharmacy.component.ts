@@ -54,8 +54,8 @@ export class PharmacyComponent implements OnInit, OnDestroy {
     if (this.eventEmitterService.pharmSubs == undefined) {
       this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
         (name: string) => {
-          this.fetchPharmPhoto();
           this.displaySuccesDialog(name);
+          this.fetchPharmPhoto();
         }
       );
     }

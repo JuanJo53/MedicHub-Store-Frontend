@@ -6,6 +6,7 @@ import { Product } from "src/app/shared/models/product";
 import { CartService } from "src/app/core/services/cart.service";
 import { Location } from "@angular/common";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { OrderService } from "src/app/core/http/client/order.service";
 
 @Component({
   selector: "app-product-detail",
@@ -22,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
     private productsServide: ProductsService,
     private activatedRoute: ActivatedRoute,
     private cartService: CartService,
+    private orderService: OrderService,
     private _location: Location,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog
@@ -45,6 +47,8 @@ export class ProductDetailComponent implements OnInit {
       for (let i = 0; i < this.quantity; i++) {
         this.cartService.addCart(this.product);
       }
+      this.product.quantity = this.quantity;
+      console.log(this.product.quantity);
     }
     this._snackBar.open("Agregado a carrito de compras", "OK", {
       duration: 3000,

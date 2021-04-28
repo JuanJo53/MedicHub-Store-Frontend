@@ -1,6 +1,6 @@
 import { TokenService } from "src/app/core/authentication/token.service";
 import { ClientService } from "src/app/core/http/admin/client.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Client } from "src/app/shared/models/client";
@@ -31,7 +31,7 @@ export const MY_FORMATS = {
   styleUrls: ["./client-profile-page.component.scss"],
   providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }],
 })
-export class ClientProfilePageComponent implements OnInit {
+export class ClientProfilePageComponent implements OnInit, OnDestroy {
   client: Client;
   image: any;
 
@@ -52,20 +52,25 @@ export class ClientProfilePageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log("init");
     try {
       this.id = parseInt(this.tokenService.getUserId());
       if (this.id) {
         this.getDetails(this.id);
       }
+      this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
+        (name: string) => {
+          this.getDetails(this.id);
+          console.log(name);
+        }
+      );
     } catch (error) {
       console.error(error);
     }
-    this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
-      (name: string) => {
-        this.getDetails(this.id);
-        this.displaySuccesDialog(name);
-      }
-    );
+  }
+  ngOnDestroy() {
+    console.log("destroyed");
+    // this.eventEmitterService.clientPhotoEvent.unsubscribe();
   }
   cancel() {
     this.editEnabled = false;
