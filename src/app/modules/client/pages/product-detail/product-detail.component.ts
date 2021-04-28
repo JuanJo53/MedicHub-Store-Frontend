@@ -35,9 +35,13 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params.pid;
-    if (this.id) {
-      this.fetchProduct(this.id);
+    try {
+      this.id = this.activatedRoute.snapshot.params.pid;
+      if (this.id) {
+        this.fetchProduct(this.id);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 

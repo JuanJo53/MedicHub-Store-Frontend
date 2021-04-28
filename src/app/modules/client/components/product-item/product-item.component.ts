@@ -29,17 +29,13 @@ export class ProductItemComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const id = this.product.productId;
-    if (id) {
-      this.fetchProduct(id);
-    }
-    if (this.eventEmitterService.pharmSubs == undefined) {
-      this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
-        (name: string) => {
-          this.displaySuccesDialog(name);
-          this.fetchProduct(id);
-        }
-      );
+    try {
+      const id = this.product.productId;
+      if (id) {
+        this.fetchProduct(id);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
