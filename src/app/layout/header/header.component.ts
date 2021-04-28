@@ -58,6 +58,12 @@ export class HeaderComponent implements OnInit {
         this.fetchUserPhoto();
       });
     }
+    // if (this.role == 2){
+    // this.clientService.getClientDetail(id).subscribe((client) => {
+    //   this.imageUrl = client.picture;
+    //   this.fetchUserPhoto();
+    // });
+    // }
   }
   fetchUserPhoto() {
     this.fileService.getUserPhoto(this.imageUrl).subscribe((data) => {
