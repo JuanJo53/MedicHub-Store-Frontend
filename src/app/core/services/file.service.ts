@@ -26,10 +26,9 @@ export class FileService {
       observe: "events",
     });
   }
-  uploadProductPhoto(formData) {
-    const userId = this.tokenService.getUserId();
-    return this.http.post<FormData>(
-      apiKey.api + `/api/v1/data/admin/${userId}`,
+  uploadProductPhoto(formData, productId:number) {
+    return this.http.put(
+      apiKey.api + `/product/${productId}/image`,
       formData,
       {
         headers: this.headers,
@@ -55,12 +54,12 @@ export class FileService {
       responseType: "blob",
     });
   }
-  getProductPhoto(productId: number) {
+  getProductPic(pictureUrl: string): Observable<Blob> {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });
     return this.http.get(
-      apiKey.api + `/api/v1/data/department/${productId}/download`,
+      apiKey.api + `/product/image/${pictureUrl}`,
       {
         headers: header,
         responseType: "blob",

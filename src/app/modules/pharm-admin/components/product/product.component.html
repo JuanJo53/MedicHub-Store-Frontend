@@ -25,13 +25,30 @@
     <table>
       <tr>
         <td>
-          <div class="blocImagen">
-            <img
-              src="assets/images/pastilla.png"
-              width="200px"
-              height="200px"
-            />
+          <div class="image_display">
+            <div class="blocImagen">
+              <img
+                *ngIf="image"
+                class="rounded mx-auto d-block img-fluid"
+                [src]="image"
+                width="200px"
+                height="200px"
+              />
+              <img
+                *ngIf="!image"
+                class="rounded mx-auto d-block img-fluid"
+                src="../../../../../assets/images/pastilla.png"
+                width="200px"
+                height="200px"
+              />
+            </div>
+            <div class="add_image_btn">
+              <app-upload-image-product
+                  [productId]="productId"
+                ></app-upload-image-product>
+            </div>
           </div>
+          
         </td>
         <td>
           <mat-card-content class="">
