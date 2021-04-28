@@ -18,12 +18,7 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private tokenService: TokenService
-  ) {
-    this.authToken = this.tokenService.getToken();
-    this.headers = new HttpHeaders({
-      Authorization: `Bearer ${this.authToken}`,
-    });
-  }
+  ) {}
 
   public signUp(newUser: Client): Observable<any> {
     return this.httpClient.post<any>(this.authURL + "new", newUser);
@@ -35,7 +30,10 @@ export class AuthService {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: "Basic " + credenciales,
     });
-
+    this.authToken = this.tokenService.getToken();
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
+    });
     let params = new URLSearchParams();
     params.set("grant_type", "password");
     params.set("username", logInUser.email);
@@ -47,6 +45,10 @@ export class AuthService {
     });
   }
   changePassword(password: PasswordRequest, role: number) {
+    this.authToken = this.tokenService.getToken();
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
+    });
     console.log(role);
     if (role == 1) {
       return this.httpClient.put(
