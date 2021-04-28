@@ -56,8 +56,8 @@ export class UploadClientImageComponent implements OnInit {
         const percentDone = Math.round((100 * rsp.loaded) / rsp.total);
         console.log("Progress " + percentDone + "%");
         if (percentDone == 100) {
-          this.eventEmitterService.onFirstComponentButtonClick(
-            "¡El archivo se subio exitosamente!"
+          this.eventEmitterService.onClientPhotoUpdated(
+            "¡La foto se actualizo exitosamente!"
           );
         }
       }

@@ -9,6 +9,9 @@ import { Product } from "src/app/shared/models/product";
 })
 export class OrderItemComponent implements OnInit {
   @Input() product: Product;
+
+  productTotalPrice: number;
+
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
@@ -24,6 +27,7 @@ export class OrderItemComponent implements OnInit {
       });
     });
     this.product.quantity = total;
+    this.productTotalPrice = this.product.price * this.product.quantity;
   }
   removeProduct(id: number) {
     this.cartService.removeItem(id);

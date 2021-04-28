@@ -5,7 +5,7 @@ export interface Product {
   brandName: string;
   name: string;
   stock: string;
-  price: string;
+  price: number;
   type: string;
   dose: string;
   description: string;

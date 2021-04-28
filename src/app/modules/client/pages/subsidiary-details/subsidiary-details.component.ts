@@ -96,6 +96,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
       )
       .subscribe((products) => {
         if (products != null) {
+          console.log(products);
           this.products = products;
           this.dataSource = new MatTableDataSource(this.products);
           this.dataSource.sort = this.sort;
@@ -106,8 +107,8 @@ export class SubsidiaryDetailsComponent implements OnInit {
         }
       });
     this.isLoadingResults = false;
-    if (this.filterType == "all") {
-      this.filter = "";
+    if (this.filterType == "all" || this.filter == "" || this.filter == 0) {
+      // this.filter = "";
       this.getProductTotal();
     }
   }

@@ -24,6 +24,7 @@
         class="col mt-3 mb-3"
         *ngFor="let card of dataSource.filteredData"
         [card]="card"
+        [displayType]="edit"
       ></app-card-item>
     </div>
   </div>

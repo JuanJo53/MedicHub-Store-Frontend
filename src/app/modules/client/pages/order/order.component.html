@@ -3,7 +3,10 @@
     <mat-step label="Confirmar Productos" state="products">
       <div class="products" *ngIf="products$ | async as products">
         <div *ngIf="products.length > 0">
-          <h2>Productos en tu Carrito</h2>
+          <div class="row justify-content-between">
+            <h2 class="col-md-4">Productos en tu Carrito</h2>
+            <h2 class="col-md-4">Total: {{ orderTotal }}</h2>
+          </div>
           <div class="products_list" *ngFor="let product of products">
             <app-order-item [product]="product"> </app-order-item>
           </div>
@@ -28,6 +31,16 @@
     <mat-step label="Seleccionar Metodo de Pago" state="cards">
       <h2 class="txtvermas">Elige la Tarjeta con la que Quieres Pagar</h2>
       <div>
+        <div class="container cards">
+          <div class="row row-cols-2">
+            <app-card-item
+              class="col mt-3 mb-3"
+              *ngFor="let card of cards"
+              [card]="card"
+              [displayType]="order"
+            ></app-card-item>
+          </div>
+        </div>
         <button mat-button matStepperPrevious class="btnform">Atras</button>
         <button mat-button matStepperNext class="btnform">Siguiente</button>
       </div>
