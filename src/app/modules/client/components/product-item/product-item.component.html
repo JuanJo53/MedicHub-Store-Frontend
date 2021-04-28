@@ -1,11 +1,20 @@
 <div class="card">
+  <div>
   <img
     class="card-img-top"
     [src]="image"
     width="1200px"
     height="200px"
-    alt="Card image cap"
   />
+  <img
+    *ngIf="!image"
+    class="card-img-top"
+    src="../../../../../assets/images/pastilla.png"
+    width="1200px"
+    height="200px"
+  >
+</div>
+
   <h1 class="name">{{ product.name }}</h1>
   <h2 class="price">{{ product.price }} Bs.</h2>
   <br />

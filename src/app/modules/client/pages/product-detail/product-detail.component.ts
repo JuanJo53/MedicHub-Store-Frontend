@@ -7,6 +7,9 @@ import { CartService } from "src/app/core/services/cart.service";
 import { Location } from "@angular/common";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { OrderService } from "src/app/core/http/client/order.service";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { DomSanitizer } from "@angular/platform-browser";
+import { FileService } from "src/app/core/services/file.service";
 
 @Component({
   selector: "app-product-detail",
@@ -16,7 +19,7 @@ import { OrderService } from "src/app/core/http/client/order.service";
 export class ProductDetailComponent implements OnInit {
   product: Product;
   id: number;
-
+  image: any;
   quantity?: number;
 
   constructor(
@@ -24,6 +27,8 @@ export class ProductDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private cartService: CartService,
     private orderService: OrderService,
+    private fileService: FileService,
+    private sanitizer: DomSanitizer,
     private _location: Location,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog
@@ -40,6 +45,25 @@ export class ProductDetailComponent implements OnInit {
     this.productsServide.getProduct(id).subscribe((product) => {
       this.product = product;
       console.log(product);
+      console.log(this.product.picture);
+      this.fetchProductPhoto();
+    });
+  }
+  fetchProductPhoto() {
+    this.fileService.getUserPhoto(this.product.picture).subscribe((data) => {
+      let objectURL = URL.createObjectURL(data);
+      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    });
+  }
+  displaySuccesDialog(text: string) {
+    const dialogRef = this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      window.location.reload();
     });
   }
   addCart() {
