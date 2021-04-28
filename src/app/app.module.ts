@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { DatePipe } from "@angular/common";
 import { CreditCardDirectivesModule } from "angular-cc-library";
+import { CartPipe } from "./shared/pipes/cart.pipe";
 
 @NgModule({
   declarations: [AppComponent],

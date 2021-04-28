@@ -1,6 +1,6 @@
 import { TokenService } from "src/app/core/authentication/token.service";
 import { ClientService } from "src/app/core/http/admin/client.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Client } from "src/app/shared/models/client";
@@ -9,6 +9,10 @@ import { DatePipe } from "@angular/common";
 import { MAT_DATE_FORMATS } from "@angular/material";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { ChangePasswordComponent } from "../../components/dialogs/change-password/change-password.component";
+import { FileService } from "src/app/core/services/file.service";
+import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
+import { DomSanitizer } from "@angular/platform-browser";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 export const MY_FORMATS = {
   parse: {
@@ -27,8 +31,9 @@ export const MY_FORMATS = {
   styleUrls: ["./client-profile-page.component.scss"],
   providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }],
 })
-export class ClientProfilePageComponent implements OnInit {
+export class ClientProfilePageComponent implements OnInit, OnDestroy {
   client: Client;
+  image: any;
 
   text: string;
   id: number;
@@ -39,29 +44,47 @@ export class ClientProfilePageComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private clientService: ClientService,
     private tokenService: TokenService,
+    private fileService: FileService,
     public datepipe: DatePipe,
+    private sanitizer: DomSanitizer,
+    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
+    console.log("init");
     try {
       this.id = parseInt(this.tokenService.getUserId());
       if (this.id) {
         this.getDetails(this.id);
       }
+      this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
+        (name: string) => {
+          this.getDetails(this.id);
+          console.log(name);
+        }
+      );
     } catch (error) {
       console.error(error);
     }
+  }
+  ngOnDestroy() {
+    console.log("destroyed");
+    // this.eventEmitterService.clientPhotoEvent.unsubscribe();
   }
   cancel() {
     this.editEnabled = false;
   }
   getDetails(id: number) {
-    console.log(id);
     this.clientService.getClientDetail(id).subscribe((client) => {
       this.client = client;
-      console.log("client details reached");
-      console.log(client);
+      this.fetchUserPhoto();
+    });
+  }
+  fetchUserPhoto() {
+    this.fileService.getUserPhoto(this.client.picture).subscribe((data) => {
+      let objectURL = URL.createObjectURL(data);
+      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     });
   }
   editClient(): void {
@@ -191,13 +214,23 @@ export class ClientProfilePageComponent implements OnInit {
       width: "500px",
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result == "OK") {
         this.displaySuccesDialog("¡Se cambio su contraseña exitosamente!");
+      } else if (result == "BAD_REQUEST") {
+        this.displayFailureDialog("¡Hubo un error al cambiar la contraseña!");
       }
     });
   }
   displaySuccesDialog(text: string) {
     this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
+    });
+  }
+  displayFailureDialog(text: string) {
+    this.dialog.open(ErrorDialogComponent, {
       width: "500px",
       data: {
         message: text,

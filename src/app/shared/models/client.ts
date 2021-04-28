@@ -14,4 +14,5 @@ export interface Client {
   zone: string;
   city: string;
   country: string;
+  picture: string;
 }

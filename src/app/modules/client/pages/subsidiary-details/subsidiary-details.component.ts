@@ -8,8 +8,8 @@ import { Product } from "src/app/shared/models/product";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
 import { MatSort } from "@angular/material/sort";
 import { MatPaginator } from "@angular/material/paginator";
-import { isFormattedError } from "@angular/compiler";
-import { FormGroup } from "@angular/forms";
+import { DomSanitizer } from "@angular/platform-browser";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 @Component({
   selector: "app-subsidiary-details",
@@ -20,8 +20,6 @@ export class SubsidiaryDetailsComponent implements OnInit {
   @Input() subsidiary: SubsidiaryRequest;
 
   products: Product[];
-
-  filterTypes = ["Precio", "Nombre", "Tipo de Medicamento", "Dosis", "Marca"];
 
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -48,14 +46,12 @@ export class SubsidiaryDetailsComponent implements OnInit {
   ngOnInit() {
     try {
       this.subsidiaryId = this.activatedRoute.snapshot.params.id;
-      this.filter = 0;
+      this.filter = "";
       if (this.subsidiaryId) {
-        this.productService
-          .getTotalProducts(this.subsidiaryId)
-          .subscribe((element) => {
-            this.length = element;
-          });
+        this.getProductTotal();
+        this.filterType = "all";
         this.getDetails(this.subsidiaryId);
+        this.getProducts(this.subsidiaryId, 1);
       }
     } catch (error) {
       console.error(error);
@@ -63,20 +59,21 @@ export class SubsidiaryDetailsComponent implements OnInit {
   }
 
   dataSource = new MatTableDataSource();
-  applyFilter(event: Event, type: string) {
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.filterType = type;
-    console.log(this.filterType);
-    if (filterValue) {
-      if (typeof this.filterType == "number") {
-        this.filter = parseFloat(filterValue);
-      } else {
-        this.filter = filterValue;
-      }
+    if (this.filterType == "all") {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+      this.getProductTotal();
     } else {
-      this.filter = 0;
+      this.getProducts(this.subsidiaryId, 1);
     }
-    this.getProducts(this.subsidiaryId, 1);
+  }
+  getProductTotal() {
+    this.productService
+      .getTotalProducts(this.subsidiaryId)
+      .subscribe((element) => {
+        this.length = element;
+      });
   }
   getDetails(id: number) {
     this.subsidiariesService
@@ -84,8 +81,7 @@ export class SubsidiaryDetailsComponent implements OnInit {
       .subscribe((subsidiary) => {
         this.subsidiary = subsidiary;
         console.log(this.length);
-        this.filter = 0;
-        this.getProducts(id, 1);
+        this.filter = "";
       });
   }
   getProducts(id: number, page: number) {
@@ -101,12 +97,22 @@ export class SubsidiaryDetailsComponent implements OnInit {
         this.filterType
       )
       .subscribe((products) => {
-        this.products = products;
-        this.dataSource = new MatTableDataSource(this.products);
-        this.dataSource.sort = this.sort;
-        console.log(this.products);
-        this.isLoadingResults = false;
+        if (products != null) {
+          console.log(products);
+          this.products = products;
+          this.dataSource = new MatTableDataSource(this.products);
+          this.dataSource.sort = this.sort;
+          this.length = this.products.length;
+          this.isRateLimitReached = false;
+        } else {
+          this.isRateLimitReached = true;
+        }
       });
+    this.isLoadingResults = false;
+    if (this.filterType == "all" || this.filter == "" || this.filter == 0) {
+      // this.filter = "";
+      this.getProductTotal();
+    }
   }
   refreshProducts(event) {
     console.log(event.pageIndex);

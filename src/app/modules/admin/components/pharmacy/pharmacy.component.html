@@ -26,43 +26,58 @@
         <mat-icon>more_vert</mat-icon>
       </button>
     </mat-card-header>
-    <table>
-      <tr>
-        <td>
-          <div class="blocImagen">
-            <img
-              src="assets/images/pnglogo1.png"
-              width="200px"
-              height="200px"
-            />
+    <mat-card-content>
+      <div class="row">
+        <div class="col text-center">
+          <div class="image_display">
+            <div class="blocImagen">
+              <img
+                *ngIf="image"
+                class="img-fluid rounded"
+                [src]="image"
+                width="2000px"
+                height="2000px"
+              />
+              <img
+                *ngIf="!image"
+                class="img-fluid rounded"
+                src="../../../../../assets/images/pnglogo1.png"
+                width="2000px"
+                height="2000px"
+              />
+            </div>
+            <div class="add_image_btn">
+              <app-upload-pharm-image
+                [pharmId]="pharmId"
+              ></app-upload-pharm-image>
+            </div>
           </div>
-        </td>
-        <td>
-          <mat-card-content>
-            <h3>
-              <strong class="textEdit">EMAIL:</strong>
-              <p class="textEditr">{{ pharmacy.email }}</p>
-            </h3>
-            <h3>
-              <strong class="textEdit">TELEFONO:</strong>
-              <p class="textEditr">{{ pharmacy.phone }}</p>
-            </h3>
-            <h3>
-              <strong class="textEdit">ESTADO: </strong>
-              <p class="statusTextGreen" *ngIf="pharmacy.status == 1">
-                {{ pharmacy.status | pharmacyStatus }}
-              </p>
-              <p class="statusTextRed" *ngIf="pharmacy.status == 0">
-                {{ pharmacy.status | pharmacyStatus }}
-              </p>
-            </h3>
-          </mat-card-content>
-        </td>
-      </tr>
-    </table>
+        </div>
+        <div class="col">
+          <h3>
+            <strong class="textEdit">EMAIL:</strong>
+            <p class="textEditr">{{ pharmacy.email }}</p>
+          </h3>
+          <h3>
+            <strong class="textEdit">TELEFONO:</strong>
+            <p class="textEditr">{{ pharmacy.phone }}</p>
+          </h3>
+          <h3>
+            <strong class="textEdit">ESTADO: </strong>
+            <p class="statusTextGreen" *ngIf="pharmacy.status == 1">
+              {{ pharmacy.status | pharmacyStatus }}
+            </p>
+            <p class="statusTextRed" *ngIf="pharmacy.status == 0">
+              {{ pharmacy.status | pharmacyStatus }}
+            </p>
+          </h3>
+        </div>
+      </div>
+    </mat-card-content>
     <div class="subsidiaries-grid textEdit" *ngIf="subsidiaries">
       <h1 class="titlesucursal">Sucursales</h1>
       <app-subsidiary
+        class="subsidiary_item"
         *ngFor="let subsidiary of subsidiaries"
         [subsidiary]="subsidiary"
       ></app-subsidiary>
@@ -111,26 +126,26 @@
           </mat-form-field>
         </mat-card-content>
         <p><strong>Status: </strong>{{ pharmacy.status | pharmacyStatus }}</p>
-        <mat-card-actions >
-        <div class="buttons">
-          <button
-            id="{{ pharmacy.pharmacyId }}"
-            type="submit"
-            mat-button
-            class="btn-edit"
-          >
-            Guardar Cambios
-          </button>
-          <button
-            id="{{ pharmacy.pharmacyId }}"
-            (click)="cancel()"
-            mat-button
-            color="warn"
-            class="btn-edit"
-          >
-            Cancelar
-          </button>
-        </div>
+        <mat-card-actions>
+          <div class="buttons">
+            <button
+              id="{{ pharmacy.pharmacyId }}"
+              type="submit"
+              mat-button
+              class="btn-edit"
+            >
+              Guardar Cambios
+            </button>
+            <button
+              id="{{ pharmacy.pharmacyId }}"
+              (click)="cancel()"
+              mat-button
+              color="warn"
+              class="btn-edit"
+            >
+              Cancelar
+            </button>
+          </div>
         </mat-card-actions>
       </mat-card>
     </form>

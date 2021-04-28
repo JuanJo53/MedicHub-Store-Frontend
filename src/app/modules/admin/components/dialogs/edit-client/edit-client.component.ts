@@ -32,7 +32,6 @@ export class EditClientComponent implements OnInit {
   client: Client;
   form: FormGroup;
   subsidiaryId: number;
-  hoola: string;
   constructor(
     private fromBuilder: FormBuilder,
     private clientService: ClientService,

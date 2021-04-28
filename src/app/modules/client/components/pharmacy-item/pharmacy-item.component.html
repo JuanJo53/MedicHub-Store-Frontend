@@ -1,7 +1,14 @@
 <div class="container">
   <mat-card class="subsidiary-card card">
     <mat-card-header>
-      <div mat-card-avatar class="subsidiary-header-image"></div>
+      <div mat-card-avatar class="subsidiary-header-image">
+        <img *ngIf="image" class="pharm_img img-fluid rounded" [src]="image" />
+        <img
+          *ngIf="!image"
+          class="pharm_img img-fluid rounded"
+          src="../../../../../assets/images/pnglogo1.png"
+        />
+      </div>
       <mat-card-title
         ><a routerLink="{{ subsidiary.subsidiaryId }}" class="txtblue">{{
           subsidiary.subsidiaryName

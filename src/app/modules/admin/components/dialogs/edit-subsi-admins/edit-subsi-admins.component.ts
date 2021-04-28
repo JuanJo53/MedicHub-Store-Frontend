@@ -44,7 +44,7 @@ export class EditSubsiAdminsComponent implements OnInit {
     this.subsidiaryId = parseInt(this.tokenService.getSubsidiaryId());
     this.form = this.fromBuilder.group({
       subsidiaryId: [this.data.subsidiaryId, [Validators.required]],
-      pharmacyId: [this.data.pharmAdminId, [Validators.required]],
+      pharmacyAdminId: [this.data.pharmAdminId, [Validators.required]],
       firstName: [
         this.pharmAdmin.firstName,
         [
@@ -102,18 +102,11 @@ export class EditSubsiAdminsComponent implements OnInit {
           Validators.minLength(3),
         ],
       ],
-      password: [
-        "",
-        [
-          Validators.required,
-          Validators.maxLength(150),
-          Validators.minLength(6),
-        ],
-      ],
     });
     console.log(this.form.value);
   }
   saveAdmin(): void {
+    console.log(this.form.value);
     if (this.form.valid) {
       const subsidiary = this.form.value;
       this.updateAdmin(subsidiary);

@@ -15,17 +15,16 @@
 .conta {
   margin-top: 35px;
   color: #2f4a85;
-
 }
 mat-form-field {
   margin: 5px;
 }
-.btnform{
+.btnform {
   margin-top: 10px;
   background-color: #2f4a85;
   color: white;
 }
-.t2{
+.t2 {
   font-size: 32px;
   font-style: normal;
   font-weight: bold;
@@ -37,4 +36,17 @@ mat-form-field {
   font-weight: bold;
   font-size: 40px;
   color: #2f4a85;
+}
+.photo_password_section {
+  align-items: center;
+}
+.image_display {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 10px;
+}
+.add_image_btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

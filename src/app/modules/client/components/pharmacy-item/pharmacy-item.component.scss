@@ -1,16 +1,21 @@
 .subsidiary-card {
-  max-width: 400px;
+  max-width: 800px;
+  margin: 10px;
 }
 
 .subsidiary-header-image {
-  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
+  height: 100%;
+  width: 100px;
+  text-align: center;
 }
-
-.txtblue{
+.pharm_img {
+  padding: 20px 0;
+}
+.txtblue {
   color: #2f4a85;
 }
-.bver{
+.bver {
   color: white;
   background-color: #2f4a85;
 }

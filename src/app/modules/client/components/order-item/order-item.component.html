@@ -1,22 +1,68 @@
 <div class="order_item_container">
   <div class="card mb-3">
-    <div class="row g-0">
-      <div class="col-md-2">
-        <img src="../../../../../assets/images/4.jpg" alt="..." />
+    <div class="row g-0 align-items-center p-2 justify-content-center">
+      <div class="col-md-2 img">
+        <img
+          class="img-thumbnail align-middle"
+          src="../../../../../assets/images/4.jpg"
+          alt="..."
+        />
       </div>
       <div class="col-md-4">
         <div class="card-body">
-          <h3 class="card-title">{{ product.name }}</h3>
-          <p class="card-text">
+          <!-- <a
+            mat-flat-button
+            routerLink="../client/pharmacies/{{ product.subsidiaryId }}"
+          >
+          </a> -->
+          <h1 class="card-title">{{ product.name }}</h1>
+          <h3 class="card-text">
             {{ product.description }}
-          </p>
-          <p class="card-text">
-            <small class="text-muted">{{ product.type }}</small>
-          </p>
+          </h3>
+          <br />
+          <h3 class="card-text">
+            Tipo:
+            <p class="text-muted">{{ product.type }}</p>
+          </h3>
+          <h3 class="card-text">
+            Marca:
+            <p class="text-muted">{{ product.brandName }}</p>
+          </h3>
         </div>
       </div>
+      <div class="col-md-2" *ngIf="product.dose">
+        Dosis:
+        <h3>{{ product.dose }}</h3>
+        <br /><br />
+        <mat-form-field class="product_quantity">
+          <mat-label>Cantidad:</mat-label>
+          <input
+            [(ngModel)]="product.quantity"
+            matInput
+            type="number"
+            min="1"
+            placeholder="100"
+            #input
+          />
+        </mat-form-field>
+      </div>
       <div class="col-md-2">
-        <h3>{{ product.price }}</h3>
+        Precio Unitario:
+        <h3>{{ product.price }} Bs.</h3>
+        <br /><br />
+        <button
+          mat-mini-fab
+          color="warn"
+          aria-label="Example icon button with a heart icon"
+          (click)="removeProduct(product.productId)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="col">
+        Precio Total:
+        <h3>{{ productTotalPrice }} Bs.</h3>
+        <br /><br />
       </div>
     </div>
   </div>

@@ -73,7 +73,11 @@ import { ChangePasswordComponent } from "../client/components/dialogs/change-pas
 import { MatStepperModule } from "@angular/material/stepper";
 import { OrderComponent } from "../client/pages/order/order.component";
 import { OrderItemComponent } from "../client/components/order-item/order-item.component";
-
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { CartPipe } from "src/app/shared/pipes/cart.pipe";
+import { UploadImageProductComponent } from "../pharm-admin/components/upload-image-product/upload-image-product.component";
+import { UploadPharmImageComponent } from "../admin/components/upload-pharm-image/upload-pharm-image.component";
+import { UploadClientImageComponent } from "../client/components/upload-client-image/upload-client-image.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -125,6 +129,9 @@ import { OrderItemComponent } from "../client/components/order-item/order-item.c
     ChangePasswordComponent,
     OrderComponent,
     OrderItemComponent,
+    UploadPharmImageComponent,
+    UploadImageProductComponent,
+    UploadClientImageComponent,
   ],
   imports: [
     CommonModule,
@@ -154,6 +161,7 @@ import { OrderItemComponent } from "../client/components/order-item/order-item.c
     MatPaginatorModule,
     ScrollingModule,
     MatStepperModule,
+    MatSnackBarModule,
   ],
   entryComponents: [
     LoginComponent,
@@ -171,6 +179,7 @@ import { OrderItemComponent } from "../client/components/order-item/order-item.c
     EditClientComponent,
     CreateCardComponent,
     ErrorDialogComponent,
+    ChangePasswordComponent
   ],
 })
 export class HomeModule {}

@@ -3,7 +3,9 @@
     <div class="col">
       <h1 class="txtvermas">
         Ver mas productos de
-        <a mat-button (click)="backClicked()" class="txtvermas">{{ product.brandName }}</a>
+        <a mat-button (click)="backClicked()" class="txtvermas">{{
+          product.brandName
+        }}</a>
       </h1>
       <br />
       <h1 class="txtproducto">{{ product.name }}</h1>
@@ -77,7 +79,20 @@
   </div>
   <div class="row">
     <div class="col">
-      <img mat-card-image src="assets/images/colageno.png" />
+      <img
+                *ngIf="image"
+                class="rounded mx-auto d-block img-fluid"
+                [src]="image"
+                width="200px"
+                height="200px"
+              />
+              <img
+                *ngIf="!image"
+                class="rounded mx-auto d-block img-fluid"
+                src="../../../../../assets/images/pastilla.png"
+                width="200px"
+                height="200px"
+              />
     </div>
     <div class="col-5">
       <mat-card class="example-card tarjetaazul">
@@ -97,6 +112,26 @@
           consulte al farmaceutico
         </h2>
       </mat-card>
+      
+<table class="info">
+
+  <tr>
+
+    <td><h4 class="enf">DOSIS</h4><h5 class="txtazul">{{ product.dose }}</h5></td>
+
+    <td><h4 class="enf">MARCA</h4><h5 class="txtazul">{{ product.brandName }}</h5></td>
+
+    <td><h4 class="enf">TIPO</h4><h5 class="txtazul">{{ product.type }}</h5></td>
+
+  </tr>
+
+
+</table>
+        
+        
+        
+        <br>
+       <h5 class="enf">DESCRIPCIÓN:</h5>
       <p class="txtazul">
         {{ product.description }}
       </p>

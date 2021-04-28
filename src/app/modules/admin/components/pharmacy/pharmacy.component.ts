@@ -9,6 +9,9 @@ import { PharmacyRequest } from "src/app/shared/models/pharmacy-request";
 import { WarningDialogComponent } from "../../../components/dialogs/warning-dialog/warning-dialog.component";
 import { SubsidiariesService } from "src/app/core/http/admin/subsidiaries.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { FileService } from "src/app/core/services/file.service";
+import { DomSanitizer } from "@angular/platform-browser";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 @Component({
   selector: "app-pharmacy",
@@ -23,10 +26,15 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   text: string;
   pharmId: number;
 
+  image: any;
+
   constructor(
     private fromBuilder: FormBuilder,
     private pharmaciesService: PharmaciesService,
     private subsidiariesService: SubsidiariesService,
+    private fileService: FileService,
+    private sanitizer: DomSanitizer,
+    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 
@@ -34,9 +42,22 @@ export class PharmacyComponent implements OnInit, OnDestroy {
   destroyed = false;
 
   ngOnInit() {
-    const id = this.pharmacy.pharmacyId;
-    if (id) {
-      this.fetchSubsidiaries(id);
+    try {
+      this.pharmId = this.pharmacy.pharmacyId;
+      if (this.pharmId) {
+        this.fetchPharmPhoto();
+        this.fetchSubsidiaries(this.pharmId);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    if (this.eventEmitterService.pharmSubs == undefined) {
+      this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
+        (name: string) => {
+          this.displaySuccesDialog(name);
+          this.fetchPharmPhoto();
+        }
+      );
     }
   }
   ngOnDestroy(): void {
@@ -74,7 +95,6 @@ export class PharmacyComponent implements OnInit, OnDestroy {
           Validators.minLength(6),
         ],
       ],
-      // picture: ["", [Validators.required]],
     });
   }
   fetchSubsidiaries(id: number): void {
@@ -85,6 +105,16 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       });
     });
   }
+  fetchPharmPhoto() {
+    console.log("photo reached");
+    this.fileService
+      .getPharmacyPic(this.pharmacy.picture)
+      .subscribe((result) => {
+        let objectURL = URL.createObjectURL(result);
+        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      });
+  }
+
   savePharmacy(event: Event, id: number): void {
     event.preventDefault();
     if (this.form.valid) {
@@ -102,6 +132,7 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
         console.log("Response PUT: " + response);
         this.displaySuccesDialog("¡Se actualizó la farmacia exitosamente!");
+        this.fetchSubsidiaries(this.pharmId);
       });
   }
   deletePharmacy(id: number): void {
@@ -134,16 +165,19 @@ export class PharmacyComponent implements OnInit, OnDestroy {
       if (result == "OK") {
         console.log("Resultado post:" + result);
         this.displaySuccesDialog("¡Se agrego la sucursal exitosamente!");
-        this.ngOnInit();
+        this.fetchSubsidiaries(this.pharmId);
       }
     });
   }
   displaySuccesDialog(text: string) {
-    this.dialog.open(SuccesDialogComponent, {
+    const dialogRef = this.dialog.open(SuccesDialogComponent, {
       width: "500px",
       data: {
         message: text,
       },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      window.location.reload();
     });
   }
 }

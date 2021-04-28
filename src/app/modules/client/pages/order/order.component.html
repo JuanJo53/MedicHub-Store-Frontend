@@ -1,37 +1,61 @@
 <div class="container">
   <mat-horizontal-stepper>
     <mat-step label="Confirmar Productos" state="products">
-      <div class="products" *ngIf="orderProducts.length > 0">
-        <h2>Productos en tu Carrito</h2>
-        <div class="products_list" *ngFor="let product of orderProducts">
-          <app-order-item [product]="product"></app-order-item>
+      <div class="products" *ngIf="products$ | async as products">
+        <div *ngIf="products.length > 0">
+          <div class="row justify-content-between">
+            <h2 class="col-md-4">Productos en tu Carrito</h2>
+            <h2 class="col-md-4">Total: {{ orderTotal }}</h2>
+          </div>
+          <div class="products_list" *ngFor="let product of products">
+            <app-order-item [product]="product"> </app-order-item>
+          </div>
+          <div>
+            <button mat-raised-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-        <div>
-          <button mat-button matStepperNext>Siguiente</button>
-        </div>
-      </div>
-      <div class="no_products" *ngIf="orderProducts.length == 0" align="center">
-        <img src="assets/images/nocant.png" width="500px" height="500px" />
-        <h1 class="txtvermas">¡No tiene productos en su carrito de compras!</h1>
-        <a href="">
-          <span class="material-icons"> production_quantity_limits </span>
-          Revisa nuestros productos a la venta,</a>
+        <div class="no_products" *ngIf="products.length == 0" align="center">
+          <img src="assets/images/nocant.png" width="500px" height="500px" />
+          <h1 class="txtvermas">
+            ¡No tiene productos en su carrito de compras!
+          </h1>
+          <a href="#" routerLink="../../client/pharmacies/">
+            <span class="material-icons"> production_quantity_limits </span>
+            Revisa nuestros productos a la venta,</a
+          >
           es un placer atenderte
+        </div>
       </div>
     </mat-step>
 
     <mat-step label="Seleccionar Metodo de Pago" state="cards">
-      <h2>Elige la Tarjeta con la que Quieres Pagar</h2>
+      <h2 class="txtvermas">Elige la Tarjeta con la que Quieres Pagar</h2>
       <div>
-        <button mat-button matStepperPrevious>Atras</button>
-        <button mat-button matStepperNext>Siguiente</button>
+        <div class="container cards">
+          <div class="row row-cols-2">
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button *ngFor="let card of cards" [value]="card.cardId"
+                ><app-card-item
+                  class="col mt-3 mb-3"
+                  [card]="card"
+                  [displayType]="'order'"
+                ></app-card-item
+              ></mat-radio-button>
+            </mat-radio-group>
+            <!-- <button mat-button *ngFor="let card of cards">
+              
+            </button> -->
+          </div>
+        </div>
+        <button mat-button matStepperPrevious class="btnform">Atras</button>
+        <button mat-button matStepperNext class="btnform">Siguiente</button>
       </div>
     </mat-step>
 
     <mat-step label="Confirmar Compra" state="confirm">
-      <h2>¡Ultimo paso! Confirma la compra.</h2>
-      <button mat-button matStepperPrevious>Atras</button>
-      <button mat-button>Comprar</button>
+      <h2 class="txtvermas">¡Ultimo paso! Confirma la compra.</h2>
+      <button mat-button matStepperPrevious class="btnform">Atras</button>
+      <button mat-button class="btnform">Comprar</button>
     </mat-step>
 
     <!-- Icon overrides. -->

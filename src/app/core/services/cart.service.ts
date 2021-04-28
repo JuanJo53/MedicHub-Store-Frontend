@@ -17,6 +17,13 @@ export class CartService {
     this.products = [...this.products, product];
     this.cart.next(this.products);
   }
+  removeItem(productId: number) {
+    this.products = this.products.filter(
+      (item) => item.productId !== productId
+    );
+    this.cart.next(this.products);
+    console.log(this.products);
+  }
   getProducts() {
     return this.products;
   }

@@ -7,58 +7,82 @@
     <br />
     <div class="container conta">
       <div class="row">
-        <div class="contact-section col">
-          <h2 class="t2">Datos Personales:</h2>
-          <div class="row">
-            <div class="col">
-              <strong>Nombre (s):</strong>
-              <p>{{ client.firstName }}</p>
-              <strong>Email:</strong>
-              <p>{{ client.email }}</p>
-              <strong>Telefono de referencia:</strong>
-              <p>{{ client.phone }}</p>
-              <strong>Fecha de Nacimiento:</strong>
-              <p>{{ client.birthdate | date: "dd/MM/yyyy" }}</p>
+        <div class="photo_password_section col-6 col-md-4">
+          <div class="image_display">
+            <div class="blocImagen">
+              <img
+                *ngIf="image"
+                class="rounded mx-auto d-block img-fluid"
+                [src]="image"
+                width="200px"
+                height="200px"
+              />
+              <img
+                *ngIf="!image"
+                class="rounded mx-auto d-block img-fluid"
+                src="../../../../../assets/images/face.png"
+                width="200px"
+                height="200px"
+              />
             </div>
-            <div class="col">
-              <strong>Apellido(s):</strong>
-              <p>{{ client.firstSurname }} {{ client.secondSurname }}</p>
-              <strong>Nombre de Usuario:</strong>
-              <p>{{ client.userName }}</p>
-              <strong>CI:</strong>
-              <p>{{ client.ci }}</p>
+            <div class="add_image_btn">
+              <app-upload-client-image></app-upload-client-image>
+            </div>
+          </div>
+          <br />
+          <button
+            mat-button
+            mat-raised-button
+            (click)="changePassword()"
+            class="btnform"
+          >
+            Cambiar Contraseña
+          </button>
+        </div>
+        <div class="details_section col-12 col-md-8">
+          <div class="contact-section">
+            <h2 class="t2">Datos Personales:</h2>
+            <div class="row">
+              <div class="col">
+                <strong>Nombre (s):</strong>
+                <p>{{ client.firstName }}</p>
+                <strong>Email:</strong>
+                <p>{{ client.email }}</p>
+                <strong>Telefono de referencia:</strong>
+                <p>{{ client.phone }}</p>
+                <strong>Fecha de Nacimiento:</strong>
+                <p>{{ client.birthdate | date: "dd/MM/yyyy" }}</p>
+              </div>
+              <div class="col">
+                <strong>Apellido(s):</strong>
+                <p>{{ client.firstSurname }} {{ client.secondSurname }}</p>
+                <strong>Nombre de Usuario:</strong>
+                <p>{{ client.userName }}</p>
+                <strong>CI:</strong>
+                <p>{{ client.ci }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="direcction-section">
+            <h2 class="t2">Detalles de la Dirección:</h2>
+            <div class="row">
+              <div class="col">
+                <strong>Calle:</strong>
+                <p>{{ client.street }}</p>
+                <strong>Numero:</strong>
+                <p>{{ client.number }}</p>
+                <strong>Zona:</strong>
+                <p>{{ client.zone }}</p>
+              </div>
+              <div class="col">
+                <strong>Ciudad:</strong>
+                <p>{{ client.city }}</p>
+                <strong>Pais:</strong>
+                <p>{{ client.country }}</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="direcction-section col">
-          <h2 class="t2">Detalles de la Dirección:</h2>
-          <div class="row">
-            <div class="col">
-              <strong>Calle:</strong>
-              <p>{{ client.street }}</p>
-              <strong>Numero:</strong>
-              <p>{{ client.number }}</p>
-              <strong>Zona:</strong>
-              <p>{{ client.zone }}</p>
-            </div>
-            <div class="col">
-              <strong>Ciudad:</strong>
-              <p>{{ client.city }}</p>
-              <strong>Pais:</strong>
-              <p>{{ client.country }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <button
-          mat-button
-          mat-raised-button
-          (click)="changePassword()"
-          class="btnform"
-        >
-          Cambiar Contraseña
-        </button>
       </div>
     </div>
   </div>
@@ -188,7 +212,7 @@
         <mat-form-field class="form-input">
           <mat-label class="form-letter">Numero</mat-label>
           <input
-            type="number"
+            type="text"
             matInput
             formControlName="number"
             placeholder="Numero"

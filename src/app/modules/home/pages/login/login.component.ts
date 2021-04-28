@@ -52,9 +52,9 @@ export class LoginComponent implements OnInit {
     this.roles = parseInt(this.tokenService.getAuthorities());
     this.authService.logIn(user).subscribe(
       (data) => {
+        console.log(data);
         this.isLogged = true;
         this.isLoginFail = false;
-        console.log(data);
 
         this.tokenService.setToken(data.access_token);
         if (data.clientId) {
@@ -62,8 +62,10 @@ export class LoginComponent implements OnInit {
         } else if (data.adminId) {
           this.tokenService.setUserId(data.adminId);
         } else if (data.pharmAdminId) {
-          this.tokenService.setSubsidiaryId(data.subsidiaryId);
           this.tokenService.setUserId(data.pharmAdminId);
+        }
+        if (data.subsidiaryId) {
+          this.tokenService.setSubsidiaryId(data.subsidiaryId);
         }
         this.tokenService.setUserName(data.userName);
         this.tokenService.setAuthorities(data.role);

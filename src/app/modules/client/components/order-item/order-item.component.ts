@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { CartService } from "src/app/core/services/cart.service";
 import { Product } from "src/app/shared/models/product";
 
 @Component({
@@ -8,7 +9,27 @@ import { Product } from "src/app/shared/models/product";
 })
 export class OrderItemComponent implements OnInit {
   @Input() product: Product;
-  constructor() {}
 
-  ngOnInit() {}
+  productTotalPrice: number;
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit() {
+    this.getProductQuantity();
+  }
+  getProductQuantity() {
+    var total = 0;
+    this.cartService.cart$.subscribe((products) => {
+      products.forEach((elemento) => {
+        if (elemento.productId === this.product.productId) {
+          total += 1;
+        }
+      });
+    });
+    this.product.quantity = total;
+    this.productTotalPrice = this.product.price * this.product.quantity;
+  }
+  removeProduct(id: number) {
+    this.cartService.removeItem(id);
+  }
 }

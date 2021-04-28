@@ -6,4 +6,5 @@ export interface SubsidiaryFeedListRequest {
   country: string;
   city: string;
   street: string;
+  picture: string;
 }
