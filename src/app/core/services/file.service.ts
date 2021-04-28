@@ -27,7 +27,7 @@ export class FileService {
     });
   }
   uploadProductPhoto(formData, productId:number) {
-    return this.http.post<FormData>(
+    return this.http.put(
       apiKey.api + `/product/${productId}/image`,
       formData,
       {

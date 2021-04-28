@@ -54,8 +54,9 @@ export class UploadImageProductComponent implements OnInit {
     const formData = new FormData();
     formData.append("image", file.data);
     file.inProgress = true;
+    console.log(this.productId)
     this.fileUploadService
-      .uploadPharmacyPhoto(formData, this.productId)
+      .uploadProductPhoto(formData, this.productId)
       .subscribe((rsp) => {
         console.log(rsp);
         if (rsp.type === HttpEventType.Response) {
