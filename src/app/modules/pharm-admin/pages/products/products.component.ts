@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit {
         this.order,
         this.asc,
         0,
-        "precio"
+        "price"
       )
       .subscribe((products) => {
         this.products = products;
