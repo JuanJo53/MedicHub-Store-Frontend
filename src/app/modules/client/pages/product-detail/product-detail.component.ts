@@ -48,6 +48,7 @@ export class ProductDetailComponent implements OnInit {
     this.productsServide.getProduct(id).subscribe((product) => {
       this.product = product;
       console.log(product);
+      console.log(this.product.picture);
       this.fetchProductPhoto();
     });
   }
