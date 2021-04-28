@@ -33,14 +33,18 @@
       <div>
         <div class="container cards">
           <div class="row row-cols-2">
-            <button mat-button>
-              <app-card-item
-                class="col mt-3 mb-3"
-                *ngFor="let card of cards"
-                [card]="card"
-                [displayType]="'order'"
-              ></app-card-item>
-            </button>
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button *ngFor="let card of cards" [value]="card.cardId"
+                ><app-card-item
+                  class="col mt-3 mb-3"
+                  [card]="card"
+                  [displayType]="'order'"
+                ></app-card-item
+              ></mat-radio-button>
+            </mat-radio-group>
+            <!-- <button mat-button *ngFor="let card of cards">
+              
+            </button> -->
           </div>
         </div>
         <button mat-button matStepperPrevious class="btnform">Atras</button>
