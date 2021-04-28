@@ -52,12 +52,12 @@ export class HeaderComponent implements OnInit {
     );
   }
   getDetails(id: number) {
-    this.clientService.getClientDetail(id).subscribe((client) => {
-      this.imageUrl = client.picture;
-      if (this.role == 3) {
+    if (this.role == 3) {
+      this.clientService.getClientDetail(id).subscribe((client) => {
+        this.imageUrl = client.picture;
         this.fetchUserPhoto();
-      }
-    });
+      });
+    }
   }
   fetchUserPhoto() {
     this.fileService.getUserPhoto(this.imageUrl).subscribe((data) => {
@@ -76,10 +76,6 @@ export class HeaderComponent implements OnInit {
         this.displayFailureDialog("¡Hubo un error al cambiar la contraseña!");
       }
     });
-  }
-  getAvatar() {
-    const userId = this.tokenServide.getUserId();
-    // this.fileService.getUserPhoto(userId)
   }
   displaySuccesDialog(text: string) {
     this.dialog.open(SuccesDialogComponent, {

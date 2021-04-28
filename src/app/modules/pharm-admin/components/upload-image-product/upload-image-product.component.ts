@@ -1,18 +1,17 @@
-import { HttpEventType } from '@angular/common/http';
+import { HttpEventType } from "@angular/common/http";
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
-import { MatDialog } from '@angular/material';
-import { FileService } from 'src/app/core/services/file.service';
-import { ErrorDialogComponent } from 'src/app/modules/components/dialogs/error-dialog/error-dialog.component';
-import { SuccesDialogComponent } from 'src/app/modules/components/dialogs/succes-dialog/succes-dialog.component';
-
+import { MatDialog } from "@angular/material";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
+import { FileService } from "src/app/core/services/file.service";
+import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 
 @Component({
-  selector: 'app-upload-image-product',
-  templateUrl: './upload-image-product.component.html',
-  styleUrls: ['./upload-image-product.component.scss']
+  selector: "app-upload-image-product",
+  templateUrl: "./upload-image-product.component.html",
+  styleUrls: ["./upload-image-product.component.scss"],
 })
 export class UploadImageProductComponent implements OnInit {
-
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef;
   @Input() productId: number;
   files = [];
@@ -22,12 +21,11 @@ export class UploadImageProductComponent implements OnInit {
 
   constructor(
     private fileUploadService: FileService,
+    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   onClick() {
     this.files = [];
@@ -54,17 +52,20 @@ export class UploadImageProductComponent implements OnInit {
     const formData = new FormData();
     formData.append("image", file.data);
     file.inProgress = true;
-    console.log(this.productId)
+    console.log(this.productId);
     this.fileUploadService
       .uploadProductPhoto(formData, this.productId)
       .subscribe((rsp) => {
         console.log(rsp);
-        if (rsp.type === HttpEventType.Response) {
-          this.displaySuccesDialog("¡El archivo se subio exitosamente!");
-        }
+
         if (rsp.type === HttpEventType.UploadProgress) {
           const percentDone = Math.round((100 * rsp.loaded) / rsp.total);
           console.log("Progress " + percentDone + "%");
+          if (percentDone >= 100) {
+            this.eventEmitterService.onProductPhotoUpdated(
+              "¡La foto se actualizo exitosamente!"
+            );
+          }
         }
         this.uploading = false;
       }),
@@ -73,14 +74,7 @@ export class UploadImageProductComponent implements OnInit {
       };
     this.files = [];
   }
-  displaySuccesDialog(text: string) {
-    this.dialog.open(SuccesDialogComponent, {
-      width: "500px",
-      data: {
-        message: text,
-      },
-    });
-  }
+
   displayFailureDialog(text: string) {
     this.dialog.open(ErrorDialogComponent, {
       width: "500px",
@@ -89,6 +83,4 @@ export class UploadImageProductComponent implements OnInit {
       },
     });
   }
-
 }
-

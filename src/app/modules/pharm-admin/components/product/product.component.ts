@@ -10,6 +10,7 @@ import { Product } from "src/app/shared/models/product";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { FileService } from "src/app/core/services/file.service";
 import { DomSanitizer } from "@angular/platform-browser";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 @Component({
   selector: "app-product",
@@ -34,18 +35,27 @@ export class ProductComponent implements OnInit {
     private tokenService: TokenService,
     private fileService: FileService,
     private sanitizer: DomSanitizer,
+    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.subsidiaryId = parseInt(this.tokenService.getSubsidiaryId());
     const id = this.product.productId;
-    this.productId=this.product.productId;
+    this.productId = this.product.productId;
     if (id) {
       this.fetchProductPhoto();
       this.fetchProduct(id);
     }
     this.fecthBrands();
+    if (this.eventEmitterService.productSubs == undefined) {
+      this.eventEmitterService.productSubs = this.eventEmitterService.productPhotoEvent.subscribe(
+        (name: string) => {
+          this.displaySuccesDialog(name);
+          this.fetchProductPhoto();
+        }
+      );
+    }
   }
   ngOnDestroy(): void {
     this.destroyed = true;
@@ -60,12 +70,10 @@ export class ProductComponent implements OnInit {
   }
   fetchProductPhoto() {
     console.log("photo reached");
-    this.fileService
-      .getProductPic(this.product.picture)
-      .subscribe((result) => {
-        let objectURL = URL.createObjectURL(result);
-        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      });
+    this.fileService.getProductPic(this.product.picture).subscribe((result) => {
+      let objectURL = URL.createObjectURL(result);
+      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    });
   }
   setBrandId(brandName: string) {
     this.brands.forEach((brand) => {
@@ -162,11 +170,14 @@ export class ProductComponent implements OnInit {
     });
   }
   displaySuccesDialog(text: string) {
-    this.dialog.open(SuccesDialogComponent, {
+    const dialogRef = this.dialog.open(SuccesDialogComponent, {
       width: "500px",
       data: {
         message: text,
       },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      window.location.reload();
     });
   }
 }

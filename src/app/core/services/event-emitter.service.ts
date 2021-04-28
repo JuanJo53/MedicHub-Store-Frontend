@@ -7,8 +7,10 @@ import { Subscription } from "rxjs";
 export class EventEmitterService {
   pharmPhotoEvent = new EventEmitter();
   clientPhotoEvent = new EventEmitter();
+  productPhotoEvent = new EventEmitter();
   pharmSubs: Subscription;
   clientSubs: Subscription;
+  productSubs: Subscription;
 
   constructor() {}
 
@@ -17,5 +19,8 @@ export class EventEmitterService {
   }
   onPharmacyPhotoUpdated(message: string) {
     this.pharmPhotoEvent.emit(message);
+  }
+  onProductPhotoUpdated(message: string) {
+    this.productPhotoEvent.emit(message);
   }
 }
