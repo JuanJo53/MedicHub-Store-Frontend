@@ -81,6 +81,10 @@ import { UploadClientImageComponent } from "../client/components/upload-client-i
 import { PharmAdminAccountComponent } from "../pharm-admin/pages/pharm-admin-account/pharm-admin-account.component";
 import { AdminAccountComponent } from "../admin/pages/admin-account/admin-account.component";
 import { UploadPharmAdminImageComponent } from "../pharm-admin/components/upload-pharm-admin-image/upload-pharm-admin-image.component";
+import { SalesComponent } from "../pharm-admin/pages/sales/sales.component";
+import { CreateSaleComponent } from "../pharm-admin/components/dialogs/create-sale/create-sale.component";
+import { SaleProductsComponent } from "../pharm-admin/components/dialogs/sale-products/sale-products.component";
+import { SaleDetailsComponent } from "../pharm-admin/components/dialogs/sale-details/sale-details.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -138,6 +142,10 @@ import { UploadPharmAdminImageComponent } from "../pharm-admin/components/upload
     PharmAdminAccountComponent,
     AdminAccountComponent,
     UploadPharmAdminImageComponent,
+    SalesComponent,
+    CreateSaleComponent,
+    SaleProductsComponent,
+    SaleDetailsComponent,
   ],
   imports: [
     CommonModule,

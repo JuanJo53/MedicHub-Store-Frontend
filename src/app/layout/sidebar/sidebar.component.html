@@ -86,6 +86,16 @@
     ><span class="link__text">Reportes</span></a
   >
   <a
+    *ngIf="userRole == 2"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/pharmAdmin/sales"
+    disabled
+    ><mat-icon class="link__icon">monetization_on</mat-icon
+    ><span class="link__text">Ventas</span></a
+  >
+  <a
     *ngIf="userRole == 1"
     class="link"
     mat-list-item

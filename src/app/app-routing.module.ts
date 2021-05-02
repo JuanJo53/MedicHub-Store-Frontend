@@ -24,6 +24,7 @@ import { SubsidiaryDetailsComponent } from "./modules/client/pages/subsidiary-de
 import { ProductDetailComponent } from "./modules/client/pages/product-detail/product-detail.component";
 import { OrderComponent } from "./modules/client/pages/order/order.component";
 import { AdminAccountComponent } from "./modules/admin/pages/admin-account/admin-account.component";
+import { SalesComponent } from "./modules/pharm-admin/pages/sales/sales.component";
 
 const routes: Routes = [
   // {
@@ -98,6 +99,11 @@ const routes: Routes = [
       //   canActivate: [PharmAdminGuard],
       //   component: ProductsComponent,
       // },
+      {
+        path: "pharmAdmin/sales",
+        canActivate: [PharmAdminGuard],
+        component: SalesComponent,
+      },
       {
         path: "pharmAdmin/products",
         canActivate: [PharmAdminGuard],
