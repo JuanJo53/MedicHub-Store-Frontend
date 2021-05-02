@@ -11,6 +11,8 @@ import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-d
 import { DomSanitizer } from "@angular/platform-browser";
 import { ClientService } from "src/app/core/http/admin/client.service";
 import { EventEmitterService } from "src/app/core/services/event-emitter.service";
+import { PharmAdminsService } from "src/app/core/http/admin/pharm-admins.service";
+import { AdminService } from "src/app/core/http/admin/admin.service";
 
 @Component({
   selector: "app-header",
@@ -29,6 +31,8 @@ export class HeaderComponent implements OnInit {
     public tokenServide: TokenService,
     private cartService: CartService,
     private clientService: ClientService,
+    private pharmAdminService: PharmAdminsService,
+    private adminService: AdminService,
     private fileService: FileService,
     private sanitizer: DomSanitizer,
     private eventEmitterService: EventEmitterService,
@@ -58,45 +62,23 @@ export class HeaderComponent implements OnInit {
         this.fetchUserPhoto();
       });
     }
-    // if (this.role == 2){
-    // this.clientService.getClientDetail(id).subscribe((client) => {
-    //   this.imageUrl = client.picture;
-    //   this.fetchUserPhoto();
-    // });
-    // }
+    if (this.role == 2) {
+      this.pharmAdminService.getAdminDetail(id).subscribe((data) => {
+        this.imageUrl = data.picture;
+        this.fetchUserPhoto();
+      });
+    }
+    if (this.role == 1) {
+      this.adminService.getAdminDetail(id).subscribe((data) => {
+        this.imageUrl = data.picture;
+        this.fetchUserPhoto();
+      });
+    }
   }
   fetchUserPhoto() {
     this.fileService.getUserPhoto(this.imageUrl).subscribe((data) => {
       let objectURL = URL.createObjectURL(data);
       this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    });
-  }
-  changePassword() {
-    const dialogRef = this.dialog.open(ChangePasswordComponent, {
-      width: "500px",
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == "OK") {
-        this.displaySuccesDialog("¡Se cambio su contraseña exitosamente!");
-      } else if (result == "BAD_REQUEST") {
-        this.displayFailureDialog("¡Hubo un error al cambiar la contraseña!");
-      }
-    });
-  }
-  displaySuccesDialog(text: string) {
-    this.dialog.open(SuccesDialogComponent, {
-      width: "500px",
-      data: {
-        message: text,
-      },
-    });
-  }
-  displayFailureDialog(text: string) {
-    this.dialog.open(ErrorDialogComponent, {
-      width: "500px",
-      data: {
-        message: text,
-      },
     });
   }
 }

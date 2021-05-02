@@ -26,18 +26,30 @@ export class FileService {
       observe: "events",
     });
   }
-  uploadProductPhoto(formData, productId:number) {
-    return this.http.put(
-      apiKey.api + `/product/${productId}/image`,
-      formData,
-      {
-        headers: this.headers,
-        reportProgress: true,
-        observe: "events",
-      }
-    );
+  uploadProductPhoto(formData, productId: number) {
+    return this.http.put(apiKey.api + `/product/${productId}/image`, formData, {
+      headers: this.headers,
+      reportProgress: true,
+      observe: "events",
+    });
   }
   uploadPharmacyPhoto(formData, pharmId: number) {
+    return this.http.put(apiKey.api + `/pharmacy/${pharmId}/image`, formData, {
+      headers: this.headers,
+      reportProgress: true,
+      observe: "events",
+    });
+  }
+  //This one is for the pharmacy admin
+  uploadPharmacyAdminPhoto(formData, pharmId: number) {
+    return this.http.put(apiKey.api + `/pharmacy/${pharmId}/image`, formData, {
+      headers: this.headers,
+      reportProgress: true,
+      observe: "events",
+    });
+  }
+  //This one is for the system admin
+  uploadAdminPhoto(formData, pharmId: number) {
     return this.http.put(apiKey.api + `/pharmacy/${pharmId}/image`, formData, {
       headers: this.headers,
       reportProgress: true,
@@ -58,15 +70,32 @@ export class FileService {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });
-    return this.http.get(
-      apiKey.api + `/product/image/${pictureUrl}`,
-      {
-        headers: header,
-        responseType: "blob",
-      }
-    );
+    return this.http.get(apiKey.api + `/product/image/${pictureUrl}`, {
+      headers: header,
+      responseType: "blob",
+    });
   }
   getPharmacyPic(pictureUrl: string): Observable<Blob> {
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
+    });
+    return this.http.get(apiKey.api + `/pharmacy/image/${pictureUrl}`, {
+      headers: header,
+      responseType: "blob",
+    });
+  }
+  //This one is for the pharmacy admin
+  getPharmacyAdminPic(pictureUrl: string): Observable<Blob> {
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
+    });
+    return this.http.get(apiKey.api + `/pharmacy/image/${pictureUrl}`, {
+      headers: header,
+      responseType: "blob",
+    });
+  }
+  //This one is for the system admin
+  getAdminPic(pictureUrl: string): Observable<Blob> {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });

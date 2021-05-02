@@ -80,6 +80,7 @@ import { UploadPharmImageComponent } from "../admin/components/upload-pharm-imag
 import { UploadClientImageComponent } from "../client/components/upload-client-image/upload-client-image.component";
 import { PharmAdminAccountComponent } from "../pharm-admin/pages/pharm-admin-account/pharm-admin-account.component";
 import { AdminAccountComponent } from "../admin/pages/admin-account/admin-account.component";
+import { UploadPharmAdminImageComponent } from "../pharm-admin/components/upload-pharm-admin-image/upload-pharm-admin-image.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -136,6 +137,7 @@ import { AdminAccountComponent } from "../admin/pages/admin-account/admin-accoun
     UploadClientImageComponent,
     PharmAdminAccountComponent,
     AdminAccountComponent,
+    UploadPharmAdminImageComponent,
   ],
   imports: [
     CommonModule,
