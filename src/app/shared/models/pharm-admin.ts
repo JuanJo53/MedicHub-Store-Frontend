@@ -10,9 +10,4 @@ export interface PharmAdmin {
   userName: string;
   password: string;
   picture: string;
-  number: number;
-  street: string;
-  zone: string;
-  city: string;
-  country: string;
 }

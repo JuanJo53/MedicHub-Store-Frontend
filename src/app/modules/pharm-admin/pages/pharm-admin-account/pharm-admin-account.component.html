@@ -50,7 +50,6 @@
                 <p>{{ pharmAdmin.email }}</p>
                 <strong>Telefono de referencia:</strong>
                 <p>{{ pharmAdmin.phone }}</p>
-                <strong>Fecha de Nacimiento:</strong>
               </div>
               <div class="col">
                 <strong>Apellido(s):</strong>
@@ -61,25 +60,6 @@
                 <p>{{ pharmAdmin.userName }}</p>
                 <strong>CI:</strong>
                 <p>{{ pharmAdmin.ci }}</p>
-              </div>
-            </div>
-          </div>
-          <div class="direcction-section">
-            <h2 class="t2">Detalles de la Dirección:</h2>
-            <div class="row">
-              <div class="col">
-                <strong>Calle:</strong>
-                <p>{{ pharmAdmin.street }}</p>
-                <strong>Numero:</strong>
-                <p>{{ pharmAdmin.number }}</p>
-                <strong>Zona:</strong>
-                <p>{{ pharmAdmin.zone }}</p>
-              </div>
-              <div class="col">
-                <strong>Ciudad:</strong>
-                <p>{{ pharmAdmin.city }}</p>
-                <strong>Pais:</strong>
-                <p>{{ pharmAdmin.country }}</p>
               </div>
             </div>
           </div>
@@ -156,56 +136,6 @@
           />
         </mat-form-field>
         <br />
-        <mat-form-field class="form-input">
-          <mat-label class="form-letter">Zona</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="zone"
-            placeholder="Zona"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form-input">
-          <mat-label class="form-letter">Ciudad</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="city"
-            placeholder="Ciudad"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form-input">
-          <mat-label class="form-letter">Pais</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="country"
-            placeholder="Pais"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form-input">
-          <mat-label class="form-letter">Calle</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="street"
-            placeholder="Calle"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="form-input">
-          <mat-label class="form-letter">Numero</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="number"
-            placeholder="Numero"
-            required
-          />
-        </mat-form-field>
         <mat-form-field class="email form">
           <mat-label>Email</mat-label
           ><input

@@ -62,6 +62,7 @@ export class PharmAdminAccountComponent implements OnInit {
   getDetails(id: number) {
     this.pharmAdminService.getAdminDetail(id).subscribe((data) => {
       this.pharmAdmin = data;
+      console.log(data);
       this.fetchUserPhoto();
     });
   }
@@ -132,42 +133,6 @@ export class PharmAdminAccountComponent implements OnInit {
           Validators.minLength(6),
         ],
       ],
-      number: [
-        this.pharmAdmin.number,
-        [Validators.required, Validators.maxLength(15)],
-      ],
-      street: [
-        this.pharmAdmin.street,
-        [
-          Validators.required,
-          Validators.maxLength(145),
-          Validators.minLength(3),
-        ],
-      ],
-      zone: [
-        this.pharmAdmin.zone,
-        [
-          Validators.required,
-          Validators.maxLength(80),
-          Validators.minLength(3),
-        ],
-      ],
-      city: [
-        this.pharmAdmin.city,
-        [
-          Validators.required,
-          Validators.maxLength(80),
-          Validators.minLength(3),
-        ],
-      ],
-      country: [
-        this.pharmAdmin.country,
-        [
-          Validators.required,
-          Validators.maxLength(80),
-          Validators.minLength(3),
-        ],
-      ],
     });
   }
   savePharmAdmin(): void {
@@ -180,8 +145,8 @@ export class PharmAdminAccountComponent implements OnInit {
     }
   }
   updateAdmin(admin: PharmAdmin): void {
-    this.pharmAdminService.updateAdmins(admin).subscribe((responseClient) => {
-      console.log(responseClient);
+    this.pharmAdminService.updateAdmins(admin).subscribe((response) => {
+      console.log(response);
       this.editEnabled = false;
       this.displaySuccesDialog("¡Sus datos se actualizaron exitosamente!");
       this.ngOnInit();
