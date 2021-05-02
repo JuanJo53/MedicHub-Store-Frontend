@@ -1,3 +1,4 @@
+import { PharmAdminAccountComponent } from "./modules/pharm-admin/pages/pharm-admin-account/pharm-admin-account.component";
 import { SubsidiaryDetailComponent } from "./modules/admin/pages/subsidiary-detail/subsidiary-detail.component";
 import { AdminGuard } from "./core/guards/admin.guard";
 import { MainComponent } from "./layout/main/main.component";
@@ -22,6 +23,7 @@ import { ClientHomeComponent } from "./modules/client/pages/client-home/client-h
 import { SubsidiaryDetailsComponent } from "./modules/client/pages/subsidiary-details/subsidiary-details.component";
 import { ProductDetailComponent } from "./modules/client/pages/product-detail/product-detail.component";
 import { OrderComponent } from "./modules/client/pages/order/order.component";
+import { AdminAccountComponent } from "./modules/admin/pages/admin-account/admin-account.component";
 
 const routes: Routes = [
   // {
@@ -49,6 +51,11 @@ const routes: Routes = [
         path: "admin/dashboard",
         canActivate: [AdminGuard],
         component: DashboardComponent,
+      },
+      {
+        path: "admin/account",
+        canActivate: [AdminGuard],
+        component: AdminAccountComponent,
       },
       {
         path: "admin/reports",
@@ -80,6 +87,11 @@ const routes: Routes = [
         path: "pharmAdmin/dashboard",
         canActivate: [PharmAdminGuard],
         component: PharmDashboardComponent,
+      },
+      {
+        path: "pharmAdmin/account",
+        canActivate: [PharmAdminGuard],
+        component: PharmAdminAccountComponent,
       },
       // {
       //   path: "pharmAdmin/reports",

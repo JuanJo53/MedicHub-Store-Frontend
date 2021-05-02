@@ -39,6 +39,24 @@
     ><span class="link__text">Home</span></a
   >
   <a
+    *ngIf="userRole == 1"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/admin/account"
+    ><mat-icon class="link__icon">account_circle</mat-icon
+    ><span class="link__text">Perfil Administrador</span></a
+  >
+  <a
+    *ngIf="userRole == 2"
+    class="link"
+    mat-list-item
+    routerLinkActive="list-item-active-link"
+    routerLink="/pharmAdmin/account"
+    ><mat-icon class="link__icon">account_circle</mat-icon
+    ><span class="link__text">Perfil Administrador</span></a
+  >
+  <a
     *ngIf="userRole == 3"
     class="link"
     mat-list-item

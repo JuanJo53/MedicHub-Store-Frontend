@@ -78,6 +78,8 @@ import { CartPipe } from "src/app/shared/pipes/cart.pipe";
 import { UploadImageProductComponent } from "../pharm-admin/components/upload-image-product/upload-image-product.component";
 import { UploadPharmImageComponent } from "../admin/components/upload-pharm-image/upload-pharm-image.component";
 import { UploadClientImageComponent } from "../client/components/upload-client-image/upload-client-image.component";
+import { PharmAdminAccountComponent } from "../pharm-admin/pages/pharm-admin-account/pharm-admin-account.component";
+import { AdminAccountComponent } from "../admin/pages/admin-account/admin-account.component";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -132,6 +134,8 @@ import { UploadClientImageComponent } from "../client/components/upload-client-i
     UploadPharmImageComponent,
     UploadImageProductComponent,
     UploadClientImageComponent,
+    PharmAdminAccountComponent,
+    AdminAccountComponent,
   ],
   imports: [
     CommonModule,
@@ -179,7 +183,7 @@ import { UploadClientImageComponent } from "../client/components/upload-client-i
     EditClientComponent,
     CreateCardComponent,
     ErrorDialogComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ],
 })
 export class HomeModule {}
