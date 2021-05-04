@@ -40,13 +40,12 @@ export class PharmAdminAccountComponent implements OnInit {
     try {
       this.id = parseInt(this.tokenService.getUserId());
       if (this.id) {
-        this.getDetails(this.id);
+        this.getDetails(this.id, 1);
       }
       this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
         (name: string) => {
-          this.getDetails(this.id);
-          this.tokenService.setUserName(this.pharmAdmin.userName);
-          console.log(name);
+          this.getDetails(this.id, 2);
+          // console.log(name);
         }
       );
     } catch (error) {
@@ -60,10 +59,15 @@ export class PharmAdminAccountComponent implements OnInit {
   cancel() {
     this.editEnabled = false;
   }
-  getDetails(id: number) {
+  getDetails(id: number, type: number) {
     this.pharmAdminService.getAdminDetail(id).subscribe((data) => {
       this.pharmAdmin = data;
-      console.log(data);
+      this.tokenService.setUserName(data.userName);
+      if (type == 1) {
+        this.eventEmitterService.onPharmacyPhotoUpdated(
+          this.tokenService.getUserName()
+        );
+      }
       this.fetchUserPhoto();
     });
   }
@@ -144,11 +148,9 @@ export class PharmAdminAccountComponent implements OnInit {
       console.log("bad form");
     }
   }
-  updateAdmin(admin: PharmAdmin): void {
+  updateAdmin(admin: PharmAdmin): any {
     this.pharmAdminService.updateAdmins(admin).subscribe((response) => {
-      console.log(response);
       this.editEnabled = false;
-      this.eventEmitterService.onPharmacyPhotoUpdated("Datos actualizados");
       this.displaySuccesDialog("¡Sus datos se actualizaron exitosamente!");
       this.ngOnInit();
     });

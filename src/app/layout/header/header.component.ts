@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
       this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
         (name: string) => {
           this.getDetails(this.userId);
-          console.log(name);
+          console.log("hola" + name);
         }
       );
     }
@@ -69,6 +69,7 @@ export class HeaderComponent implements OnInit {
     if (this.role == 3) {
       this.clientService.getClientDetail(id).subscribe((client) => {
         this.imageUrl = client.picture;
+        this.username = client.userName;
         this.fetchUserPhoto();
       });
     }
