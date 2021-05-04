@@ -22,9 +22,10 @@ import { ClientGuard } from "./core/guards/client.guard";
 import { ClientHomeComponent } from "./modules/client/pages/client-home/client-home.component";
 import { SubsidiaryDetailsComponent } from "./modules/client/pages/subsidiary-details/subsidiary-details.component";
 import { ProductDetailComponent } from "./modules/client/pages/product-detail/product-detail.component";
-import { OrderComponent } from "./modules/client/pages/order/order.component";
 import { AdminAccountComponent } from "./modules/admin/pages/admin-account/admin-account.component";
 import { SalesComponent } from "./modules/pharm-admin/pages/sales/sales.component";
+import { OrdersComponent } from "./modules/pharm-admin/pages/orders/orders.component";
+import { OrderComponent } from "./modules/client/pages/order/order.component";
 
 const routes: Routes = [
   // {
@@ -103,6 +104,11 @@ const routes: Routes = [
         path: "pharmAdmin/sales",
         canActivate: [PharmAdminGuard],
         component: SalesComponent,
+      },
+      {
+        path: "pharmAdmin/orders",
+        canActivate: [PharmAdminGuard],
+        component: OrdersComponent,
       },
       {
         path: "pharmAdmin/products",

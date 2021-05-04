@@ -42,9 +42,10 @@ export class PharmAdminAccountComponent implements OnInit {
       if (this.id) {
         this.getDetails(this.id);
       }
-      this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
+      this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
         (name: string) => {
           this.getDetails(this.id);
+          this.tokenService.setUserName(this.pharmAdmin.userName);
           console.log(name);
         }
       );
@@ -75,7 +76,7 @@ export class PharmAdminAccountComponent implements OnInit {
   editPharmAdmin(): void {
     this.editEnabled = true;
     this.form = this.fromBuilder.group({
-      clientId: [this.id, [Validators.required]],
+      pharmacyAdminId: [this.id, [Validators.required]],
       firstName: [
         this.pharmAdmin.firstName,
         [
@@ -138,7 +139,6 @@ export class PharmAdminAccountComponent implements OnInit {
   savePharmAdmin(): void {
     if (this.form.valid) {
       const admin = this.form.value;
-      console.log(admin);
       this.updateAdmin(admin);
     } else {
       console.log("bad form");
@@ -148,6 +148,7 @@ export class PharmAdminAccountComponent implements OnInit {
     this.pharmAdminService.updateAdmins(admin).subscribe((response) => {
       console.log(response);
       this.editEnabled = false;
+      this.eventEmitterService.onPharmacyPhotoUpdated("Datos actualizados");
       this.displaySuccesDialog("¡Sus datos se actualizaron exitosamente!");
       this.ngOnInit();
     });

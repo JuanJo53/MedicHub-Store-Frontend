@@ -43,7 +43,6 @@ export class EditSubsiAdminsComponent implements OnInit {
   editAdmin(): void {
     this.subsidiaryId = parseInt(this.tokenService.getSubsidiaryId());
     this.form = this.fromBuilder.group({
-      subsidiaryId: [this.data.subsidiaryId, [Validators.required]],
       pharmacyAdminId: [this.data.pharmAdminId, [Validators.required]],
       firstName: [
         this.pharmAdmin.firstName,
@@ -103,7 +102,6 @@ export class EditSubsiAdminsComponent implements OnInit {
         ],
       ],
     });
-    console.log(this.form.value);
   }
   saveAdmin(): void {
     console.log(this.form.value);

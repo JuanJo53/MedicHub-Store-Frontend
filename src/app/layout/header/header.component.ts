@@ -48,14 +48,24 @@ export class HeaderComponent implements OnInit {
     this.role = parseInt(this.tokenServide.getAuthorities());
     this.userId = parseInt(this.tokenServide.getUserId());
     this.getDetails(this.userId);
-    this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
-      (name: string) => {
-        this.getDetails(this.userId);
-        console.log(name);
-      }
-    );
+    if (this.role == 3) {
+      this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
+        (name: string) => {
+          this.getDetails(this.userId);
+          console.log(name);
+        }
+      );
+    } else if (this.role == 2) {
+      this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
+        (name: string) => {
+          this.getDetails(this.userId);
+          console.log(name);
+        }
+      );
+    }
   }
   getDetails(id: number) {
+    this.username = this.tokenServide.getUserName();
     if (this.role == 3) {
       this.clientService.getClientDetail(id).subscribe((client) => {
         this.imageUrl = client.picture;

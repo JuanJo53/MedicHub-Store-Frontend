@@ -67,8 +67,8 @@ export class LoginComponent implements OnInit {
         if (data.subsidiaryId) {
           this.tokenService.setSubsidiaryId(data.subsidiaryId);
         }
-        this.tokenService.setUserName(data.userName);
         this.tokenService.setAuthorities(data.role);
+        this.tokenService.setUserName(data.userName);
         this.roles = parseInt(this.tokenService.getAuthorities());
 
         if (this.roles == 1) {
