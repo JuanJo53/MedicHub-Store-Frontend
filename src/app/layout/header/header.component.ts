@@ -59,7 +59,6 @@ export class HeaderComponent implements OnInit {
       this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
         (name: string) => {
           this.getDetails(this.userId);
-          console.log("hola" + name);
         }
       );
     }

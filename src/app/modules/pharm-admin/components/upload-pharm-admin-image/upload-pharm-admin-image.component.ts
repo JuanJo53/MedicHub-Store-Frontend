@@ -12,7 +12,7 @@ import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-d
 })
 export class UploadPharmAdminImageComponent implements OnInit {
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef;
-  @Input() productId: number;
+  @Input() pharmAdminId: number;
   files = [];
   fileName: string;
 
@@ -51,9 +51,8 @@ export class UploadPharmAdminImageComponent implements OnInit {
     const formData = new FormData();
     formData.append("image", file.data);
     file.inProgress = true;
-    console.log(this.productId);
     this.fileUploadService
-      .uploadPharmacyAdminPhoto(formData, this.productId)
+      .uploadPharmacyAdminPhoto(formData, this.pharmAdminId)
       .subscribe((rsp) => {
         console.log(rsp);
 
@@ -61,7 +60,7 @@ export class UploadPharmAdminImageComponent implements OnInit {
           const percentDone = Math.round((100 * rsp.loaded) / rsp.total);
           console.log("Progress " + percentDone + "%");
           if (percentDone >= 100) {
-            this.eventEmitterService.onProductPhotoUpdated(
+            this.eventEmitterService.onPharmacyPhotoUpdated(
               "¡La foto se actualizo exitosamente!"
             );
           }

@@ -43,9 +43,11 @@ export class PharmAdminAccountComponent implements OnInit {
         this.getDetails(this.id, 1);
       }
       this.eventEmitterService.pharmSubs = this.eventEmitterService.pharmPhotoEvent.subscribe(
-        (name: string) => {
+        (msg: string) => {
           this.getDetails(this.id, 2);
-          // console.log(name);
+          if (msg == "¡La foto se actualizo exitosamente!") {
+            this.displaySuccesDialog(msg);
+          }
         }
       );
     } catch (error) {
@@ -61,6 +63,7 @@ export class PharmAdminAccountComponent implements OnInit {
   }
   getDetails(id: number, type: number) {
     this.pharmAdminService.getAdminDetail(id).subscribe((data) => {
+      console.log("hola");
       this.pharmAdmin = data;
       this.tokenService.setUserName(data.userName);
       if (type == 1) {

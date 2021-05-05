@@ -42,15 +42,20 @@ export class FileService {
   }
   //This one is for the pharmacy admin
   uploadPharmacyAdminPhoto(formData, pharmId: number) {
-    return this.http.put(apiKey.api + `/pharmacy/${pharmId}/image`, formData, {
-      headers: this.headers,
-      reportProgress: true,
-      observe: "events",
-    });
+    console.log("id: " + pharmId);
+    return this.http.put(
+      apiKey.api + `/pharmacyAdmin/${pharmId}/image`,
+      formData,
+      {
+        headers: this.headers,
+        reportProgress: true,
+        observe: "events",
+      }
+    );
   }
   //This one is for the system admin
   uploadAdminPhoto(formData, pharmId: number) {
-    return this.http.put(apiKey.api + `/pharmacy/${pharmId}/image`, formData, {
+    return this.http.put(apiKey.api + `/admin/${pharmId}/image`, formData, {
       headers: this.headers,
       reportProgress: true,
       observe: "events",
@@ -89,7 +94,7 @@ export class FileService {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });
-    return this.http.get(apiKey.api + `/pharmacy/image/${pictureUrl}`, {
+    return this.http.get(apiKey.api + `/pharmacyAdmin/image/${pictureUrl}`, {
       headers: header,
       responseType: "blob",
     });
@@ -99,7 +104,7 @@ export class FileService {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,
     });
-    return this.http.get(apiKey.api + `/pharmacy/image/${pictureUrl}`, {
+    return this.http.get(apiKey.api + `/admin/image/${pictureUrl}`, {
       headers: header,
       responseType: "blob",
     });
