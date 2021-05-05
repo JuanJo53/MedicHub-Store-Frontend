@@ -36,16 +36,15 @@
                 *ngIf="!image"
                 class="rounded mx-auto d-block img-fluid"
                 src="../../../../../assets/images/pastilla.png"
-                
               />
             </div>
             <div class="add_image_btn">
               <app-upload-image-product
-                  [productId]="productId"
-                ></app-upload-image-product>
+                [productId]="productId"
+                (photoUpdateEvent)="photoRefresh($event)"
+              ></app-upload-image-product>
             </div>
           </div>
-          
         </td>
         <td>
           <mat-card-content class="">

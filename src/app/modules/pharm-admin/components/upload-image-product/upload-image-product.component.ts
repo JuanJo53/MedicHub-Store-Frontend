@@ -1,5 +1,13 @@
 import { HttpEventType } from "@angular/common/http";
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 import { FileService } from "src/app/core/services/file.service";
@@ -14,6 +22,8 @@ import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes
 export class UploadImageProductComponent implements OnInit {
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef;
   @Input() productId: number;
+  @Output() photoUpdateEvent = new EventEmitter<string>();
+
   files = [];
   fileName: string;
 
@@ -52,7 +62,6 @@ export class UploadImageProductComponent implements OnInit {
     const formData = new FormData();
     formData.append("image", file.data);
     file.inProgress = true;
-    console.log(this.productId);
     this.fileUploadService
       .uploadProductPhoto(formData, this.productId)
       .subscribe((rsp) => {
@@ -62,9 +71,7 @@ export class UploadImageProductComponent implements OnInit {
           const percentDone = Math.round((100 * rsp.loaded) / rsp.total);
           console.log("Progress " + percentDone + "%");
           if (percentDone >= 100) {
-            this.eventEmitterService.onProductPhotoUpdated(
-              "¡La foto se actualizo exitosamente!"
-            );
+            this.photoUpdateEvent.emit("¡La foto se actualizo exitosamente!");
           }
         }
         this.uploading = false;

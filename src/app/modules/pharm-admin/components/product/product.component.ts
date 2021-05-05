@@ -35,7 +35,6 @@ export class ProductComponent implements OnInit {
     private tokenService: TokenService,
     private fileService: FileService,
     private sanitizer: DomSanitizer,
-    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 
@@ -44,18 +43,9 @@ export class ProductComponent implements OnInit {
     const id = this.product.productId;
     this.productId = this.product.productId;
     if (id) {
-      this.fetchProductPhoto();
       this.fetchProduct(id);
     }
     this.fecthBrands();
-    if (this.eventEmitterService.productSubs == undefined) {
-      this.eventEmitterService.productSubs = this.eventEmitterService.productPhotoEvent.subscribe(
-        (name: string) => {
-          this.displaySuccesDialog(name);
-          this.fetchProductPhoto();
-        }
-      );
-    }
   }
   ngOnDestroy(): void {
     this.destroyed = true;
@@ -66,14 +56,18 @@ export class ProductComponent implements OnInit {
   fetchProduct(id: number): void {
     this.productsServide.getProduct(id).subscribe((product) => {
       this.product = product;
+      this.fetchProductPhoto();
     });
   }
   fetchProductPhoto() {
-    console.log("photo reached");
     this.fileService.getProductPic(this.product.picture).subscribe((result) => {
       let objectURL = URL.createObjectURL(result);
       this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     });
+  }
+  photoRefresh(value: string) {
+    this.fetchProduct(this.product.productId);
+    this.displaySuccesDialog(value);
   }
   setBrandId(brandName: string) {
     this.brands.forEach((brand) => {
@@ -175,9 +169,6 @@ export class ProductComponent implements OnInit {
       data: {
         message: text,
       },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      window.location.reload();
     });
   }
 }

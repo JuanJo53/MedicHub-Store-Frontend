@@ -12,7 +12,7 @@ import { Product } from "src/app/shared/models/product";
 export class SaleItemComponent implements OnInit {
   @Input() product: Product;
   @Input() products: Product[];
-  @Output() newItemEvent = new EventEmitter<number>();
+  @Output() addItemEvent = new EventEmitter<number>();
   image: any;
 
   productTotalPrice: number;
@@ -41,6 +41,6 @@ export class SaleItemComponent implements OnInit {
   addProduct() {
     this.product.total = this.productTotalPrice;
     this.products.push(this.product);
-    this.newItemEvent.emit(this.productTotalPrice);
+    this.addItemEvent.emit(this.productTotalPrice);
   }
 }

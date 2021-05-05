@@ -49,6 +49,7 @@
             <div class="add_image_btn">
               <app-upload-pharm-image
                 [pharmId]="pharmId"
+                (photoUpdateEvent)="photoRefresh($event)"
               ></app-upload-pharm-image>
             </div>
           </div>
