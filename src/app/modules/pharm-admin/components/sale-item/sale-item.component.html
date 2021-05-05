@@ -51,6 +51,7 @@
             type="number"
             min="1"
             placeholder="100"
+            (change)="getProductQuantity()"
             #input
           />
         </mat-form-field>
@@ -63,14 +64,14 @@
           mat-mini-fab
           color="primary"
           aria-label="Example icon button with a heart icon"
-          (click)="addProduct(product.productId)"
+          (click)="addProduct()"
         >
           <mat-icon>add</mat-icon>
         </button>
       </div>
       <div class="col">
         Precio Total:
-        <h3>{{ productTotalPrice }} Bs.</h3>
+        <h3>{{ productTotalPrice | number }} Bs.</h3>
         <br /><br />
       </div>
     </div>

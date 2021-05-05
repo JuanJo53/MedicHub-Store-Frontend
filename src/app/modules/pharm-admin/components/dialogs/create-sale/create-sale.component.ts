@@ -18,6 +18,7 @@ import { Product } from "src/app/shared/models/product";
 export class CreateSaleComponent implements OnInit {
   // products$: Observable<Product[]>;
   products: Product[];
+  orderProducts: Product[] = [];
   id: number;
   subsidiaryId: number;
   name: string;
@@ -34,7 +35,7 @@ export class CreateSaleComponent implements OnInit {
 
   form: FormGroup;
 
-  orderTotal: number;
+  totalAmount: number = 0;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -79,7 +80,10 @@ export class CreateSaleComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  totalUpdate(value: number) {
+    this.totalAmount = this.totalAmount + value;
+    console.log(this.totalAmount);
+  }
   fetchProducts(id: number, page: number): void {
     this.productServier
       .getSubsidiaryProducts(
@@ -93,7 +97,9 @@ export class CreateSaleComponent implements OnInit {
       )
       .subscribe((products) => {
         this.products = products;
-        console.log(this.products);
+        this.dataSource = new MatTableDataSource(this.products);
+        this.dataSource.sort = this.sort;
+        console.log(this.dataSource);
         this.isLoadingResults = false;
       });
   }

@@ -3,10 +3,9 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeModule } from "./modules/home/home.module";
-import { CookieService } from "ngx-cookie-service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
-import { DatePipe } from "@angular/common";
+import { DatePipe, DecimalPipe } from "@angular/common";
 import { CreditCardDirectivesModule } from "angular-cc-library";
 import { CartPipe } from "./shared/pipes/cart.pipe";
 
@@ -20,7 +19,7 @@ import { CartPipe } from "./shared/pipes/cart.pipe";
     HomeModule,
     CreditCardDirectivesModule,
   ],
-  providers: [CookieService, DatePipe],
+  providers: [DatePipe, DecimalPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

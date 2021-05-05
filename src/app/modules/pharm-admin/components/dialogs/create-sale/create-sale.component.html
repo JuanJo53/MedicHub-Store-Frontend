@@ -8,16 +8,36 @@
       <div *ngIf="products.length > 0">
         <div class="row justify-content-between">
           <h2 class="col-md-4">Productos Disponibles</h2>
-          <h2 class="col-md-4">Total: {{ orderTotal }}</h2>
+          <h2 class="col-md-4">Total: {{ totalAmount }}</h2>
+          <div>
+            <button mat-raised-button matStepperNext>Siguiente</button>
+          </div>
         </div>
-        <div class="products_list" *ngFor="let product of products">
-          <app-sale-item [product]="product"> </app-sale-item>
+        <br /><br />
+        <mat-form-field class="formfarmacia2">
+          <mat-label>Buscar</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. ium"
+            #input
+          />
+        </mat-form-field>
+        <div
+          class="products_list"
+          *ngFor="let product of dataSource.filteredData"
+        >
+          <app-sale-item
+            [product]="product"
+            [products]="orderProducts"
+            (newItemEvent)="totalUpdate($event)"
+          >
+          </app-sale-item>
         </div>
         <div>
           <button mat-raised-button matStepperNext>Siguiente</button>
         </div>
       </div>
-
       <div class="no_products" *ngIf="products.length == 0" align="center">
         <img src="assets/images/nocant.png" width="500px" height="500px" />
         <h1 class="txtvermas">¡No hay productos disponibles!</h1>

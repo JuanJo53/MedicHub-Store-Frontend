@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { CartService } from "src/app/core/services/cart.service";
 import { FileService } from "src/app/core/services/file.service";
@@ -11,7 +11,8 @@ import { Product } from "src/app/shared/models/product";
 })
 export class SaleItemComponent implements OnInit {
   @Input() product: Product;
-
+  @Input() products: Product[];
+  @Output() newItemEvent = new EventEmitter<number>();
   image: any;
 
   productTotalPrice: number;
@@ -26,16 +27,10 @@ export class SaleItemComponent implements OnInit {
     this.fetchProductPhoto();
   }
   getProductQuantity() {
-    var total = 0;
-    this.cartService.cart$.subscribe((products) => {
-      products.forEach((elemento) => {
-        if (elemento.productId === this.product.productId) {
-          total += 1;
-        }
-      });
-    });
-    this.product.quantity = total;
+    // var total = 0;
+    // this.product.quantity = total;
     this.productTotalPrice = this.product.price * this.product.quantity;
+    // console.log(this.productTotalPrice);
   }
   fetchProductPhoto() {
     this.fileService.getUserPhoto(this.product.picture).subscribe((data) => {
@@ -43,7 +38,9 @@ export class SaleItemComponent implements OnInit {
       this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     });
   }
-  addProduct(id: number) {
-    this.cartService.removeItem(id);
+  addProduct() {
+    this.product.total = this.productTotalPrice;
+    this.products.push(this.product);
+    this.newItemEvent.emit(this.productTotalPrice);
   }
 }
