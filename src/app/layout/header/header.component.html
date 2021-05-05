@@ -55,7 +55,11 @@
       </button>
     </mat-menu>
 
-    <button mat-icon-button class="img-button" *ngIf="role == 3 || role == 2">
+    <button
+      mat-icon-button
+      class="img-button"
+      *ngIf="role == 3 || role == 2 || role == 1"
+    >
       <img *ngIf="image" [src]="image" alt="" />
       <img *ngIf="!image" src="../../../assets/images/face.png" alt="" />
     </button>

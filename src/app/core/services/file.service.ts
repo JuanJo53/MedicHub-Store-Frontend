@@ -40,7 +40,6 @@ export class FileService {
       observe: "events",
     });
   }
-  //This one is for the pharmacy admin
   uploadPharmacyAdminPhoto(formData, pharmId: number) {
     console.log("id: " + pharmId);
     return this.http.put(
@@ -89,7 +88,6 @@ export class FileService {
       responseType: "blob",
     });
   }
-  //This one is for the pharmacy admin
   getPharmacyAdminPic(pictureUrl: string): Observable<Blob> {
     const header = new HttpHeaders({
       Authorization: `Bearer ${this.authToken}`,

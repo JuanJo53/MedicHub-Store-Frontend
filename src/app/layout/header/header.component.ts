@@ -61,6 +61,12 @@ export class HeaderComponent implements OnInit {
           this.getDetails(this.userId);
         }
       );
+    } else if (this.role == 1) {
+      this.eventEmitterService.adminSubs = this.eventEmitterService.adminPhotoEvent.subscribe(
+        (name: string) => {
+          this.getDetails(this.userId);
+        }
+      );
     }
   }
   getDetails(id: number) {

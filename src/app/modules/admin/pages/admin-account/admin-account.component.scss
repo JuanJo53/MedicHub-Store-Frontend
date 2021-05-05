@@ -1,0 +1,57 @@
+.email {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.button-add {
+  color: white;
+  height: 22px !important;
+  width: 30px !important;
+  font-size: 30px !important;
+  margin-bottom: 15px;
+}
+.conta {
+  margin-top: 35px;
+  color: #2f4a85;
+}
+mat-form-field {
+  margin: 5px;
+}
+.btnform {
+  margin-top: 10px;
+  background-color: #2f4a85;
+  color: white;
+}
+.btnformwarn {
+  margin-top: 10px;
+  background-color: #f44336;
+  color: white;
+}
+.t2 {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.title {
+  margin-bottom: 35px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  color: #2f4a85;
+}
+.photo_password_section {
+  align-items: center;
+}
+.image_display {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 10px;
+}
+.add_image_btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

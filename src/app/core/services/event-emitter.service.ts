@@ -8,9 +8,11 @@ export class EventEmitterService {
   pharmPhotoEvent = new EventEmitter();
   clientPhotoEvent = new EventEmitter();
   productPhotoEvent = new EventEmitter();
+  adminPhotoEvent = new EventEmitter();
   pharmSubs: Subscription;
   clientSubs: Subscription;
   productSubs: Subscription;
+  adminSubs: Subscription;
 
   constructor() {}
 
@@ -22,5 +24,8 @@ export class EventEmitterService {
   }
   onProductPhotoUpdated(message: string) {
     this.productPhotoEvent.emit(message);
+  }
+  onAdminPhotoUpdated(message: string) {
+    this.adminPhotoEvent.emit(message);
   }
 }
