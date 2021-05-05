@@ -5,11 +5,11 @@ import { FileService } from "src/app/core/services/file.service";
 import { Product } from "src/app/shared/models/product";
 
 @Component({
-  selector: "app-order-item",
-  templateUrl: "./order-item.component.html",
-  styleUrls: ["./order-item.component.scss"],
+  selector: "app-sale-item",
+  templateUrl: "./sale-item.component.html",
+  styleUrls: ["./sale-item.component.scss"],
 })
-export class OrderItemComponent implements OnInit {
+export class SaleItemComponent implements OnInit {
   @Input() product: Product;
 
   image: any;
@@ -43,7 +43,7 @@ export class OrderItemComponent implements OnInit {
       this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     });
   }
-  removeProduct(id: number) {
+  addProduct(id: number) {
     this.cartService.removeItem(id);
   }
 }

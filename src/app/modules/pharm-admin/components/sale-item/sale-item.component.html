@@ -20,10 +20,10 @@
       <div class="col-md-4">
         <div class="card-body">
           <!-- <a
-            mat-flat-button
-            routerLink="../client/pharmacies/{{ product.subsidiaryId }}"
-          >
-          </a> -->
+              mat-flat-button
+              routerLink="../client/pharmacies/{{ product.subsidiaryId }}"
+            >
+            </a> -->
           <h1 class="card-title">{{ product.name }}</h1>
           <h3 class="card-text">
             {{ product.description }}
@@ -61,11 +61,11 @@
         <br /><br />
         <button
           mat-mini-fab
-          color="warn"
+          color="primary"
           aria-label="Example icon button with a heart icon"
-          (click)="removeProduct(product.productId)"
+          (click)="addProduct(product.productId)"
         >
-          <mat-icon>delete</mat-icon>
+          <mat-icon>add</mat-icon>
         </button>
       </div>
       <div class="col">

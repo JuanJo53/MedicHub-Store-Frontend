@@ -73,7 +73,8 @@ export class SalesComponent implements OnInit {
 
   addSales(): void {
     const dialogRef = this.dialog.open(CreateSaleComponent, {
-      width: "500px",
+      width: "3000px",
+      height: "900px",
       data: {
         id: this.id,
       },
