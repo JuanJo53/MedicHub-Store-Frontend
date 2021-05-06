@@ -10,7 +10,7 @@ import { CreditCardDirectivesModule } from "angular-cc-library";
 import { CartPipe } from "./shared/pipes/cart.pipe";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -18,6 +18,7 @@ import { CartPipe } from "./shared/pipes/cart.pipe";
     AppRoutingModule,
     HomeModule,
     CreditCardDirectivesModule,
+    
   ],
   providers: [DatePipe, DecimalPipe],
   bootstrap: [AppComponent],
