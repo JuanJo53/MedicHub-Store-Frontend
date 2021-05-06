@@ -29,6 +29,9 @@
       </mat-dialog-content>
     </form>
     <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+    <button mat-raised-button color="warn" (click)="onNoClick()">
+      Cancelar
+    </button>
   </mat-step>
 
   <mat-step label="Seleccionar Productos" state="products">
@@ -37,7 +40,10 @@
         <div class="row justify-content-between">
           <h2 class="col-md-4">Productos Disponibles</h2>
           <h2 class="col-md-4">Total: {{ totalAmount }}</h2>
-          <div>
+          <div class="row">
+            <button mat-raised-button color="warn" (click)="onNoClick()">
+              Cancelar
+            </button>
             <button mat-raised-button color="primary" matStepperNext>
               Siguiente
             </button>
@@ -65,7 +71,10 @@
           >
           </app-sale-item>
         </div>
-        <div>
+        <div class="row">
+          <button mat-raised-button color="warn" (click)="onNoClick()">
+            Cancelar
+          </button>
           <button mat-raised-button matStepperPrevious class="btnform">
             Atras
           </button>
@@ -93,6 +102,9 @@
       <div class="row">
         <h2 class="txtvermas col-md-4">Total: {{ totalAmount }}</h2>
         <div class="col-md-8">
+          <button mat-raised-button color="warn" (click)="onNoClick()">
+            Cancelar
+          </button>
           <button mat-raised-button matStepperPrevious class="btnform">
             Atras
           </button>
@@ -111,7 +123,7 @@
         <app-sale-item
           [product]="product"
           [typeItem]="false"
-          (addItemEvent)="totalUpdate($event)"
+          (removeItemEvent)="removeItem($event)"
         >
         </app-sale-item>
       </div>

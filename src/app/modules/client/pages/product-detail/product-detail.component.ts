@@ -76,7 +76,10 @@ export class ProductDetailComponent implements OnInit {
         this.cartService.addCart(this.product);
       }
       this.product.quantity = this.quantity;
-      console.log(this.product.quantity);
+      console.log(this.product);
+      this.orderService.postNewOrderItem(this.product).subscribe((response) => {
+        console.log(response);
+      });
     }
     this._snackBar.open("Agregado a carrito de compras", "OK", {
       duration: 3000,

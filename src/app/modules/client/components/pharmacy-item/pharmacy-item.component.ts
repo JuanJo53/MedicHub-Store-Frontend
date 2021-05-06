@@ -23,11 +23,13 @@ export class PharmacyItemComponent implements OnInit {
   }
 
   fetchPharmPhoto() {
-    this.fileService
-      .getPharmacyPic(this.subsidiary.picture)
-      .subscribe((result) => {
-        let objectURL = URL.createObjectURL(result);
-        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      });
+    if (this.subsidiary.picture != "null") {
+      -this.fileService
+        .getPharmacyPic(this.subsidiary.picture)
+        .subscribe((result) => {
+          let objectURL = URL.createObjectURL(result);
+          this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        });
+    }
   }
 }

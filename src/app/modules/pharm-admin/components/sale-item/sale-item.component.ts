@@ -15,6 +15,7 @@ export class SaleItemComponent implements OnInit {
   @Input() products: Product[];
   @Input() typeItem: boolean;
   @Output() addItemEvent = new EventEmitter<number>();
+  @Output() removeItemEvent = new EventEmitter<number>();
 
   image: any;
   productTotalPrice: number;
@@ -42,10 +43,7 @@ export class SaleItemComponent implements OnInit {
     this.products.push(this.product);
     this.addItemEvent.emit(this.productTotalPrice);
   }
-  removeProduct() {
-    // this.product.total = this.productTotalPrice;
-    // this.products.push(this.product);
-    // this.addItemEvent.emit(this.productTotalPrice);
-    console.log("quitado");
+  removeProduct(productId: number) {
+    this.removeItemEvent.emit(productId);
   }
 }

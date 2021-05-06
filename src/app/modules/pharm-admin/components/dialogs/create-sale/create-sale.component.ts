@@ -101,6 +101,12 @@ export class CreateSaleComponent implements OnInit {
   totalUpdate(value: number) {
     this.totalAmount = this.totalAmount + value;
   }
+  removeItem(productId: number) {
+    console.log(productId);
+    this.orderProducts = this.orderProducts.filter(
+      (item) => item.productId !== productId
+    );
+  }
   fetchProducts(id: number, page: number): void {
     this.productService
       .getSubsidiaryProducts(

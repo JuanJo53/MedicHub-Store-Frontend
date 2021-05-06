@@ -60,10 +60,14 @@ export class ProductComponent implements OnInit {
     });
   }
   fetchProductPhoto() {
-    this.fileService.getProductPic(this.product.picture).subscribe((result) => {
-      let objectURL = URL.createObjectURL(result);
-      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    });
+    if (this.product.picture != "null") {
+      this.fileService
+        .getProductPic(this.product.picture)
+        .subscribe((result) => {
+          let objectURL = URL.createObjectURL(result);
+          this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        });
+    }
   }
   photoRefresh(value: string) {
     this.fetchProduct(this.product.productId);

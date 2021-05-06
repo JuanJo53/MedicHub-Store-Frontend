@@ -17,13 +17,13 @@ export class OrderService {
     });
   }
 
-  postNewOrderItem(userId: number, product: Product) {
-    return this.http.post(apiKey.api + `/order/${userId}`, product, {
+  postNewOrderItem(product: Product) {
+    return this.http.post(apiKey.api + `/reserve`, product, {
       headers: this.headers,
     });
   }
   getUserOrderProducts(userId: number) {
-    return this.http.get<Product[]>(apiKey.api + `/order/${userId}`, {
+    return this.http.get<Product[]>(apiKey.api + `/reserve/${userId}`, {
       headers: this.headers,
     });
   }

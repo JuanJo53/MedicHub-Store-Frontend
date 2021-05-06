@@ -31,7 +31,6 @@ export class UploadImageProductComponent implements OnInit {
 
   constructor(
     private fileUploadService: FileService,
-    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 

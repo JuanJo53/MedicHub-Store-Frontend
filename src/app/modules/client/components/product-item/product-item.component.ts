@@ -24,7 +24,6 @@ export class ProductItemComponent implements OnInit {
     private productsServide: ProductsService,
     private fileService: FileService,
     private sanitizer: DomSanitizer,
-    private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
   ) {}
 
@@ -46,10 +45,12 @@ export class ProductItemComponent implements OnInit {
     });
   }
   fetchProductPhoto() {
-    this.fileService.getUserPhoto(this.product.picture).subscribe((data) => {
-      let objectURL = URL.createObjectURL(data);
-      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    });
+    if (this.product.picture != "null") {
+      this.fileService.getUserPhoto(this.product.picture).subscribe((data) => {
+        let objectURL = URL.createObjectURL(data);
+        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      });
+    }
   }
   displaySuccesDialog(text: string) {
     const dialogRef = this.dialog.open(SuccesDialogComponent, {
