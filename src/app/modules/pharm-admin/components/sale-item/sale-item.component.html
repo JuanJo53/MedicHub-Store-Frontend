@@ -61,12 +61,22 @@
         <h3>{{ product.price }} Bs.</h3>
         <br /><br />
         <button
+          *ngIf="typeItem"
           mat-mini-fab
           color="primary"
           aria-label="Example icon button with a heart icon"
           (click)="addProduct()"
         >
           <mat-icon>add</mat-icon>
+        </button>
+        <button
+          *ngIf="!typeItem"
+          mat-mini-fab
+          color="warn"
+          aria-label="Example icon button with a heart icon"
+          (click)="removeProduct()"
+        >
+          <mat-icon>delete</mat-icon>
         </button>
       </div>
       <div class="col">

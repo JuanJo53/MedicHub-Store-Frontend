@@ -3,6 +3,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { CartService } from "src/app/core/services/cart.service";
 import { FileService } from "src/app/core/services/file.service";
 import { Product } from "src/app/shared/models/product";
+import { ProductOrder } from "src/app/shared/models/product-order";
 
 @Component({
   selector: "app-sale-item",
@@ -12,25 +13,23 @@ import { Product } from "src/app/shared/models/product";
 export class SaleItemComponent implements OnInit {
   @Input() product: Product;
   @Input() products: Product[];
+  @Input() typeItem: boolean;
   @Output() addItemEvent = new EventEmitter<number>();
-  image: any;
 
+  image: any;
   productTotalPrice: number;
 
   constructor(
-    private cartService: CartService,
     private fileService: FileService,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.fetchProductPhoto();
+    this.productTotalPrice = this.product.price * this.product.quantity;
   }
   getProductQuantity() {
-    // var total = 0;
-    // this.product.quantity = total;
     this.productTotalPrice = this.product.price * this.product.quantity;
-    // console.log(this.productTotalPrice);
   }
   fetchProductPhoto() {
     this.fileService.getUserPhoto(this.product.picture).subscribe((data) => {
@@ -42,5 +41,11 @@ export class SaleItemComponent implements OnInit {
     this.product.total = this.productTotalPrice;
     this.products.push(this.product);
     this.addItemEvent.emit(this.productTotalPrice);
+  }
+  removeProduct() {
+    // this.product.total = this.productTotalPrice;
+    // this.products.push(this.product);
+    // this.addItemEvent.emit(this.productTotalPrice);
+    console.log("quitado");
   }
 }

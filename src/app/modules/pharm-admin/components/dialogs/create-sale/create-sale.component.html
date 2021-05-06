@@ -1,6 +1,34 @@
-<mat-horizontal-stepper>
-  <mat-step label="Llenar Datos para la Venta" state="sell_info">
-    <button mat-raised-button matStepperNext>Siguiente</button>
+<mat-horizontal-stepper linear #stepper>
+  <mat-step
+    [stepControl]="form"
+    label="Llenar Datos para la Venta"
+    state="sale_info"
+  >
+    <form [formGroup]="form" class="form">
+      <mat-dialog-content>
+        <mat-form-field class="form">
+          <mat-label>NIT Comprador</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="nit"
+            placeholder="12312331"
+            required
+          /> </mat-form-field
+        ><br />
+        <mat-form-field class="form">
+          <mat-label>Apellido Comprador</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="firstSurname"
+            placeholder="Perez"
+            required
+          /> </mat-form-field
+        ><br />
+      </mat-dialog-content>
+    </form>
+    <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
   </mat-step>
 
   <mat-step label="Seleccionar Productos" state="products">
@@ -10,10 +38,12 @@
           <h2 class="col-md-4">Productos Disponibles</h2>
           <h2 class="col-md-4">Total: {{ totalAmount }}</h2>
           <div>
-            <button mat-raised-button matStepperNext>Siguiente</button>
+            <button mat-raised-button color="primary" matStepperNext>
+              Siguiente
+            </button>
           </div>
         </div>
-        <br /><br />
+        <br />
         <mat-form-field class="formfarmacia2">
           <mat-label>Buscar</mat-label>
           <input
@@ -30,12 +60,18 @@
           <app-sale-item
             [product]="product"
             [products]="orderProducts"
+            [typeItem]="true"
             (addItemEvent)="totalUpdate($event)"
           >
           </app-sale-item>
         </div>
         <div>
-          <button mat-raised-button matStepperNext>Siguiente</button>
+          <button mat-raised-button matStepperPrevious class="btnform">
+            Atras
+          </button>
+          <button mat-raised-button color="primary" matStepperNext>
+            Siguiente
+          </button>
         </div>
       </div>
       <div class="no_products" *ngIf="products.length == 0" align="center">
@@ -51,13 +87,39 @@
   </mat-step>
 
   <mat-step label="Confirmar Compra" state="confirm">
-    <h2 class="txtvermas">¡Ultimo paso! Confirma la venta.</h2>
-    <button mat-button matStepperPrevious class="btnform">Atras</button>
-    <button mat-button class="btnform">Registrar Venta</button>
+    <div class="reserve">
+      <h3 class="txtvermas">¡Ultimo paso! Confirma los datos de la venta.</h3>
+      <h1 class="txtvermas">Resumen de la Venta</h1>
+      <div class="row">
+        <h2 class="txtvermas col-md-4">Total: {{ totalAmount }}</h2>
+        <div class="col-md-8">
+          <button mat-raised-button matStepperPrevious class="btnform">
+            Atras
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="btnform"
+            (click)="newSale()"
+          >
+            Registrar Venta
+          </button>
+        </div>
+      </div>
+      <br />
+      <div class="products_list" *ngFor="let product of orderProducts">
+        <app-sale-item
+          [product]="product"
+          [typeItem]="false"
+          (addItemEvent)="totalUpdate($event)"
+        >
+        </app-sale-item>
+      </div>
+    </div>
   </mat-step>
 
   <!-- Icon overrides. -->
-  <ng-template matStepperIcon="sell_info">
+  <ng-template matStepperIcon="sale_info">
     <mat-icon>edit_note</mat-icon>
   </ng-template>
   <ng-template matStepperIcon="products">

@@ -18,7 +18,7 @@ export class SaleService {
   }
 
   postNewSale(sale: Sale) {
-    return this.http.post(apiKey.api + "/sale", sale, {
+    return this.http.post(apiKey.api + "/purchase", sale, {
       headers: this.headers,
     });
   }

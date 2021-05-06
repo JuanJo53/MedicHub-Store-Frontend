@@ -81,7 +81,7 @@ export class SalesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.displaySuccesDialog("¡Se agrego el producto exitosamente!");
+        this.displaySuccesDialog("¡Se registro la venta exitosamente!");
         this.fecthSales(this.id, this.actualPage + 1);
       }
     });
