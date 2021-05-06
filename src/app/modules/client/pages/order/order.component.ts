@@ -24,6 +24,7 @@ export class OrderComponent implements OnInit {
   products$: Observable<Product[]>;
   orderProducts: Product[] = [];
   cards: Card[];
+  selectedCard: Card;
   id: number;
 
   isLinear = false;
@@ -71,4 +72,5 @@ export class OrderComponent implements OnInit {
       console.log(cards);
     });
   }
+  buyProducts() {}
 }

@@ -24,6 +24,7 @@ export class OrderItemComponent implements OnInit {
 
   ngOnInit() {
     this.fetchProductPhoto();
+    this.getProductQuantity();
   }
   getProductQuantity() {
     var total = 0;
@@ -35,6 +36,9 @@ export class OrderItemComponent implements OnInit {
       });
     });
     this.product.quantity = total;
+    this.productTotalPrice = this.product.price * this.product.quantity;
+  }
+  getRefreshQuantity() {
     this.productTotalPrice = this.product.price * this.product.quantity;
   }
   fetchProductPhoto() {

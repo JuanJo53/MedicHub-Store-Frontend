@@ -1,13 +1,16 @@
-.no_products{
-    align-items: center;
-    align-content: center;
+.no_products {
+  align-items: center;
+  align-content: center;
 }
-.txtvermas{
-    color: #2f4a85;
+.txtvermas {
+  color: #2f4a85;
 }
-.btnform{
-    margin-top: 10px;
-    background-color: #2f4a85;
-    color: white;
-    margin-left: 5px;
-  }
+.btnform {
+  margin-top: 10px;
+  background-color: #2f4a85;
+  color: white;
+  margin-left: 5px;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
