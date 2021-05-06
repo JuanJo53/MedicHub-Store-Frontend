@@ -26,6 +26,7 @@ import { AdminAccountComponent } from "./modules/admin/pages/admin-account/admin
 import { SalesComponent } from "./modules/pharm-admin/pages/sales/sales.component";
 import { OrdersComponent } from "./modules/pharm-admin/pages/orders/orders.component";
 import { OrderComponent } from "./modules/client/pages/order/order.component";
+import { OrdersHistoryComponent } from "./modules/client/pages/orders-history/orders-history.component";
 
 const routes: Routes = [
   // {
@@ -142,6 +143,11 @@ const routes: Routes = [
         component: ClientProfilePageComponent,
       },
       {
+        path: "client/ordersHistory",
+        canActivate: [ClientGuard],
+        component: OrdersHistoryComponent,
+      },
+      {
         path: "client/pharmacies",
         canActivate: [ClientGuard],
         component: PharmaciesPageComponent,
@@ -156,11 +162,6 @@ const routes: Routes = [
         canActivate: [ClientGuard],
         component: ProductDetailComponent,
       },
-      // {
-      //   path: "client/bill",
-      // canActivate: [ClientGuard],
-      //   component: BrandsComponent,
-      // },
       {
         path: "client/creditCards",
         canActivate: [ClientGuard],
