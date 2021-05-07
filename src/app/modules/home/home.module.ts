@@ -89,6 +89,8 @@ import { OrdersComponent } from "../pharm-admin/pages/orders/orders.component";
 import { OrderDetailComponent } from "../pharm-admin/components/order-detail/order-detail.component";
 import { UploadAdminImageComponent } from "../admin/components/upload-admin-image/upload-admin-image.component";
 import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item.component";
+import { RequestedOrdersComponent } from "../client/pages/requested-orders/requested-orders.component";
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -154,6 +156,7 @@ import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item
     OrderDetailComponent,
     UploadAdminImageComponent,
     SaleItemComponent,
+    RequestedOrdersComponent,
   ],
   imports: [
     CommonModule,
