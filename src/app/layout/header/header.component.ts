@@ -97,4 +97,7 @@ export class HeaderComponent implements OnInit {
       this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     });
   }
+  getCartProducts() {
+    this.cartService.fetchProducts(this.userId);
+  }
 }
