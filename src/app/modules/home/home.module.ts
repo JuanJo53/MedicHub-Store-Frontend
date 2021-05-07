@@ -90,7 +90,6 @@ import { OrderDetailComponent } from "../pharm-admin/components/order-detail/ord
 import { UploadAdminImageComponent } from "../admin/components/upload-admin-image/upload-admin-image.component";
 import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item.component";
 import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-history.component";
-import { RequestedOrdersComponent } from "../client/pages/requested-orders/requested-orders.component";
 
 @NgModule({
   declarations: [
@@ -158,7 +157,6 @@ import { RequestedOrdersComponent } from "../client/pages/requested-orders/reque
     UploadAdminImageComponent,
     SaleItemComponent,
     OrdersHistoryComponent,
-    RequestedOrdersComponent,
   ],
   imports: [
     CommonModule,
