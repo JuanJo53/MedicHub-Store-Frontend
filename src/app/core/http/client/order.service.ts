@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { NewProductOrder } from "src/app/shared/models/new-product-order";
 import { Order } from "src/app/shared/models/order";
 import { Product } from "src/app/shared/models/product";
+import { ProductOrder } from "src/app/shared/models/product-order";
 import apiKey from "../../apiKey";
 import { TokenService } from "../../authentication/token.service";
 

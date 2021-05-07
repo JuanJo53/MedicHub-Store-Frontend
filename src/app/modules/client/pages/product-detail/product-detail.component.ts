@@ -10,6 +10,8 @@ import { OrderService } from "src/app/core/http/client/order.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { DomSanitizer } from "@angular/platform-browser";
 import { FileService } from "src/app/core/services/file.service";
+import { TokenService } from "src/app/core/authentication/token.service";
+import { NewProductOrder } from "src/app/shared/models/new-product-order";
 
 @Component({
   selector: "app-product-detail",
@@ -18,6 +20,7 @@ import { FileService } from "src/app/core/services/file.service";
 })
 export class ProductDetailComponent implements OnInit {
   product: Product;
+  orderProduct: Product;
   id: number;
   image: any;
   quantity?: number;
@@ -28,6 +31,7 @@ export class ProductDetailComponent implements OnInit {
     private cartService: CartService,
     private orderService: OrderService,
     private fileService: FileService,
+    private tokenService: TokenService,
     private sanitizer: DomSanitizer,
     private _location: Location,
     private _snackBar: MatSnackBar,
@@ -48,8 +52,6 @@ export class ProductDetailComponent implements OnInit {
   fetchProduct(id: number): void {
     this.productsServide.getProduct(id).subscribe((product) => {
       this.product = product;
-      console.log(product);
-      console.log(this.product.picture);
       this.fetchProductPhoto();
     });
   }
@@ -59,31 +61,36 @@ export class ProductDetailComponent implements OnInit {
       this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
     });
   }
-  displaySuccesDialog(text: string) {
-    const dialogRef = this.dialog.open(SuccesDialogComponent, {
-      width: "500px",
-      data: {
-        message: text,
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      window.location.reload();
-    });
-  }
   addCart() {
     if (this.quantity) {
       for (let i = 0; i < this.quantity; i++) {
         this.cartService.addCart(this.product);
       }
       this.product.quantity = this.quantity;
-      console.log(this.product);
-      this.orderService.postNewOrderItem(this.product).subscribe((response) => {
-        console.log(response);
-      });
+      this.orderProduct = this.product;
+      delete this.orderProduct["brandId"];
+      delete this.orderProduct["name"];
+      delete this.orderProduct["brandName"];
+      delete this.orderProduct["description"];
+      delete this.orderProduct["dose"];
+      delete this.orderProduct["price"];
+      delete this.orderProduct["picture"];
+      delete this.orderProduct["stock"];
+      delete this.orderProduct["subsidiaryId"];
+      delete this.orderProduct["total"];
+      this.orderProduct["quantity"] = this.product.quantity;
+      this.orderProduct["productId"] = this.product.productId;
+      this.orderProduct["clientId"] = parseInt(this.tokenService.getUserId());
+      this.orderService
+        .postNewOrderItem(this.orderProduct)
+        .subscribe((response) => {
+          if (response == "OK") {
+            this._snackBar.open("Agregado a carrito de compras", "OK", {
+              duration: 3000,
+            });
+          }
+        });
     }
-    this._snackBar.open("Agregado a carrito de compras", "OK", {
-      duration: 3000,
-    });
   }
   backClicked() {
     this._location.back();

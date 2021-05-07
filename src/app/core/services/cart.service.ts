@@ -24,6 +24,7 @@ export class CartService {
     this.cart.next(this.products);
     console.log(this.products);
   }
+  fetchProducts() {}
   getProducts() {
     return this.products;
   }
