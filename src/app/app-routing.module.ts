@@ -27,6 +27,7 @@ import { SalesComponent } from "./modules/pharm-admin/pages/sales/sales.componen
 import { OrdersComponent } from "./modules/pharm-admin/pages/orders/orders.component";
 import { OrderComponent } from "./modules/client/pages/order/order.component";
 import { OrdersHistoryComponent } from "./modules/client/pages/orders-history/orders-history.component";
+import { PharmReportsPageComponent } from "./modules/pharm-admin/pages/pharm-reports-page/pharm-reports-page.component";
 
 const routes: Routes = [
   // {
@@ -96,11 +97,11 @@ const routes: Routes = [
         canActivate: [PharmAdminGuard],
         component: PharmAdminAccountComponent,
       },
-      // {
-      //   path: "pharmAdmin/reports",
-      //   canActivate: [PharmAdminGuard],
-      //   component: ProductsComponent,
-      // },
+      {
+        path: "pharmAdmin/reports",
+        canActivate: [PharmAdminGuard],
+        component: PharmReportsPageComponent,
+      },
       {
         path: "pharmAdmin/sales",
         canActivate: [PharmAdminGuard],

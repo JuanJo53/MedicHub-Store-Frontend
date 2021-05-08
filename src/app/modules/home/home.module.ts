@@ -91,6 +91,7 @@ import { UploadAdminImageComponent } from "../admin/components/upload-admin-imag
 import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item.component";
 import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-history.component";
 import { MatChipsModule } from "@angular/material/chips";
+import { PharmReportsPageComponent } from "../pharm-admin/pages/pharm-reports-page/pharm-reports-page.component";
 
 @NgModule({
   declarations: [
@@ -158,6 +159,7 @@ import { MatChipsModule } from "@angular/material/chips";
     UploadAdminImageComponent,
     SaleItemComponent,
     OrdersHistoryComponent,
+    PharmReportsPageComponent,
   ],
   imports: [
     CommonModule,
