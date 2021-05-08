@@ -19,7 +19,8 @@ export class OrderService {
     });
   }
 
-  postNewOrderItem(product: ProductOrder) {
+  postNewOrderItem(product: Product) {
+    console.log(product);
     return this.http.post(apiKey.api + `/reserve`, product, {
       headers: this.headers,
     });
@@ -41,7 +42,7 @@ export class OrderService {
   }
   getClientOrderItems(clientId: number) {
     return this.http.get<Product[]>(
-      apiKey.api + `/reserve/${clientId}/list?page=0&size=5&state=1`,
+      apiKey.api + `/reserve/${clientId}/list?page=0&size=500&state=1`,
       {
         headers: this.headers,
       }
@@ -69,9 +70,12 @@ export class OrderService {
       headers: this.headers,
     });
   }
-  getOrderDetail(clientId: number) {
+  getOrderDetail(clientId: number, page: number, size: number) {
     return this.http.get<Order>(
-      apiKey.api + `/reserve/${clientId}/list?page=0&size=5&state=1`,
+      apiKey.api +
+        `/reserve/${clientId}/list?page=${
+          (page - 1) * size
+        }&size=${size}&state=1`,
       {
         headers: this.headers,
       }

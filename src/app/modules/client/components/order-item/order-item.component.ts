@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
+import { TokenService } from "src/app/core/authentication/token.service";
 import { OrderService } from "src/app/core/http/client/order.service";
-import { CartService } from "src/app/core/services/cart.service";
 import { FileService } from "src/app/core/services/file.service";
 import { Product } from "src/app/shared/models/product";
 import { ProductOrder } from "src/app/shared/models/product-order";
@@ -13,8 +13,11 @@ import { ProductOrder } from "src/app/shared/models/product-order";
 })
 export class OrderItemComponent implements OnInit {
   @Input() product: Product;
+  @Output() removeOrderItemEvent = new EventEmitter<number>();
+
   item: ProductOrder;
 
+  clientId: number;
   image: any;
   editQuantity = false;
   productTotalPrice: number;
@@ -22,11 +25,14 @@ export class OrderItemComponent implements OnInit {
   constructor(
     private fileService: FileService,
     private orderService: OrderService,
+    private tokenService: TokenService,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
+    this.clientId = parseInt(this.tokenService.getUserId());
     this.fetchProductPhoto();
+    this.getRefreshQuantity();
   }
   getRefreshQuantity() {
     this.productTotalPrice = this.product.price * this.product.quantity;
@@ -39,22 +45,30 @@ export class OrderItemComponent implements OnInit {
     }
   }
   updateQuantity() {
+    this.item = this.product;
+    this.item["clientId"] = this.clientId;
+    this.item["productId"] = this.product.productId;
+    this.item["quantity"] = this.product.quantity;
+    console.log(this.item);
     this.orderService
       .updateOrderItemQuantity(this.item)
       .subscribe((response) => {
         console.log(response);
       });
+    this.editQuantity = false;
   }
   fetchProductPhoto() {
-    this.fileService.getUserPhoto(this.product.picture).subscribe((data) => {
-      let objectURL = URL.createObjectURL(data);
-      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    });
+    if (this.product.picture != "null") {
+      this.fileService.getUserPhoto(this.product.picture).subscribe((data) => {
+        let objectURL = URL.createObjectURL(data);
+        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      });
+    }
   }
   removeProduct(id: number) {
     this.orderService.removeOrderItem(id).subscribe((response) => {
       if (response == "ACCEPTED") {
-        console.log(response);
+        this.removeOrderItemEvent.emit(id);
       } else {
         console.log("nel");
       }

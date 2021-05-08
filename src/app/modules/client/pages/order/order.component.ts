@@ -22,7 +22,6 @@ import { Order } from "src/app/shared/models/order";
 export class OrderComponent implements OnInit {
   reserve: Order;
   products: Product[];
-  orderProducts: Product[] = [];
   cards: Card[];
   selectedCard: Card;
   id: number;
@@ -47,7 +46,7 @@ export class OrderComponent implements OnInit {
     }
   }
   fetchOrderDetails() {
-    this.orderService.getOrderDetail(this.id).subscribe((data) => {
+    this.orderService.getOrderDetail(this.id, 1, 500).subscribe((data) => {
       this.reserve = data;
       this.products = this.reserve.product;
     });
@@ -57,6 +56,10 @@ export class OrderComponent implements OnInit {
     this.cardService.getClientCards(id).subscribe((cards) => {
       this.cards = cards;
     });
+  }
+  removeItem(id: number) {
+    console.log(id);
+    this.fetchOrderDetails();
   }
   buyProducts() {}
 }

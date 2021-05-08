@@ -43,6 +43,7 @@
         Dosis:
         <h3>{{ product.dose }}</h3>
         <br /><br />
+        Cantidad:
         <mat-chip-list class="example-chip" cdkDropList *ngIf="!editQuantity">
           <mat-chip class="quantity" (click)="changeQuantity()">
             {{ product.quantity }}
@@ -50,13 +51,11 @@
         </mat-chip-list>
         <div class="edit_quantity" *ngIf="editQuantity">
           <mat-form-field class="product_quantity">
-            <mat-label>Cantidad:</mat-label>
             <input
               [(ngModel)]="product.quantity"
               matInput
               type="number"
               min="1"
-              placeholder="100"
               (change)="getRefreshQuantity()"
               #input
             />
@@ -87,7 +86,7 @@
       </div>
       <div class="col">
         Precio Total:
-        <h3>{{ productTotalPrice }} Bs.</h3>
+        <h3>{{ productTotalPrice | number }} Bs.</h3>
         <br /><br />
       </div>
     </div>

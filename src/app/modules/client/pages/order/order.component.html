@@ -5,10 +5,14 @@
         <div *ngIf="products.length > 0">
           <div class="row justify-content-between">
             <h2 class="col-md-4">Productos en tu Carrito</h2>
-            <h2 class="col-md-4">Total: {{ reserve.total }}</h2>
+            <h2 class="col-md-4">Total: {{ reserve.total | number }} Bs.</h2>
           </div>
           <div class="products_list" *ngFor="let product of products">
-            <app-order-item [product]="product"> </app-order-item>
+            <app-order-item
+              [product]="product"
+              (removeOrderItemEvent)="removeItem($event)"
+            >
+            </app-order-item>
           </div>
           <div>
             <button mat-raised-button matStepperNext>Siguiente</button>
@@ -61,7 +65,11 @@
             <h2 class="col-md-4">Total: {{ reserve.total }}</h2>
           </div>
           <div class="products_list" *ngFor="let product of products">
-            <app-order-item [product]="product"> </app-order-item>
+            <app-order-item
+              [product]="product"
+              (removeOrderItemEvent)="removeItem($event)"
+            >
+            </app-order-item>
           </div>
         </div>
         <div class="selected_card" *ngIf="selectedCard">

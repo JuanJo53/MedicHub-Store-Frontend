@@ -29,7 +29,6 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private productsServide: ProductsService,
     private activatedRoute: ActivatedRoute,
-    private cartService: CartService,
     private orderService: OrderService,
     private fileService: FileService,
     private tokenService: TokenService,
@@ -65,9 +64,6 @@ export class ProductDetailComponent implements OnInit {
   }
   addCart() {
     if (this.quantity) {
-      for (let i = 0; i < this.quantity; i++) {
-        this.cartService.addCart(this.product);
-      }
       this.product.quantity = this.quantity;
       this.orderProduct = this.product;
       delete this.orderProduct["brandId"];
@@ -93,6 +89,7 @@ export class ProductDetailComponent implements OnInit {
             });
           }
         });
+      this.fetchProduct(this.id);
     }
   }
   backClicked() {
