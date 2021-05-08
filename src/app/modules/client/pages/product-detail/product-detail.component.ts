@@ -12,6 +12,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { FileService } from "src/app/core/services/file.service";
 import { TokenService } from "src/app/core/authentication/token.service";
 import { NewProductOrder } from "src/app/shared/models/new-product-order";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 @Component({
   selector: "app-product-detail",
@@ -33,6 +34,7 @@ export class ProductDetailComponent implements OnInit {
     private fileService: FileService,
     private tokenService: TokenService,
     private sanitizer: DomSanitizer,
+    private eventEmitterService: EventEmitterService,
     private _location: Location,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog
@@ -85,6 +87,7 @@ export class ProductDetailComponent implements OnInit {
         .postNewOrderItem(this.orderProduct)
         .subscribe((response) => {
           if (response == "OK") {
+            this.eventEmitterService.onItemEvent("Cantidad actualizada");
             this._snackBar.open("Agregado a carrito de compras", "OK", {
               duration: 3000,
             });

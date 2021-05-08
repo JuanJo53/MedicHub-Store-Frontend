@@ -13,6 +13,7 @@ import { ClientService } from "src/app/core/http/admin/client.service";
 import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 import { PharmAdminsService } from "src/app/core/http/admin/pharm-admins.service";
 import { AdminService } from "src/app/core/http/admin/admin.service";
+import { OrderService } from "src/app/core/http/client/order.service";
 
 @Component({
   selector: "app-header",
@@ -20,7 +21,7 @@ import { AdminService } from "src/app/core/http/admin/admin.service";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-  total$: Observable<number>;
+  total: number = 0;
   role: number;
   username: string;
   image: any;
@@ -33,15 +34,12 @@ export class HeaderComponent implements OnInit {
     private clientService: ClientService,
     private pharmAdminService: PharmAdminsService,
     private adminService: AdminService,
+    private orderService: OrderService,
     private fileService: FileService,
     private sanitizer: DomSanitizer,
     private eventEmitterService: EventEmitterService,
     public dialog: MatDialog
-  ) {
-    this.total$ = this.cartService.cart$.pipe(
-      map((products) => products.length)
-    );
-  }
+  ) {}
 
   ngOnInit() {
     this.username = this.tokenServide.getUserName();
@@ -52,6 +50,12 @@ export class HeaderComponent implements OnInit {
       this.eventEmitterService.clientSubs = this.eventEmitterService.clientPhotoEvent.subscribe(
         (name: string) => {
           this.getDetails(this.userId);
+          console.log(name);
+        }
+      );
+      this.eventEmitterService.cartSubs = this.eventEmitterService.cartEvent.subscribe(
+        (name: string) => {
+          this.fetchCartQuantityItems();
           console.log(name);
         }
       );
@@ -76,6 +80,7 @@ export class HeaderComponent implements OnInit {
         this.imageUrl = client.picture;
         this.username = client.userName;
         this.fetchUserPhoto();
+        this.fetchCartQuantityItems();
       });
     }
     if (this.role == 2) {
@@ -95,6 +100,11 @@ export class HeaderComponent implements OnInit {
     this.fileService.getUserPhoto(this.imageUrl).subscribe((data) => {
       let objectURL = URL.createObjectURL(data);
       this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    });
+  }
+  fetchCartQuantityItems() {
+    this.orderService.getQuantityOrder(this.userId).subscribe((result) => {
+      this.total = result;
     });
   }
   getCartProducts() {

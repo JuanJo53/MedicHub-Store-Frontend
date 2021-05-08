@@ -1,11 +1,11 @@
 <div class="container">
   <mat-horizontal-stepper>
     <mat-step label="Confirmar Productos" state="products">
-      <div class="products" *ngIf="products$ | async as products">
+      <div class="products" *ngIf="products">
         <div *ngIf="products.length > 0">
           <div class="row justify-content-between">
             <h2 class="col-md-4">Productos en tu Carrito</h2>
-            <h2 class="col-md-4">Total: {{ orderTotal }}</h2>
+            <h2 class="col-md-4">Total: {{ reserve.total }}</h2>
           </div>
           <div class="products_list" *ngFor="let product of products">
             <app-order-item [product]="product"> </app-order-item>
@@ -54,11 +54,11 @@
     <mat-step label="Confirmar Compra" state="confirm">
       <h2 class="txtvermas">¡Ultimo paso! Confirma la compra.</h2>
       <br />
-      <div class="products" *ngIf="products$ | async as products">
+      <div class="products" *ngIf="products">
         <div *ngIf="products.length > 0">
           <div class="row justify-content-between">
             <h2 class="col-md-4">Productos en tu Carrito</h2>
-            <h2 class="col-md-4">Total: {{ orderTotal }}</h2>
+            <h2 class="col-md-4">Total: {{ reserve.total }}</h2>
           </div>
           <div class="products_list" *ngFor="let product of products">
             <app-order-item [product]="product"> </app-order-item>

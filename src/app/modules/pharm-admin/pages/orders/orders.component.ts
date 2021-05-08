@@ -55,7 +55,7 @@ export class OrdersComponent implements OnInit {
     try {
       if (this.id) {
         this.fecthOrder(this.id, this.length);
-        this.orderService.getTotalOrders(this.id).subscribe((element) => {
+        this.orderService.getTotalPharmOrders(this.id).subscribe((element) => {
           this.length = element;
         });
       }

@@ -1,4 +1,7 @@
+import { Product } from "./product";
+
 export interface Order {
-  orderId: number;
-  status: number;
+  reserveId: number;
+  total: number;
+  product: Product[];
 }

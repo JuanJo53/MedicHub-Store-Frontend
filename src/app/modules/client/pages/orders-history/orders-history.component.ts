@@ -57,7 +57,7 @@ export class OrdersHistoryComponent implements OnInit {
     try {
       if (this.id) {
         this.getOrdersTotal();
-        this.filterType = "all";
+        this.filterType = "pending";
         this.fecthOrders(this.id, this.length);
       }
     } catch (error) {

@@ -22,7 +22,7 @@ export class OrderService {
       headers: this.headers,
     });
   }
-  getTotalOrders(subId: number) {
+  getTotalPharmOrders(subId: number) {
     return this.http.get<any>(apiKey.api + `/order/${subId}/total`, {
       headers: this.headers,
     });

@@ -90,6 +90,7 @@ import { OrderDetailComponent } from "../pharm-admin/components/order-detail/ord
 import { UploadAdminImageComponent } from "../admin/components/upload-admin-image/upload-admin-image.component";
 import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item.component";
 import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-history.component";
+import { MatChipsModule } from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -187,6 +188,7 @@ import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-hi
     ScrollingModule,
     MatStepperModule,
     MatSnackBarModule,
+    MatChipsModule,
   ],
   entryComponents: [
     LoginComponent,

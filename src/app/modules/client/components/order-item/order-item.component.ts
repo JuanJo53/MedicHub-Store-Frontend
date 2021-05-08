@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
+import { OrderService } from "src/app/core/http/client/order.service";
 import { CartService } from "src/app/core/services/cart.service";
 import { FileService } from "src/app/core/services/file.service";
 import { Product } from "src/app/shared/models/product";
+import { ProductOrder } from "src/app/shared/models/product-order";
 
 @Component({
   selector: "app-order-item",
@@ -11,35 +13,37 @@ import { Product } from "src/app/shared/models/product";
 })
 export class OrderItemComponent implements OnInit {
   @Input() product: Product;
+  item: ProductOrder;
 
   image: any;
-
+  editQuantity = false;
   productTotalPrice: number;
 
   constructor(
-    private cartService: CartService,
     private fileService: FileService,
+    private orderService: OrderService,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.fetchProductPhoto();
-    this.getProductQuantity();
-  }
-  getProductQuantity() {
-    var total = 0;
-    this.cartService.cart$.subscribe((products) => {
-      products.forEach((elemento) => {
-        if (elemento.productId === this.product.productId) {
-          total += 1;
-        }
-      });
-    });
-    this.product.quantity = total;
-    this.productTotalPrice = this.product.price * this.product.quantity;
   }
   getRefreshQuantity() {
     this.productTotalPrice = this.product.price * this.product.quantity;
+  }
+  changeQuantity() {
+    if (this.editQuantity) {
+      this.editQuantity = false;
+    } else {
+      this.editQuantity = true;
+    }
+  }
+  updateQuantity() {
+    this.orderService
+      .updateOrderItemQuantity(this.item)
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
   fetchProductPhoto() {
     this.fileService.getUserPhoto(this.product.picture).subscribe((data) => {
@@ -48,6 +52,12 @@ export class OrderItemComponent implements OnInit {
     });
   }
   removeProduct(id: number) {
-    this.cartService.removeItem(id);
+    this.orderService.removeOrderItem(id).subscribe((response) => {
+      if (response == "ACCEPTED") {
+        console.log(response);
+      } else {
+        console.log("nel");
+      }
+    });
   }
 }

@@ -24,15 +24,28 @@ export class OrderService {
       headers: this.headers,
     });
   }
-  getTotalOrders(subId: number) {
-    return this.http.get<any>(apiKey.api + `/order/${subId}/total`, {
+  getTotalOrders(clientId: number) {
+    return this.http.get<any>(apiKey.api + `/reserve/${clientId}/total`, {
+      headers: this.headers,
+    });
+  }
+  getTotalCostOrders(clientId: number) {
+    return this.http.get<any>(apiKey.api + `/reserve/${clientId}/total`, {
+      headers: this.headers,
+    });
+  }
+  getQuantityOrder(clientId: number) {
+    return this.http.get<any>(apiKey.api + `/reserve/${clientId}/quantity`, {
       headers: this.headers,
     });
   }
   getClientOrderItems(clientId: number) {
-    return this.http.get<Product[]>(apiKey.api + `/order/${clientId}`, {
-      headers: this.headers,
-    });
+    return this.http.get<Product[]>(
+      apiKey.api + `/reserve/${clientId}/list?page=0&size=5&state=1`,
+      {
+        headers: this.headers,
+      }
+    );
   }
   getClientOrders(
     prodId: number,
@@ -53,6 +66,24 @@ export class OrderService {
   }
   getOrders(orderId: number) {
     return this.http.get<Order>(apiKey.api + `/order/${orderId}`, {
+      headers: this.headers,
+    });
+  }
+  getOrderDetail(clientId: number) {
+    return this.http.get<Order>(
+      apiKey.api + `/reserve/${clientId}/list?page=0&size=5&state=1`,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+  updateOrderItemQuantity(item: ProductOrder) {
+    return this.http.put(apiKey.api + `/reserve`, item, {
+      headers: this.headers,
+    });
+  }
+  removeOrderItem(productId: number) {
+    return this.http.delete(apiKey.api + `/reserve/${productId}`, {
       headers: this.headers,
     });
   }

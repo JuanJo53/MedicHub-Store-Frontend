@@ -43,18 +43,34 @@
         Dosis:
         <h3>{{ product.dose }}</h3>
         <br /><br />
-        <mat-form-field class="product_quantity">
-          <mat-label>Cantidad:</mat-label>
-          <input
-            [(ngModel)]="product.quantity"
-            matInput
-            type="number"
-            min="1"
-            placeholder="100"
-            (change)="getRefreshQuantity()"
-            #input
-          />
-        </mat-form-field>
+        <mat-chip-list class="example-chip" cdkDropList *ngIf="!editQuantity">
+          <mat-chip class="quantity" (click)="changeQuantity()">
+            {{ product.quantity }}
+          </mat-chip>
+        </mat-chip-list>
+        <div class="edit_quantity" *ngIf="editQuantity">
+          <mat-form-field class="product_quantity">
+            <mat-label>Cantidad:</mat-label>
+            <input
+              [(ngModel)]="product.quantity"
+              matInput
+              type="number"
+              min="1"
+              placeholder="100"
+              (change)="getRefreshQuantity()"
+              #input
+            />
+          </mat-form-field>
+          <br />
+          <div class="editQuantityBtns">
+            <button mat-mini-fab color="primary" (click)="updateQuantity()">
+              <mat-icon>check</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" (click)="changeQuantity()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
       </div>
       <div class="col-md-2">
         Precio Unitario:
