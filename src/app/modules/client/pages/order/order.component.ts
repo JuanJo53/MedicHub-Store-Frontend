@@ -110,4 +110,20 @@ export class OrderComponent implements OnInit {
       },
     });
   }
+  
+  buyCancelledProducts(){
+    if (this.products.length < 0 ) {
+      this.displayCancelledBuyProducts("¡Gracias por su compra!");
+    } else {
+      console.log("error");
+    }
+  }
+  displayCancelledBuyProducts(text: string){
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
+    });
+  }
 }

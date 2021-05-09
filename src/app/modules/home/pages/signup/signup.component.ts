@@ -162,7 +162,7 @@ export class SignupComponent implements OnInit {
       console.log(client);
       this.router.navigate(["/", "login"]);
       this.displaySuccesDialog(
-        "¡Su registro se realizo correctamente! ¡Ahora puede iniciar secion!"
+        "¡Su registro se realizo correctamente! ¡Ahora puede iniciar sesión!"
       );
     });
   }
