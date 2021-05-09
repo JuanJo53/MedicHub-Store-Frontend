@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { STEPPER_GLOBAL_OPTIONS } from "@angular/cdk/stepper";
 import { Product } from "src/app/shared/models/product";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -26,6 +26,9 @@ import { EventEmitterService } from "src/app/core/services/event-emitter.service
   ],
 })
 export class OrderComponent implements OnInit {
+
+  
+
   reserve: Order;
   products: Product[];
   cards: Card[];
@@ -110,11 +113,15 @@ export class OrderComponent implements OnInit {
       },
     });
   }
-  
   buyCancelledProducts(){
-    this.orderService.removeOrderItems(this.id)
-    this.displayCancelledBuyProducts("Compra cancelada con exito");
-    
+    this.orderService.removeOrderItems(this.id).subscribe((response) => {
+      if (response == "ACCEPTED") {
+        this.fetchOrderDetails()
+        this.displayCancelledBuyProducts("Compra cancelada con exito");
+      } else {
+        console.log("error");
+      }
+    });
   }
   displayCancelledBuyProducts(text: string){
     this.dialog.open(SuccesDialogComponent, {
