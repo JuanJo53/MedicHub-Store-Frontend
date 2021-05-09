@@ -114,7 +114,7 @@ export class OrderComponent implements OnInit {
     });
   }
   buyCancelledProducts(){
-    this.orderService.removeOrderItems(this.id).subscribe((response) => {
+    this.orderService.removeOrderItems(this.reserve.reserveId).subscribe((response) => {
       if (response == "ACCEPTED") {
         this.fetchOrderDetails()
         this.displayCancelledBuyProducts("Compra cancelada con exito");
