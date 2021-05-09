@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { NewProductOrder } from "src/app/shared/models/new-product-order";
 import { Order } from "src/app/shared/models/order";
+import { Payment } from "src/app/shared/models/payment";
 import { Product } from "src/app/shared/models/product";
 import { ProductOrder } from "src/app/shared/models/product-order";
 import apiKey from "../../apiKey";
@@ -19,7 +21,7 @@ export class OrderService {
     });
   }
 
-  postNewOrderItem(product: Product) {
+  postNewOrderItem(product: NewProductOrder) {
     console.log(product);
     return this.http.post(apiKey.api + `/reserve`, product, {
       headers: this.headers,
@@ -83,6 +85,11 @@ export class OrderService {
   }
   updateOrderItemQuantity(item: ProductOrder) {
     return this.http.put(apiKey.api + `/reserve`, item, {
+      headers: this.headers,
+    });
+  }
+  payCart(item: Payment) {
+    return this.http.post(apiKey.api + `/payment`, item, {
       headers: this.headers,
     });
   }

@@ -54,6 +54,7 @@ export class OrderItemComponent implements OnInit {
       .updateOrderItemQuantity(this.item)
       .subscribe((response) => {
         console.log(response);
+        this.removeOrderItemEvent.emit(0);
       });
     this.editQuantity = false;
   }

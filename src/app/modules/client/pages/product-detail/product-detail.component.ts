@@ -21,7 +21,7 @@ import { EventEmitterService } from "src/app/core/services/event-emitter.service
 })
 export class ProductDetailComponent implements OnInit {
   product: Product;
-  orderProduct: Product;
+  orderProduct: NewProductOrder;
   id: number;
   image: any;
   quantity?: number;
@@ -65,20 +65,11 @@ export class ProductDetailComponent implements OnInit {
   addCart() {
     if (this.quantity) {
       this.product.quantity = this.quantity;
-      this.orderProduct = this.product;
-      delete this.orderProduct["brandId"];
-      delete this.orderProduct["name"];
-      delete this.orderProduct["brandName"];
-      delete this.orderProduct["description"];
-      delete this.orderProduct["dose"];
-      delete this.orderProduct["price"];
-      delete this.orderProduct["picture"];
-      delete this.orderProduct["stock"];
-      delete this.orderProduct["subsidiaryId"];
-      delete this.orderProduct["total"];
-      this.orderProduct["quantity"] = this.product.quantity;
-      this.orderProduct["productId"] = this.product.productId;
-      this.orderProduct["clientId"] = parseInt(this.tokenService.getUserId());
+      this.orderProduct = {
+        clientId: parseInt(this.tokenService.getUserId()),
+        productId: this.product.productId,
+        quantity: this.product.quantity,
+      };
       this.orderService
         .postNewOrderItem(this.orderProduct)
         .subscribe((response) => {

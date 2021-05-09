@@ -8,7 +8,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { DatePipe, DecimalPipe } from "@angular/common";
 import { CreditCardDirectivesModule } from "angular-cc-library";
 import { CartPipe } from "./shared/pipes/cart.pipe";
-import { PharmReportsPageComponent } from "./modules/pharm-admin/pages/pharm-reports-page/pharm-reports-page.component";
 
 @NgModule({
   declarations: [AppComponent],

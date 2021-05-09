@@ -7,6 +7,12 @@ import { TokenService } from "src/app/core/authentication/token.service";
 import { Card } from "src/app/shared/models/card";
 import { OrderService } from "src/app/core/http/client/order.service";
 import { Order } from "src/app/shared/models/order";
+import { Payment } from "src/app/shared/models/payment";
+import { MatDialog } from "@angular/material/dialog";
+import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
+import { Router } from "@angular/router";
+import { EventEmitterService } from "src/app/core/services/event-emitter.service";
 
 @Component({
   selector: "app-order",
@@ -24,6 +30,8 @@ export class OrderComponent implements OnInit {
   products: Product[];
   cards: Card[];
   selectedCard: Card;
+  payment: Payment;
+
   id: number;
 
   isLinear = false;
@@ -31,7 +39,10 @@ export class OrderComponent implements OnInit {
   constructor(
     private cardService: CardService,
     private tokenService: TokenService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private router: Router,
+    private eventEmitterService: EventEmitterService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -48,6 +59,7 @@ export class OrderComponent implements OnInit {
   fetchOrderDetails() {
     this.orderService.getOrderDetail(this.id, 1, 500).subscribe((data) => {
       this.reserve = data;
+      this.reserve.total = data.total;
       this.products = this.reserve.product;
     });
   }
@@ -61,5 +73,41 @@ export class OrderComponent implements OnInit {
     console.log(id);
     this.fetchOrderDetails();
   }
-  buyProducts() {}
+  buyProducts() {
+    if (this.products.length > 0 && this.selectedCard) {
+      this.payment = {
+        clientId: this.id,
+        cardId: this.selectedCard.cardId,
+        total: this.reserve.total,
+      };
+      console.log(this.payment);
+      this.orderService.payCart(this.payment).subscribe((response) => {
+        if (response == "OK") {
+          this.displaySuccesDialog("¡Gracias por su compra!");
+          this.eventEmitterService.onItemEvent("Cantidad actualizada");
+          this.router.navigate(["/client/ordersHistory"]);
+        } else {
+          this.displayFailureDialog("¡Ocurrio un error al procesar su pago!");
+        }
+      });
+    } else {
+      console.log("error");
+    }
+  }
+  displaySuccesDialog(text: string) {
+    this.dialog.open(SuccesDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
+    });
+  }
+  displayFailureDialog(text: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      width: "500px",
+      data: {
+        message: text,
+      },
+    });
+  }
 }
