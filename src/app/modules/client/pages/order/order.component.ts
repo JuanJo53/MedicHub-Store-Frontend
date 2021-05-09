@@ -112,11 +112,9 @@ export class OrderComponent implements OnInit {
   }
   
   buyCancelledProducts(){
-    if (this.products.length < 0 ) {
-      this.displayCancelledBuyProducts("¡Gracias por su compra!");
-    } else {
-      console.log("error");
-    }
+    this.orderService.removeOrderItems(this.id)
+    this.displayCancelledBuyProducts("Compra cancelada con exito");
+    
   }
   displayCancelledBuyProducts(text: string){
     this.dialog.open(SuccesDialogComponent, {

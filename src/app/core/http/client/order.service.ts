@@ -50,6 +50,12 @@ export class OrderService {
       }
     );
   }
+  removeOrderItems(clientId: number) {
+    return this.http.delete(apiKey.api + `/reserve/${clientId}/client`, {
+      headers: this.headers,
+    });
+  }
+    
   getClientOrders(
     prodId: number,
     page: number,

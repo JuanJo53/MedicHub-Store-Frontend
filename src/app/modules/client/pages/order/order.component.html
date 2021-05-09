@@ -16,9 +16,9 @@
           </div>
           <div>
             <button mat-raised-button matStepperNext>Siguiente</button>
-            <button type="submit"
+            <button 
             mat-raised-button
-            class="button_cancelled" >Cancelar compra</button>
+            class="button_cancelled" (click)="buyCancelledProducts()">Cancelar compra</button>
           </div>
         </div>
         <div class="no_products" *ngIf="products.length == 0" align="center">
