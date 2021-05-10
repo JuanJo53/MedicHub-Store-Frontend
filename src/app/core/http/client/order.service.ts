@@ -64,13 +64,15 @@ export class OrderService {
     clientId: number,
     page: number,
     size: number,
-    filter: number
+    type: number,
+    filter: number,
+    typeFilter: number
   ) {
     return this.http.get<Order[]>(
       apiKey.api +
         `/reserve/${clientId}/client/list?page=${
           (page - 1) * size
-        }&size=${size}&state=${filter}`,
+        }&size=${size}&state=${type}&value=`,
       { headers: this.headers }
     );
   }

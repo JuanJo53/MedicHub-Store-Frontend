@@ -36,11 +36,10 @@ export class OrdersHistoryComponent implements OnInit {
     "Cost",
     "Quantity",
     "Products",
-    "id_saleDetail",
   ];
 
   id: number;
-  name: string;
+  typeOrder: any;
   filter: any;
   filterType: any;
 
@@ -57,7 +56,7 @@ export class OrdersHistoryComponent implements OnInit {
     this.id = parseInt(this.tokenService.getUserId());
     try {
       if (this.id) {
-        this.filterType = "2";
+        this.typeOrder = "2";
         this.fecthOrders(this.length);
       }
     } catch (error) {
@@ -72,14 +71,23 @@ export class OrdersHistoryComponent implements OnInit {
   }
   fecthOrders(page: number): void {
     this.orderService
-      .getClientOrders(this.id, page, this.size, parseInt(this.filterType))
+      .getClientOrders(
+        this.id,
+        page,
+        this.size,
+        parseInt(this.typeOrder),
+        this.filter,
+        this.filterType
+      )
       .subscribe((orders) => {
-        this.orders = orders;
-        this.length = orders[1].size;
-        this.dataSource = new MatTableDataSource(this.orders);
-        this.dataSource.sort = this.sort;
-        console.log(this.orders);
-        this.isLoadingResults = false;
+        console.log(orders);
+        if (orders.length > 0) {
+          this.orders = orders;
+          this.length = orders[0].size;
+          this.dataSource = new MatTableDataSource(this.orders);
+          this.dataSource.sort = this.sort;
+          this.isLoadingResults = false;
+        }
       });
   }
 
