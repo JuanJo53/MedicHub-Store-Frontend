@@ -54,8 +54,8 @@ export class OrderService {
       }
     );
   }
-  removeOrderItems(clientId: number) {
-    return this.http.delete(apiKey.api + `/reserve/${clientId}/client`, {
+  removeOrderItems(reserveId: number) {
+    return this.http.delete(apiKey.api + `/reserve/${reserveId}/client`, {
       headers: this.headers,
     });
   }
