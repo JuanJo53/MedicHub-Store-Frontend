@@ -13,6 +13,7 @@ import { ProductOrder } from "src/app/shared/models/product-order";
 })
 export class OrderItemComponent implements OnInit {
   @Input() product: Product;
+  @Input() type: string;
   @Output() removeOrderItemEvent = new EventEmitter<number>();
 
   item: ProductOrder;

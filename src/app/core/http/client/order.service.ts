@@ -27,10 +27,14 @@ export class OrderService {
       headers: this.headers,
     });
   }
-  getTotalOrders(clientId: number) {
-    return this.http.get<any>(apiKey.api + `/reserve/${clientId}/total`, {
-      headers: this.headers,
-    });
+  getTotalOrders(clientId: number, state: number) {
+    console.log(state);
+    return this.http.get<any>(
+      apiKey.api + `/reserve/${clientId}/total?state=${state}`,
+      {
+        headers: this.headers,
+      }
+    );
   }
   getTotalCostOrders(clientId: number) {
     return this.http.get<any>(apiKey.api + `/reserve/${clientId}/total`, {
@@ -55,21 +59,18 @@ export class OrderService {
       headers: this.headers,
     });
   }
-    
+
   getClientOrders(
-    prodId: number,
+    clientId: number,
     page: number,
     size: number,
-    order: string,
-    asc: boolean,
-    filterValue: any,
-    filterType: string
+    filter: number
   ) {
     return this.http.get<Order[]>(
       apiKey.api +
-        `/order/${prodId}/list?page=${
+        `/reserve/${clientId}/client/list?page=${
           (page - 1) * size
-        }&size=${size}&order=${order}&asc=${asc}&value=${filterValue}&typevalue=${filterType}`,
+        }&size=${size}&state=${filter}`,
       { headers: this.headers }
     );
   }

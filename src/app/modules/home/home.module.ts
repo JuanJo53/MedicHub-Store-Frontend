@@ -92,6 +92,7 @@ import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item
 import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-history.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { PharmReportsPageComponent } from "../pharm-admin/pages/pharm-reports-page/pharm-reports-page.component";
+import { OrderProductsComponent } from "../client/components/order-products/order-products.component";
 
 @NgModule({
   declarations: [
@@ -160,6 +161,7 @@ import { PharmReportsPageComponent } from "../pharm-admin/pages/pharm-reports-pa
     SaleItemComponent,
     OrdersHistoryComponent,
     PharmReportsPageComponent,
+    OrderProductsComponent,
   ],
   imports: [
     CommonModule,
@@ -209,6 +211,7 @@ import { PharmReportsPageComponent } from "../pharm-admin/pages/pharm-reports-pa
     CreateCardComponent,
     ErrorDialogComponent,
     ChangePasswordComponent,
+    OrderProductsComponent,
   ],
 })
 export class HomeModule {}

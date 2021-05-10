@@ -10,15 +10,19 @@
           <div class="products_list" *ngFor="let product of products">
             <app-order-item
               [product]="product"
+              [type]="'edit'"
               (removeOrderItemEvent)="removeItem($event)"
             >
             </app-order-item>
           </div>
           <div>
             <button mat-raised-button matStepperNext>Siguiente</button>
-            <button 
-            mat-raised-button
-            class="button_cancelled" (click)="buyCancelledProducts()">Cancelar compra
+            <button
+              mat-raised-button
+              class="button_cancelled"
+              (click)="buyCancelledProducts()"
+            >
+              Cancelar compra
             </button>
             <!--button 
             mat-raised-button
@@ -78,6 +82,7 @@
           <div class="products_list" *ngFor="let product of products">
             <app-order-item
               [product]="product"
+              [type]="'edit'"
               (removeOrderItemEvent)="removeItem($event)"
             >
             </app-order-item>

@@ -1,0 +1,12 @@
+.products {
+  margin: 3px;
+}
+.products_list {
+  position: relative;
+  max-height: 540px;
+  overflow: auto;
+  padding: 1%;
+}
+.product_item {
+  width: 90%;
+}

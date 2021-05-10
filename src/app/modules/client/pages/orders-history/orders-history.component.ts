@@ -10,6 +10,7 @@ import { OrderService } from "src/app/core/http/client/order.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { OrderDetailComponent } from "src/app/modules/pharm-admin/components/order-detail/order-detail.component";
 import { Order } from "src/app/shared/models/order";
+import { OrderProductsComponent } from "../../components/order-products/order-products.component";
 
 @Component({
   selector: "app-orders-history",
@@ -23,7 +24,7 @@ export class OrdersHistoryComponent implements OnInit {
   isRateLimitReached = false;
 
   length = 1;
-  size = 9;
+  size = 18;
   order = "id";
   asc = true;
   actualPage = 0;
@@ -33,15 +34,15 @@ export class OrdersHistoryComponent implements OnInit {
     "id_sale",
     "Date",
     "Cost",
+    "Quantity",
     "Products",
-    "Status",
     "id_saleDetail",
   ];
 
   id: number;
   name: string;
   filter: any;
-  filterType: string;
+  filterType: any;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -53,12 +54,11 @@ export class OrdersHistoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = parseInt(this.tokenService.getSubsidiaryId());
+    this.id = parseInt(this.tokenService.getUserId());
     try {
       if (this.id) {
-        this.getOrdersTotal();
-        this.filterType = "pending";
-        this.fecthOrders(this.id, this.length);
+        this.filterType = "2";
+        this.fecthOrders(this.length);
       }
     } catch (error) {
       console.error(error);
@@ -70,16 +70,12 @@ export class OrdersHistoryComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  getOrdersTotal() {
-    this.orderService.getTotalOrders(this.id).subscribe((element) => {
-      this.length = element;
-    });
-  }
-  fecthOrders(id: number, page: number): void {
+  fecthOrders(page: number): void {
     this.orderService
-      .getClientOrders(id, page, this.size, this.order, this.asc, 0, "price")
-      .subscribe((products) => {
-        this.orders = products;
+      .getClientOrders(this.id, page, this.size, parseInt(this.filterType))
+      .subscribe((orders) => {
+        this.orders = orders;
+        this.length = orders[1].size;
         this.dataSource = new MatTableDataSource(this.orders);
         this.dataSource.sort = this.sort;
         console.log(this.orders);
@@ -89,24 +85,15 @@ export class OrdersHistoryComponent implements OnInit {
 
   refreshOrders(event) {
     this.actualPage = event.pageIndex;
-    this.fecthOrders(this.id, event.pageIndex + 1);
+    this.fecthOrders(event.pageIndex + 1);
   }
-  productsView(clientId: number) {
-    const dialogRef = this.dialog.open(OrderDetailComponent, {
-      width: "500px",
+  productsView(products: any) {
+    this.dialog.open(OrderProductsComponent, {
+      width: "2050px",
       data: {
-        clientId: clientId,
+        products: products,
       },
     });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(result);
-    //   if (result) {
-    //     this.displaySuccesDialog(
-    //       "¡Los datos del cliente se actualizaron exitosamente!"
-    //     );
-    //     this.(this.actualPage + 1);
-    //   }
-    // });
   }
   orderDetails(id: number): void {
     const dialogRef = this.dialog.open(OrderDetailComponent, {

@@ -44,7 +44,20 @@
         <h3>{{ product.dose }}</h3>
         <br /><br />
         Cantidad:
-        <mat-chip-list class="example-chip" cdkDropList *ngIf="!editQuantity">
+        <mat-chip-list
+          class="example-chip"
+          cdkDropList
+          *ngIf="!editQuantity && type == 'display'"
+        >
+          <mat-chip class="quantity">
+            {{ product.quantity }}
+          </mat-chip>
+        </mat-chip-list>
+        <mat-chip-list
+          class="example-chip"
+          cdkDropList
+          *ngIf="!editQuantity && type == 'edit'"
+        >
           <mat-chip class="quantity" (click)="changeQuantity()">
             {{ product.quantity }}
           </mat-chip>
@@ -76,13 +89,12 @@
         <h3>{{ product.price }} Bs.</h3>
         <br /><br />
         <button
+          *ngIf="type == 'edit'"
           mat-mini-fab
           color="warn"
           aria-label="Example icon button with a heart icon"
           (click)="removeProduct(product.productId)"
         >
-
-        
           <mat-icon>delete</mat-icon>
         </button>
       </div>
