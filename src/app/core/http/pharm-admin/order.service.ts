@@ -27,20 +27,20 @@ export class OrderService {
       headers: this.headers,
     });
   }
+
   getSubsidiaryOrders(
-    prodId: number,
+    subsiId: number,
     page: number,
     size: number,
-    order: string,
-    asc: boolean,
-    filterValue: any,
-    filterType: string
+    type: number,
+    filter: number,
+    typeFilter: number
   ) {
     return this.http.get<Order[]>(
       apiKey.api +
-        `/order/${prodId}/list?page=${
+        `/reserve/${subsiId}/subsidiary/list?page=${
           (page - 1) * size
-        }&size=${size}&order=${order}&asc=${asc}&value=${filterValue}&typevalue=${filterType}`,
+        }&size=${size}&state=${type}`,
       { headers: this.headers }
     );
   }
@@ -49,8 +49,8 @@ export class OrderService {
       headers: this.headers,
     });
   }
-  updateOrders(order: Order) {
-    return this.http.put(apiKey.api + "/order", order, {
+  updateOrders(orderId: number) {
+    return this.http.put(apiKey.api + `/order/${orderId}/confirm`, {
       headers: this.headers,
     });
   }

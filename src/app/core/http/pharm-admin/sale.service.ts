@@ -28,7 +28,7 @@ export class SaleService {
     });
   }
   getSubsidiarySales(
-    prodId: number,
+    subsiId: number,
     page: number,
     size: number,
     order: string,
@@ -38,9 +38,7 @@ export class SaleService {
   ) {
     return this.http.get<Sale[]>(
       apiKey.api +
-        `/sale/${prodId}/list?page=${
-          (page - 1) * size
-        }&size=${size}&order=${order}&asc=${asc}&value=${filterValue}&typevalue=${filterType}`,
+        `/purchase/${subsiId}/list?page=${(page - 1) * size}&size=${size}`,
       { headers: this.headers }
     );
   }

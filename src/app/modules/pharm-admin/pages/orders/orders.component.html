@@ -10,6 +10,18 @@
         #input
       />
     </mat-form-field>
+    <mat-form-field appearance="fill" class="filtro">
+      <mat-label class="titlefiltro">Tipo de Pedido</mat-label>
+      <mat-select
+        [(value)]="typeOrder"
+        class="filter2"
+        (selectionChange)="fecthOrders(1)"
+      >
+        <mat-option value="2">Pendientes</mat-option>
+        <mat-option value="0">Todos</mat-option>
+        <mat-option value="3">Entregados</mat-option>
+      </mat-select>
+    </mat-form-field>
     <div class="table-container mat-elevation-z8">
       <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
         <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -31,7 +43,15 @@
           <ng-container matColumnDef="id_sale">
             <th mat-header-cell *matHeaderCellDef>Nro.</th>
             <td mat-cell *matCellDef="let order">
-              {{ order.saleId }}
+              {{ order.reserveId }}
+            </td>
+          </ng-container>
+
+          <!-- User Column -->
+          <ng-container matColumnDef="User">
+            <th mat-header-cell *matHeaderCellDef>Usuario</th>
+            <td mat-cell *matCellDef="let order">
+              {{ order.firstName }}
             </td>
           </ng-container>
 
@@ -39,7 +59,7 @@
           <ng-container matColumnDef="Date">
             <th mat-header-cell *matHeaderCellDef>Fecha</th>
             <td mat-cell *matCellDef="let order">
-              {{ order.date }}
+              {{ order.date | date }}
             </td>
           </ng-container>
 
@@ -47,15 +67,15 @@
           <ng-container matColumnDef="Cost">
             <th mat-header-cell *matHeaderCellDef>Monto Total</th>
             <td mat-cell *matCellDef="let order">
-              {{ order.cost }}
+              {{ order.total }}
             </td>
           </ng-container>
 
           <!-- Status Column -->
-          <ng-container matColumnDef="Status">
-            <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <ng-container matColumnDef="Quantity">
+            <th mat-header-cell *matHeaderCellDef>Cantidad de Productos</th>
             <td mat-cell *matCellDef="let order">
-              {{ order.status }}
+              {{ order.quantity }}
             </td>
           </ng-container>
 
@@ -67,24 +87,24 @@
                 class="action-button"
                 color="primary"
                 mat-mini-fab
-                (click)="productsView(order.saleId)"
+                (click)="productsView(order.products)"
               >
-                <span><mat-icon>details</mat-icon> </span>
+                <span><mat-icon>shopping_basket</mat-icon> </span>
               </button>
             </td>
           </ng-container>
 
-          <!-- Details Column -->
-          <ng-container matColumnDef="id_saleDetail">
-            <th mat-header-cell *matHeaderCellDef>Detalles</th>
+          <!-- State Column -->
+          <ng-container matColumnDef="State">
+            <th mat-header-cell *matHeaderCellDef>Cambio de Estado</th>
             <td mat-cell *matCellDef="let order">
               <button
                 class="action-button"
-                color="warn"
+                color="accent"
                 mat-mini-fab
-                (click)="orderDetails(order.saleId)"
+                (click)="changeStatus(order.reserveId)"
               >
-                <span><mat-icon>delete</mat-icon> </span>
+                <span><mat-icon>done_outline</mat-icon> </span>
               </button>
             </td>
           </ng-container>

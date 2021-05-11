@@ -1,1 +1,20 @@
-<p>sale-products works!</p>
+<div class="products">
+  <div class="products_list">
+    <app-order-item
+      class="product_item"
+      *ngFor="let product of productsList"
+      [product]="product"
+      [type]="'display'"
+    >
+    </app-order-item>
+  </div>
+  <br />
+  <button
+    mat-raised-button
+    (click)="onNoClick()"
+    color="primary"
+    class="btnform"
+  >
+    Atras
+  </button>
+</div>

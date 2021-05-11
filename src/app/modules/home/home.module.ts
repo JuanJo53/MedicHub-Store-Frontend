@@ -92,7 +92,7 @@ import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item
 import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-history.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { PharmReportsPageComponent } from "../pharm-admin/pages/pharm-reports-page/pharm-reports-page.component";
-import { OrderProductsComponent } from "../client/components/order-products/order-products.component";
+import { OrderProductsComponent } from "../client/components/dialogs/order-products/order-products.component";
 
 @NgModule({
   declarations: [

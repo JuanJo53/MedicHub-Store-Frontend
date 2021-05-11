@@ -35,8 +35,9 @@ export class SalesComponent implements OnInit {
     "id_sale",
     "Date",
     "Cost",
+    "Client",
+    "Nit",
     "Products",
-    "id_saleDetail",
   ];
 
   id: number;
@@ -56,9 +57,6 @@ export class SalesComponent implements OnInit {
     try {
       if (this.id) {
         this.fecthSales(this.id, this.length);
-        this.salesService.getTotalSales(this.id).subscribe((element) => {
-          this.length = element;
-        });
       }
     } catch (error) {
       console.error(error);
@@ -90,8 +88,9 @@ export class SalesComponent implements OnInit {
   fecthSales(id: number, page: number): void {
     this.salesService
       .getSubsidiarySales(id, page, this.size, this.order, this.asc, 0, "price")
-      .subscribe((products) => {
-        this.sales = products;
+      .subscribe((sales) => {
+        this.sales = sales;
+        // this.length = sales[0].size;
         this.dataSource = new MatTableDataSource(this.sales);
         this.dataSource.sort = this.sort;
         console.log(this.sales);
@@ -103,41 +102,13 @@ export class SalesComponent implements OnInit {
     this.actualPage = event.pageIndex;
     this.fecthSales(this.id, event.pageIndex + 1);
   }
-  productsView(clientId: number) {
-    const dialogRef = this.dialog.open(SaleProductsComponent, {
-      width: "500px",
+  productsView(products: any) {
+    this.dialog.open(SaleProductsComponent, {
+      width: "2050px",
       data: {
-        clientId: clientId,
+        products: products,
       },
     });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(result);
-    //   if (result) {
-    //     this.displaySuccesDialog(
-    //       "¡Los datos del cliente se actualizaron exitosamente!"
-    //     );
-    //     this.(this.actualPage + 1);
-    //   }
-    // });
-  }
-  saleDetails(id: number): void {
-    const dialogRef = this.dialog.open(SaleDetailsComponent, {
-      width: "500px",
-      data: {
-        message:
-          "¿Esta seguro que desea eliminar la cuente de este administrador?",
-      },
-    });
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.clientService.deleteClient(id).subscribe((rta) => {
-    //       console.log("Resultado " + rta);
-    //       this.text = result;
-    //       this.displaySuccesDialog("¡Se elimino al cliente exitosamente!");
-    //       this.ngOnInit();
-    //     });
-    //   }
-    // });
   }
   displaySuccesDialog(text: string) {
     this.dialog.open(SuccesDialogComponent, {

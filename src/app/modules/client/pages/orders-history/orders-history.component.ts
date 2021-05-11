@@ -10,7 +10,7 @@ import { OrderService } from "src/app/core/http/client/order.service";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { OrderDetailComponent } from "src/app/modules/pharm-admin/components/order-detail/order-detail.component";
 import { Order } from "src/app/shared/models/order";
-import { OrderProductsComponent } from "../../components/order-products/order-products.component";
+import { OrderProductsComponent } from "../../components/dialogs/order-products/order-products.component";
 
 @Component({
   selector: "app-orders-history",
