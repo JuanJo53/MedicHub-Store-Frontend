@@ -55,10 +55,23 @@
 </div>
 <ng-template #elseBlock>
   <div class="container">
-    <h1>No registro su cuenta de banco!</h1>
-    <h1>Ingrese los Datos de Cuenta de Banco</h1>
+    <h1 class="title"><strong>Cuenta de Banco</strong></h1>
     <button (click)="addBankAccount()" mat-fab class="btn" color="primary">
       <mat-icon class="button-add">credit_card</mat-icon>
     </button>
+    <!--div class="no_data" *ngIf="!dataReady"-->
+    <div class="no_data">
+      <table class="tabla">
+        <tr>
+          <img src="assets/images/cuenta-bancaria.png" width="380px" height="380px" />
+        </tr>
+        <tr>
+          <h1>
+            <p class="adv1">¡No registro su cuenta de banco!</p>
+            <p class="adv2">Ingrese los Datos de Cuenta de Banco</p>
+          </h1>
+        </tr>
+      </table>
+    </div>
   </div>
 </ng-template>

@@ -5,22 +5,30 @@
       <mat-icon class="button-add">inventory_2</mat-icon>
     </button>
   </div>
-  <mat-form-field class="formfarmacia2">
-    <mat-label>Buscar</mat-label>
+  <div fxFlex fxHide.lt-sm="true" class="search-bar">
+    <form class="top-search-form">
+      <mat-icon role="img">search</mat-icon>
+      <input placeholder="Buscar producto" type="text" class="lettersearch" />
+    </form>
+  </div>
+  <!--mat-form-field class="formfarmacia2">
+    <mat-label>Buscar Producto</mat-label>
     <input
       matInput
       (keyup)="applyFilter($event)"
       placeholder="Ex. ium"
       #input
     />
-  </mat-form-field>
+  </mat-form-field-->
 </div>
+
 
 <div class="products-grid">
   <mat-paginator
     [length]="length"
     [pageSize]="size"
     (page)="refreshProducts($event)"
+    class="pagina"
   ></mat-paginator>
   <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
