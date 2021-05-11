@@ -1,13 +1,11 @@
 <div class="card" *ngIf="card && !destroyed">
-  <mat-card class="pharm_cardmoldeinterno" *ngIf="!edit; else elseBlock">
+  <mat-card class="pharm_card moldeinterno" *ngIf="!edit; else elseBlock">
     <mat-card-header class="titlePharmacy">
-      <div class="row">
         <mat-card-title class="col-sm-10">
           <h1 class="titlefarmacia">
             <strong>{{ card.bank }}</strong>
           </h1>
         </mat-card-title>
-        <div class="col-2" *ngIf="displayType == 'edit'">
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="editCard()">
               <mat-icon>edit</mat-icon>
@@ -21,32 +19,31 @@
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
             <mat-icon>more_vert</mat-icon>
           </button>
-        </div>
-      </div>
     </mat-card-header>
+   
     <mat-card-content>
       <div class="row row-cols-2">
         <div class="col">
-          <strong>Numero de Tarjeta</strong>
-          <p>{{ card.accountNumber | creditCardNumber }}</p>
+          <strong  class="textEdit">Numero de Tarjeta</strong>
+          <p class="textEditr">{{ card.accountNumber | creditCardNumber }}</p>
         </div>
         <div class="col">
-          <strong>Tipo de Cuenta</strong>
-          <p>{{ card.typeAccount }}</p>
+          <strong  class="textEdit">Tipo de Cuenta</strong>
+          <p class="textEditr">{{ card.typeAccount }}</p>
         </div>
       </div>
       <div class="row row-cols-3">
         <div class="col">
-          <strong>CVV</strong>
-          <p>{{ card.cvvCode }}</p>
+          <strong  class="textEdit">CVV</strong>
+          <p class="textEditr">{{ card.cvvCode }}</p>
         </div>
         <div class="col">
-          <strong>Mes</strong>
-          <p>{{ card.month }}</p>
+          <strong  class="textEdit">Mes</strong>
+          <p class="textEditr">{{ card.month }}</p>
         </div>
         <div class="col">
-          <strong>Año</strong>
-          <p>{{ card.year }}</p>
+          <strong  class="textEdit">Año</strong>
+          <p class="textEditr">{{ card.year }}</p>
         </div>
       </div>
     </mat-card-content>
