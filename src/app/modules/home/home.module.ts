@@ -208,6 +208,8 @@ import { OrderProductsComponent } from "../client/components/dialogs/order-produ
     ChangePasswordComponent,
     OrderProductsComponent,
     CreateSaleComponent,
+    SaleProductsComponent,
+    SaleDetailsComponent,
   ],
 })
 export class HomeModule {}
