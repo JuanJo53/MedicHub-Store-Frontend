@@ -117,7 +117,6 @@ export class PharmDashboardComponent implements OnInit {
     return Math.floor(Math.random() * (i < 2 ? 100 : 1000) + 1);
   }
 
-  // events
   public chartClicked({
     event,
     active,
