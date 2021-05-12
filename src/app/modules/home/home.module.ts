@@ -91,7 +91,6 @@ import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item
 import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-history.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { OrderProductsComponent } from "../client/components/dialogs/order-products/order-products.component";
-
 @NgModule({
   declarations: [
     HomeComponent,
@@ -208,6 +207,7 @@ import { OrderProductsComponent } from "../client/components/dialogs/order-produ
     ErrorDialogComponent,
     ChangePasswordComponent,
     OrderProductsComponent,
+    CreateSaleComponent,
   ],
 })
 export class HomeModule {}

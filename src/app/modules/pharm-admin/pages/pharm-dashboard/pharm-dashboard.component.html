@@ -1,154 +1,67 @@
 <h1 class="title">Menu Administrador</h1>
 <div class="container">
-  <div class="row">
-    <div class="col-sm continicio">
-      <table class="tabler">
+  <!-- <div class="flex">
+    <div class="flex-item">
+      <div style="display: block">
+        <canvas
+          baseChart
+          width="400"
+          height="400"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"
+        ></canvas>
+      </div>
+    </div>
+    <div class="flex-item">
+      <table class="table table-responsive table-condensed">
         <tr>
-          <td>
-            <img
-              src="assets/images/grafico.png"
-              width="150px"
-              height="150px"
-            />
-          </td>
-          <td>
-            <h1>
-              <p>Reportes</p>
-            </h1>
-          </td>
+          <th *ngFor="let label of lineChartLabels">{{ label }}</th>
         </tr>
-        <tr>
-          <th colspan="2">
-            <button
-                type="submit"
-                mat-raised-button
-                color="primary"
-                class="btnizq"
-                routerLink="/pharmAdmin/reports"
-              >
-                IR
-              </button>
-          </th>
+        <tr
+          *ngFor="let d of lineChartData; let i = index"
+          [class]="'line-' + i"
+        >
+          <td *ngFor="let label of lineChartLabels; let j = index">
+            {{ d && d.data[j] }}
+          </td>
         </tr>
       </table>
-    </div>
-    <div class="col-sm continicio">
-      <table>
-        <tr>
-          <td>
-            <img
-              src="assets/images/ventas.png"
-              width="150px"
-              height="150px"
-            />
-          </td>
-          <td>
-            <h1>
-              <p>Ventas</p>
-            </h1>
-          </td>
-          
-        </tr>
-        <tr>
-          <th colspan="2">
-              <button
-                type="submit"
-                mat-raised-button
-                color="primary"
-                class="btnizq"
-                routerLink="/pharmAdmin/sales"
-              >
-                IR
-              </button>
-          </th>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm continicio">
-      <table>
-        <tr>
-          <td>
-            <img
-              src="assets/images/bolsa-de-la-compra.png"
-              width="150px"
-              height="150px"
-            />
-          </td>
-          <td>
-            <h1>
-              <p>Pedidos</p>
-            </h1>
-          </td>
-          
-        </tr>
-        <tr>
-          <th colspan="2">
-            <button
-                type="submit"
-                mat-raised-button
-                color="primary"
-                class="btnizq"
-                routerLink="/pharmAdmin/orders"
-              >
-                IR
-              </button>
-          </th>
-        </tr>
-      </table>
-    </div>
-    <div class="col-sm continicio">
-      <table>
-        <tr>
-          <td>
-            <img
-              src="assets/images/medicamento.png"
-              width="150px"
-              height="150px"
-            />
-          </td>
-          <td>
-            <h1>
-              <p>Productos</p>
-            </h1>
-          </td>
-          
-        </tr>
-        <tr>
-          <th colspan="2">
-            <button
-                type="submit"
-                mat-raised-button
-                color="primary"
-                class="btnizq"
-                routerLink="/pharmAdmin/products"
-              >
-                IR
-              </button>
-          </th>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
-<!--div class="container">
-  <mat-card class="cardall">
-    <div class="column-left"></div>
-    <div class="column-right">
-      <h1 class="subtitle2">Gestión de Productos</h1>
       <button
-        type="submit"
+        mat-button
         mat-raised-button
         color="primary"
-        class="form__button"
-        routerLink="/pharmAdmin/products"
-        class="button_logout"
+        (click)="randomize()"
       >
-        Ir
+        Randomize
+      </button>
+      <button mat-button mat-raised-button color="primary" (click)="pushOne()">
+        Push
+      </button>
+      <button
+        mat-button
+        mat-raised-button
+        color="primary"
+        (click)="changeColor()"
+      >
+        Recolor
+      </button>
+      <button mat-button mat-raised-button color="primary" (click)="hideOne()">
+        Toggle Series B
+      </button>
+      <button
+        mat-button
+        mat-raised-button
+        color="primary"
+        (click)="changeLabel()"
+      >
+        Change Label
       </button>
     </div>
-  </mat-card>
-</div-->
-
-
+  </div> -->
+</div>
