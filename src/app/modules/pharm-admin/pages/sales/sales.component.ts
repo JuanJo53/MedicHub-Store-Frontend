@@ -90,7 +90,7 @@ export class SalesComponent implements OnInit {
       .getSubsidiarySales(id, page, this.size, this.order, this.asc, 0, "price")
       .subscribe((sales) => {
         this.sales = sales;
-        // this.length = sales[0].size;
+        this.length = sales[0].size;
         this.dataSource = new MatTableDataSource(this.sales);
         this.dataSource.sort = this.sort;
         this.isLoadingResults = false;

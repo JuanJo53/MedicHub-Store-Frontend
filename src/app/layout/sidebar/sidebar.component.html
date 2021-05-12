@@ -66,33 +66,13 @@
     ><span class="link__text">Perfil de Usuario</span></a
   >
   <a
-    *ngIf="userRole == 1"
-    class="link"
-    mat-list-item
-    routerLinkActive="list-item-active-link"
-    routerLink="/admin/reports"
-    disabled
-    ><mat-icon class="link__icon">table_view</mat-icon
-    ><span class="link__text">Reportes</span></a
-  >
-  <a
-    *ngIf="userRole == 2"
-    class="link"
-    mat-list-item
-    routerLinkActive="list-item-active-link"
-    routerLink="/pharmAdmin/reports"
-    disabled
-    ><mat-icon class="link__icon">table_view</mat-icon
-    ><span class="link__text">Reportes</span></a
-  >
-  <a
     *ngIf="userRole == 2"
     class="link"
     mat-list-item
     routerLinkActive="list-item-active-link"
     routerLink="/pharmAdmin/sales"
     disabled
-    ><mat-icon class="link__icon">monetization_on</mat-icon
+    ><mat-icon class="link__icon">sell</mat-icon
     ><span class="link__text">Ventas</span></a
   >
   <a
@@ -102,7 +82,7 @@
     routerLinkActive="list-item-active-link"
     routerLink="/pharmAdmin/orders"
     disabled
-    ><mat-icon class="link__icon">receipt</mat-icon
+    ><mat-icon class="link__icon">shopping_bag</mat-icon
     ><span class="link__text">Pedidos</span></a
   >
   <a

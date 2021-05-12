@@ -13,7 +13,6 @@ import { PharmDashboardComponent } from "./modules/pharm-admin/pages/pharm-dashb
 import { BrandsComponent } from "./modules/pharm-admin/pages/brands/brands.component";
 import { BankAccountComponent } from "./modules/pharm-admin/pages/bank-account/bank-account.component";
 import { PharmAdminGuard } from "./core/guards/pharm-admin.guard";
-import { ReportsPageComponent } from "./modules/admin/pages/reports-page/reports-page.component";
 import { ClientsPageComponent } from "./modules/admin/pages/clients-page/clients-page.component";
 import { ClientProfilePageComponent } from "./modules/client/pages/client-profile-page/client-profile-page.component";
 import { PharmaciesPageComponent } from "./modules/client/pages/pharmacies-page/pharmacies-page.component";
@@ -27,7 +26,6 @@ import { SalesComponent } from "./modules/pharm-admin/pages/sales/sales.componen
 import { OrdersComponent } from "./modules/pharm-admin/pages/orders/orders.component";
 import { OrderComponent } from "./modules/client/pages/order/order.component";
 import { OrdersHistoryComponent } from "./modules/client/pages/orders-history/orders-history.component";
-import { PharmReportsPageComponent } from "./modules/pharm-admin/pages/pharm-reports-page/pharm-reports-page.component";
 
 const routes: Routes = [
   // {
@@ -62,11 +60,6 @@ const routes: Routes = [
         component: AdminAccountComponent,
       },
       {
-        path: "admin/reports",
-        canActivate: [AdminGuard],
-        component: ReportsPageComponent,
-      },
-      {
         path: "admin/pharmacy",
         canActivate: [AdminGuard],
         component: PharmaciesComponent,
@@ -96,11 +89,6 @@ const routes: Routes = [
         path: "pharmAdmin/account",
         canActivate: [PharmAdminGuard],
         component: PharmAdminAccountComponent,
-      },
-      {
-        path: "pharmAdmin/reports",
-        canActivate: [PharmAdminGuard],
-        component: PharmReportsPageComponent,
       },
       {
         path: "pharmAdmin/sales",

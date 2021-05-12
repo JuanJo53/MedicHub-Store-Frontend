@@ -50,7 +50,6 @@ import { SubsidiaryDetailComponent } from "../admin/pages/subsidiary-detail/subs
 import { CreateSubsiAdminComponent } from "../admin/components/dialogs/create-subsi-admin/create-subsi-admin.component";
 import { EditSubsiAdminsComponent } from "../admin/components/dialogs/edit-subsi-admins/edit-subsi-admins.component";
 import { ClientsPageComponent } from "../admin/pages/clients-page/clients-page.component";
-import { ReportsPageComponent } from "../admin/pages/reports-page/reports-page.component";
 import { EditClientComponent } from "../admin/components/dialogs/edit-client/edit-client.component";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
@@ -91,7 +90,6 @@ import { UploadAdminImageComponent } from "../admin/components/upload-admin-imag
 import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item.component";
 import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-history.component";
 import { MatChipsModule } from "@angular/material/chips";
-import { PharmReportsPageComponent } from "../pharm-admin/pages/pharm-reports-page/pharm-reports-page.component";
 import { OrderProductsComponent } from "../client/components/dialogs/order-products/order-products.component";
 
 @NgModule({
@@ -130,7 +128,6 @@ import { OrderProductsComponent } from "../client/components/dialogs/order-produ
     CreateSubsiAdminComponent,
     EditSubsiAdminsComponent,
     ClientsPageComponent,
-    ReportsPageComponent,
     EditClientComponent,
     CreditCardNumberPipe,
     PharmacyItemComponent,
@@ -160,7 +157,6 @@ import { OrderProductsComponent } from "../client/components/dialogs/order-produ
     UploadAdminImageComponent,
     SaleItemComponent,
     OrdersHistoryComponent,
-    PharmReportsPageComponent,
     OrderProductsComponent,
   ],
   imports: [
