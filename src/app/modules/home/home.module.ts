@@ -91,6 +91,7 @@ import { SaleItemComponent } from "../pharm-admin/components/sale-item/sale-item
 import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-history.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { OrderProductsComponent } from "../client/components/dialogs/order-products/order-products.component";
+import { ChartsModule } from "ng2-charts";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -188,6 +189,7 @@ import { OrderProductsComponent } from "../client/components/dialogs/order-produ
     MatStepperModule,
     MatSnackBarModule,
     MatChipsModule,
+    ChartsModule,
   ],
   entryComponents: [
     LoginComponent,
