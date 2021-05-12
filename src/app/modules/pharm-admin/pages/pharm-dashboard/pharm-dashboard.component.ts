@@ -1,12 +1,57 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ChartDataSets, ChartOptions, ChartType } from "chart.js";
-import { Color, BaseChartDirective, Label } from "ng2-charts";
+import { Color, BaseChartDirective, Label, MultiDataSet } from "ng2-charts";
 @Component({
   selector: "app-pharm-dashboard",
   templateUrl: "./pharm-dashboard.component.html",
   styleUrls: ["./pharm-dashboard.component.scss"],
 })
 export class PharmDashboardComponent implements OnInit {
+  // Doughnut
+  public doughnutChartLabels: Label[] = [
+    "Download Sales",
+    "In-Store Sales",
+    "Mail-Order Sales",
+  ];
+  public doughnutChartData: MultiDataSet = [
+    [350, 450, 100],
+    [50, 150, 120],
+    [250, 130, 70],
+  ];
+  public doughnutChartType: ChartType = "doughnut";
+  // Pie
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: true,
+    legend: {
+      position: "top",
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    },
+  };
+  public pieChartLabels: Label[] = [
+    ["Download", "Sales"],
+    ["In", "Store", "Sales"],
+    "Mail Sales",
+  ];
+  public pieChartData: number[] = [300, 500, 100];
+  public pieChartType: ChartType = "pie";
+  public pieChartLegend = true;
+  public pieChartColors = [
+    {
+      backgroundColor: [
+        "rgba(255,0,0,0.3)",
+        "rgba(0,255,0,0.3)",
+        "rgba(0,0,255,0.3)",
+      ],
+    },
+  ];
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: "Series A" },
     { data: [28, 48, 40, 19, 86, 27, 90], label: "Series B" },
@@ -65,38 +110,9 @@ export class PharmDashboardComponent implements OnInit {
       ],
     },
   };
-  public lineChartColors: Color[] = [
-    {
-      // grey
-      backgroundColor: "rgba(148,159,177,0.2)",
-      borderColor: "rgba(148,159,177,1)",
-      pointBackgroundColor: "rgba(148,159,177,1)",
-      pointBorderColor: "#fff",
-      pointHoverBackgroundColor: "#fff",
-      pointHoverBorderColor: "rgba(148,159,177,0.8)",
-    },
-    {
-      // dark grey
-      backgroundColor: "rgba(77,83,96,0.2)",
-      borderColor: "rgba(77,83,96,1)",
-      pointBackgroundColor: "rgba(77,83,96,1)",
-      pointBorderColor: "#fff",
-      pointHoverBackgroundColor: "#fff",
-      pointHoverBorderColor: "rgba(77,83,96,1)",
-    },
-    {
-      // red
-      backgroundColor: "rgba(255,0,0,0.3)",
-      borderColor: "red",
-      pointBackgroundColor: "rgba(148,159,177,1)",
-      pointBorderColor: "#fff",
-      pointHoverBackgroundColor: "#fff",
-      pointHoverBorderColor: "rgba(148,159,177,0.8)",
-    },
-  ];
+
   public lineChartLegend = true;
   public lineChartType: ChartType = "line";
-  // public lineChartPlugins = [pluginAnnotations];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
@@ -149,11 +165,6 @@ export class PharmDashboardComponent implements OnInit {
       data.push(num);
     });
     this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
-  }
-
-  public changeColor(): void {
-    this.lineChartColors[2].borderColor = "green";
-    this.lineChartColors[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
   }
 
   public changeLabel(): void {

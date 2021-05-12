@@ -1,97 +1,42 @@
-.title{
-    margin-left: 45px;
-    margin-bottom: 35px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight:bold;
-    font-size: 40px;
-    color: #2F4A85;
+.title {
+  margin-left: 45px;
+  margin-bottom: 15px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  color: #2f4a85;
 }
-.subtitle{
-    //margin-left: 45px;
-    margin-bottom: 35px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight:bold;
-    font-size: 15px;
-    color: #2F4A85;
+.subtitle {
+  margin-left: 45px;
+  margin-bottom: 15px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  color: #2f4a85;
 }
-.subtitle2{
-    margin-left: 0%;
-    margin-top: 40%;
-    margin-bottom: 10%;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight:bold;
-    font-size: 40px;
-    color: #fff;
+.subtitle2 {
+  margin-left: 0%;
+  margin-top: 40%;
+  margin-bottom: 10%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  color: #fff;
 }
-.cardall{
-    display: flex;
-    //box-sizing: border-box;
-    height: 50vh;
-    background-color: #2F4A85;
-    border-radius: 30px;
-  }
-  .column{
-    &-left{
-    //margin-left: 5%;
-    background-color: yellow;
-     width: 100%;
-    background: url(../../../../../assets/images/RDC_01.png);
-    background-repeat: no-repeat;
-     //width: 50%;
-    background-size: cover;
-     height: 100%;
-    }
-    &-right{
-        //background-color: red;
-        width: 50%;
-        height: 100%;
-    }
-  }
-.button_logout{
-    background-color: #fff;
-    color: #2f4a85;
-    margin-left:35%;
-    width: 30%;
-    border-radius: 25px;
-  }
-
-  .continicio{
-    border-radius: 25px;
-    //background-color: #757F8E;
-    margin-bottom: 25px;
-    border: 20px #fff;
-    //padding-bottom: 5%;
+.chart_container {
+  padding: 2%;
+  min-height: 200px;
+  //   background-color: #313947;
 }
-.tabler{
-  //background-color: #2f4a85;
-  padding: 3px 10px;
-  //border: #2F4A85 2px solid;
-  //border-radius: 20px;
+.chart_section {
+  width: 50%;
 }
-p{
-    align-items: center;
-    text-align: center;
-    color: #2f4a85;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight:bold;
+.chart_element_container {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+  margin: 3px;
 }
-.btnizq{
-    text-decoration: none;
-    padding: 10px;
-    font-weight: 600;
-    font-size: 20px;
-    color: #2f4a85;
-    width: 40%;
-    background-color: #fff;
-    border-radius: 6px;
-    border: 2px solid #2f4a85;
-    margin-left: 30%;
-    margin-bottom: 15px;
-}
-.btnizq:hover{
-    color: #ffffff;
-    background-color: #2f4a85;
-}
-td{
-    padding: 15px;
+.chart {
+  height: 50%;
 }
