@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ChartDataSets, ChartOptions, ChartType } from "chart.js";
-import { BaseChartDirective, Color, Label } from "ng2-charts";
 
 @Component({
   selector: "app-pharm-dashboard",
