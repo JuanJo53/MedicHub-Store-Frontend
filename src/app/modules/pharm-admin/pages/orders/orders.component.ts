@@ -6,9 +6,10 @@ import {
   MatTableDataSource,
 } from "@angular/material";
 import { TokenService } from "src/app/core/authentication/token.service";
-import { OrderService } from "src/app/core/http/pharm-admin/order.service";
+import { PharmOrderService } from "src/app/core/http/pharm-admin/pharmOrder.service";
 import { OrderProductsComponent } from "src/app/modules/client/components/dialogs/order-products/order-products.component";
 import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
+import { WarningDialogComponent } from "src/app/modules/components/dialogs/warning-dialog/warning-dialog.component";
 import { Order } from "src/app/shared/models/order";
 
 @Component({
@@ -28,7 +29,6 @@ export class OrdersComponent implements OnInit {
   asc = true;
   actualPage = 0;
 
-  text: string;
   displayedColumns: string[] = [
     "id_sale",
     "User",
@@ -49,7 +49,7 @@ export class OrdersComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private orderService: OrderService,
+    private orderService: PharmOrderService,
     private tokenService: TokenService
   ) {}
 
@@ -103,8 +103,22 @@ export class OrdersComponent implements OnInit {
     });
   }
   changeStatus(id: number) {
-    this.orderService.updateOrders(id).subscribe((response) => {
-      console.log(response);
+    const dialogRef = this.dialog.open(WarningDialogComponent, {
+      width: "500px",
+      data: {
+        message: "¿Esta seguro que desea confirmar el pedido?",
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.orderService.updateOrder(id).subscribe((response) => {
+          console.log("Response " + response);
+          this.displaySuccesDialog(
+            "¡Se registraron los cambios del pedido exitosamente!"
+          );
+          this.fecthOrders(1);
+        });
+      }
     });
   }
   displaySuccesDialog(text: string) {

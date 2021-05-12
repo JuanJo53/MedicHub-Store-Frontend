@@ -7,7 +7,7 @@ import { TokenService } from "../../authentication/token.service";
 @Injectable({
   providedIn: "root",
 })
-export class OrderService {
+export class PharmOrderService {
   authToken: string;
   headers: any;
   constructor(private http: HttpClient, private tokenService: TokenService) {
@@ -17,11 +17,6 @@ export class OrderService {
     });
   }
 
-  postNewOrder(order: Order) {
-    return this.http.post(apiKey.api + "/order", order, {
-      headers: this.headers,
-    });
-  }
   getTotalPharmOrders(subId: number) {
     return this.http.get<any>(apiKey.api + `/order/${subId}/total`, {
       headers: this.headers,
@@ -44,13 +39,8 @@ export class OrderService {
       { headers: this.headers }
     );
   }
-  getOrders(orderId: number) {
-    return this.http.get<Order>(apiKey.api + `/order/${orderId}`, {
-      headers: this.headers,
-    });
-  }
-  updateOrders(orderId: number) {
-    return this.http.put(apiKey.api + `/order/${orderId}/confirm`, {
+  updateOrder(orderId: number) {
+    return this.http.put(apiKey.api + `/reserve/${orderId}/confirmed`, "", {
       headers: this.headers,
     });
   }

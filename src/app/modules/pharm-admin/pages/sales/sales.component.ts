@@ -93,7 +93,6 @@ export class SalesComponent implements OnInit {
         // this.length = sales[0].size;
         this.dataSource = new MatTableDataSource(this.sales);
         this.dataSource.sort = this.sort;
-        console.log(this.sales);
         this.isLoadingResults = false;
       });
   }

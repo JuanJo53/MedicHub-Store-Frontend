@@ -103,6 +103,16 @@
                 color="accent"
                 mat-mini-fab
                 (click)="changeStatus(order.reserveId)"
+                *ngIf="order.statusReserve == 2"
+              >
+                <span><mat-icon>done_outline</mat-icon> </span>
+              </button>
+              <button
+                class="action-button"
+                color="accent"
+                mat-mini-fab
+                *ngIf="order.statusReserve != 2"
+                disabled
               >
                 <span><mat-icon>done_outline</mat-icon> </span>
               </button>
