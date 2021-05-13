@@ -60,7 +60,7 @@ export class PharmOrderService {
   ) {
     return this.http.get<Order[]>(
       apiKey.api +
-        `/reserve/${subsiId}/subsidiary/report?page=${
+        `/reserve/${subsiId}/subsidiary/report/general?page=${
           (page - 1) * size
         }&size=${size}&asc=${type}`,
       { headers: this.headers }

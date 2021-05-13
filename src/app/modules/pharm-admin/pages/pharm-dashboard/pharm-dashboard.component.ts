@@ -214,7 +214,7 @@ export class PharmDashboardComponent implements OnInit {
 
   fecthOrders(page: number): void {
     this.orderService
-      .getSubsidiaryOrders(
+      .getSubsidiaryOrdersBI(
         this.idorder,
         page,
         this.size,
