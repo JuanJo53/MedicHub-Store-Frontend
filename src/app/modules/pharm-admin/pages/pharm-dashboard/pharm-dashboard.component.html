@@ -25,12 +25,14 @@
           </mat-button-toggle>
         </mat-button-toggle-group>
       </div>
+      <div class="date_picker"></div>
       <canvas
+        *ngIf="salesChartData"
         class="chart"
         height="90"
         baseChart
-        [datasets]="lineChartData"
-        [labels]="lineChartLabels"
+        [datasets]="salesChartData"
+        [labels]="salesChartLabels"
         [options]="lineChartOptions"
         [colors]="lineChartColors"
         [legend]="lineChartLegend"

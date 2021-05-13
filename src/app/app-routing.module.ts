@@ -82,7 +82,7 @@ const routes: Routes = [
     children: [
       {
         path: "pharmAdmin/dashboard",
-        // canActivate: [PharmAdminGuard],
+        canActivate: [PharmAdminGuard],
         component: PharmDashboardComponent,
       },
       {

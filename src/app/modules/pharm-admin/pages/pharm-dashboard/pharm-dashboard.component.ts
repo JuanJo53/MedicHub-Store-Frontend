@@ -1,6 +1,10 @@
+import { DatePipe } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 import { ChartDataSets, ChartOptions, ChartType } from "chart.js";
 import { Color, BaseChartDirective, Label, MultiDataSet } from "ng2-charts";
+import { TokenService } from "src/app/core/authentication/token.service";
+import { SaleService } from "src/app/core/http/pharm-admin/sale.service";
 @Component({
   selector: "app-pharm-dashboard",
   templateUrl: "./pharm-dashboard.component.html",
@@ -42,23 +46,11 @@ export class PharmDashboardComponent implements OnInit {
   public pieChartLegend = true;
 
   //line|bar
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: "Series A" },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: "Series B" },
-  ];
-  public lineChartLabels: Label[] = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
+  public salesChartData: ChartDataSets[];
+  public salesChartLabels: Label[];
   public lineChartOptions: ChartOptions & { annotation: any } = {
     responsive: true,
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
       xAxes: [{}],
       yAxes: [
         {
@@ -88,23 +80,52 @@ export class PharmDashboardComponent implements OnInit {
 
   public lineChartLegend = true;
 
+  subsiId: number;
+
+  dateRange: FormGroup;
+  startDate: string;
+  endDate: string;
+
+  salesData: number[];
+  salesDataResponse: any[];
+
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
-  constructor() {}
+  constructor(
+    private datePipe: DatePipe,
+    private tokenService: TokenService,
+    private saleService: SaleService
+  ) {}
 
-  ngOnInit(): void {}
-
-  public randomize(): void {
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        this.lineChartData[i].data[j] = this.generateNumber(i);
+  ngOnInit(): void {
+    try {
+      this.subsiId = parseInt(this.tokenService.getSubsidiaryId());
+      if (this.subsiId) {
+        this.fetchSalesData();
       }
+    } catch (error) {
+      console.error(error);
     }
-    this.chart.update();
   }
 
-  private generateNumber(i: number): number {
-    return Math.floor(Math.random() * (i < 2 ? 100 : 1000) + 1);
+  fetchSalesData() {
+    this.salesDataResponse = [];
+    this.salesData = [];
+    this.salesChartLabels = [];
+    this.saleService.getSaleGraph(this.subsiId).subscribe((data) => {
+      this.salesDataResponse = data;
+      console.log(this.salesDataResponse);
+      this.salesDataResponse.forEach((element) => {
+        this.salesData.push(element.count);
+        this.salesChartLabels.push(
+          this.datePipe.transform(element.date, "dd-MM-yyyy")
+        );
+      });
+      this.salesChartData = [
+        { data: this.salesData, label: "Ventas" },
+        { data: this.salesData, label: "Pedidos" },
+      ];
+    });
   }
 
   public chartClicked({
@@ -130,18 +151,5 @@ export class PharmDashboardComponent implements OnInit {
   public hideOne(): void {
     const isHidden = this.chart.isDatasetHidden(1);
     this.chart.hideDataset(1, !isHidden);
-  }
-
-  public pushOne(): void {
-    this.lineChartData.forEach((x, i) => {
-      const num = this.generateNumber(i);
-      const data: number[] = x.data as number[];
-      data.push(num);
-    });
-    this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
-  }
-
-  public changeLabel(): void {
-    this.lineChartLabels[2] = ["1st Line", "2nd Line"];
   }
 }

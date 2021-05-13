@@ -11,7 +11,6 @@ import { TokenService } from "src/app/core/authentication/token.service";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
 import { SaleService } from "src/app/core/http/pharm-admin/sale.service";
 import { ErrorDialogComponent } from "src/app/modules/components/dialogs/error-dialog/error-dialog.component";
-import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes-dialog/succes-dialog.component";
 import { Product } from "src/app/shared/models/product";
 import { ProductOrder } from "src/app/shared/models/product-order";
 import { Sale } from "src/app/shared/models/sales";
