@@ -64,7 +64,7 @@
               </div>
               <div class="col-8">
                 <h3>El producto mas Vendido</h3>
-                <p class="p_value2">8.7% en Stock</p>
+                <p class="p_value2">8.7</p>
               </div>
             </div>
           </mat-card>
@@ -88,7 +88,7 @@
               </div>
               <div class="col-8">
                 <h3>Ganancias de Ventas en Tienda</h3>
-                <p class="p_value2">8.7% en Stock</p>
+                <p class="p_value2">8.7$</p>
               </div>
             </div></mat-card
           >
@@ -114,20 +114,22 @@
                 class="filter2"
                 (selectionChange)="fecthOrders(1)"
               >
-               
                 <mat-option value="0">Todos</mat-option>
                 <mat-option value="2">Ventas en Fisico</mat-option>
                 <mat-option value="3">Pedidos on line</mat-option>
               </mat-select>
             </mat-form-field>
             <div class="table-container mat-elevation-z8">
-              <div class="loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+              <div
+                class="loading-shade"
+                *ngIf="isLoadingResults || isRateLimitReached"
+              >
                 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
                 <div class="rate-limit-reached" *ngIf="isRateLimitReached">
                   Es el limite de los datos
                 </div>
               </div>
-        
+
               <!-- Tabla de los pedidos -->
               <div class="adminlist">
                 <table
@@ -144,16 +146,18 @@
                       {{ order.reserveId }}
                     </td>
                   </ng-container>
-        
+
                   <!-- User Column -->
                   <ng-container matColumnDef="User">
-                    <th mat-header-cell *matHeaderCellDef>Nombre del Producto</th>
+                    <th mat-header-cell *matHeaderCellDef>
+                      Nombre del Producto
+                    </th>
                     <td mat-cell *matCellDef="let order">
                       {{ product.name }}
-                      <img src="assets/images/4.jpg"/>
+                      <img src="assets/images/4.jpg" />
                     </td>
                   </ng-container>
-        
+
                   <!-- Cost Column -->
                   <ng-container matColumnDef="Cost">
                     <th mat-header-cell *matHeaderCellDef>Ganancia</th>
@@ -161,19 +165,23 @@
                       {{ order.total }}
                     </td>
                   </ng-container>
-        
+
                   <!-- Status Column -->
                   <ng-container matColumnDef="Quantity">
-                    <th mat-header-cell *matHeaderCellDef>Cantidad de Productos</th>
+                    <th mat-header-cell *matHeaderCellDef>
+                      Cantidad de Productos
+                    </th>
                     <td mat-cell *matCellDef="let order">
                       {{ order.quantity }}
                     </td>
                   </ng-container>
 
-        
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        
+                  <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                  ></tr>
+
                   <!-- Row shown when there is no matching data. -->
                   <tr class="mat-row" *matNoDataRow>
                     <td class="mat-cell" colspan="5">
@@ -190,8 +198,6 @@
             </div>
           </div>
         </div>
-        
-      
       </div>
     </div>
     <div class="chart_section col-5">
