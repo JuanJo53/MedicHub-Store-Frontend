@@ -49,4 +49,22 @@ export class PharmOrderService {
       headers: this.headers,
     });
   }
+
+  getSubsidiaryOrdersBI(
+    subsiId: number,
+    page: number,
+    size: number,
+    type: number,
+    filter: number,
+    typeFilter: number
+  ) {
+    return this.http.get<Order[]>(
+      apiKey.api +
+        `/reserve/${subsiId}/subsidiary/report/general?page=${
+          (page - 1) * size
+        }&size=${size}&asc=${type}`,
+      { headers: this.headers }
+    );
+  }
+
 }

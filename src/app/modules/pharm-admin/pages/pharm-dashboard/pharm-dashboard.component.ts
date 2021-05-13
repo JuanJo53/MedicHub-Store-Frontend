@@ -101,7 +101,7 @@ export class PharmDashboardComponent implements OnInit {
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
   //Table
-  /*orders: Order[] = [];
+  orders: Order[] = [];
 
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -114,23 +114,28 @@ export class PharmDashboardComponent implements OnInit {
 
   displayedColumns: string[] = [
     "id_sale",
-    "Name",
-    "Cost",
+    "Product",
+    "Gain",
+    "Stock",
     "Quantity",
+    "More",
   ];
 
-  id: number;
+  idorder: number;
   typeOrder: any;
   filter: any;
   filterType: any;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;*/
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
     private datePipe: DatePipe,
     private tokenService: TokenService,
-    private saleService: SaleService
+    private saleService: SaleService,
+    public dialog: MatDialog,
+    private orderService: PharmOrderService,
+
   ) {}
 
   ngOnInit(): void {
@@ -138,10 +143,13 @@ export class PharmDashboardComponent implements OnInit {
       this.subsiId = parseInt(this.tokenService.getSubsidiaryId());
       if (this.subsiId) {
         this.fetchSalesData();
+        this.typeOrder = "2";
+        this.fecthOrders(this.length);
       }
     } catch (error) {
       console.error(error);
     }
+    this.tabledatasource(this.idorder)
   }
 
   fetchSalesData() {
@@ -186,10 +194,10 @@ export class PharmDashboardComponent implements OnInit {
 
   //table
 
-  /*public tabledatasource(): void {
-    this.id = parseInt(this.tokenService.getSubsidiaryId());
+  public tabledatasource(idorder:number): void {
+    this.idorder = parseInt(this.tokenService.getSubsidiaryId());
     try {
-      if (this.id) {
+      if (this.idorder) {
         this.typeOrder = "2";
         this.fecthOrders(this.length);
       }
@@ -206,8 +214,8 @@ export class PharmDashboardComponent implements OnInit {
 
   fecthOrders(page: number): void {
     this.orderService
-      .getSubsidiaryOrders(
-        this.id,
+      .getSubsidiaryOrdersBI(
+        this.idorder,
         page,
         this.size,
         parseInt(this.typeOrder),
@@ -221,6 +229,13 @@ export class PharmDashboardComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.isLoadingResults = false;
       });
+
+      console.log(this.idorder,
+        page,
+        this.size,
+        parseInt(this.typeOrder),
+        this.filter,
+        this.filterType)
   }
 
   refreshOrders(event) {
@@ -234,5 +249,5 @@ export class PharmDashboardComponent implements OnInit {
         products: products,
       },
     });
-  }*/
+  }
 }

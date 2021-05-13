@@ -88,6 +88,13 @@ export class OrdersComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.isLoadingResults = false;
       });
+
+    console.log(this.id,
+      page,
+      this.size,
+      parseInt(this.typeOrder),
+      this.filter,
+      this.filterType)
   }
 
   refreshOrders(event) {
