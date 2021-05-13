@@ -42,10 +42,13 @@ export class SaleService {
       { headers: this.headers }
     );
   }
-  getSale(saleId: number) {
-    return this.http.get<Sale>(apiKey.api + `/sale/${saleId}`, {
-      headers: this.headers,
-    });
+  getSaleGraph(saleId: number) {
+    return this.http.get<any>(
+      apiKey.api + `/purchase/${saleId}/graph?init=2020-01-01&end=2021-05-14`,
+      {
+        headers: this.headers,
+      }
+    );
   }
   updateSale(sale: Sale) {
     return this.http.put(apiKey.api + "/sale", sale, {
