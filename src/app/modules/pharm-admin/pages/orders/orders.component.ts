@@ -82,19 +82,16 @@ export class OrdersComponent implements OnInit {
         this.filterType
       )
       .subscribe((orders) => {
-        this.orders = orders;
-        this.length = orders[0].size;
+        if (orders.length > 0) {
+          this.orders = orders;
+          this.length = orders[0].size;
+        } else {
+          this.orders = [];
+        }
         this.dataSource = new MatTableDataSource(this.orders);
         this.dataSource.sort = this.sort;
         this.isLoadingResults = false;
       });
-
-    console.log(this.id,
-      page,
-      this.size,
-      parseInt(this.typeOrder),
-      this.filter,
-      this.filterType)
   }
 
   refreshOrders(event) {
