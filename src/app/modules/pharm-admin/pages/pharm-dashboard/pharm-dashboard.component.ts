@@ -97,6 +97,7 @@ export class PharmDashboardComponent implements OnInit {
   endDate: string;
 
   salesData: number[];
+  ordersData: number[];
   salesDataResponse: any[];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
@@ -121,7 +122,6 @@ export class PharmDashboardComponent implements OnInit {
     "More",
   ];
 
-  idorder: number;
   typeOrder: any;
   filter: any;
   filterType: any;
@@ -134,8 +134,7 @@ export class PharmDashboardComponent implements OnInit {
     private tokenService: TokenService,
     private saleService: SaleService,
     public dialog: MatDialog,
-    private orderService: PharmOrderService,
-
+    private orderService: PharmOrderService
   ) {}
 
   ngOnInit(): void {
@@ -149,16 +148,22 @@ export class PharmDashboardComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
-    this.tabledatasource(this.idorder)
   }
 
   fetchSalesData() {
     this.salesDataResponse = [];
     this.salesData = [];
+    this.ordersData = [];
     this.salesChartLabels = [];
     this.saleService.getSaleGraph(this.subsiId).subscribe((data) => {
       this.salesDataResponse = data;
       console.log(this.salesDataResponse);
+      this.saleService.getOrderGraph(this.subsiId).subscribe((data) => {
+        data.forEach((element) => {
+          this.ordersData.push(element.count);
+        });
+      });
+
       this.salesDataResponse.forEach((element) => {
         this.salesData.push(element.count);
         this.salesChartLabels.push(
@@ -167,7 +172,7 @@ export class PharmDashboardComponent implements OnInit {
       });
       this.salesChartData = [
         { data: this.salesData, label: "Ventas" },
-        { data: this.salesData, label: "Pedidos" },
+        { data: this.ordersData, label: "Pedidos" },
       ];
     });
   }
@@ -194,18 +199,6 @@ export class PharmDashboardComponent implements OnInit {
 
   //table
 
-  public tabledatasource(idorder:number): void {
-    this.idorder = parseInt(this.tokenService.getSubsidiaryId());
-    try {
-      if (this.idorder) {
-        this.typeOrder = "2";
-        this.fecthOrders(this.length);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-  }
   dataSource = new MatTableDataSource();
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -215,7 +208,7 @@ export class PharmDashboardComponent implements OnInit {
   fecthOrders(page: number): void {
     this.orderService
       .getSubsidiaryOrdersBI(
-        this.idorder,
+        this.subsiId,
         page,
         this.size,
         parseInt(this.typeOrder),
@@ -224,18 +217,21 @@ export class PharmDashboardComponent implements OnInit {
       )
       .subscribe((orders) => {
         this.orders = orders;
+        console.log(orders);
         this.length = orders[0].size;
         this.dataSource = new MatTableDataSource(this.orders);
         this.dataSource.sort = this.sort;
         this.isLoadingResults = false;
       });
 
-      console.log(this.idorder,
-        page,
-        this.size,
-        parseInt(this.typeOrder),
-        this.filter,
-        this.filterType)
+    console.log(
+      this.subsiId,
+      page,
+      this.size,
+      parseInt(this.typeOrder),
+      this.filter,
+      this.filterType
+    );
   }
 
   refreshOrders(event) {

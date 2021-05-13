@@ -131,7 +131,7 @@
               </div>
 
               <!-- Tabla de los pedidos -->
-              <div class="adminlist">
+              <div class="productList">
                 <table
                   mat-table
                   [dataSource]="dataSource"
@@ -163,7 +163,7 @@
                   <ng-container matColumnDef="Gain">
                     <th mat-header-cell *matHeaderCellDef>Ganancia</th>
                     <td mat-cell *matCellDef="let order">
-                      {{ order.total }}
+                      {{ order.total | number }}
                     </td>
                   </ng-container>
 
