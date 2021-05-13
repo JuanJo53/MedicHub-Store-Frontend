@@ -92,6 +92,7 @@ import { OrdersHistoryComponent } from "../client/pages/orders-history/orders-hi
 import { MatChipsModule } from "@angular/material/chips";
 import { OrderProductsComponent } from "../client/components/dialogs/order-products/order-products.component";
 import { ChartsModule } from "ng2-charts";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -190,6 +191,7 @@ import { ChartsModule } from "ng2-charts";
     MatSnackBarModule,
     MatChipsModule,
     ChartsModule,
+    MatButtonToggleModule,
   ],
   entryComponents: [
     LoginComponent,

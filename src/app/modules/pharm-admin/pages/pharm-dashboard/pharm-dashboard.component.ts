@@ -87,7 +87,6 @@ export class PharmDashboardComponent implements OnInit {
   };
 
   public lineChartLegend = true;
-  public lineChartType: ChartType = "line";
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
