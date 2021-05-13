@@ -223,7 +223,7 @@ export class PharmDashboardComponent implements OnInit {
         this.filterType
       )
       .subscribe((products) => {
-        //this.products = products;
+        this.products = products;
         console.log(products);
         this.length = products[0].size;
         this.dataSource = new MatTableDataSource(this.products);
