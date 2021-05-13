@@ -5,7 +5,7 @@
       <h2 class="subtitle">Ventas</h2>
       <canvas
         class="chart"
-        height="100"
+        height="90"
         baseChart
         [datasets]="lineChartData"
         [labels]="lineChartLabels"
@@ -19,28 +19,73 @@
     </div>
   </div>
   <div class="row">
-    <div class="chart_section col">
-      <h2 class="subtitle">Productos</h2>
-      <canvas
-        baseChart
-        class="chart"
-        [data]="pieChartData"
-        [labels]="pieChartLabels"
-        [chartType]="pieChartType"
-        [options]="pieChartOptions"
-        [colors]="pieChartColors"
-        [legend]="pieChartLegend"
-      >
-      </canvas>
+    <div class="col-7">
+      <div class="row">
+        <div class="col">
+          <mat-card>
+            <div class="row">
+              <div class="col-2">
+                <mat-icon class="link__icon">shopping_cart</mat-icon>
+              </div>
+              <div class="col-8">
+                <h3>Pedidos Pendientes</h3>
+                <p>200</p>
+              </div>
+            </div>
+          </mat-card>
+          <mat-card>
+            <div class="row">
+              <div class="col-2">
+                <mat-icon class="link__icon">store</mat-icon>
+              </div>
+              <div class="col-8">
+                <h3>El producto mas Vendido</h3>
+                <p>8.7% en Stock</p>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+        <div class="col">
+          <mat-card>
+            <div class="row">
+              <div class="col-2">
+                <mat-icon class="link__icon">store</mat-icon>
+              </div>
+              <div class="col-8">
+                <h3>Ganancias de Pedidos</h3>
+                <p>8122$ en Stock</p>
+              </div>
+            </div></mat-card
+          >
+          <mat-card>
+            <div class="row">
+              <div class="col-2">
+                <mat-icon class="link__icon">store</mat-icon>
+              </div>
+              <div class="col-8">
+                <h3>Ganancias de Ventas en Tienda</h3>
+                <p>8.7% en Stock</p>
+              </div>
+            </div></mat-card
+          >
+        </div>
+      </div>
+      <div class="row">aqui viene tabla</div>
     </div>
-    <div class="chart_section col">
-      <canvas
-        baseChart
-        [data]="doughnutChartData"
-        [labels]="doughnutChartLabels"
-        [chartType]="doughnutChartType"
-      >
-      </canvas>
+    <div class="chart_section col-5">
+      <mat-card>
+        <h2 class="subtitle">Productos</h2>
+        <canvas
+          baseChart
+          class="chart"
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [legend]="pieChartLegend"
+        >
+        </canvas>
+      </mat-card>
     </div>
   </div>
 </div>

@@ -7,22 +7,9 @@ import { Color, BaseChartDirective, Label, MultiDataSet } from "ng2-charts";
   styleUrls: ["./pharm-dashboard.component.scss"],
 })
 export class PharmDashboardComponent implements OnInit {
-  // Doughnut
-  public doughnutChartLabels: Label[] = [
-    "Download Sales",
-    "In-Store Sales",
-    "Mail-Order Sales",
-  ];
-  public doughnutChartData: MultiDataSet = [
-    [350, 450, 100],
-    [50, 150, 120],
-    [250, 130, 70],
-  ];
-  public doughnutChartType: ChartType = "doughnut";
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
-    maintainAspectRatio: true,
     legend: {
       position: "top",
     },
@@ -38,28 +25,26 @@ export class PharmDashboardComponent implements OnInit {
   public pieChartLabels: Label[] = [
     ["Download", "Sales"],
     ["In", "Store", "Sales"],
+    ["In", "Store", "Sales"],
+    ["In", "Store", "Sales"],
+    ["In", "Store", "Sales"],
+    ["In", "Store", "Sales"],
+    ["In", "Store", "Sales"],
+    ["In", "Store", "Sales"],
+    ["In", "Store", "Sales"],
+    ["In", "Store", "Sales"],
     "Mail Sales",
   ];
-  public pieChartData: number[] = [300, 500, 100];
+  public pieChartData: number[] = [
+    300, 500, 100, 500, 500, 200, 600, 10, 80, 60, 30,
+  ];
   public pieChartType: ChartType = "pie";
   public pieChartLegend = true;
-  public pieChartColors = [
-    {
-      backgroundColor: [
-        "rgba(255,0,0,0.3)",
-        "rgba(0,255,0,0.3)",
-        "rgba(0,0,255,0.3)",
-      ],
-    },
-  ];
+
+  //line|bar
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: "Series A" },
     { data: [28, 48, 40, 19, 86, 27, 90], label: "Series B" },
-    {
-      data: [180, 480, 770, 90, 1000, 270, 400],
-      label: "Series C",
-      yAxisID: "y-axis-1",
-    },
   ];
   public lineChartLabels: Label[] = [
     "January",
@@ -79,16 +64,6 @@ export class PharmDashboardComponent implements OnInit {
         {
           id: "y-axis-0",
           position: "left",
-        },
-        {
-          id: "y-axis-1",
-          position: "right",
-          gridLines: {
-            color: "rgba(255,0,0,0.3)",
-          },
-          ticks: {
-            fontColor: "red",
-          },
         },
       ],
     },
