@@ -14,6 +14,7 @@ import { TokenService } from "src/app/core/authentication/token.service";
 import { PharmOrderService } from "src/app/core/http/pharm-admin/pharmOrder.service";
 import { OrderProductsComponent } from "src/app/modules/client/components/dialogs/order-products/order-products.component";
 import { Order } from "src/app/shared/models/order";
+import { Product } from "src/app/shared/models/product";
 
 @Component({
   selector: "app-pharm-dashboard",
@@ -102,7 +103,7 @@ export class PharmDashboardComponent implements OnInit {
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
   //Table
-  orders: Order[] = [];
+  products: Product[] = [];
 
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -136,7 +137,7 @@ export class PharmDashboardComponent implements OnInit {
     private tokenService: TokenService,
     private saleService: SaleService,
     public dialog: MatDialog,
-    private orderService: PharmOrderService
+    private productdashService: PharmOrderService,
   ) {}
 
   ngOnInit(): void {
@@ -212,7 +213,7 @@ export class PharmDashboardComponent implements OnInit {
   }
 
   fecthOrders(page: number): void {
-    this.orderService
+    this.productdashService
       .getSubsidiaryOrdersBI(
         this.subsiId,
         page,
@@ -221,11 +222,11 @@ export class PharmDashboardComponent implements OnInit {
         this.filter,
         this.filterType
       )
-      .subscribe((orders) => {
-        this.orders = orders;
-        console.log(orders);
-        this.length = orders[0].size;
-        this.dataSource = new MatTableDataSource(this.orders);
+      .subscribe((products) => {
+        //this.products = products;
+        console.log(products);
+        this.length = products[0].size;
+        this.dataSource = new MatTableDataSource(this.products);
         this.dataSource.sort = this.sort;
         this.isLoadingResults = false;
       });
