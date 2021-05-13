@@ -58,6 +58,14 @@ export class SaleService {
       }
     );
   }
+  getStats(subId: number) {
+    return this.http.get<any>(
+      apiKey.api + `/purchase/${subId}/subsidiary/report/statistics`,
+      {
+        headers: this.headers,
+      }
+    );
+  }
   updateSale(sale: Sale) {
     return this.http.put(apiKey.api + "/sale", sale, {
       headers: this.headers,

@@ -122,6 +122,8 @@ export class PharmDashboardComponent implements OnInit {
     "More",
   ];
 
+  stats: any;
+
   typeOrder: any;
   filter: any;
   filterType: any;
@@ -141,6 +143,7 @@ export class PharmDashboardComponent implements OnInit {
     try {
       this.subsiId = parseInt(this.tokenService.getSubsidiaryId());
       if (this.subsiId) {
+        this.fetchStats();
         this.fetchSalesData();
         this.typeOrder = "2";
         this.fecthOrders(this.length);
@@ -149,7 +152,12 @@ export class PharmDashboardComponent implements OnInit {
       console.error(error);
     }
   }
-
+  fetchStats() {
+    this.saleService.getStats(this.subsiId).subscribe((data) => {
+      this.stats = data;
+      console.log(this.stats);
+    });
+  }
   fetchSalesData() {
     this.salesDataResponse = [];
     this.salesData = [];
@@ -157,13 +165,11 @@ export class PharmDashboardComponent implements OnInit {
     this.salesChartLabels = [];
     this.saleService.getSaleGraph(this.subsiId).subscribe((data) => {
       this.salesDataResponse = data;
-      console.log(this.salesDataResponse);
       this.saleService.getOrderGraph(this.subsiId).subscribe((data) => {
         data.forEach((element) => {
           this.ordersData.push(element.count);
         });
       });
-
       this.salesDataResponse.forEach((element) => {
         this.salesData.push(element.count);
         this.salesChartLabels.push(
