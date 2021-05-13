@@ -129,12 +129,11 @@ export class PharmDashboardComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-
   constructor(
     private datePipe: DatePipe,
     private tokenService: TokenService,
     private saleService: SaleService,
-    private dialog: MatDialog,
+    public dialog: MatDialog,
     private orderService: PharmOrderService,
 
   ) {}
@@ -150,6 +149,7 @@ export class PharmDashboardComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+    this.tabledatasource(this.idorder)
   }
 
   fetchSalesData() {
@@ -194,7 +194,18 @@ export class PharmDashboardComponent implements OnInit {
 
   //table
 
- 
+  public tabledatasource(idorder:number): void {
+    this.idorder = parseInt(this.tokenService.getSubsidiaryId());
+    try {
+      if (this.idorder) {
+        this.typeOrder = "2";
+        this.fecthOrders(this.length);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
   dataSource = new MatTableDataSource();
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

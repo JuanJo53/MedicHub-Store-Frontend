@@ -56,3 +56,37 @@
   color: #ff4081;
   font-weight: bold;
 }
+
+table {
+  width: 100%;
+}
+.loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rate-limit-reached {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
+}
+.table-container {
+  position: relative;
+  min-height: 200px;
+}
+.title{
+  
+  margin-bottom: 35px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight:bold;
+  font-size: 40px;
+  color: #2F4A85;
+}
+
