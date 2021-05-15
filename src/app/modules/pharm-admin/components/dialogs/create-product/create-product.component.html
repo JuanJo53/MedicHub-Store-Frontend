@@ -49,11 +49,19 @@
         <mat-label>Dosis</mat-label
         ><input
           matInput
-          type="text"
+          type="number"
           formControlName="dose"
-          placeholder="250 ml gr"
+          placeholder="250"
           required
         />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de Dosis</mat-label>
+        <mat-select formControlName="doseTypeId">
+          <mat-option *ngFor="let dose of doses" [value]="dose.doseTypeId">{{
+            dose.type
+          }}</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="form">
         <mat-label>Descripcion</mat-label

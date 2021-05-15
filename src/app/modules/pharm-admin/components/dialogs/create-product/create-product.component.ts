@@ -2,8 +2,10 @@ import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { BrandService } from "src/app/core/http/pharm-admin/brand.service";
+import { DoseService } from "src/app/core/http/pharm-admin/dose.service";
 import { ProductsService } from "src/app/core/http/pharm-admin/products.service";
 import { Brand } from "src/app/shared/models/brand";
+import { Dose } from "src/app/shared/models/dose";
 import { Product } from "src/app/shared/models/product";
 
 @Component({
@@ -13,18 +15,21 @@ import { Product } from "src/app/shared/models/product";
 })
 export class CreateProductComponent implements OnInit {
   brands: Brand[] = [];
+  doses: Dose[] = [];
   form: FormGroup;
 
   constructor(
     private fromBuilder: FormBuilder,
     private prodcutService: ProductsService,
     private brandsService: BrandService,
+    private doseTypeService: DoseService,
     public dialogRef: MatDialogRef<CreateProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number }
   ) {}
 
   ngOnInit(): void {
     this.fecthBrands();
+    this.fecthDoseTypes();
     this.editProduct();
   }
   onNoClick(): void {
@@ -34,6 +39,7 @@ export class CreateProductComponent implements OnInit {
     this.form = this.fromBuilder.group({
       subsidiaryId: [0, [Validators.required]],
       brandId: [0, [Validators.required]],
+      doseTypeId: [0, [Validators.required]],
       name: [
         "",
         [
@@ -70,7 +76,6 @@ export class CreateProductComponent implements OnInit {
       ],
     });
     this.form.get("subsidiaryId").setValue(this.data.id);
-    this.form.get("brandId").setValue(1);
   }
   saveProduct(): void {
     if (this.form.valid) {
@@ -88,6 +93,11 @@ export class CreateProductComponent implements OnInit {
   fecthBrands(): void {
     this.brandsService.getBrands().subscribe((bands) => {
       this.brands = bands;
+    });
+  }
+  fecthDoseTypes(): void {
+    this.doseTypeService.getDoseTypes().subscribe((types) => {
+      this.doses = types;
     });
   }
 }

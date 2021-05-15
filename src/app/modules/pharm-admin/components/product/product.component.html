@@ -50,7 +50,7 @@
           <mat-card-content class="">
             <h3>
               <strong class="textEdit">PRECIO:</strong>
-              <p class="textEdit">{{ product.price }}</p>
+              <p class="textEdit">{{ product.price }} Bs.</p>
             </h3>
             <h3>
               <strong class="textEdit">STOCK:</strong>
@@ -63,6 +63,7 @@
             <h3>
               <strong class="textEdit">DOSIS:</strong>
               <p class="textEdit">{{ product.dose }}</p>
+              <p>{{ doseType }}</p>
             </h3>
             <h3>
               <strong class="textEdit">TIPO:</strong>
@@ -146,18 +147,28 @@
                   required
                 />
               </mat-form-field>
-              <mat-form-field class="form">
-                <mat-label class="texteditcard">Descripcion</mat-label
-                ><input
-                  matInput
-                  type="text"
-                  formControlName="description"
-                  placeholder="Este es un producto"
-                  [(ngModel)]="product.description"
-                  required
-                />
+              <mat-form-field appearance="fill">
+                <mat-label class="texteditcard">Tipo de Dosis</mat-label>
+                <mat-select formControlName="doseTypeId">
+                  <mat-option
+                    *ngFor="let dose of doses"
+                    [value]="dose.doseTypeId"
+                    >{{ dose.type }}</mat-option
+                  >
+                </mat-select>
               </mat-form-field>
             </div>
+            <mat-form-field appearance="fill">
+              <mat-label class="texteditcard">Descripcion</mat-label
+              ><input
+                matInput
+                type="text"
+                formControlName="description"
+                placeholder="Este es un producto"
+                [(ngModel)]="product.description"
+                required
+              />
+            </mat-form-field>
             <mat-form-field appearance="fill">
               <mat-label class="texteditcard">Marcas</mat-label>
               <mat-select formControlName="brandId">

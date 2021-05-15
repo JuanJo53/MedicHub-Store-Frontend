@@ -11,6 +11,8 @@ import { SuccesDialogComponent } from "src/app/modules/components/dialogs/succes
 import { FileService } from "src/app/core/services/file.service";
 import { DomSanitizer } from "@angular/platform-browser";
 import { EventEmitterService } from "src/app/core/services/event-emitter.service";
+import { Dose } from "src/app/shared/models/dose";
+import { DoseService } from "src/app/core/http/pharm-admin/dose.service";
 
 @Component({
   selector: "app-product",
@@ -20,9 +22,11 @@ import { EventEmitterService } from "src/app/core/services/event-emitter.service
 export class ProductComponent implements OnInit {
   @Input() product: Product;
   brands: Brand[] = [];
+  doses: Dose[] = [];
   subsidiaryId: number;
   form: FormGroup;
   productId: number;
+  doseType: string;
 
   edit = false;
   destroyed = false;
@@ -32,6 +36,7 @@ export class ProductComponent implements OnInit {
     private fromBuilder: FormBuilder,
     private productsServide: ProductsService,
     private brandsService: BrandService,
+    private doseTypeService: DoseService,
     private tokenService: TokenService,
     private fileService: FileService,
     private sanitizer: DomSanitizer,
@@ -46,6 +51,7 @@ export class ProductComponent implements OnInit {
       this.fetchProduct(id);
     }
     this.fecthBrands();
+    this.fecthDoseTypes();
   }
   ngOnDestroy(): void {
     this.destroyed = true;
@@ -56,8 +62,18 @@ export class ProductComponent implements OnInit {
   fetchProduct(id: number): void {
     this.productsServide.getProduct(id).subscribe((product) => {
       this.product = product;
+      this.doseType = this.setDoseType(product);
       this.fetchProductPhoto();
     });
+  }
+  setDoseType(product: Product): string {
+    let type = "";
+    this.doses.forEach((prod) => {
+      if (prod.doseTypeId == product.doseTypeId) {
+        type = prod.type;
+      }
+    });
+    return type;
   }
   fetchProductPhoto() {
     if (this.product.picture != "null") {
@@ -90,6 +106,7 @@ export class ProductComponent implements OnInit {
       productId: [productId, [Validators.required]],
       subsidiaryId: [this.subsidiaryId, [Validators.required]],
       brandId: [this.product.brandId, [Validators.required]],
+      doseTypeId: [this.product.doseTypeId, [Validators.required]],
       name: [
         "",
         [
@@ -113,7 +130,7 @@ export class ProductComponent implements OnInit {
         [
           Validators.required,
           Validators.maxLength(45),
-          Validators.minLength(4),
+          Validators.minLength(2),
         ],
       ],
       description: [
@@ -165,6 +182,11 @@ export class ProductComponent implements OnInit {
   fecthBrands(): void {
     this.brandsService.getBrands().subscribe((bands) => {
       this.brands = bands;
+    });
+  }
+  fecthDoseTypes(): void {
+    this.doseTypeService.getDoseTypes().subscribe((types) => {
+      this.doses = types;
     });
   }
   displaySuccesDialog(text: string) {
