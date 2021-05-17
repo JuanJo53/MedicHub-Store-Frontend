@@ -12,5 +12,6 @@ export interface Product {
   description: string;
   quantity: number;
   total: number;
-  picture: string;
+  picture: any;
+  size: number;
 }

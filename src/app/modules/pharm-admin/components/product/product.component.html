@@ -50,28 +50,29 @@
           <mat-card-content class="">
             <h3>
               <strong class="textEdit">PRECIO:</strong>
-              <p class="textEdit">{{ product.price }} Bs.</p>
+              <p class="textEditValue">{{ product.price }} Bs.</p>
             </h3>
             <h3>
               <strong class="textEdit">STOCK:</strong>
-              <p class="textEdit">{{ product.stock }}</p>
+              <p class="textEditValue">{{ product.stock }}</p>
             </h3>
             <h3>
               <strong class="textEdit">DESCRIPCIÓN:</strong>
-              <p class="textEdit">{{ product.description }}</p>
+              <p class="textEditValue">{{ product.description }}</p>
             </h3>
             <h3>
               <strong class="textEdit">DOSIS:</strong>
-              <p class="textEdit">{{ product.dose }}</p>
-              <p>{{ doseType }}</p>
+              <p class="textEditValue">
+                {{ product.dose }} {{ product.doseType }}
+              </p>
             </h3>
             <h3>
               <strong class="textEdit">TIPO:</strong>
-              <p class="textEdit">{{ product.type }}</p>
+              <p class="textEditValue">{{ product.type }}</p>
             </h3>
             <h3>
               <strong class="textEdit">MARCA:</strong>
-              <p class="textEdit">{{ product.brandName }}</p>
+              <p class="textEditValue">{{ product.brandName }}</p>
             </h3>
           </mat-card-content>
         </td>

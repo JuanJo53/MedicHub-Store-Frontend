@@ -1,3 +1,4 @@
+import { Product } from "src/app/shared/models/product";
 import { DatePipe } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -14,6 +15,8 @@ import { TokenService } from "src/app/core/authentication/token.service";
 import { PharmOrderService } from "src/app/core/http/pharm-admin/pharmOrder.service";
 import { OrderProductsComponent } from "src/app/modules/client/components/dialogs/order-products/order-products.component";
 import { Order } from "src/app/shared/models/order";
+import { FileService } from "src/app/core/services/file.service";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: "app-pharm-dashboard",
@@ -102,7 +105,7 @@ export class PharmDashboardComponent implements OnInit {
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
   //Table
-  orders: Order[] = [];
+  products: Product[] = [];
 
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -135,6 +138,8 @@ export class PharmDashboardComponent implements OnInit {
     private datePipe: DatePipe,
     private tokenService: TokenService,
     private saleService: SaleService,
+    private fileService: FileService,
+    private sanitizer: DomSanitizer,
     public dialog: MatDialog,
     private orderService: PharmOrderService
   ) {}
@@ -221,11 +226,17 @@ export class PharmDashboardComponent implements OnInit {
         this.filter,
         this.filterType
       )
-      .subscribe((orders) => {
-        this.orders = orders;
-        console.log(orders);
-        this.length = orders[0].size;
-        this.dataSource = new MatTableDataSource(this.orders);
+      .subscribe((products) => {
+        this.products = products;
+        console.log(products);
+        this.products.forEach((item) => {
+          this.fileService.getProductPic(item.picture).subscribe((result) => {
+            let objectURL = URL.createObjectURL(result);
+            item.picture = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+          });
+        });
+        this.length = products[0].size;
+        this.dataSource = new MatTableDataSource(this.products);
         this.dataSource.sort = this.sort;
         this.isLoadingResults = false;
       });

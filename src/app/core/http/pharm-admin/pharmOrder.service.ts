@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Order } from "src/app/shared/models/order";
+import { Product } from "src/app/shared/models/product";
 import apiKey from "../../apiKey";
 import { TokenService } from "../../authentication/token.service";
 
@@ -58,7 +59,7 @@ export class PharmOrderService {
     filter: number,
     typeFilter: number
   ) {
-    return this.http.get<Order[]>(
+    return this.http.get<Product[]>(
       apiKey.api +
         `/reserve/${subsiId}/subsidiary/report/general?page=${
           (page - 1) * size
@@ -66,5 +67,4 @@ export class PharmOrderService {
       { headers: this.headers }
     );
   }
-
 }
