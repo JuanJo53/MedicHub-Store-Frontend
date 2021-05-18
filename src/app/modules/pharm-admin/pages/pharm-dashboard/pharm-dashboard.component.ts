@@ -1,7 +1,7 @@
 import { Product } from "src/app/shared/models/product";
 import { DatePipe } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { SaleService } from "src/app/core/http/pharm-admin/sale.service";
 import {
   MatDialog,
@@ -116,6 +116,7 @@ export class PharmDashboardComponent implements OnInit {
   asc = true;
   actualPage = 0;
 
+  dataSource = new MatTableDataSource();
   displayedColumns: string[] = [
     "id_sale",
     "Product",
@@ -124,6 +125,9 @@ export class PharmDashboardComponent implements OnInit {
     "Quantity",
     "More",
   ];
+
+  salesDataSource = new MatTableDataSource();
+  salesColumns: string[] = ["Date", "Quantity", "Gains"];
 
   stats: any;
 
@@ -142,12 +146,22 @@ export class PharmDashboardComponent implements OnInit {
     private sanitizer: DomSanitizer,
     public dialog: MatDialog,
     private orderService: PharmOrderService
-  ) {}
+  ) {
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.dateRange = new FormGroup({
+      start: new FormControl(new Date(2020, 5, 1)),
+      end: new FormControl(new Date(year, month, 30)),
+    });
+  }
 
   ngOnInit(): void {
     try {
       this.subsiId = parseInt(this.tokenService.getSubsidiaryId());
       if (this.subsiId) {
+        this.getDateRange();
         this.fetchStats();
         this.fetchSalesData();
         this.typeOrder = "2";
@@ -156,6 +170,14 @@ export class PharmDashboardComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+  getDateRange() {
+    const startDate = this.dateRange.get("start").value;
+    const endDate = this.dateRange.get("end").value;
+    const date = new Date(endDate);
+    date.setDate(date.getDate() + 1);
+    this.startDate = this.datePipe.transform(startDate, "yyyy-MM-dd");
+    this.endDate = this.datePipe.transform(date, "yyyy-MM-dd");
   }
   fetchStats() {
     this.saleService.getStats(this.subsiId).subscribe((data) => {
@@ -170,6 +192,8 @@ export class PharmDashboardComponent implements OnInit {
     this.salesChartLabels = [];
     this.saleService.getSaleGraph(this.subsiId).subscribe((data) => {
       this.salesDataResponse = data;
+      this.salesDataSource = new MatTableDataSource(this.salesDataResponse);
+      this.dataSource.sort = this.sort;
       this.saleService.getOrderGraph(this.subsiId).subscribe((data) => {
         data.forEach((element) => {
           this.ordersData.push(element.count);
@@ -208,9 +232,7 @@ export class PharmDashboardComponent implements OnInit {
     console.log(event, active);
   }
 
-  //table
-
-  dataSource = new MatTableDataSource();
+  //MatTableDataSource
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -230,10 +252,12 @@ export class PharmDashboardComponent implements OnInit {
         this.products = products;
         console.log(products);
         this.products.forEach((item) => {
-          this.fileService.getProductPic(item.picture).subscribe((result) => {
-            let objectURL = URL.createObjectURL(result);
-            item.picture = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-          });
+          if (item.picture != "null") {
+            this.fileService.getProductPic(item.picture).subscribe((result) => {
+              let objectURL = URL.createObjectURL(result);
+              item.picture = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+            });
+          }
         });
         this.length = products[0].size;
         this.dataSource = new MatTableDataSource(this.products);
