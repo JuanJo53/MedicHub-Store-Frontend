@@ -3,45 +3,62 @@
   <div class="row">
     <div class="chart_section col">
       <h2 class="subtitle">Ventas</h2>
-      <div class="chart_type">
-        <mat-button-toggle-group
-          class="buttons_configs"
-          #chart_view="matButtonToggleGroup"
-          value="line"
-        >
-          <mat-button-toggle
-            value="line"
-            aria-label="Text align left"
-            matTooltip="Grafico de Linea"
-          >
-            <mat-icon>timeline</mat-icon>
-          </mat-button-toggle>
-          <mat-button-toggle
-            value="bar"
-            aria-label="Text align center"
-            matTooltip="Grafico de Barra"
-          >
-            <mat-icon>bar_chart</mat-icon>
-          </mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-      <div class="date_picker">
-        <mat-form-field>
-          <input
-            matInput
-            [matDatepicker]="startPicker"
-            placeholder="Choose a date"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="startPicker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker
-            #startPicker
-            startView="year"
-            [startAt]="startDate"
-          ></mat-datepicker>
-        </mat-form-field>
+      <div class="row">
+        <div class="col">
+          <div class="chart_type">
+            <mat-button-toggle-group
+              class="buttons_configs"
+              #chart_view="matButtonToggleGroup"
+              value="line"
+            >
+              <mat-button-toggle
+                value="line"
+                aria-label="Text align left"
+                matTooltip="Grafico de Linea"
+              >
+                <mat-icon>timeline</mat-icon>
+              </mat-button-toggle>
+              <mat-button-toggle
+                value="bar"
+                aria-label="Text align center"
+                matTooltip="Grafico de Barra"
+              >
+                <mat-icon>bar_chart</mat-icon>
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+        <div class="col">
+          <div class="date_picker">
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="startPicker"
+                placeholder="Fecha de Inicio"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="startPicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker
+                #startPicker
+                [startAt]="startDate"
+              ></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="endPicker"
+                placeholder="Fecha Final"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="endPicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #endPicker [startAt]="endDate"></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
       </div>
       <canvas
         *ngIf="salesChartData"
