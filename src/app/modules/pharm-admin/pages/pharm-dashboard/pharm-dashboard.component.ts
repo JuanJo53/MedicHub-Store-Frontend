@@ -103,7 +103,7 @@ export class PharmDashboardComponent implements OnInit {
     },
   };
 
-  public lineChartLegend = true;
+  public lineChartLegend = false;
 
   subsiId: number;
 
@@ -111,8 +111,7 @@ export class PharmDashboardComponent implements OnInit {
   startDateValue: string;
   endDateValue: string;
 
-  salesData: number[];
-  ordersData: number[];
+  chartData: number[];
   salesDataResponse: any[];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
@@ -200,33 +199,44 @@ export class PharmDashboardComponent implements OnInit {
   fetchSalesData() {
     this.getDateRange();
     this.salesDataResponse = [];
-    this.salesData = [];
-    this.ordersData = [];
+    this.chartData = [];
     this.salesChartLabels = [];
     this.saleService
       .getSaleGraph(this.subsiId, this.startDateValue, this.endDateValue)
       .subscribe((data) => {
         this.salesDataResponse = data;
-        console.log(data);
         this.salesDataSource = new MatTableDataSource(this.salesDataResponse);
         this.salesDataSource.sort = this.sort;
-        this.saleService
-          .getOrderGraph(this.subsiId, this.startDateValue, this.endDateValue)
-          .subscribe((data) => {
-            data.forEach((element) => {
-              this.ordersData.push(element.count);
-            });
-          });
+        this.chartData.push(0);
         this.salesDataResponse.forEach((element) => {
-          this.salesData.push(element.count);
+          this.chartData.push(element.count);
           this.salesChartLabels.push(
             this.datePipe.transform(element.date, "dd-MM-yyyy")
           );
         });
-        this.salesChartData = [
-          { data: this.salesData, label: "Ventas" },
-          { data: this.ordersData, label: "Pedidos" },
-        ];
+
+        this.salesChartData = [{ data: this.chartData, label: "Ventas" }];
+      });
+  }
+  fetchOrdersData() {
+    this.salesChartData = [];
+    this.chartData = [];
+    this.salesChartLabels = [];
+    this.saleService
+      .getOrderGraph(this.subsiId, this.startDateValue, this.endDateValue)
+      .subscribe((data) => {
+        this.salesDataResponse = data;
+        this.salesDataSource = new MatTableDataSource(this.salesDataResponse);
+        this.salesDataSource.sort = this.sort;
+        this.chartData.push(0);
+        this.salesDataResponse.forEach((element) => {
+          this.chartData.push(element.count);
+          this.salesChartLabels.push(
+            this.datePipe.transform(element.date, "dd-MM-yyyy")
+          );
+        });
+
+        this.salesChartData = [{ data: this.chartData, label: "Pedidos" }];
       });
   }
 
