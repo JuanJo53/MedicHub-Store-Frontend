@@ -18,6 +18,18 @@ import { Order } from "src/app/shared/models/order";
 import { FileService } from "src/app/core/services/file.service";
 import { DomSanitizer } from "@angular/platform-browser";
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: "DD/MM/YYYY",
+  },
+  display: {
+    dateInput: "DD/MM/YYYY",
+    monthYearLabel: "YYYY",
+    dateA11yLabel: "LL",
+    monthYearA11yLabel: "YYYY",
+  },
+};
+
 @Component({
   selector: "app-pharm-dashboard",
   templateUrl: "./pharm-dashboard.component.html",
@@ -96,8 +108,8 @@ export class PharmDashboardComponent implements OnInit {
   subsiId: number;
 
   dateRange: FormGroup;
-  startDate: string;
-  endDate: string;
+  startDateValue: string;
+  endDateValue: string;
 
   salesData: number[];
   ordersData: number[];
@@ -150,10 +162,11 @@ export class PharmDashboardComponent implements OnInit {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
+    const day = today.getDate();
 
     this.dateRange = new FormGroup({
-      startDate: new FormControl(new Date(2020, 5, 1)),
-      endDate: new FormControl(new Date(year, month, 30)),
+      startDate: new FormControl(new Date(year, month, 1)),
+      endDate: new FormControl(new Date(year, month, day)),
     });
   }
 
@@ -161,7 +174,6 @@ export class PharmDashboardComponent implements OnInit {
     try {
       this.subsiId = parseInt(this.tokenService.getSubsidiaryId());
       if (this.subsiId) {
-        this.getDateRange();
         this.fetchStats();
         this.fetchSalesData();
         this.typeOrder = "2";
@@ -174,46 +186,48 @@ export class PharmDashboardComponent implements OnInit {
   getDateRange() {
     const startDate = this.dateRange.get("startDate").value;
     const endDate = this.dateRange.get("endDate").value;
-    const date = new Date(endDate);
-    date.setDate(date.getDate() + 1);
-    this.startDate = this.datePipe.transform(startDate, "yyyy-MM-dd");
-    this.endDate = this.datePipe.transform(date, "yyyy-MM-dd");
+    // startDate.setDate(startDate.getDate() + 1);
+    this.startDateValue = this.datePipe.transform(startDate, "yyyy-MM-dd");
+    this.endDateValue = this.datePipe.transform(endDate, "yyyy-MM-dd");
+    console.log(this.startDateValue);
+    console.log(this.endDateValue);
   }
   fetchStats() {
     this.saleService.getStats(this.subsiId).subscribe((data) => {
       this.stats = data;
-      console.log(this.stats);
     });
   }
-  getDates() {
-    console.log(this.startDate);
-    console.log(this.endDate);
-  }
   fetchSalesData() {
+    this.getDateRange();
     this.salesDataResponse = [];
     this.salesData = [];
     this.ordersData = [];
     this.salesChartLabels = [];
-    this.saleService.getSaleGraph(this.subsiId).subscribe((data) => {
-      this.salesDataResponse = data;
-      this.salesDataSource = new MatTableDataSource(this.salesDataResponse);
-      this.dataSource.sort = this.sort;
-      this.saleService.getOrderGraph(this.subsiId).subscribe((data) => {
-        data.forEach((element) => {
-          this.ordersData.push(element.count);
+    this.saleService
+      .getSaleGraph(this.subsiId, this.startDateValue, this.endDateValue)
+      .subscribe((data) => {
+        this.salesDataResponse = data;
+        console.log(data);
+        this.salesDataSource = new MatTableDataSource(this.salesDataResponse);
+        this.salesDataSource.sort = this.sort;
+        this.saleService
+          .getOrderGraph(this.subsiId, this.startDateValue, this.endDateValue)
+          .subscribe((data) => {
+            data.forEach((element) => {
+              this.ordersData.push(element.count);
+            });
+          });
+        this.salesDataResponse.forEach((element) => {
+          this.salesData.push(element.count);
+          this.salesChartLabels.push(
+            this.datePipe.transform(element.date, "dd-MM-yyyy")
+          );
         });
+        this.salesChartData = [
+          { data: this.salesData, label: "Ventas" },
+          { data: this.ordersData, label: "Pedidos" },
+        ];
       });
-      this.salesDataResponse.forEach((element) => {
-        this.salesData.push(element.count);
-        this.salesChartLabels.push(
-          this.datePipe.transform(element.date, "dd-MM-yyyy")
-        );
-      });
-      this.salesChartData = [
-        { data: this.salesData, label: "Ventas" },
-        { data: this.ordersData, label: "Pedidos" },
-      ];
-    });
   }
 
   public chartClicked({
@@ -237,9 +251,13 @@ export class PharmDashboardComponent implements OnInit {
   }
 
   //MatTableDataSource
-  applyFilter(event: Event) {
+  applyProductFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  applySalesFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.salesDataSource.filter = filterValue.trim().toLowerCase();
   }
 
   fecthOrders(page: number): void {
@@ -254,7 +272,6 @@ export class PharmDashboardComponent implements OnInit {
       )
       .subscribe((products) => {
         this.products = products;
-        console.log(products);
         this.products.forEach((item) => {
           if (item.picture != "null") {
             this.fileService.getProductPic(item.picture).subscribe((result) => {
@@ -268,15 +285,6 @@ export class PharmDashboardComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.isLoadingResults = false;
       });
-
-    console.log(
-      this.subsiId,
-      page,
-      this.size,
-      parseInt(this.typeOrder),
-      this.filter,
-      this.filterType
-    );
   }
 
   refreshOrders(event) {

@@ -42,17 +42,17 @@ export class SaleService {
       { headers: this.headers }
     );
   }
-  getSaleGraph(subId: number) {
+  getSaleGraph(subId: number, startDate: string, endDate: string) {
     return this.http.get<any>(
-      apiKey.api + `/purchase/${subId}/graph?init=2020-01-01&end=2021-05-14`,
+      apiKey.api + `/purchase/${subId}/graph?init=${startDate}&end=${endDate}`,
       {
         headers: this.headers,
       }
     );
   }
-  getOrderGraph(subId: number) {
+  getOrderGraph(subId: number, startDate: string, endDate: string) {
     return this.http.get<any>(
-      apiKey.api + `/payment/${subId}/graph?init=2020-01-01&end=2021-05-14`,
+      apiKey.api + `/payment/${subId}/graph?init=${startDate}&end=${endDate}`,
       {
         headers: this.headers,
       }

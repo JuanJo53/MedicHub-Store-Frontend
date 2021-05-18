@@ -30,43 +30,52 @@
         </div>
         <div class="col">
           <div class="date_picker">
-            <mat-form-field>
-              <input
-                matInput
-                [matDatepicker]="startPicker"
-                placeholder="Fecha de Inicio"
-                [(ngModel)]="startDate"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="startPicker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker
-                #startPicker
-                [startAt]="startDate"
-              ></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-              <input
-                matInput
-                [matDatepicker]="endPicker"
-                placeholder="Fecha Final"
-                [(ngModel)]="endDate"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="endPicker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #endPicker [startAt]="endDate"></mat-datepicker>
-            </mat-form-field>
-            <button
-              mat-icon-button
-              color="primary"
-              (click)="getDates()"
-              aria-label="Example icon button with a home icon"
+            <form
+              [formGroup]="dateRange"
+              (ngSubmit)="fetchSalesData()"
+              class="form"
             >
-              <mat-icon>search</mat-icon>
-            </button>
+              <mat-form-field>
+                <input
+                  matInput
+                  [matDatepicker]="startPicker"
+                  placeholder="Fecha de Inicio"
+                  formControlName="startDate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="startPicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker
+                  #startPicker
+                  [startAt]="startDateValue"
+                ></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  [matDatepicker]="endPicker"
+                  placeholder="Fecha Final"
+                  formControlName="endDate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="endPicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker
+                  #endPicker
+                  [startAt]="endDateValue"
+                ></mat-datepicker>
+              </mat-form-field>
+              <button
+                mat-icon-button
+                color="primary"
+                type="submit"
+                aria-label="Busqueda"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -145,7 +154,7 @@
               <mat-label>Buscar</mat-label>
               <input
                 matInput
-                (keyup)="applyFilter($event)"
+                (keyup)="applyProductFilter($event)"
                 placeholder="Nombre de Producto"
                 #input
               />
@@ -276,7 +285,16 @@
       </div>
     </div>
     <div class="chart_section col-5">
-      <h1 class="subtitle"><strong>Productos</strong></h1>
+      <h1 class="subtitle"><strong>Ventas y Pedidos</strong></h1>
+      <mat-form-field class="formfarmacia2">
+        <mat-label>Buscar</mat-label>
+        <input
+          matInput
+          (keyup)="applySalesFilter($event)"
+          placeholder="Nombre de Producto"
+          #input
+        />
+      </mat-form-field>
       <div class="table-container mat-elevation-z8">
         <div
           class="loading-shade"
