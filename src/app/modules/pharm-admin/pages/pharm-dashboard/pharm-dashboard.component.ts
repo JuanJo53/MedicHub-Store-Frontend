@@ -152,8 +152,8 @@ export class PharmDashboardComponent implements OnInit {
     const year = today.getFullYear();
 
     this.dateRange = new FormGroup({
-      start: new FormControl(new Date(2020, 5, 1)),
-      end: new FormControl(new Date(year, month, 30)),
+      startDate: new FormControl(new Date(2020, 5, 1)),
+      endDate: new FormControl(new Date(year, month, 30)),
     });
   }
 
@@ -172,8 +172,8 @@ export class PharmDashboardComponent implements OnInit {
     }
   }
   getDateRange() {
-    const startDate = this.dateRange.get("start").value;
-    const endDate = this.dateRange.get("end").value;
+    const startDate = this.dateRange.get("startDate").value;
+    const endDate = this.dateRange.get("endDate").value;
     const date = new Date(endDate);
     date.setDate(date.getDate() + 1);
     this.startDate = this.datePipe.transform(startDate, "yyyy-MM-dd");
@@ -184,6 +184,10 @@ export class PharmDashboardComponent implements OnInit {
       this.stats = data;
       console.log(this.stats);
     });
+  }
+  getDates() {
+    console.log(this.startDate);
+    console.log(this.endDate);
   }
   fetchSalesData() {
     this.salesDataResponse = [];

@@ -35,6 +35,7 @@
                 matInput
                 [matDatepicker]="startPicker"
                 placeholder="Fecha de Inicio"
+                [(ngModel)]="startDate"
               />
               <mat-datepicker-toggle
                 matSuffix
@@ -50,6 +51,7 @@
                 matInput
                 [matDatepicker]="endPicker"
                 placeholder="Fecha Final"
+                [(ngModel)]="endDate"
               />
               <mat-datepicker-toggle
                 matSuffix
@@ -57,6 +59,14 @@
               ></mat-datepicker-toggle>
               <mat-datepicker #endPicker [startAt]="endDate"></mat-datepicker>
             </mat-form-field>
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="getDates()"
+              aria-label="Example icon button with a home icon"
+            >
+              <mat-icon>search</mat-icon>
+            </button>
           </div>
         </div>
       </div>
@@ -68,7 +78,6 @@
         [datasets]="salesChartData"
         [labels]="salesChartLabels"
         [options]="lineChartOptions"
-        [colors]="lineChartColors"
         [legend]="lineChartLegend"
         [chartType]="chart_view.value"
         (chartHover)="chartHovered($event)"
