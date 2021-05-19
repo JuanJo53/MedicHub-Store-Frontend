@@ -122,7 +122,7 @@ export class PharmDashboardComponent implements OnInit {
   isRateLimitReached = false;
 
   length = 1;
-  size = 18;
+  size = 10;
   order = "id";
   asc = true;
   actualPage = 0;
@@ -282,6 +282,8 @@ export class PharmDashboardComponent implements OnInit {
       )
       .subscribe((products) => {
         this.products = products;
+        console.log(products);
+
         this.products.forEach((item) => {
           if (item.picture != "null") {
             this.fileService.getProductPic(item.picture).subscribe((result) => {
@@ -289,7 +291,9 @@ export class PharmDashboardComponent implements OnInit {
               item.picture = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             });
           }
+          //codigo para agregar los valores para el grafico
         });
+
         this.length = products[0].size;
         this.dataSource = new MatTableDataSource(this.products);
         this.dataSource.sort = this.sort;
