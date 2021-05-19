@@ -196,6 +196,17 @@
                 <mat-option value="2">Pedidos on line</mat-option>
               </mat-select>
             </mat-form-field>
+            <mat-form-field appearance="fill" class="filtro">
+              <mat-label class="titlefiltro">Tipo de Productos</mat-label>
+              <mat-select
+                [(value)]="typeProduct"
+                class="filter2"
+                (selectionChange)="fecthOrders(1)"
+              >
+                <mat-option value="0">Mas Vendidos</mat-option>
+                <mat-option value="1">Menos Vendidos</mat-option>
+              </mat-select>
+            </mat-form-field>
             <div class="table-container mat-elevation-z8">
               <div
                 class="loading-shade"
@@ -383,6 +394,7 @@
           [chartType]="pieChartType"
           [options]="pieChartOptions"
           [legend]="pieChartLegend"
+          [colors]="pieChartColors"
         >
         </canvas>
       </mat-card>

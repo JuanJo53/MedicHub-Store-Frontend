@@ -51,24 +51,43 @@ export class PharmDashboardComponent implements OnInit {
       },
     },
   };
-  public pieChartLabels: Label[] = [
-    ["Download", "Sales"],
-    ["In", "Store", "Sales"],
-    ["In", "Store", "Sales"],
-    ["In", "Store", "Sales"],
-    ["In", "Store", "Sales"],
-    ["In", "Store", "Sales"],
-    ["In", "Store", "Sales"],
-    ["In", "Store", "Sales"],
-    ["In", "Store", "Sales"],
-    ["In", "Store", "Sales"],
-    "Mail Sales",
-  ];
-  public pieChartData: number[] = [
-    300, 500, 100, 500, 500, 200, 600, 10, 80, 60, 30,
-  ];
+  public pieChartLabels: Label[];
+  public pieChartData: number[];
   public pieChartType: ChartType = "pie";
   public pieChartLegend = true;
+  public pieChartColors = [
+    {
+      backgroundColor: [
+        "rgba(255,0,0,0.3)",
+        "rgba(0,255,0,0.3)",
+        "rgba(0,0,255,0.3)",
+        "rgb(134,199,243)",
+        "rgb(255,226,154)",
+        "rgb(255,161,181)",
+        "rgba(196,79,244,0.3)",
+        "rgb(128, 0, 0)",
+        "rgb(153, 102, 204) ",
+        "rgba(255,0,0,0.3)",
+        "rgba(0,255,0,0.3)",
+        "rgba(0,0,255,0.3)",
+        "rgb(134,199,243)",
+        "rgb(255,226,154)",
+        "rgb(255,161,181)",
+        "rgba(196,79,244,0.3)",
+        "rgb(128, 0, 0)",
+        "rgb(153, 102, 204) ",
+        "rgba(255,0,0,0.3)",
+        "rgba(0,255,0,0.3)",
+        "rgba(0,0,255,0.3)",
+        "rgb(134,199,243)",
+        "rgb(255,226,154)",
+        "rgb(255,161,181)",
+        "rgba(196,79,244,0.3)",
+        "rgb(128, 0, 0)",
+        "rgb(153, 102, 204) ",
+      ],
+    },
+  ];
 
   //line|bar
   public salesChartData: ChartDataSets[];
@@ -143,6 +162,7 @@ export class PharmDashboardComponent implements OnInit {
   stats: any;
 
   typeOrder: any;
+  typeProduct: any;
   filter: any;
   filterType: any;
 
@@ -176,6 +196,7 @@ export class PharmDashboardComponent implements OnInit {
         this.fetchStats();
         this.fetchSalesData();
         this.typeOrder = "2";
+        this.typeProduct = "0";
         this.fecthOrders(this.length);
       }
     } catch (error) {
@@ -271,13 +292,21 @@ export class PharmDashboardComponent implements OnInit {
   }
 
   fecthOrders(page: number): void {
+    let prod = false;
+    if (this.typeProduct == "0") {
+      prod = true;
+    } else {
+      prod = false;
+    }
+    this.pieChartData = [];
+    this.pieChartLabels = [];
     this.orderService
       .getSubsidiaryOrdersBI(
         this.subsiId,
         page,
         this.size,
         parseInt(this.typeOrder),
-        this.filter,
+        prod,
         this.filterType
       )
       .subscribe((products) => {
@@ -291,7 +320,8 @@ export class PharmDashboardComponent implements OnInit {
               item.picture = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             });
           }
-          //codigo para agregar los valores para el grafico
+          this.pieChartData.push(parseInt(item.stock));
+          this.pieChartLabels.push(item.name);
         });
 
         this.length = products[0].size;

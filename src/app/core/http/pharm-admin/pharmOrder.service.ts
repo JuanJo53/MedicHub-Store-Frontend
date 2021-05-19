@@ -56,7 +56,7 @@ export class PharmOrderService {
     page: number,
     size: number,
     type: number,
-    filter: number,
+    filter: boolean,
     typeFilter: number
   ) {
     return this.http.get<Product[]>(
