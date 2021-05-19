@@ -63,7 +63,7 @@ export class PharmOrderService {
       apiKey.api +
         `/reserve/${subsiId}/subsidiary/report/general?page=${
           (page - 1) * size
-        }&size=${size}&asc=${type}`,
+        }&size=${size}&state=${type}&asc=${filter}`,
       { headers: this.headers }
     );
   }

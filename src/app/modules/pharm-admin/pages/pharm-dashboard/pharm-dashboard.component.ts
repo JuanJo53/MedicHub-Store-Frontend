@@ -153,7 +153,6 @@ export class PharmDashboardComponent implements OnInit {
     "Gain",
     "Stock",
     "Quantity",
-    "More",
   ];
 
   salesDataSource = new MatTableDataSource();
@@ -294,9 +293,9 @@ export class PharmDashboardComponent implements OnInit {
   fecthOrders(page: number): void {
     let prod = false;
     if (this.typeProduct == "0") {
-      prod = true;
-    } else {
       prod = false;
+    } else {
+      prod = true;
     }
     this.pieChartData = [];
     this.pieChartLabels = [];
