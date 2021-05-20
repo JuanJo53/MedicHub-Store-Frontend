@@ -63,7 +63,7 @@
             <h3>
               <strong class="textEdit">DOSIS:</strong>
               <p class="textEditValue">
-                {{ product.dose }} {{ product.doseType }}
+                {{ product.dose }}{{ product.doseType }}
               </p>
             </h3>
             <h3>
@@ -148,7 +148,7 @@
                   required
                 />
               </mat-form-field>
-              <mat-form-field appearance="fill">
+              <mat-form-field class="form" appearance="fill">
                 <mat-label class="texteditcard">Tipo de Dosis</mat-label>
                 <mat-select formControlName="doseTypeId">
                   <mat-option
@@ -159,7 +159,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <mat-form-field appearance="fill">
+            <mat-form-field class="form" appearance="fill">
               <mat-label class="texteditcard">Descripcion</mat-label
               ><input
                 matInput
